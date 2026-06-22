@@ -48,10 +48,10 @@
 git clone https://github.com/xdx888999/xdx-lab-design-skill.git
 ```
 
-然后将 `design-style-skill/references/styles/` 中的任意 DESIGN.md 文件复制到你的项目根目录：
+然后将 `references/styles/` 中的任意 DESIGN.md 文件复制到你的项目根目录：
 
 ```bash
-cp design-style-skill/references/styles/31-song-dynasty-ink-DESIGN.md ./DESIGN.md
+cp references/styles/31-song-dynasty-ink-DESIGN.md /path/to/your/project/DESIGN.md
 ```
 
 在任意 AI 工具中说："请按照 DESIGN.md 的设计规范实现这个组件"
@@ -63,12 +63,21 @@ cp design-style-skill/references/styles/31-song-dynasty-ink-DESIGN.md ./DESIGN.m
 安装后，以下任意说法都会触发 Skill：
 
 ```
+"我要设计一个 PPT，先帮我推荐几个风格"
+"我要做一个 AI 产品官网，你推荐适合的视觉方向"
 "帮我做一个宋代水墨风格的落地页"
 "用 Glassmorphism 风格设计这个组件"
 "给我做一个金融科技公司官网，配色要专业"
 "制作一个电竞赛事品牌页面"
 "设计一个米其林餐厅的在线菜单"
 ```
+
+### 风格选择方式
+
+- **未指定风格时**：Agent 会先从 50 种精选 DESIGN.md 中推荐 2-3 个适合当前场景的风格，并等待你选择。
+- **直接指定风格时**：Agent 会立即匹配对应 DESIGN.md，例如“用宋代水墨”“用 Art Deco”“用 42 电竞风”。
+- **精选库没有对应风格时**：Agent 会从 120+ 全球设计风格知识库中动态合成一份可执行设计规范。
+- **回复方式**：你可以回复编号、风格名、中文描述，或直接说“你来定”。
 
 ---
 

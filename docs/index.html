@@ -1,492 +1,855 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Design Style Gallery — xdx-lab-design-skill</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>全球设计风格画廊 — xdx-lab-design-skill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #F7F3EC;
+    --ink: #171615;
+    --muted: #6E6A63;
+    --line: #D7D0C4;
+    --panel: #FFFCF5;
+    --accent: #C43B2A;
+    --max-width: 1760px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
 
   body {
-    background: #FAFAF8;
-    color: #1A1A18;
-    font-family: 'Inter', sans-serif;
-    overflow-x: hidden;
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   }
 
-  /* ── HEADER ──────────────────────────────────── */
-  header {
-    padding: 60px 80px 56px;
-    border-bottom: 2px solid #1A1A18;
+  a {
+    color: inherit;
   }
-  .header-eyebrow {
-    font-size: 11px; font-weight: 500;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: #888;
-    display: block; margin-bottom: 20px;
+
+  .site-shell {
+    min-height: 100vh;
   }
-  .header-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 5vw, 64px); font-weight: 700;
-    letter-spacing: -1px; line-height: 1.05;
-    color: #1A1A18;
+
+  .hero {
+    border-bottom: 2px solid var(--ink);
+    background:
+      linear-gradient(90deg, rgba(23, 22, 21, 0.05) 1px, transparent 1px),
+      linear-gradient(180deg, #FFFCF5 0%, #F4EEE5 100%);
+    background-size: 64px 64px, auto;
+  }
+
+  .hero-inner {
+    width: min(var(--max-width), calc(100% - 64px));
+    margin: 0 auto;
+    padding: 56px 0 48px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 36px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    max-width: 1120px;
+    margin: 0;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(42px, 6vw, 92px);
+    font-weight: 800;
+    line-height: 0.98;
+  }
+
+  .hero-title em {
+    color: #8A8177;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero-copy {
+    max-width: 820px;
+    margin: 28px 0 0;
+    color: #4F4B45;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .hero-link {
+    min-height: 42px;
+    padding: 12px 22px;
+    border: 1px solid var(--ink);
+    margin-right: -1px;
+    color: var(--ink);
+    background: rgba(255, 252, 245, 0.68);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .hero-link:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 2px solid var(--ink);
+    background: var(--panel);
+  }
+
+  .stat {
+    padding: 22px 32px;
+    border-right: 1px solid var(--line);
+  }
+
+  .stat:last-child {
+    border-right: 0;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .gallery-wrap {
+    width: min(var(--max-width), calc(100% - 64px));
+    margin: 0 auto;
+    padding: 44px 0 68px;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
     margin-bottom: 24px;
   }
-  .header-title em {
-    font-style: italic; color: #888;
-  }
-  .header-desc {
-    font-size: 16px; font-weight: 300;
-    line-height: 1.75; color: #555;
-    max-width: 640px; margin-bottom: 32px;
-  }
-  .header-links {
-    display: flex; gap: 0; flex-wrap: wrap;
-  }
-  .header-link {
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    color: #1A1A18;
-    text-decoration: none;
-    border: 1px solid #1A1A18;
-    padding: 10px 24px;
-    margin-right: -1px;
-    transition: all 200ms ease;
-  }
-  .header-link:hover { background: #1A1A18; color: #FAFAF8; }
 
-  /* ── GRID ────────────────────────────────────── */
-  main { padding: 60px 80px 80px; }
-  .grid {
+  .toolbar-title {
+    margin: 0;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(28px, 3vw, 46px);
+    line-height: 1.1;
+  }
+
+  .toolbar-copy {
+    max-width: 620px;
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .category-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .category-chip {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    border: 1px solid var(--line);
+    padding: 7px 11px;
+    background: #FFFCF5;
+    color: #5E5952;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 2px;
-    background: #D0CCC4;
-    border: 2px solid #1A1A18;
+    grid-template-columns: repeat(auto-fill, minmax(292px, 1fr));
+    border: 2px solid var(--ink);
+    background: var(--line);
+    gap: 1px;
   }
 
-  .demo-card {
-    background: #FAFAF8;
-    text-decoration: none; color: inherit;
-    display: block; overflow: hidden;
-    transition: background 200ms ease;
-    cursor: pointer;
-  }
-  .demo-card:hover { background: #F2EEE6; }
-
-  .card-preview {
-    height: 220px;
-    position: relative; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-  .preview-inner { position: relative; z-index: 1; text-align: center; }
-
-  /* ── PREVIEW STYLES ──────────────────────────── */
-  /* 1. Art Deco */
-  .p-artdeco {
-    background: #0A0A0A;
-  }
-  .p-artdeco .preview-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px; font-weight: 300;
-    letter-spacing: 10px; text-transform: uppercase;
-    color: #D4AF37;
-  }
-  .p-artdeco .preview-sub {
-    font-family: 'Inter', sans-serif;
-    font-size: 10px; font-weight: 300;
-    letter-spacing: 5px; text-transform: uppercase;
-    color: rgba(201,168,76,0.6);
-    margin-top: 12px;
-  }
-  /* Art Deco double border */
-  .p-artdeco::before {
-    content: '';
-    position: absolute; inset: 12px;
-    border: 1px solid rgba(201,168,76,0.3);
-    pointer-events: none;
-  }
-  .p-artdeco::after {
-    content: '';
-    position: absolute; inset: 20px;
-    border: 1px solid rgba(201,168,76,0.15);
-    pointer-events: none;
+  .style-card {
+    position: relative;
+    display: flex;
+    min-height: 444px;
+    flex-direction: column;
+    overflow: hidden;
+    background: #FFFCF5;
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease;
   }
 
-  /* 2. Japandi */
-  .p-japandi {
-    background: #FAF8F3;
+  .style-card:hover {
+    z-index: 2;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(23, 22, 21, 0.16);
   }
-  .p-japandi .preview-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px; font-weight: 300;
-    letter-spacing: -1px;
-    color: #2C2C2C;
+
+  .style-card.is-static {
+    cursor: default;
   }
-  .p-japandi .preview-sub {
-    font-size: 11px; font-weight: 400;
-    letter-spacing: 2.5px; text-transform: uppercase;
-    color: #6B7C5A;
-    margin-top: 12px;
+
+  .style-card.is-static:hover {
+    transform: none;
+    box-shadow: none;
   }
-  /* Washi paper horizontal line */
-  .p-japandi::after {
-    content: '';
+
+  .preview {
+    position: relative;
+    display: grid;
+    min-height: 218px;
+    place-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(23, 22, 21, 0.1);
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  .preview::before,
+  .preview::after {
     position: absolute;
-    left: 32px; right: 32px;
-    top: 50%; height: 1px;
-    background: #D5CDBD;
+    content: "";
     pointer-events: none;
   }
 
-  /* 3. Neobrutalism */
-  .p-neo {
-    background: #FFFEF5;
-    border-top: 6px solid #0A0A0A;
-  }
-  .p-neo .preview-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 28px; font-weight: 900;
-    letter-spacing: -1px; text-transform: uppercase;
-    color: #0A0A0A;
-  }
-  .p-neo .preview-sub {
-    display: inline-block;
-    background: #FFDD00;
-    color: #0A0A0A;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase;
-    padding: 4px 12px;
-    margin-top: 10px;
-    border: 2px solid #0A0A0A;
-    box-shadow: 3px 3px 0 #0A0A0A;
+  .preview-core {
+    position: relative;
+    z-index: 2;
+    width: min(78%, 260px);
+    text-align: center;
   }
 
-  /* 4. Song Dynasty */
-  .p-song {
-    background: #F7F3EC;
+  .preview-title {
+    color: var(--fg);
+    font-family: var(--display-font);
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+    line-height: 1.02;
+    text-transform: var(--title-transform);
   }
-  .p-song .preview-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 300;
-    letter-spacing: 8px;
-    color: #2C2416;
-  }
-  .p-song .preview-sub {
-    font-size: 11px; font-weight: 400;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: #8BB5B0;
+
+  .preview-subtitle {
     margin-top: 12px;
+    color: var(--accent-color);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
   }
 
-  /* 5. Editorial */
-  .p-editorial {
-    background: #FAF9F7;
-    border-left: 4px solid #B5121B;
+  .preview-swatch {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, 20px);
+    gap: 4px;
+    z-index: 3;
   }
-  .p-editorial .preview-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px; font-weight: 700;
-    letter-spacing: -0.5px; text-align: left;
-    color: #121212;
-    line-height: 1.15;
+
+  .preview-swatch span {
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgba(23, 22, 21, 0.18);
+    background: var(--swatch);
   }
-  .p-editorial .preview-sub {
-    font-size: 10px; font-weight: 600;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: #B5121B;
-    margin-top: 10px;
+
+  /* 预览模式用于快速传达每种风格的视觉骨架。 */
+  .m-glass .preview::before,
+  .m-aurora .preview::before {
+    inset: -40px;
+    background:
+      radial-gradient(circle at 24% 22%, var(--accent-color) 0 12%, transparent 34%),
+      radial-gradient(circle at 80% 18%, var(--secondary) 0 13%, transparent 36%),
+      radial-gradient(circle at 48% 86%, var(--tertiary) 0 10%, transparent 32%);
+    filter: blur(28px);
+    opacity: 0.76;
+  }
+
+  .m-glass .preview-core {
+    padding: 26px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .m-minimal .preview::before {
+    left: 26px;
+    right: 26px;
+    top: 50%;
+    height: 1px;
+    background: color-mix(in srgb, var(--fg), transparent 78%);
+  }
+
+  .m-brutal .preview {
+    border-top: 8px solid var(--fg);
+  }
+
+  .m-brutal .preview-core {
+    padding: 12px;
+    border: 3px solid var(--fg);
+    background: var(--accent-color);
+    box-shadow: 8px 8px 0 var(--fg);
+  }
+
+  .m-luxury .preview::before,
+  .m-artdeco .preview::before {
+    inset: 18px;
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 46%);
+  }
+
+  .m-artdeco .preview::after {
+    inset: 28px;
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%);
+  }
+
+  .m-dashboard .preview {
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 18px;
+  }
+
+  .m-dashboard .preview-core {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 10px;
     text-align: left;
   }
-  .p-editorial .preview-inner { text-align: left; padding: 0 32px; }
 
-  /* 6. Luxury */
-  .p-luxury {
-    background: #FAFAF8;
-    border-bottom-color: #E8E4DC;
-  }
-  .p-luxury .preview-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px; font-weight: 300;
-    letter-spacing: 10px; text-transform: uppercase;
-    color: #1A1A18;
-  }
-  .p-luxury .preview-sub {
-    font-size: 10px; font-weight: 300;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: #C9A96E;
-    margin-top: 12px;
-  }
-  .p-luxury::after {
-    content: '';
-    position: absolute;
-    left: 50%; transform: translateX(-50%);
-    bottom: 32px; width: 60px; height: 1px;
-    background: #C9A96E;
+  .m-dashboard .preview-title {
+    display: flex;
+    min-height: 124px;
+    align-items: end;
+    padding: 14px;
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 78%);
+    background: color-mix(in srgb, var(--accent-color), transparent 88%);
+    font-size: 18px;
   }
 
-  /* 7. Republican Shanghai */
-  .p-shanghai {
-    background: #F5EDD8;
-    border-top: 4px solid #C41E3A;
-  }
-  .p-shanghai::before {
-    content: '';
-    position: absolute; inset: 10px;
-    border: 1px solid rgba(212,168,71,0.5);
-    pointer-events: none;
-  }
-  .p-shanghai .preview-label {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 700;
-    letter-spacing: 8px;
-    color: #C41E3A;
-  }
-  .p-shanghai .preview-sub {
-    font-size: 10px; font-weight: 500;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: #D4A847;
-    margin-top: 10px;
+  .m-dashboard .preview-subtitle {
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+    margin: 0;
+    color: transparent;
   }
 
-  /* 8. Bauhaus */
-  .p-bauhaus {
-    background: #FFFFFF;
-    border-top: 8px solid #E63329;
+  .m-dashboard .preview-subtitle::before {
+    content: "";
+    display: block;
+    height: 100%;
+    background:
+      linear-gradient(var(--accent-color), var(--accent-color)) 0 0 / 76% 10px no-repeat,
+      linear-gradient(var(--secondary), var(--secondary)) 0 28px / 54% 10px no-repeat,
+      linear-gradient(var(--tertiary), var(--tertiary)) 0 56px / 88% 10px no-repeat,
+      linear-gradient(var(--accent-color), var(--accent-color)) 0 84px / 42% 10px no-repeat;
+    opacity: 0.86;
   }
-  .p-bauhaus .preview-label {
-    font-family: 'Inter', sans-serif;
-    font-size: 28px; font-weight: 900;
-    letter-spacing: -1px; text-transform: uppercase;
-    color: #000;
+
+  .m-editorial .preview {
+    justify-content: start;
+    padding-left: 34px;
+    border-left: 6px solid var(--accent-color);
   }
-  .p-bauhaus::after {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 60px;
-    background: #1B5FA0;
+
+  .m-editorial .preview-core {
+    text-align: left;
   }
-  .p-bauhaus::before {
-    content: '';
-    position: absolute;
-    left: 24px; bottom: 24px;
-    width: 60px; height: 60px;
+
+  .m-culture .preview::before {
+    inset: 18px;
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 54%);
+  }
+
+  .m-culture .preview::after {
+    right: 28px;
+    top: 28px;
+    width: 34px;
+    height: 34px;
+    border: 2px solid var(--accent-color);
+    opacity: 0.7;
+  }
+
+  .m-geometric .preview::before {
+    left: 26px;
+    bottom: 28px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
-    background: #F7C948;
-    z-index: 0;
-  }
-  .p-bauhaus .preview-inner { z-index: 1; }
-  .p-bauhaus .preview-sub {
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: #555;
-    margin-top: 8px;
+    background: var(--tertiary);
   }
 
-  /* ── CARD BODY ────────────────────────────────── */
+  .m-geometric .preview::after {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 58px;
+    background: var(--secondary);
+  }
+
+  .m-retro .preview::before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 42%;
+    background:
+      linear-gradient(to right, color-mix(in srgb, var(--accent-color), transparent 24%) 1px, transparent 1px),
+      linear-gradient(to top, color-mix(in srgb, var(--accent-color), transparent 24%) 1px, transparent 1px);
+    background-size: 28px 28px;
+    transform: perspective(260px) rotateX(58deg);
+    transform-origin: bottom;
+  }
+
+  .m-playful .preview::before {
+    left: 24px;
+    top: 26px;
+    width: 70px;
+    height: 70px;
+    border-radius: 24px;
+    background: var(--secondary);
+    box-shadow: 130px 70px 0 var(--tertiary), 64px 110px 0 var(--accent-color);
+    opacity: 0.88;
+  }
+
+  .m-pixel .preview {
+    image-rendering: pixelated;
+  }
+
+  .m-pixel .preview::before {
+    inset: 28px;
+    background:
+      linear-gradient(90deg, transparent 0 18px, var(--accent-color) 18px 32px, transparent 32px 48px),
+      linear-gradient(transparent 0 18px, color-mix(in srgb, var(--accent-color), transparent 40%) 18px 32px, transparent 32px 48px);
+    background-size: 48px 48px;
+    opacity: 0.42;
+  }
+
+  .m-photo .preview::before {
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(0, 0, 0, 0.22), transparent 55%),
+      linear-gradient(45deg, color-mix(in srgb, var(--accent-color), transparent 30%), transparent 60%);
+  }
+
+  .m-photo .preview-core {
+    text-align: left;
+  }
+
   .card-body {
-    padding: 20px 24px 24px;
-    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px 24px 24px;
   }
-  .card-num {
-    font-size: 10px; font-weight: 600;
-    letter-spacing: 2px; text-transform: uppercase;
-    color: #AAA;
-    margin-bottom: 6px;
+
+  .card-kicker {
+    color: #969086;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
+
   .card-title {
-    font-size: 16px; font-weight: 600;
-    color: #1A1A18; margin-bottom: 6px;
-    letter-spacing: -0.2px;
+    margin-top: 8px;
+    color: var(--ink);
+    font-size: 17px;
+    font-weight: 850;
+    line-height: 1.25;
   }
+
   .card-desc {
-    font-size: 13px; font-weight: 300;
-    color: #666; line-height: 1.65;
-    margin-bottom: 16px;
+    margin: 10px 0 18px;
+    color: #645F58;
+    font-size: 13px;
+    line-height: 1.65;
   }
+
   .card-tags {
-    display: flex; gap: 6px; flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
   }
+
   .tag {
-    font-size: 10px; font-weight: 500;
-    letter-spacing: 1px; text-transform: uppercase;
-    padding: 3px 10px;
-    border: 1px solid #D0CCC4;
-    color: #888;
+    border: 1px solid #D4CDC2;
+    padding: 4px 8px;
+    color: #837D73;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
-  /* ── FOOTER ──────────────────────────────────── */
-  footer {
-    border-top: 2px solid #1A1A18;
-    padding: 28px 80px;
-    display: flex; justify-content: space-between; align-items: center;
-    font-size: 12px; font-weight: 400;
-    color: #888;
+  .card-link {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 4;
+    border: 1px solid rgba(23, 22, 21, 0.22);
+    padding: 5px 8px;
+    background: rgba(255, 252, 245, 0.8);
+    color: #3F3A33;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
-  footer a { color: #1A1A18; text-decoration: none; font-weight: 500; }
-  footer a:hover { text-decoration: underline; }
 
-  @media (max-width: 768px) {
-    header, main { padding: 40px 24px; }
-    .grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+  .footer {
+    border-top: 2px solid var(--ink);
+    background: #FFFCF5;
+  }
+
+  .footer-inner {
+    width: min(var(--max-width), calc(100% - 64px));
+    margin: 0 auto;
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .footer a {
+    color: var(--ink);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 980px) {
+    .hero-inner,
+    .gallery-wrap,
+    .footer-inner {
+      width: min(100% - 36px, var(--max-width));
+    }
+
+    .hero-inner {
+      padding: 42px 0 36px;
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat:nth-child(2) {
+      border-right: 0;
+    }
+
+    .stat:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toolbar {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    .category-strip {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .hero-link {
+      margin-right: 0;
+      margin-bottom: -1px;
+      text-align: center;
+    }
+
+    .stats {
+      grid-template-columns: 1fr;
+    }
+
+    .stat {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-bottom: 0;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .style-card {
+      min-height: 410px;
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
 </head>
 <body>
+<div class="site-shell">
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">xdx-lab-design-skill</span>
+      <h1 class="hero-title">全球设计风格系统，<br><em>50 种精选视觉样张。</em></h1>
+      <p class="hero-copy">这个 Skill 内置 120+ 全球设计风格知识库，其中 50 种已经沉淀为可执行的 DESIGN.md。下面的画廊展示每种精选风格的视觉气质、主色、适用场景和可点击示例页。</p>
+      <nav class="hero-actions" aria-label="项目链接">
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill">GitHub</a>
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill#安装方式">安装 Skill</a>
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill/blob/main/references/style-index.md">风格索引</a>
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill/tree/main/references/styles">DESIGN.md</a>
+      </nav>
+    </div>
+    <div class="stats" aria-label="项目统计">
+      <div class="stat"><span class="stat-value">120+</span><span class="stat-label">全球风格知识库</span></div>
+      <div class="stat"><span class="stat-value">50</span><span class="stat-label">精选 DESIGN.md</span></div>
+      <div class="stat"><span class="stat-value">10</span><span class="stat-label">风格大类</span></div>
+      <div class="stat"><span class="stat-value">13</span><span class="stat-label">已发布详情页</span></div>
+    </div>
+  </header>
 
-<header>
-  <span class="header-eyebrow">xdx-lab-design-skill · Demo Gallery</span>
-  <h1 class="header-title">50 Design Styles,<br><em>eight live demos.</em></h1>
-  <p class="header-desc">Each demo below is a self-contained HTML page built from one DESIGN.md in our skill library — exact colors, exact fonts, exact components. No gradients were harmed in the making of this gallery.</p>
-  <div class="header-links">
-    <a class="header-link" href="https://github.com/xdx888999/xdx-lab-design-skill">★ GitHub</a>
-    <a class="header-link" href="https://github.com/xdx888999/xdx-lab-design-skill#installation">Install Skill</a>
-    <a class="header-link" href="https://github.com/xdx888999/xdx-lab-design-skill/blob/main/design-style-skill/references/style-index.md">All 50 Styles →</a>
-  </div>
-</header>
+  <main class="gallery-wrap">
+    <section class="toolbar" aria-labelledby="gallery-title">
+      <div>
+        <h2 class="toolbar-title" id="gallery-title">精选风格预览</h2>
+        <p class="toolbar-copy">卡片会优先链接到已有 HTML 详情页；尚未制作详情页的风格先以视觉样张形式展示，后续可以逐步补齐完整页面。</p>
+      </div>
+      <div class="category-strip" aria-label="风格类别">
+        <span class="category-chip">Web / UI</span>
+        <span class="category-chip">商业 / 电商</span>
+        <span class="category-chip">文化 / 创意</span>
+        <span class="category-chip">行业专项</span>
+        <span class="category-chip">全球文化</span>
+      </div>
+    </section>
 
-<main>
-  <div class="grid">
+    <section class="gallery-grid" id="gallery-grid" aria-label="50 种精选风格"></section>
+  </main>
 
-    <!-- 1. Art Deco -->
-    <a class="demo-card" href="01-art-deco.html">
-      <div class="card-preview p-artdeco">
-        <div class="preview-inner">
-          <div class="preview-label">MAISON DORÉE</div>
-          <div class="preview-sub">Art Deco · 1924</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 15 · Art Deco</div>
-        <div class="card-title">Grand Hôtel Luxury Brand</div>
-        <div class="card-desc">Lacquer black, burnished gold, Cormorant Garamond. Bilateral symmetry, nested double-borders, no rounded corners.</div>
-        <div class="card-tags"><span class="tag">Dark</span><span class="tag">Gold</span><span class="tag">Serif</span><span class="tag">Geometric</span></div>
-      </div>
-    </a>
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>xdx-lab-design-skill · 50 种精选 DESIGN.md · 120+ 动态设计风格知识库</span>
+      <a href="https://github.com/xdx888999/xdx-lab-design-skill">查看 GitHub →</a>
+    </div>
+  </footer>
+</div>
 
-    <!-- 2. Japandi Minimal -->
-    <a class="demo-card" href="02-japandi-minimal.html">
-      <div class="card-preview p-japandi">
-        <div class="preview-inner">
-          <div class="preview-label">Tsuchi Studio</div>
-          <div class="preview-sub">Wabi-sabi · Kyoto</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 11 · Japandi Minimal</div>
-        <div class="card-title">Ceramics &amp; Lifestyle Brand</div>
-        <div class="card-desc">Washi paper ivory, earth tones, generous ma (negative space). Cormorant Garamond headings, no shadows anywhere.</div>
-        <div class="card-tags"><span class="tag">Light</span><span class="tag">Warm</span><span class="tag">Minimal</span><span class="tag">Japanese</span></div>
-      </div>
-    </a>
+<script>
+  const demoPages = new Map([
+    ["01", "02-glassmorphism-dark.html"],
+    ["03", "01-aurora-ui.html"],
+    ["04", "03-neobrutalism.html"],
+    ["07", "06-luxury-premium.html"],
+    ["11", "02-japandi-minimal.html"],
+    ["14", "08-bauhaus.html"],
+    ["15", "01-art-deco.html"],
+    ["16", "05-synthwave.html"],
+    ["21", "05-editorial-magazine.html"],
+    ["31", "04-song-dynasty.html"],
+    ["33", "07-republican-shanghai.html"],
+    ["42", "07-esports-gaming.html"],
+    ["46", "08-islamic-geometric.html"]
+  ]);
 
-    <!-- 3. Neobrutalism -->
-    <a class="demo-card" href="03-neobrutalism.html">
-      <div class="card-preview p-neo">
-        <div class="preview-inner">
-          <div class="preview-label">NEOBRUTALISM</div>
-          <div class="preview-sub">Raw · Bold</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 04 · Neobrutalism</div>
-        <div class="card-title">Design Studio Brand</div>
-        <div class="card-desc">Butter yellow, absolute black, 4px offset shadows. Space Grotesk 700, zero border-radius, maximum personality.</div>
-        <div class="card-tags"><span class="tag">Light</span><span class="tag">Yellow</span><span class="tag">Bold</span><span class="tag">Graphic</span></div>
-      </div>
-    </a>
+  const styles = [
+    { id: "01", name: "Glassmorphism Dark", sample: "Glass AI", subtitle: "blur · violet · depth", category: "Web/UI", bg: "#0D0D1A", fg: "#FFFFFF", accent: "#8B5CF6", secondary: "#22D3EE", tertiary: "#F472B6", mode: "m-glass", font: '"Inter", sans-serif', size: "32px", weight: 800, transform: "none", desc: "深色玻璃拟态、半透明卡片、紫色光晕，适合 AI 产品、音乐应用和夜间作品集。", tags: ["Dark", "Glass", "AI"] },
+    { id: "02", name: "Tech Minimal", sample: "Core Labs", subtitle: "clean · precise · white", category: "Web/UI", bg: "#FFFFFF", fg: "#0A0A0A", accent: "#111827", secondary: "#E5E7EB", tertiary: "#F9FAFB", mode: "m-minimal", font: '"Inter", sans-serif', size: "34px", weight: 800, transform: "none", desc: "黑白留白、精确栅格和克制动效，适合开发者工具、技术产品和创业公司首页。", tags: ["White", "Precise", "Startup"] },
+    { id: "03", name: "Aurora UI", sample: "AURORA", subtitle: "future interface", category: "Web/UI", bg: "#06061A", fg: "#FFFFFF", accent: "#818CF8", secondary: "#22D3EE", tertiary: "#F472B6", mode: "m-aurora", font: '"Inter", sans-serif', size: "36px", weight: 900, transform: "uppercase", desc: "深色宇宙背景与极光色块组合，适合 AI 官网、下一代 SaaS 和未来感产品。", tags: ["Dark", "Gradient", "Future"] },
+    { id: "04", name: "Neobrutalism", sample: "RAW BOLD", subtitle: "noisy · boxed · loud", category: "Web/UI", bg: "#FFFEF5", fg: "#0A0A0A", accent: "#FFDD00", secondary: "#FF4D00", tertiary: "#00C2FF", mode: "m-brutal", font: '"Space Grotesk", sans-serif', size: "30px", weight: 900, transform: "uppercase", desc: "粗黑边框、错位阴影和高对比黄色，适合创意工具、独立品牌和年轻化产品。", tags: ["Bold", "Yellow", "Graphic"] },
+    { id: "05", name: "FinTech Clean", sample: "Mercury Pay", subtitle: "trust · data · money", category: "商业/电商", bg: "#FFFFFF", fg: "#111827", accent: "#6366F1", secondary: "#10B981", tertiary: "#F3F4F6", mode: "m-dashboard", font: '"Inter", sans-serif', size: "22px", weight: 800, transform: "none", desc: "Stripe 式紫色、干净图表和可信赖排版，适合支付、银行和金融科技产品。", tags: ["Finance", "Clean", "Data"] },
+    { id: "06", name: "E-Commerce Energetic", sample: "Flash Cart", subtitle: "sale · product · action", category: "商业/电商", bg: "#FFFFFF", fg: "#111111", accent: "#FF3D00", secondary: "#FFB000", tertiary: "#F5F5F5", mode: "m-brutal", font: '"Inter", sans-serif', size: "30px", weight: 900, transform: "uppercase", desc: "红橙促销色、强 CTA 和商品网格，适合电商促销、快闪活动和产品页。", tags: ["Sale", "CTA", "Shop"] },
+    { id: "07", name: "Luxury Premium", sample: "LUXURY", subtitle: "gold · ivory · serif", category: "商业/电商", bg: "#FAFAF8", fg: "#1A1A18", accent: "#C9A96E", secondary: "#E8E4DC", tertiary: "#FFFFFF", mode: "m-luxury", font: '"Cormorant Garamond", serif', size: "38px", weight: 300, transform: "uppercase", desc: "象牙白、大量留白、衬线字体与香槟金，适合珠宝、酒店、香水和高端美妆。", tags: ["Luxury", "Gold", "Serif"] },
+    { id: "08", name: "Corporate Blue", sample: "TrustCorp", subtitle: "enterprise · stable", category: "商业/电商", bg: "#FFFFFF", fg: "#0B1F3A", accent: "#0055A5", secondary: "#E6EEF7", tertiary: "#DDE7F1", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 800, transform: "none", desc: "机构蓝、理性布局和稳健信息层级，适合企业软件、咨询、政府和 B2B 销售。", tags: ["Blue", "B2B", "Trust"] },
+    { id: "09", name: "SaaS Dashboard Light", sample: "Pulse OS", subtitle: "sidebar · cards · metrics", category: "商业/电商", bg: "#F9FAFB", fg: "#111827", accent: "#4F46E5", secondary: "#06B6D4", tertiary: "#E5E7EB", mode: "m-dashboard", font: '"Inter", sans-serif', size: "24px", weight: 800, transform: "none", desc: "浅色后台、卡片指标和清晰侧边栏，适合 SaaS、CRM、运营平台和分析产品。", tags: ["SaaS", "Dashboard", "Light"] },
+    { id: "10", name: "Dark Analytics Dashboard", sample: "Ops Grid", subtitle: "monitor · chart · dark", category: "Web/UI", bg: "#0F1117", fg: "#F0F6FC", accent: "#3FB950", secondary: "#58A6FF", tertiary: "#30363D", mode: "m-dashboard", font: '"Inter", sans-serif', size: "24px", weight: 800, transform: "none", desc: "深色监控界面、绿色数据状态和高密度图表，适合 DevOps、交易和 BI 仪表盘。", tags: ["Dark", "Charts", "Ops"] },
+    { id: "11", name: "Japandi Minimal", sample: "Tsuchi", subtitle: "wabi-sabi · quiet", category: "文化/创意", bg: "#FAF8F3", fg: "#2C2C2C", accent: "#6B7C5A", secondary: "#D5CDBD", tertiary: "#EDE7DA", mode: "m-minimal", font: '"Cormorant Garamond", serif', size: "40px", weight: 600, transform: "none", desc: "日本侘寂与北欧极简结合，适合生活方式、瑜伽、手作、陶瓷和有机产品。", tags: ["Zen", "Warm", "Minimal"] },
+    { id: "12", name: "AI-Native Product", sample: "Cognition", subtitle: "assistant · flow", category: "文化/创意", bg: "#FFFFFF", fg: "#18181B", accent: "#7C3AED", secondary: "#06B6D4", tertiary: "#F3E8FF", mode: "m-aurora", font: '"Inter", sans-serif', size: "30px", weight: 850, transform: "none", desc: "明亮 AI 紫、智能流线和轻量玻璃感，适合 LLM 产品、智能助理和自动化工具。", tags: ["AI", "Purple", "Product"] },
+    { id: "13", name: "Health & Wellness", sample: "Calm Path", subtitle: "sage · breath · care", category: "文化/创意", bg: "#FAF8F5", fg: "#2F3A2F", accent: "#7BAE7F", secondary: "#D9E8D5", tertiary: "#F0E7DA", mode: "m-playful", font: '"Inter", sans-serif', size: "30px", weight: 700, transform: "none", desc: "鼠尾草绿、柔和曲线和疗愈节奏，适合冥想、睡眠、营养和心理健康产品。", tags: ["Health", "Soft", "Green"] },
+    { id: "14", name: "Bauhaus", sample: "FORM", subtitle: "circle · square · triangle", category: "文化/创意", bg: "#FFFFFF", fg: "#000000", accent: "#E63329", secondary: "#1B5FA0", tertiary: "#F7C948", mode: "m-geometric", font: '"Inter", sans-serif', size: "38px", weight: 900, transform: "uppercase", desc: "红黄蓝基础几何、功能主义排版和硬边界，适合设计学校、建筑事务所和艺术机构。", tags: ["Geometry", "Primary", "Flat"] },
+    { id: "15", name: "Art Deco", sample: "MAISON", subtitle: "noir · gold · 1924", category: "文化/创意", bg: "#0A0A0A", fg: "#D4AF37", accent: "#C9A84C", secondary: "#3B2F19", tertiary: "#111111", mode: "m-artdeco", font: '"Cormorant Garamond", serif', size: "40px", weight: 600, transform: "uppercase", desc: "黑金对称、双线边框和 1920s 摩登感，适合高级活动、酒店、婚礼和复古奢华品牌。", tags: ["Dark", "Gold", "Deco"] },
+    { id: "16", name: "Synthwave / Retrowave", sample: "NEON 84", subtitle: "sunset · grid · chrome", category: "复古/亚文化", bg: "#1A0533", fg: "#FFFFFF", accent: "#FF2D7F", secondary: "#00F5FF", tertiary: "#FFD166", mode: "m-retro", font: '"Space Grotesk", sans-serif', size: "34px", weight: 900, transform: "uppercase", desc: "80 年代霓虹、网格地平线和热粉紫，适合电音、游戏、夜生活和复古主题产品。", tags: ["Neon", "Retro", "Music"] },
+    { id: "17", name: "Cyberpunk", sample: "CYBER//", subtitle: "warning · hacker · neon", category: "复古/亚文化", bg: "#0A0A0F", fg: "#F8F8F2", accent: "#FFE000", secondary: "#00F0FF", tertiary: "#FF003C", mode: "m-brutal", font: '"Space Grotesk", sans-serif', size: "32px", weight: 900, transform: "uppercase", desc: "警示黄、霓虹青和赛博故障感，适合安全工具、科幻游戏和高能科技品牌。", tags: ["Cyber", "Yellow", "Sharp"] },
+    { id: "18", name: "Y2K / 2000s Revival", sample: "Y2K POP", subtitle: "chrome · bubble · glossy", category: "复古/亚文化", bg: "#F0F4FF", fg: "#24304A", accent: "#FF69B4", secondary: "#8BE9FD", tertiary: "#D7C8FF", mode: "m-playful", font: '"Inter", sans-serif', size: "34px", weight: 900, transform: "uppercase", desc: "千禧粉、冰蓝高光和软塑料质感，适合 Gen-Z 时尚、音乐和流行文化产品。", tags: ["Y2K", "Pink", "Chrome"] },
+    { id: "19", name: "Vaporwave / Aesthetic", sample: "AESTHETIC", subtitle: "marble · sunset · net", category: "复古/亚文化", bg: "#1A0533", fg: "#FFFFFF", accent: "#FF71CE", secondary: "#01CDFE", tertiary: "#B967FF", mode: "m-retro", font: '"Space Grotesk", sans-serif', size: "30px", weight: 800, transform: "uppercase", desc: "90 年代互联网、粉蓝渐变和梦幻怀旧，适合另类音乐、艺术项目和互联网文化。", tags: ["Vapor", "Dream", "90s"] },
+    { id: "20", name: "New Chinese Trendy / 国潮", sample: "国潮新造", subtitle: "vermilion · gold", category: "文化/创意", bg: "#F5F0E8", fg: "#241612", accent: "#C8372D", secondary: "#D4A847", tertiary: "#0F3D2E", mode: "m-culture", font: '"Noto Serif SC", serif', size: "34px", weight: 700, transform: "none", desc: "朱砂红、金色点缀和现代国货语汇，适合茶酒、节庆、文创和中国品牌。", tags: ["Chinese", "Red", "Trendy"] },
+    { id: "21", name: "Editorial Magazine", sample: "ÆTHER", subtitle: "culture · ideas", category: "出版/演示", bg: "#FAF9F7", fg: "#121212", accent: "#B5121B", secondary: "#EDE9E1", tertiary: "#111111", mode: "m-editorial", font: '"Playfair Display", serif', size: "42px", weight: 800, transform: "none", desc: "报纸纸色、强标题和红色栏目标签，适合杂志、长文、媒体站和作者作品集。", tags: ["Editorial", "Serif", "Media"] },
+    { id: "22", name: "Academic / Research", sample: "Research", subtitle: "citation · rigor", category: "出版/演示", bg: "#FFFFFF", fg: "#111827", accent: "#0D4EA6", secondary: "#E8F0FB", tertiary: "#F3F4F6", mode: "m-minimal", font: '"Inter", sans-serif', size: "32px", weight: 800, transform: "none", desc: "学术蓝、脚注感信息层级和严谨排版，适合研究站点、大学页面和科学可视化。", tags: ["Academic", "Blue", "Rigor"] },
+    { id: "23", name: "Startup Pitch Deck Dark", sample: "Series A", subtitle: "metrics · traction", category: "出版/演示", bg: "#0F1117", fg: "#F8FAFC", accent: "#3B82F6", secondary: "#22C55E", tertiary: "#334155", mode: "m-dashboard", font: '"Inter", sans-serif', size: "30px", weight: 900, transform: "none", desc: "深色路演、关键数字和投资人视角，适合融资 deck、发布会和 Demo Day。", tags: ["Pitch", "Dark", "Metrics"] },
+    { id: "24", name: "Swiss International", sample: "Grid 24", subtitle: "helvetica · order", category: "出版/演示", bg: "#FFFFFF", fg: "#111111", accent: "#E3001B", secondary: "#F2F2F2", tertiary: "#D9D9D9", mode: "m-geometric", font: '"Inter", sans-serif', size: "36px", weight: 900, transform: "none", desc: "瑞士网格、左对齐和现代主义红，适合身份系统、年报、建筑和设计机构。", tags: ["Grid", "Swiss", "Modern"] },
+    { id: "25", name: "Nature Organic", sample: "Field & Co", subtitle: "earth · linen · leaf", category: "App 专项", bg: "#FAF6F0", fg: "#2F2A22", accent: "#4A8B3A", secondary: "#C9B79C", tertiary: "#E6D8C7", mode: "m-minimal", font: '"Cormorant Garamond", serif', size: "34px", weight: 600, transform: "none", desc: "米色亚麻、叶绿和有机笔触，适合可持续品牌、有机食品和自然生活方式。", tags: ["Organic", "Earth", "Food"] },
+    { id: "26", name: "Kawaii / Cute UI", sample: "Mochi", subtitle: "cute · candy · round", category: "App 专项", bg: "#FFFBF9", fg: "#4A2B37", accent: "#FFB3D1", secondary: "#B8E7FF", tertiary: "#FFF1A8", mode: "m-playful", font: '"Inter", sans-serif', size: "36px", weight: 900, transform: "none", desc: "糖果粉、圆润形体和可爱语气，适合宠物、甜品、儿童产品和社交应用。", tags: ["Cute", "Pink", "Round"] },
+    { id: "27", name: "Claymorphism", sample: "Clay UI", subtitle: "puffy · tactile", category: "App 专项", bg: "#F7F5FF", fg: "#241F3A", accent: "#3D8EFF", secondary: "#FFB84D", tertiary: "#E8E2FF", mode: "m-playful", font: '"Inter", sans-serif', size: "34px", weight: 850, transform: "none", desc: "柔软 3D 泥塑、厚阴影和游戏化触感，适合创意 App、教育产品和年轻化工具。", tags: ["Clay", "3D", "Play"] },
+    { id: "28", name: "Pixel Art / Retro Gaming", sample: "8-BIT", subtitle: "arcade · terminal", category: "App 专项", bg: "#1A1A2E", fg: "#FFFFFF", accent: "#00FF41", secondary: "#FFCC00", tertiary: "#FF006E", mode: "m-pixel", font: '"Space Grotesk", sans-serif', size: "38px", weight: 900, transform: "uppercase", desc: "像素格、终端绿和街机感，适合独立游戏、复古周边、开发者站点和 NFT 艺术。", tags: ["Pixel", "Game", "Retro"] },
+    { id: "29", name: "Material You", sample: "Material", subtitle: "tonal · android", category: "App 专项", bg: "#FFFBFE", fg: "#1C1B1F", accent: "#6750A4", secondary: "#EADDFF", tertiary: "#F3EDF7", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 800, transform: "none", desc: "Material 3 动态色、tonal surface 和圆角组件，适合 Android 应用和 Google 生态产品。", tags: ["Material", "Android", "Tonal"] },
+    { id: "30", name: "Dark Developer", sample: "~/dev", subtitle: "terminal · github", category: "App 专项", bg: "#0D1117", fg: "#C9D1D9", accent: "#58A6FF", secondary: "#3FB950", tertiary: "#30363D", mode: "m-dashboard", font: '"Space Grotesk", sans-serif', size: "34px", weight: 800, transform: "none", desc: "GitHub 深色、代码块和终端审美，适合 CLI、开源项目、开发者工具和技术文档。", tags: ["Developer", "Dark", "Code"] },
+    { id: "31", name: "Song Dynasty Ink", sample: "宋代水墨", subtitle: "ru celadon · ink", category: "东亚文化", bg: "#F7F3EC", fg: "#1C1C1C", accent: "#8BB5B0", secondary: "#C43B2A", tertiary: "#EEE8DB", mode: "m-culture", font: '"Noto Serif SC", serif', size: "34px", weight: 600, transform: "none", desc: "宣纸、水墨、汝窑天青和克制印章，适合文博、茶道、文学平台和国风奢品。", tags: ["Ink", "Chinese", "Quiet"] },
+    { id: "32", name: "Tang Dynasty Splendor", sample: "盛唐华彩", subtitle: "dunhuang · silk road", category: "东亚文化", bg: "#0D0805", fg: "#F8E7C0", accent: "#C9A84C", secondary: "#B91C1C", tertiary: "#1F5E5A", mode: "m-artdeco", font: '"Noto Serif SC", serif', size: "34px", weight: 700, transform: "none", desc: "帝王金、朱砂和敦煌矿物色，适合博物馆大展、文旅、唐风游戏和中式奢华品牌。", tags: ["Tang", "Gold", "Dunhuang"] },
+    { id: "33", name: "Republican Era Shanghai", sample: "华茂楼", subtitle: "shanghai · 1928", category: "东亚文化", bg: "#F5EDD8", fg: "#3A251B", accent: "#C41E3A", secondary: "#D4A847", tertiary: "#276A73", mode: "m-culture", font: '"Noto Serif SC", serif', size: "36px", weight: 700, transform: "none", desc: "月份牌、上海红和中西混合 Art Deco，适合老上海餐饮、复古时尚和文创产品。", tags: ["Shanghai", "Vintage", "Red"] },
+    { id: "34", name: "Ukiyo-e Woodblock", sample: "浮世绘", subtitle: "edo · wave · print", category: "东亚文化", bg: "#F5F0E6", fg: "#1B1B1B", accent: "#1A4B7A", secondary: "#C0392B", tertiary: "#E8C547", mode: "m-culture", font: '"Noto Serif SC", serif', size: "36px", weight: 700, transform: "none", desc: "普鲁士蓝、平涂色块和木版画黑轮廓，适合日本文化、和风游戏、餐饮和旅行。", tags: ["Ukiyo-e", "Blue", "Print"] },
+    { id: "35", name: "Zen Wabi-Sabi", sample: "侘寂", subtitle: "stone · moss · silence", category: "东亚文化", bg: "#F4F1EC", fg: "#2E2D28", accent: "#6B7B5A", secondary: "#C7B9A6", tertiary: "#E5DED4", mode: "m-minimal", font: '"Noto Serif SC", serif', size: "38px", weight: 600, transform: "none", desc: "不完美、自然肌理、石庭和苔绿，适合冥想 App、茶品牌、手工艺和高端 SPA。", tags: ["Zen", "Wabi", "Natural"] },
+    { id: "36", name: "Medical & Healthcare", sample: "CareOne", subtitle: "clinical · safe", category: "行业专项", bg: "#FFFFFF", fg: "#0F172A", accent: "#0891B2", secondary: "#ECFEFF", tertiary: "#E2E8F0", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 800, transform: "none", desc: "医疗青、洁净白和清晰表单，适合医院官网、健康 App、医疗器械和远程问诊。", tags: ["Medical", "Clean", "Trust"] },
+    { id: "37", name: "Legal Professional", sample: "Sterling Law", subtitle: "authority · counsel", category: "行业专项", bg: "#FAFAF8", fg: "#0D2040", accent: "#B8962E", secondary: "#E8E0D0", tertiary: "#FFFFFF", mode: "m-luxury", font: '"Playfair Display", serif', size: "34px", weight: 700, transform: "none", desc: "权威深蓝、金色细节和稳重衬线，适合律所、法律科技、咨询和会计师事务所。", tags: ["Legal", "Blue", "Authority"] },
+    { id: "38", name: "Education Platform", sample: "LearnKit", subtitle: "course · progress", category: "行业专项", bg: "#FFFFFF", fg: "#111827", accent: "#4F46E5", secondary: "#F59E0B", tertiary: "#EEF2FF", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 850, transform: "none", desc: "学习靛蓝、进度卡片和成就反馈，适合在线教育、技能培训、学校官网和教辅工具。", tags: ["Education", "Progress", "SaaS"] },
+    { id: "39", name: "Real Estate Luxury", sample: "Avenue 39", subtitle: "residence · space", category: "行业专项", bg: "#FAFAF8", fg: "#1C1A17", accent: "#B8962E", secondary: "#DDD3C4", tertiary: "#F4F0E8", mode: "m-photo", font: '"Playfair Display", serif', size: "36px", weight: 700, transform: "none", desc: "摄影优先、地产金和空间感留白，适合豪宅销售、高端经纪和奢侈公寓预售。", tags: ["Real Estate", "Luxury", "Photo"] },
+    { id: "40", name: "Restaurant Fine Dining", sample: "Noir Table", subtitle: "chef · menu · wine", category: "行业专项", bg: "#FAF7F0", fg: "#1F1A14", accent: "#B8902A", secondary: "#6D2E1F", tertiary: "#EFE3D0", mode: "m-luxury", font: '"Cormorant Garamond", serif', size: "36px", weight: 600, transform: "none", desc: "金箔色、菜单留白和法式克制，适合米其林餐厅、主厨品牌、私宴和精品葡萄酒。", tags: ["Dining", "Gold", "Menu"] },
+    { id: "41", name: "Finance Enterprise", sample: "CapitalOS", subtitle: "assets · risk · table", category: "行业专项", bg: "#F8F9FA", fg: "#0A1628", accent: "#0A1628", secondary: "#2563EB", tertiary: "#D9E2EC", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 900, transform: "none", desc: "机构深蓝、数据密度和 Bloomberg 式表格，适合资产管理、私募、投行和券商软件。", tags: ["Finance", "Enterprise", "Data"] },
+    { id: "42", name: "Esports & Gaming", sample: "ARENA", subtitle: "team · tournament", category: "行业专项", bg: "#0A0C14", fg: "#FFFFFF", accent: "#00D4FF", secondary: "#FF2D55", tertiary: "#6D28D9", mode: "m-retro", font: '"Space Grotesk", sans-serif', size: "38px", weight: 900, transform: "uppercase", desc: "赛博青、斜切构图和高速度感，适合电竞战队、赛事、游戏外设和直播平台。", tags: ["Esports", "Neon", "Fast"] },
+    { id: "43", name: "Fashion Editorial", sample: "MODE", subtitle: "runway · beauty", category: "行业专项", bg: "#FFFFFF", fg: "#0A0A0A", accent: "#0A0A0A", secondary: "#EDEDED", tertiary: "#C9C9C9", mode: "m-editorial", font: '"Playfair Display", serif', size: "46px", weight: 800, transform: "uppercase", desc: "全版面摄影、黑白强对比和极端字号，适合时装秀、奢侈品电商和高端美妆。", tags: ["Fashion", "B&W", "Photo"] },
+    { id: "44", name: "Travel & Hospitality", sample: "Solea Stay", subtitle: "destination · sunset", category: "行业专项", bg: "#FAFAF8", fg: "#1C2520", accent: "#E8724A", secondary: "#2E6F75", tertiary: "#F4D6C8", mode: "m-photo", font: '"Playfair Display", serif', size: "34px", weight: 700, transform: "none", desc: "日落珊瑚、目的地摄影和预订信息，适合精品酒店、旅行平台、邮轮和民宿。", tags: ["Travel", "Warm", "Booking"] },
+    { id: "45", name: "Nonprofit & Cause", sample: "Impact", subtitle: "story · donation", category: "行业专项", bg: "#FAFAF8", fg: "#1F2937", accent: "#2563EB", secondary: "#16A34A", tertiary: "#DBEAFE", mode: "m-dashboard", font: '"Inter", sans-serif', size: "30px", weight: 850, transform: "none", desc: "信任蓝、故事化模块和影响力数字，适合 NGO、慈善基金会、社会企业和环保组织。", tags: ["Cause", "Impact", "Trust"] },
+    { id: "46", name: "Islamic Geometric", sample: "Al Noor", subtitle: "geometry · arch", category: "全球文化", bg: "#0D3340", fg: "#F7E7C4", accent: "#C9A84C", secondary: "#1F6F78", tertiary: "#F2EFE6", mode: "m-geometric", font: '"Cormorant Garamond", serif', size: "36px", weight: 700, transform: "none", desc: "星形几何、清真寺金和拱形秩序，适合伊斯兰文化品牌、中东酒店和艺术机构。", tags: ["Islamic", "Geometry", "Gold"] },
+    { id: "47", name: "Afrofuturism", sample: "ORBIT", subtitle: "adinkra · future", category: "全球文化", bg: "#050505", fg: "#F7E7C4", accent: "#C05A2A", secondary: "#F2C14E", tertiary: "#3A6EA5", mode: "m-culture", font: '"Space Grotesk", sans-serif', size: "36px", weight: 900, transform: "uppercase", desc: "赤陶、肯特布纹样和宇宙未来感，适合非洲创意品牌、泛非文化机构和当代艺术。", tags: ["Afro", "Future", "Culture"] },
+    { id: "48", name: "Pop Art 60s", sample: "POP!", subtitle: "warhol · dots", category: "全球文化", bg: "#FFFEF5", fg: "#111111", accent: "#E8002A", secondary: "#FFD400", tertiary: "#0066FF", mode: "m-geometric", font: '"Space Grotesk", sans-serif', size: "44px", weight: 900, transform: "uppercase", desc: "原色、粗轮廓和漫画网点，适合艺术展、复古时尚、流行音乐和创意机构。", tags: ["Pop", "Primary", "Art"] },
+    { id: "49", name: "Dark Academia", sample: "Vellum", subtitle: "oxford · candle", category: "全球文化", bg: "#1A1208", fg: "#F2E4C8", accent: "#C8A050", secondary: "#4B2E1F", tertiary: "#2A1E15", mode: "m-luxury", font: '"Cormorant Garamond", serif', size: "40px", weight: 700, transform: "none", desc: "牛津旧书、蜡烛光和古典金，适合文学平台、独立书店、古典音乐和学术出版。", tags: ["Academia", "Dark", "Book"] },
+    { id: "50", name: "Brutalist Web", sample: "HTML", subtitle: "raw · system · black", category: "全球文化", bg: "#FFFFFF", fg: "#000000", accent: "#000000", secondary: "#DADADA", tertiary: "#F5F5F5", mode: "m-brutal", font: '"Inter", sans-serif', size: "40px", weight: 900, transform: "uppercase", desc: "绝对黑白、原始网页边界和反精致姿态，适合前卫艺术机构、建筑事务所和独立媒体。", tags: ["Brutalist", "Raw", "Web"] }
+  ];
 
-    <!-- 4. Song Dynasty -->
-    <a class="demo-card" href="04-song-dynasty.html">
-      <div class="card-preview p-song">
-        <div class="preview-inner">
-          <div class="preview-label">宋代水墨</div>
-          <div class="preview-sub">Song Dynasty Ink</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 31 · Song Dynasty Ink</div>
-        <div class="card-title">Chinese Tea Brand</div>
-        <div class="card-desc">Xuan paper, Ru-ware celadon, seal red. Noto Serif SC, vertical writing-mode, 留白 (empty space) as content.</div>
-        <div class="card-tags"><span class="tag">Light</span><span class="tag">Chinese</span><span class="tag">Ink</span><span class="tag">Minimal</span></div>
-      </div>
-    </a>
+  function createTag(tag) {
+    const element = document.createElement("span");
+    element.className = "tag";
+    element.textContent = tag;
+    return element;
+  }
 
-    <!-- 5. Editorial Magazine -->
-    <a class="demo-card" href="05-editorial-magazine.html">
-      <div class="card-preview p-editorial">
-        <div class="preview-inner">
-          <div class="preview-label">THE ÆTHER<br>Magazine</div>
-          <div class="preview-sub">Culture · Ideas</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 21 · Editorial Magazine</div>
-        <div class="card-title">Literary Culture Journal</div>
-        <div class="card-desc">Newsprint paper, ink black, NYT-red section labels. Playfair Display headlines, 19px body text, pull quotes at 32px.</div>
-        <div class="card-tags"><span class="tag">Light</span><span class="tag">B&amp;W</span><span class="tag">Typography</span><span class="tag">Serif</span></div>
-      </div>
-    </a>
+  function createCard(style) {
+    const href = demoPages.get(style.id);
+    const card = document.createElement(href ? "a" : "article");
+    card.className = `style-card ${style.mode}${href ? "" : " is-static"}`;
 
-    <!-- 6. Luxury Premium -->
-    <a class="demo-card" href="06-luxury-premium.html">
-      <div class="card-preview p-luxury">
-        <div class="preview-inner">
-          <div class="preview-label">LUXURY</div>
-          <div class="preview-sub">Cormorant · Gold</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 07 · Luxury Premium</div>
-        <div class="card-title">High Jewellery Brand</div>
-        <div class="card-desc">Champagne gold, Cormorant Garamond weight 300, extreme whitespace. The visual language of heritage luxury houses.</div>
-        <div class="card-tags"><span class="tag">Light</span><span class="tag">Gold</span><span class="tag">Serif</span><span class="tag">Minimal</span></div>
-      </div>
-    </a>
+    if (href) {
+      card.href = href;
+      card.setAttribute("aria-label", `${style.name} 详情页`);
+    }
 
-    <!-- 7. Republican Shanghai -->
-    <a class="demo-card" href="07-republican-shanghai.html">
-      <div class="card-preview p-shanghai">
-        <div class="preview-inner">
-          <div class="preview-label">华茂楼</div>
-          <div class="preview-sub">Est. 1928 · Shanghai</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 33 · Republican Shanghai</div>
-        <div class="card-title">Old Shanghai Restaurant</div>
-        <div class="card-desc">Aged cream, Shanghai crimson, Art Deco gold borders. Yuefenpai poster aesthetics — East meets West, 1920s–1940s.</div>
-        <div class="card-tags"><span class="tag">Warm</span><span class="tag">Red</span><span class="tag">Chinese</span><span class="tag">Vintage</span></div>
-      </div>
-    </a>
+    card.style.setProperty("--bg", style.bg);
+    card.style.setProperty("--fg", style.fg);
+    card.style.setProperty("--accent-color", style.accent);
+    card.style.setProperty("--secondary", style.secondary);
+    card.style.setProperty("--tertiary", style.tertiary);
+    card.style.setProperty("--display-font", style.font);
+    card.style.setProperty("--title-size", style.size);
+    card.style.setProperty("--title-weight", style.weight);
+    card.style.setProperty("--title-transform", style.transform);
 
-    <!-- 8. Bauhaus -->
-    <a class="demo-card" href="08-bauhaus.html">
-      <div class="card-preview p-bauhaus">
-        <div class="preview-inner">
-          <div class="preview-label">FORM SCHOOL</div>
-          <div class="preview-sub">Bauhaus · 1919</div>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-num">Style 14 · Bauhaus</div>
-        <div class="card-title">Design School Institution</div>
-        <div class="card-desc">Circle = red, square = blue, triangle = yellow. Jost 900, zero border-radius, 4px structural borders, flat color blocks.</div>
-        <div class="card-tags"><span class="tag">Light</span><span class="tag">Primary Colors</span><span class="tag">Geometric</span><span class="tag">Flat</span></div>
-      </div>
-    </a>
+    const preview = document.createElement("div");
+    preview.className = "preview";
 
-  </div>
-</main>
+    const previewCore = document.createElement("div");
+    previewCore.className = "preview-core";
 
-<footer>
-  <span>xdx-lab-design-skill &mdash; 50 精选风格 · 120+ 动态生成</span>
-  <a href="https://github.com/xdx888999/xdx-lab-design-skill">GitHub →</a>
-</footer>
+    const previewTitle = document.createElement("div");
+    previewTitle.className = "preview-title";
+    previewTitle.textContent = style.sample;
 
+    const previewSubtitle = document.createElement("div");
+    previewSubtitle.className = "preview-subtitle";
+    previewSubtitle.textContent = style.subtitle;
+
+    const swatch = document.createElement("div");
+    swatch.className = "preview-swatch";
+    [style.accent, style.secondary, style.tertiary].forEach((color) => {
+      const swatchItem = document.createElement("span");
+      swatchItem.style.setProperty("--swatch", color);
+      swatch.appendChild(swatchItem);
+    });
+
+    previewCore.append(previewTitle, previewSubtitle);
+    preview.append(previewCore, swatch);
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const kicker = document.createElement("div");
+    kicker.className = "card-kicker";
+    kicker.textContent = `Style ${style.id} · ${style.category}`;
+
+    const title = document.createElement("div");
+    title.className = "card-title";
+    title.textContent = style.name;
+
+    const desc = document.createElement("p");
+    desc.className = "card-desc";
+    desc.textContent = style.desc;
+
+    const tags = document.createElement("div");
+    tags.className = "card-tags";
+    style.tags.forEach((tag) => tags.appendChild(createTag(tag)));
+
+    body.append(kicker, title, desc, tags);
+
+    if (href) {
+      const linkLabel = document.createElement("span");
+      linkLabel.className = "card-link";
+      linkLabel.textContent = "Demo";
+      card.append(linkLabel);
+    }
+
+    card.append(preview, body);
+    return card;
+  }
+
+  const galleryGrid = document.getElementById("gallery-grid");
+  styles.forEach((style) => galleryGrid.appendChild(createCard(style)));
+</script>
 </body>
 </html>

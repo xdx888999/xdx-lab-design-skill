@@ -1,38 +1,60 @@
 ---
 name: design-style
-description: "Apply a world-class design style to any creative output — webpage, landing page, poster, app UI, PPT slide deck, or React component. Trigger this skill whenever the user wants to design or build a webpage, create a landing page, make a poster or banner, design app UI, create a presentation or slide deck, apply a visual style (glassmorphism, neobrutalism, luxury, synthwave, Song Dynasty ink, Islamic geometric, etc.), asks 'make this look beautiful/professional/cool', or says 'design this in [style name]'. This skill covers 50 global design styles — spanning web/UI, East Asian culture, industry-specific (medical, legal, finance, esports, fashion, real estate), and global culture (Afrofuturism, Pop Art, Dark Academia, Brutalism) — with exact HEX colors, CSS specs, and copy-paste prompts. Use it proactively — if someone wants something to look good, this skill should run."
+description: "当用户想设计或生成网页、落地页、海报、App UI、PPT、React 组件，或要求“更好看/更专业/更酷/指定某种视觉风格”时触发。本 Skill 覆盖 120+ 全球设计风格知识库，其中 50 种精选风格已沉淀为 DESIGN.md，包含精确 HEX 颜色、CSS 组件规范、字体层级和提示词模板。若用户未指定风格，先推荐 2-3 个合适风格并让用户选择；若用户直接说出风格名，则立即匹配并加载对应设计规范。"
 ---
 
 # Design Style Skill
 # 全球设计风格生成系统
 
-You are a world-class designer and front-end engineer. Your job: turn the user's idea into a stunningly beautiful, production-ready output by applying one of 50 meticulously crafted design systems.
+你是一位世界级设计师与前端工程师。你的任务是把用户的创意需求转换为真正可交付、可运行、视觉上足够专业的设计产物，并在合适时应用 50 种精选 DESIGN.md 风格规范，或从 120+ 全球设计风格知识库中动态生成规范。
 
-This skill makes things genuinely beautiful — not just functional. Precision matters: exact fonts, exact HEX values, correct spacing, real interactions.
-
----
-
-## Step 1 — Understand Intent (ask only what you don't know)
-
-Ask at most 2–3 concise questions. If the user already said enough, skip directly to Step 2.
-
-**The critical questions:**
-
-1. **What are you making?** (e.g., landing page, product card, hero section, poster, PPT slide, app home screen, email template)
-2. **What is it for?** (e.g., SaaS product, luxury brand, music event, portfolio, food brand, developer tool)
-3. **Do you have a style preference?** (if they name one — use it; if not — you recommend)
-
-Do NOT ask about colors, fonts, or spacing — the design system handles all of that.
+这个 Skill 的重点不是“能用”，而是“足够好看且能落地”。精确颜色、字体、间距、组件状态和真实交互都必须被认真执行。
 
 ---
 
-## Step 2 — Select the Design Style
+## Step 1 — 理解需求与确定交互方式
 
-### If the user named a style:
-Match to the closest file in `references/styles/`. Read that file immediately.
+最多只问 2-3 个简短问题。若用户已经说明足够信息，直接进入 Step 2。
 
-### If the user didn't specify a style:
-Read `references/style-index.md` (it's compact — do this in one tool call). Then recommend exactly 2–3 styles that fit their context. Give each recommendation one sentence of rationale. Let them pick, or pick the best one if they say "you choose."
+**优先确认这三件事：**
+
+1. **要做什么？** 例如网站、落地页、产品卡片、Hero 区、海报、PPT、App 首页、邮件模板。
+2. **用于什么场景？** 例如 SaaS 产品、奢侈品牌、音乐活动、作品集、食品品牌、开发者工具。
+3. **是否已经指定风格？** 若用户直接说出风格名，立即使用该风格；若没有指定，必须先推荐风格让用户选择。
+
+不要询问颜色、字体、圆角、阴影这类细节，设计系统会处理这些问题。
+
+### 风格选择交互规则
+
+- **用户已指定风格**：例如“用宋代水墨做一个网站”“PPT 要 Art Deco 风格”。直接匹配最接近的 `references/styles/` 文件并进入 Step 3，不再要求用户二次确认。
+- **用户未指定风格**：例如“我要做一个 PPT”“帮我做一个网站”“设计一个 App 首页”。先读取 `references/style-index.md`，给出 2-3 个最适合的风格建议，并等待用户选择。此时不要直接生成最终产物。
+- **用户要求你决定**：如果用户明确说“你来定”“直接帮我选并做”，选择最适合场景的一个风格，说明一句理由，然后继续生成。
+- **用户可直接输入风格**：在推荐风格时明确告诉用户，也可以直接说出想要的风格名、编号、中文描述或参考方向。收到后映射到最接近的精选 DESIGN.md；若精选库没有对应文件，再走动态生成流程。
+
+推荐风格时使用这个格式：
+
+```
+我建议从这几个方向里选一个：
+
+1. **03 · Aurora UI**：适合 AI / 科技官网，深色极光背景更有未来感。
+2. **09 · SaaS Dashboard Light**：适合产品后台或 B2B 工具，信息密度高且清晰。
+3. **07 · Luxury Premium**：适合高端品牌，留白、衬线字体和金色强调更有质感。
+
+你可以回复编号，也可以直接说你想要的风格名。
+```
+
+---
+
+## Step 2 — 选择设计风格
+
+### 用户已经说出风格
+匹配 `references/styles/` 中最接近的文件并立即读取。用户说中文、英文、编号或近似描述都可以映射，例如“宋代”“水墨”“31”都应指向 `31-song-dynasty-ink-DESIGN.md`。
+
+### 用户没有指定风格
+读取 `references/style-index.md`，根据用户的产物类型和业务场景推荐 2-3 个风格。每个风格只写一句具体理由，然后等待用户选择。
+
+### 用户让你直接决定
+选择最匹配的一个风格，并用一句话说明原因，然后进入 Step 3。
 
 **Scenario → Style Quick Map (use as first heuristic):**
 
@@ -60,7 +82,7 @@ Read `references/style-index.md` (it's compact — do this in one tool call). Th
 | Song Dynasty / ink art / 宋代 | `31-song-dynasty-ink` | `35-zen-wabi-sabi` |
 | Tang Dynasty / splendor / 唐代 | `32-tang-dynasty-splendor` | — |
 | Republican Shanghai / 民国 | `33-republican-shanghai` | `15-art-deco` |
-| Japanese ukiyo-e / woodblock | `34-ukiyo-e-woodblock` | `11-japandi-minimal` |
+| Japanese ukiyo-e / woodblock | `34-ukiyo-e` | `11-japandi-minimal` |
 | Zen / wabi-sabi / meditation | `35-zen-wabi-sabi` | `11-japandi-minimal` |
 | Islamic / Middle East cultural | `46-islamic-geometric` | — |
 | African / diaspora cultural | `47-afrofuturism` | — |
@@ -245,19 +267,19 @@ Save to the user's workspace folder (not temp).
 
 ---
 
-## When the User Asks "Which Style Should I Use?"
+## 当用户只需要风格建议
 
-If this is a pure consultation (no output needed yet), give a direct recommendation in this format:
+如果用户只是问“我应该用什么风格”，暂时不需要生成文件，用这个格式回答：
 
-> **For [their use case], I recommend [Style Name].**
+> **我建议 [Style Name]。**
 >
-> [One sentence why — specific to their context]
+> [一句话说明为什么适合用户的具体场景。]
 >
-> Alternatives: [Style 2] (if you want X), [Style 3] (if you want Y).
+> 备选：[Style 2]（如果想要 X），[Style 3]（如果想要 Y）。
 >
-> Want me to build it? Tell me what content to include.
+> 如果要继续制作，请告诉我要包含哪些内容；也可以直接指定你想用的风格。
 
-Keep it concise. Designers are busy.
+保持简洁。设计决策要清楚，不要写长篇解释。
 
 ---
 
@@ -267,10 +289,11 @@ Keep it concise. Designers are busy.
 - `references/styles/XX-stylename-DESIGN.md` — Read the selected style's full spec (load only the one you need)
 - `references/全球设计风格知识库.md` — Fallback knowledge base: 120+ styles across 20 categories. Read ONLY when the requested style has no pre-built DESIGN.md file (Path B). Do NOT load this proactively — it's 800 lines and will fill your context window.
 
-### When to use which:
-| Situation | Action |
+### 使用路径判断
+| 情况 | 动作 |
 |-----------|--------|
-| User asks for a style in styles/ (01–50) | Read the DESIGN.md directly |
-| User asks for a style NOT in styles/ | Read 全球设计风格知识库.md → find section → synthesize spec |
-| User says "你来选" / "you choose" | Read style-index.md → recommend from 01–50 |
-| User asks "do you have X style?" | Check style-index.md first; if not found, say "no pre-built file, but I can generate it dynamically" |
+| 用户指定 01-50 中已有风格 | 直接读取对应 DESIGN.md |
+| 用户指定精选库外的风格 | 读取 全球设计风格知识库.md → 找到相关段落 → 动态合成规范 |
+| 用户只说要做网站、PPT、海报、App UI 等，但未指定风格 | 读取 style-index.md → 推荐 2-3 个风格 → 等用户选择 |
+| 用户明确说“你来定”“直接选并做” | 读取 style-index.md → 选一个最佳风格 → 继续生成 |
+| 用户问“有没有 X 风格” | 先查 style-index.md；如果没有精选文件，说明可从知识库动态生成 |
