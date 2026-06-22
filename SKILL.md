@@ -189,6 +189,7 @@ Avoid:        [what NOT to do in this style]
 - 若缺少 PPT 生成库，优先生成 HTML slide deck，再由浏览器打印、截图或后续工具转换。
 - 每页必须套用 DESIGN.md 的背景色、标题字体、字号层级、强调色、版式原则。
 - 每页只承载一个核心观点；避免把报告正文硬塞进幻灯片。
+- 生成 `.pptx` 时必须兼容 PowerPoint 与 Keynote：不要依赖自动缩放文本框，不要使用极矮文本容器；中文内容优先使用系统稳定字体（如 PingFang SC / Microsoft YaHei / Noto Sans CJK 的合理 fallback）。
 
 **推荐流程：**
 1. 明确目标受众、页数、用途：路演、汇报、课程、销售、发布会。
@@ -286,6 +287,8 @@ Avoid:        [what NOT to do in this style]
 - 检查标题层级、页码或章节感、视觉节奏和页间一致性。
 - 检查信息密度，避免一页塞入过多正文。
 - 图表、数字、引用和结论必须有清晰关系。
+- 如果输出 `.pptx`，必须检查文本是否被自动缩小、裁切或挤压；正文文本框高度要能容纳目标字号，不能靠 `fit: shrink`、`autofit` 或类似机制救场。
+- 面向 macOS 用户时，要额外考虑 Keynote 的 PPTX 兼容性：避免过小文本框、复杂自动适配和不稳定字体替换。
 
 **App UI 检查**
 - 必须覆盖核心路径，不只做单屏静态图。
