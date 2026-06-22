@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLAB — Neobrutalism Style Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #FFFEF5; color: #0A0A0A; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 48px; border-bottom: 3px solid #0A0A0A; background: #FFFEF5; position: sticky; top: 0; z-index: 100; }
+  .logo { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a { color: #0A0A0A; text-decoration: none; font-size: 14px; font-weight: 600; padding: 10px 20px; border-left: 2px solid #0A0A0A; transition: background 0.15s; }
+  .nav-links a:hover { background: #FFDD00; }
+  .nav-btn { background: #0A0A0A; color: #FFDD00; border: 3px solid #0A0A0A; padding: 10px 22px; font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.15s; box-shadow: 3px 3px 0 #FFDD00; }
+  .nav-btn:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 #FFDD00; }
+
+  /* HERO */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-bottom: 3px solid #0A0A0A; }
+  .hero-left { padding: 80px 48px; border-right: 3px solid #0A0A0A; }
+  .hero-tag { display: inline-block; background: #FFDD00; border: 2px solid #0A0A0A; padding: 6px 14px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 28px; box-shadow: 3px 3px 0 #0A0A0A; }
+  h1 { font-size: clamp(40px, 5vw, 68px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 28px; }
+  h1 em { font-style: normal; text-decoration: underline; text-decoration-color: #FFDD00; text-decoration-thickness: 6px; text-underline-offset: 6px; }
+  .hero-sub { font-size: 17px; color: #3D3D3D; line-height: 1.65; max-width: 480px; margin-bottom: 44px; font-weight: 400; }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-black { background: #0A0A0A; color: #FFFEF5; border: 3px solid #0A0A0A; padding: 14px 28px; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 4px 4px 0 #FFDD00; transition: all 0.15s; }
+  .btn-black:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 #FFDD00; }
+  .btn-yellow { background: #FFDD00; color: #0A0A0A; border: 3px solid #0A0A0A; padding: 14px 28px; font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; box-shadow: 4px 4px 0 #0A0A0A; transition: all 0.15s; }
+  .btn-yellow:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 #0A0A0A; }
+  .hero-right { background: #FFDD00; padding: 60px 48px; display: flex; flex-direction: column; justify-content: center; }
+  .big-number { font-size: 100px; font-weight: 700; letter-spacing: -0.06em; line-height: 1; color: #0A0A0A; }
+  .big-label { font-size: 14px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 8px; border-top: 3px solid #0A0A0A; padding-top: 16px; }
+  .marquee-row { overflow: hidden; border-top: 3px solid #0A0A0A; border-bottom: 3px solid #0A0A0A; padding: 14px 0; background: #0A0A0A; white-space: nowrap; }
+  .marquee-inner { display: inline-block; animation: marquee 18s linear infinite; }
+  .marquee-inner span { color: #FFDD00; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 40px; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* FEATURES */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 3px solid #0A0A0A; }
+  .feat { padding: 48px; border-right: 3px solid #0A0A0A; transition: background 0.15s; }
+  .feat:last-child { border-right: none; }
+  .feat:hover { background: #FFDD00; }
+  .feat-num { font-size: 36px; font-weight: 700; letter-spacing: -0.04em; color: #CCCCCC; margin-bottom: 20px; }
+  .feat h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .feat p { font-size: 14px; color: #555; line-height: 1.7; font-weight: 400; }
+
+  /* TESTIMONIALS */
+  .testimonials { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 3px solid #0A0A0A; }
+  .testimonial { padding: 52px; border-right: 3px solid #0A0A0A; }
+  .testimonial:last-child { border-right: none; }
+  .t-quote { font-size: 19px; font-weight: 500; line-height: 1.55; margin-bottom: 24px; letter-spacing: -0.01em; }
+  .t-author { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; border-top: 2px solid #0A0A0A; padding-top: 16px; }
+
+  /* CTA */
+  .cta { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 3px solid #0A0A0A; }
+  .cta-left { padding: 72px 48px; border-right: 3px solid #0A0A0A; }
+  .cta-left h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 28px; }
+  .cta-right { background: #FFDD00; padding: 72px 48px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+
+  footer { padding: 24px 48px; display: flex; justify-content: space-between; align-items: center; border-top: 2px solid #E0E0E0; font-size: 13px; font-weight: 500; color: #999; }
+  .f-badge { font-size: 11px; background: #0A0A0A; color: #FFDD00; padding: 4px 10px; font-weight: 600; }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; } .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { border-top: 3px solid #0A0A0A; }
+    .features, .testimonials, .cta { grid-template-columns: 1fr; }
+    .feat, .testimonial { border-right: none; border-bottom: 3px solid #0A0A0A; }
+    .cta-right { border-top: 3px solid #0A0A0A; }
+    footer { flex-direction: column; gap: 10px; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">SLAB.</div>
+  <div class="nav-links">
+    <a href="#">Work</a>
+    <a href="#">Process</a>
+    <a href="#">Pricing</a>
+  </div>
+  <button class="nav-btn">Let's Talk →</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">✦ Creative Studio</div>
+    <h1>We make brands that <em>refuse</em> to be forgotten</h1>
+    <p class="hero-sub">SLAB is an independent design studio. We work with founders and teams who have something real to say and need the visual language to say it.</p>
+    <div class="hero-ctas">
+      <button class="btn-black">View Our Work</button>
+      <button class="btn-yellow">Start a Project</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="big-number">47</div>
+    <div class="big-label">Projects shipped this year</div>
+  </div>
+</div>
+
+<div class="marquee-row">
+  <div class="marquee-inner">
+    <span>Brand Identity</span><span>★</span><span>Web Design</span><span>★</span><span>Motion Graphics</span><span>★</span><span>Packaging Design</span><span>★</span><span>Brand Strategy</span><span>★</span><span>Creative Direction</span><span>★</span>
+    <span>Brand Identity</span><span>★</span><span>Web Design</span><span>★</span><span>Motion Graphics</span><span>★</span><span>Packaging Design</span><span>★</span><span>Brand Strategy</span><span>★</span><span>Creative Direction</span><span>★</span>
+  </div>
+</div>
+
+<div class="features">
+  <div class="feat"><div class="feat-num">01</div><h3>Brand Identity</h3><p>Logos, color systems, typography, and voice guidelines that hold together across every touchpoint.</p></div>
+  <div class="feat"><div class="feat-num">02</div><h3>Web & Digital</h3><p>Websites that load fast, convert well, and look extraordinary. We handle design and build.</p></div>
+  <div class="feat"><div class="feat-num">03</div><h3>Art Direction</h3><p>Photography, illustration, and campaign direction for brands that want to own their visual territory.</p></div>
+</div>
+
+<div class="testimonials">
+  <div class="testimonial">
+    <p class="t-quote">"SLAB completely changed how we show up in the market. Six months after launch, revenue was up 40% and our sales team had something to be proud of."</p>
+    <div class="t-author">Marcus Webb · Founder, Fieldwork</div>
+  </div>
+  <div class="testimonial">
+    <p class="t-quote">"They pushed back on our safe, boring ideas and made us something genuinely great. The kind of studio that makes you look smarter for hiring them."</p>
+    <div class="t-author">Priya Nair · CMO, Beacon Health</div>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="cta-left">
+    <h2>Ready to build something that lasts?</h2>
+    <p style="color:#555; font-size:16px; line-height:1.65; font-weight:400;">We take on a limited number of new projects each quarter. Tell us about yours.</p>
+  </div>
+  <div class="cta-right">
+    <button class="btn-black" style="width:fit-content;">Start a Project →</button>
+    <button class="btn-yellow" style="width:fit-content;">View Case Studies</button>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 SLAB Studio. All work reserved.</span>
+  <span class="f-badge">Style: 04 Neobrutalism — xdx-lab-design-skill</span>
+</footer>
+
+</body>
+</html>

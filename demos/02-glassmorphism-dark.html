@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prism — Glassmorphism Dark Style Demo</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0D0D1A;
+    color: #F1F5F9;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  /* Gradient orbs */
+  .orb { position: fixed; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .orb1 { width: 600px; height: 600px; background: rgba(139,92,246,0.22); top: -200px; left: -150px; }
+  .orb2 { width: 500px; height: 500px; background: rgba(59,130,246,0.18); bottom: -100px; right: -100px; }
+  .orb3 { width: 400px; height: 400px; background: rgba(236,72,153,0.12); top: 40%; left: 40%; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 16px 60px; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,13,26,0.6); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #F1F5F9; }
+  .logo span { color: #8B5CF6; }
+  .nav-links a { color: #94A3B8; text-decoration: none; font-size: 14px; margin-left: 32px; transition: color 0.2s; }
+  .nav-links a:hover { color: #F1F5F9; }
+  .nav-btn { margin-left: 32px; background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.4); color: #C4B5FD; padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.2s; }
+  .nav-btn:hover { background: rgba(139,92,246,0.3); border-color: rgba(139,92,246,0.7); }
+
+  /* HERO */
+  .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.25); border-radius: 100px; padding: 6px 16px; font-size: 12px; color: #C4B5FD; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 36px; backdrop-filter: blur(8px); }
+  h1 { font-size: clamp(40px, 6vw, 72px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.1; max-width: 840px; color: #F8FAFC; margin-bottom: 24px; }
+  h1 em { font-style: normal; background: linear-gradient(135deg, #8B5CF6, #EC4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .sub { font-size: 17px; color: #94A3B8; max-width: 540px; line-height: 1.75; margin-bottom: 52px; }
+  .ctas { display: flex; gap: 14px; justify-content: center; }
+  .btn-glow { background: linear-gradient(135deg, #8B5CF6, #EC4899); color: white; border: none; padding: 13px 30px; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 0 30px rgba(139,92,246,0.4); transition: all 0.25s; }
+  .btn-glow:hover { transform: translateY(-2px); box-shadow: 0 0 50px rgba(139,92,246,0.55); }
+  .btn-outline { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); color: #CBD5E1; padding: 13px 30px; border-radius: 10px; font-size: 15px; font-weight: 500; cursor: pointer; backdrop-filter: blur(8px); transition: all 0.25s; }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+
+  /* GLASS CARDS */
+  section { position: relative; z-index: 1; padding: 80px 60px; }
+  .section-label { text-align: center; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #8B5CF6; margin-bottom: 14px; }
+  .section-title { text-align: center; font-size: clamp(26px, 3.5vw, 42px); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 60px; }
+  .glass-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1100px; margin: 0 auto; }
+  .glass-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px;
+    backdrop-filter: blur(16px);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); }
+  .glass-card:hover { background: rgba(139,92,246,0.08); border-color: rgba(139,92,246,0.2); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+  .card-num { font-size: 11px; font-weight: 700; color: #8B5CF6; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; }
+  .glass-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 12px; color: #F1F5F9; }
+  .glass-card p { font-size: 14px; color: #64748B; line-height: 1.7; }
+
+  /* PRICING */
+  .pricing { padding: 80px 60px; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+  .price-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 36px; backdrop-filter: blur(16px); }
+  .price-card.featured { background: rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.35); box-shadow: 0 0 60px rgba(139,92,246,0.15); }
+  .tier { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #94A3B8; margin-bottom: 16px; }
+  .price-card.featured .tier { color: #C4B5FD; }
+  .price-num { font-size: 42px; font-weight: 700; color: #F8FAFC; letter-spacing: -0.03em; }
+  .price-num span { font-size: 16px; font-weight: 400; color: #64748B; }
+  .price-desc { font-size: 13px; color: #64748B; margin: 12px 0 28px; }
+  .price-btn { width: 100%; padding: 12px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color: #CBD5E1; }
+  .price-card.featured .price-btn { background: linear-gradient(135deg, #8B5CF6, #EC4899); border: none; color: white; box-shadow: 0 0 24px rgba(139,92,246,0.35); }
+
+  footer { position: relative; z-index: 1; border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; color: #334155; font-size: 13px; }
+  .badge { font-size: 11px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2); border-radius: 6px; padding: 4px 10px; color: #8B5CF6; }
+
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; } .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    section, .pricing { padding: 60px 24px; }
+    .glass-grid, .pricing-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 20px 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<nav>
+  <div class="logo">Prism<span>.</span></div>
+  <div class="nav-links">
+    <a href="#">Features</a>
+    <a href="#">Pricing</a>
+    <a href="#">Enterprise</a>
+    <a href="#">Blog</a>
+  </div>
+  <button class="nav-btn">Sign in →</button>
+</nav>
+
+<div class="hero">
+  <div class="pill">✦ Rethinking Collaboration</div>
+  <h1>Where teams think <em>together</em>, in real time</h1>
+  <p class="sub">Prism brings your ideas, data, and people into one shared space. No more switching tabs, losing context, or falling out of sync.</p>
+  <div class="ctas">
+    <button class="btn-glow">Get Started Free</button>
+    <button class="btn-outline">Watch Demo</button>
+  </div>
+</div>
+
+<section>
+  <div class="section-label">Why Prism</div>
+  <h2 class="section-title">Built for how modern teams actually work</h2>
+  <div class="glass-grid">
+    <div class="glass-card">
+      <div class="card-num">01 — SPACES</div>
+      <h3>Shared Canvases</h3>
+      <p>Every project lives in a persistent space. Whiteboards, docs, databases, and chat — unified and always in sync.</p>
+    </div>
+    <div class="glass-card">
+      <div class="card-num">02 — PRESENCE</div>
+      <h3>Live Multiplayer</h3>
+      <p>See who's looking at what, in real time. Cursors, edits, and reactions flow instantly across your whole team.</p>
+    </div>
+    <div class="glass-card">
+      <div class="card-num">03 — MEMORY</div>
+      <h3>Searchable History</h3>
+      <p>Every decision, comment, and change is indexed and searchable. Never lose the context behind a choice again.</p>
+    </div>
+    <div class="glass-card">
+      <div class="card-num">04 — INTEGRATIONS</div>
+      <h3>Connect Everything</h3>
+      <p>Pull in data from GitHub, Figma, Linear, Slack, and 200+ other tools. Prism becomes the connective tissue.</p>
+    </div>
+    <div class="glass-card">
+      <div class="card-num">05 — AI</div>
+      <h3>AI-Powered Summaries</h3>
+      <p>Catch up on what you missed with intelligent meeting and thread summaries. Always in the loop.</p>
+    </div>
+    <div class="glass-card">
+      <div class="card-num">06 — SECURITY</div>
+      <h3>Enterprise-Grade</h3>
+      <p>SSO, audit logs, role-based permissions, and GDPR compliance built in. Security is a first-class feature.</p>
+    </div>
+  </div>
+</section>
+
+<div class="pricing">
+  <div class="section-label">Pricing</div>
+  <h2 class="section-title">Start free. Scale as you grow.</h2>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="tier">Starter</div>
+      <div class="price-num">$0<span>/mo</span></div>
+      <div class="price-desc">Up to 5 members. Perfect for small teams.</div>
+      <button class="price-btn">Get Started</button>
+    </div>
+    <div class="price-card featured">
+      <div class="tier">Team</div>
+      <div class="price-num">$18<span>/mo</span></div>
+      <div class="price-desc">Per member. Unlimited spaces and history.</div>
+      <button class="price-btn">Start Free Trial</button>
+    </div>
+    <div class="price-card">
+      <div class="tier">Enterprise</div>
+      <div class="price-num">Custom</div>
+      <div class="price-desc">SSO, SLA, dedicated support and training.</div>
+      <button class="price-btn">Contact Sales</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 Prism Technologies, Inc.</span>
+  <span class="badge">Style: 01 Glassmorphism Dark — xdx-lab-design-skill</span>
+</footer>
+</body>
+</html>

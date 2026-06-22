@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Style Demos — xdx-lab-design-skill</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0A0C14; color: #E8EFFF; font-family: 'Inter', sans-serif; }
+
+  header { padding: 60px 60px 40px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .header-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #6B7A99; margin-bottom: 16px; }
+  .header-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 16px; }
+  .header-title span { background: linear-gradient(135deg, #818CF8, #C084FC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .header-sub { font-size: 16px; color: #6B7A99; max-width: 600px; line-height: 1.7; margin-bottom: 32px; }
+  .header-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .header-links a { font-size: 13px; font-weight: 500; color: #818CF8; text-decoration: none; border: 1px solid rgba(129,140,248,0.25); padding: 8px 18px; border-radius: 6px; transition: all 0.2s; }
+  .header-links a:hover { background: rgba(129,140,248,0.1); border-color: rgba(129,140,248,0.5); }
+
+  main { padding: 60px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; max-width: 1400px; margin: 0 auto; }
+
+  .demo-card { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); background: #0F1220; transition: all 0.3s; cursor: pointer; text-decoration: none; display: block; }
+  .demo-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.14); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+
+  .card-preview { height: 200px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .preview-label { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; letter-spacing: -0.02em; text-align: center; position: relative; z-index: 1; }
+  .preview-sub { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-align: center; position: relative; z-index: 1; margin-top: 8px; opacity: 0.7; }
+
+  /* Style-specific previews */
+  .p-aurora { background: #06061A; }
+  .p-aurora::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(129,140,248,0.3) 0%, rgba(192,132,252,0.15) 40%, transparent 70%); }
+  .p-aurora .preview-label { background: linear-gradient(135deg, #fff, #C4B5FD); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .p-glass { background: #0D0D1A; }
+  .p-glass::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 30%, rgba(139,92,246,0.25) 0%, transparent 60%), radial-gradient(ellipse at 70% 70%, rgba(59,130,246,0.2) 0%, transparent 60%); }
+  .p-glass .preview-label { color: #F8FAFC; text-shadow: 0 0 30px rgba(139,92,246,0.5); }
+
+  .p-neo { background: #FFFEF5; border-top: 4px solid #0A0A0A; }
+  .p-neo .preview-label { color: #0A0A0A; font-family: 'Space Grotesk', sans-serif; }
+  .p-neo .preview-sub { color: #0A0A0A; background: #FFDD00; padding: 4px 12px; }
+
+  .p-song { background: #F7F3EC; }
+  .p-song .preview-label { color: #1C1C1C; font-family: 'Inter', serif; font-weight: 300; letter-spacing: 0.2em; }
+  .p-song .preview-sub { color: #8BB5B0; }
+
+  .p-synth { background: #1A0533; }
+  .p-synth::before { content: ''; position: absolute; top: 60%; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(90deg, rgba(255,45,127,0.06) 0px, transparent 1px, transparent 40px, rgba(255,45,127,0.06) 41px); }
+  .p-synth .preview-label { color: #FF2D7F; text-shadow: 0 0 30px rgba(255,45,127,0.8); }
+  .p-synth .preview-sub { color: #00F5FF; }
+
+  .p-luxury { background: #FAFAF8; }
+  .p-luxury .preview-label { color: #1A1A18; font-weight: 300; letter-spacing: 0.15em; }
+  .p-luxury .preview-sub { color: #C9A96E; }
+
+  .p-esports { background: #0A0C14; }
+  .p-esports::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(0,212,255,0.12) 0%, transparent 70%); }
+  .p-esports .preview-label { color: #00D4FF; text-shadow: 0 0 30px rgba(0,212,255,0.7); font-family: 'Space Grotesk', sans-serif; }
+
+  .p-islamic { background: #0D3340; }
+  .p-islamic::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpolygon fill='none' stroke='%23C9A84C' stroke-width='0.5' opacity='0.2' points='30,6 35,19 48,14 43,27 56,30 43,33 48,46 35,41 30,54 25,41 12,46 17,33 4,30 17,27 12,14 25,19'/%3E%3C/svg%3E"); background-size: 60px 60px; }
+  .p-islamic .preview-label { color: #C9A84C; text-shadow: 0 0 20px rgba(201,168,76,0.4); }
+
+  .card-body { padding: 20px 24px 24px; }
+  .card-num { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #3A4560; margin-bottom: 6px; }
+  .card-title { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; color: #E8EFFF; }
+  .card-desc { font-size: 13px; color: #4A5568; line-height: 1.6; margin-bottom: 16px; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: #6B7A99; }
+
+  footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; color: #2A3548; font-size: 13px; }
+  footer a { color: #818CF8; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    header, main { padding: 40px 24px; }
+    .grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">xdx-lab-design-skill · Demo Gallery</div>
+  <h1 class="header-title">50 Design Styles, <span>Live Demos</span></h1>
+  <p class="header-sub">Each demo below is a real, self-contained HTML landing page generated by applying a DESIGN.md file from our skill library. Click any card to view the full page.</p>
+  <div class="header-links">
+    <a href="https://github.com/xdx888999/xdx-lab-design-skill">★ GitHub Repo</a>
+    <a href="../README.md">Installation Guide</a>
+    <a href="../references/style-index.md">All 50 Styles →</a>
+  </div>
+</header>
+
+<main>
+  <div class="grid">
+
+    <a class="demo-card" href="01-aurora-ui.html">
+      <div class="card-preview p-aurora">
+        <div>
+          <div class="preview-label">Aurora UI</div>
+          <div class="preview-sub">AI · Tech · SaaS</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 03</div>
+        <div class="card-title">Aurora UI</div>
+        <div class="card-desc">Soft purple-indigo gradients, glassmorphism elements. Used by Anthropic, Perplexity, Linear.</div>
+        <div class="card-tags"><span class="tag">Dark</span><span class="tag">Gradient</span><span class="tag">AI Product</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="02-glassmorphism-dark.html">
+      <div class="card-preview p-glass">
+        <div>
+          <div class="preview-label">Glassmorphism</div>
+          <div class="preview-sub">Dark · Blur · Depth</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 01</div>
+        <div class="card-title">Glassmorphism Dark</div>
+        <div class="card-desc">Frosted glass panels, purple-pink orbs. The modern dark UI standard for premium products.</div>
+        <div class="card-tags"><span class="tag">Dark</span><span class="tag">Glass</span><span class="tag">Purple</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="03-neobrutalism.html">
+      <div class="card-preview p-neo">
+        <div>
+          <div class="preview-label">Neobrutalism</div>
+          <div class="preview-sub" style="background:#FFDD00; padding: 4px 12px; color:#0A0A0A;">Raw · Bold · Honest</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 04</div>
+        <div class="card-title">Neobrutalism</div>
+        <div class="card-desc">Yellow + black, thick borders, offset shadows. The internet's most personality-forward aesthetic.</div>
+        <div class="card-tags"><span class="tag">Light</span><span class="tag">Bold</span><span class="tag">Yellow</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="04-song-dynasty.html">
+      <div class="card-preview p-song">
+        <div>
+          <div class="preview-label" style="font-weight:300; letter-spacing:0.3em; font-size:24px; color:#1C1C1C;">宋代水墨</div>
+          <div class="preview-sub" style="color:#8BB5B0;">Song Dynasty Ink</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 31</div>
+        <div class="card-title">Song Dynasty Ink</div>
+        <div class="card-desc">Xuan paper, ink-wash palette, Ru-ware celadon. 留白 (negative space) as philosophy.</div>
+        <div class="card-tags"><span class="tag">Light</span><span class="tag">Chinese</span><span class="tag">Minimal</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="05-synthwave.html">
+      <div class="card-preview p-synth">
+        <div>
+          <div class="preview-label">Synthwave</div>
+          <div class="preview-sub">Retrowave · Neon · Grid</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 16</div>
+        <div class="card-title">Synthwave</div>
+        <div class="card-desc">Hot pink, cyan, and grid lines. The 80s future that never stopped being cool.</div>
+        <div class="card-tags"><span class="tag">Dark</span><span class="tag">Neon</span><span class="tag">Retro</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="06-luxury-premium.html">
+      <div class="card-preview p-luxury">
+        <div>
+          <div class="preview-label" style="color:#1A1A18; font-weight:300; letter-spacing:0.15em; font-size:26px;">LUXURY</div>
+          <div class="preview-sub" style="color:#C9A96E; font-size:11px; letter-spacing:0.3em; text-transform:uppercase;">Premium · Gold · Timeless</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 07</div>
+        <div class="card-title">Luxury Premium</div>
+        <div class="card-desc">Champagne gold, Cormorant Garamond, extreme whitespace. The language of heritage brands.</div>
+        <div class="card-tags"><span class="tag">Light</span><span class="tag">Gold</span><span class="tag">Serif</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="07-esports-gaming.html">
+      <div class="card-preview p-esports">
+        <div>
+          <div class="preview-label">ESPORTS</div>
+          <div class="preview-sub" style="color:#FF2D55; text-transform:uppercase; letter-spacing:0.15em; font-size:11px;">Gaming · Neon · Angular</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 42</div>
+        <div class="card-title">Esports Gaming</div>
+        <div class="card-desc">Void black, cyber cyan, angular clip-paths. Built for teams that dominate.</div>
+        <div class="card-tags"><span class="tag">Dark</span><span class="tag">Cyan</span><span class="tag">Angular</span></div>
+      </div>
+    </a>
+
+    <a class="demo-card" href="08-islamic-geometric.html">
+      <div class="card-preview p-islamic">
+        <div>
+          <div class="preview-label">Islamic Geometric</div>
+          <div class="preview-sub" style="color:#C9A84C; font-size:11px; letter-spacing:0.2em;">Pattern · Gold · Symmetry</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-num">Style 46</div>
+        <div class="card-title">Islamic Geometric</div>
+        <div class="card-desc">Deep teal, mosque gold, 8-pointed star patterns. Mathematics as spiritual expression.</div>
+        <div class="card-tags"><span class="tag">Dark</span><span class="tag">Gold</span><span class="tag">Pattern</span></div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <span>xdx-lab-design-skill · 50 styles · 120+ via dynamic generation</span>
+  <span><a href="https://github.com/xdx888999/xdx-lab-design-skill">GitHub →</a></span>
+</footer>
+
+</body>
+</html>
