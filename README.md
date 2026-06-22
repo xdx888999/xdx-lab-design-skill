@@ -1,7 +1,7 @@
 # xdx-lab Design Style Skill
 ### 全球设计风格生成系统 — 50 种精选 + 120 种动态生成
 
-> 一个 AI-agnostic 的设计风格 Skill，适用于 Claude Cowork · Claude Code · Cursor · v0 · Bolt · Lovable · 任何能读取 Markdown 的 AI 工具
+> 一个面向所有智能体的设计风格 Skill，适用于 Codex / Code X / Claude Code / Cursor / v0 / Bolt / Lovable / DeepSeek / Gemini / 任何能读取 Markdown 与仓库文件的 Agent。
 
 ---
 
@@ -12,8 +12,22 @@
 **核心特性：**
 - **50 个精选 DESIGN.md 文件**：每个包含精确 HEX 颜色、CSS 组件规范、字体层级表、AI 提示词模板
 - **120+ 种动态生成**：内置全球设计风格知识库，无对应文件的风格可动态合成设计规范
-- **AI 无关**：纯 Markdown 格式，Claude / Deepseek / Codex / GPT-4o 均可读取
+- **Agent 无关**：纯 Markdown + HTML 展示页，任何能读取仓库文件的智能体都可以使用
 - **生产级输出**：完整 HTML 文件、React 组件、PPT 主题、Word 文档
+
+---
+
+## 效果展示
+
+在线预览：[GitHub Pages 画廊](https://xdx888999.github.io/xdx-lab-design-skill/)
+
+### 50 种精选风格总览
+
+![50 种精选风格画廊](docs/assets/gallery-overview.png)
+
+### 单个风格详情页
+
+![宋代水墨风格详情](docs/assets/style-detail-song.png)
 
 ---
 
@@ -36,31 +50,52 @@
 
 ## 安装方式
 
-### 方式 1：直接下载 .skill 文件（推荐）
+### 方式 1：让你的 Agent 通过仓库链接安装（推荐）
 
-1. 在 [Releases](https://github.com/xdx888999/xdx-lab-design-skill/releases) 页面下载最新的 `.skill` 文件
-2. 打开 Claude Cowork 或 Claude Code
-3. 进入 **Settings → Capabilities → Skills** → 拖入 `.skill` 文件
+如果你的智能体支持安装 Skill、读取 GitHub 仓库或管理本地能力包，直接把这个仓库链接交给它：
 
-### 方式 2：克隆仓库手动使用
+```text
+请根据这个 GitHub 仓库帮我安装并启用 design-style Skill：
+https://github.com/xdx888999/xdx-lab-design-skill
+
+安装后，请读取 SKILL.md，并在我要求设计网页、PPT、海报、App UI 或组件时使用它。
+```
+
+适用于 Codex / Code X / Claude Code / Cursor 等可访问本地文件或 GitHub 仓库的 Agent。不同工具的 Skill 目录不同，请让对应 Agent 按它自己的规范安装。
+
+### 方式 2：克隆仓库作为本地 Skill 使用
 
 ```bash
 git clone https://github.com/xdx888999/xdx-lab-design-skill.git
 ```
 
-然后将 `references/styles/` 中的任意 DESIGN.md 文件复制到你的项目根目录：
+然后把仓库目录加入你所使用 Agent 的 Skill / Memory / Knowledge / Context 目录，或在对话中明确告诉 Agent：
+
+```text
+请把这个仓库当作 design-style Skill 使用。
+优先读取 SKILL.md；需要选择风格时读取 references/style-index.md；
+需要具体规范时读取 references/styles/ 中对应的 DESIGN.md。
+```
+
+### 方式 3：不安装，直接引用某个 DESIGN.md
+
+如果你只想临时使用某个风格，可以复制单个文件到项目中：
 
 ```bash
 cp references/styles/31-song-dynasty-ink-DESIGN.md /path/to/your/project/DESIGN.md
 ```
 
-在任意 AI 工具中说："请按照 DESIGN.md 的设计规范实现这个组件"
+然后在任意 AI 工具中说：
+
+```text
+请按照项目里的 DESIGN.md 设计规范，实现这个页面/组件/PPT。
+```
 
 ---
 
-## 如何触发 Skill（Claude Cowork / Claude Code）
+## 如何触发 Skill
 
-安装后，以下任意说法都会触发 Skill：
+安装或引用后，以下任意说法都适合作为触发语：
 
 ```
 "我要设计一个 PPT，先帮我推荐几个风格"
@@ -87,6 +122,11 @@ cp references/styles/31-song-dynasty-ink-DESIGN.md /path/to/your/project/DESIGN.
 design-style-skill/
 ├── SKILL.md                          # 主指令文件（AI 的行动手册）
 ├── README.md                         # 本文件
+├── docs/
+│   ├── index.html                    # GitHub Pages 50 风格画廊
+│   ├── style.html                    # 通用风格详情页
+│   ├── style-data.js                 # 50 种风格展示数据
+│   └── assets/                       # README 截图资源
 └── references/
     ├── style-index.md                # 50 种风格目录索引（轻量，先读此文件）
     ├── 全球设计风格知识库.md           # 120+ 种风格知识库（兜底动态生成）
