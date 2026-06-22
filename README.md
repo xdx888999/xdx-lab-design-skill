@@ -128,4 +128,4 @@ MIT — 自由使用、修改、分发。欢迎 PR 贡献新风格。
 
 ---
 
-*Made with Claude Cowork · 持续更新中*
+*Made with XDX_Lab · 持续更新中*
