@@ -1,0 +1,5 @@
+.DS_Store
+*.lock
+__pycache__/
+*.pyc
+node_modules/

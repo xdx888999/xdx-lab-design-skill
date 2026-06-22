@@ -1,0 +1,131 @@
+# xdx-lab Design Style Skill
+### 全球设计风格生成系统 — 50 种精选 + 120 种动态生成
+
+> 一个 AI-agnostic 的设计风格 Skill，适用于 Claude Cowork · Claude Code · Cursor · v0 · Bolt · Lovable · 任何能读取 Markdown 的 AI 工具
+
+---
+
+## 是什么？
+
+这是一个基于 [Google Stitch DESIGN.md 格式](https://stitch.withgoogle.com/docs/design-md/overview/) 构建的设计风格知识库 Skill。安装后，AI 可以将任意创意内容——网页、落地页、PPT、海报、App UI——自动套用专业设计风格，输出生产级代码。
+
+**核心特性：**
+- **50 个精选 DESIGN.md 文件**：每个包含精确 HEX 颜色、CSS 组件规范、字体层级表、AI 提示词模板
+- **120+ 种动态生成**：内置全球设计风格知识库，无对应文件的风格可动态合成设计规范
+- **AI 无关**：纯 Markdown 格式，Claude / Deepseek / Codex / GPT-4o 均可读取
+- **生产级输出**：完整 HTML 文件、React 组件、PPT 主题、Word 文档
+
+---
+
+## 风格覆盖
+
+| 分类 | 风格数 | 示例 |
+|------|--------|------|
+| Web/UI 核心 | 10 | Glassmorphism, Aurora UI, Neobrutalism, Fintech |
+| 商业/电商 | 5 | E-commerce, Luxury Premium, SaaS Dashboard |
+| 文化/创意 | 10 | Japandi, AI-Native, Bauhaus, Art Deco |
+| 复古/亚文化 | 5 | Synthwave, Cyberpunk, Y2K, Vaporwave, 国潮 |
+| 出版/演示 | 5 | Editorial Magazine, Academic, Startup Pitch |
+| App 专项 | 5 | Kawaii, Claymorphism, Pixel Art, Material You |
+| 东亚文化 | 5 | **宋代水墨**, 唐代华彩, 民国海报, 浮世绘, 禅意侘寂 |
+| 行业专项 I | 5 | 医疗健康, 法律权威, 教育平台, 豪宅地产, 高端餐饮 |
+| 行业专项 II | 5 | 金融企业, 电竞, 时尚编辑, 旅行酒店, 公益NGO |
+| 全球文化 | 5 | 伊斯兰几何, 非洲未来主义, 波普艺术, 暗系学院, 野蛮主义 |
+
+---
+
+## 安装方式
+
+### 方式 1：直接下载 .skill 文件（推荐）
+
+1. 在 [Releases](https://github.com/xdx888999/xdx-lab-design-skill/releases) 页面下载最新的 `.skill` 文件
+2. 打开 Claude Cowork 或 Claude Code
+3. 进入 **Settings → Capabilities → Skills** → 拖入 `.skill` 文件
+
+### 方式 2：克隆仓库手动使用
+
+```bash
+git clone https://github.com/xdx888999/xdx-lab-design-skill.git
+```
+
+然后将 `design-style-skill/references/styles/` 中的任意 DESIGN.md 文件复制到你的项目根目录：
+
+```bash
+cp design-style-skill/references/styles/31-song-dynasty-ink-DESIGN.md ./DESIGN.md
+```
+
+在任意 AI 工具中说："请按照 DESIGN.md 的设计规范实现这个组件"
+
+---
+
+## 如何触发 Skill（Claude Cowork / Claude Code）
+
+安装后，以下任意说法都会触发 Skill：
+
+```
+"帮我做一个宋代水墨风格的落地页"
+"用 Glassmorphism 风格设计这个组件"
+"给我做一个金融科技公司官网，配色要专业"
+"制作一个电竞赛事品牌页面"
+"设计一个米其林餐厅的在线菜单"
+```
+
+---
+
+## 文件结构
+
+```
+design-style-skill/
+├── SKILL.md                          # 主指令文件（AI 的行动手册）
+├── README.md                         # 本文件
+└── references/
+    ├── style-index.md                # 50 种风格目录索引（轻量，先读此文件）
+    ├── 全球设计风格知识库.md           # 120+ 种风格知识库（兜底动态生成）
+    └── styles/
+        ├── 01-glassmorphism-dark-DESIGN.md
+        ├── 02-tech-minimal-DESIGN.md
+        ├── ...（共 50 个文件）
+        └── 50-brutalist-web-DESIGN.md
+```
+
+---
+
+## DESIGN.md 格式说明
+
+每个文件遵循 9 节统一结构：
+
+```
+## 1. Visual Theme & Atmosphere  — 风格定位与氛围
+## 2. Color Palette & Roles      — 颜色系统（精确 HEX）
+## 3. Typography Rules           — 字体层级
+## 4. Component Stylings         — CSS 组件规范
+## 5. Layout Principles          — 布局规则
+## 6. Depth & Elevation          — 阴影层次
+## 7. Do's and Don'ts            — 风格禁忌
+## 8. Responsive Behavior        — 响应式断点
+## 9. Agent Prompt Guide         — AI 快速提示词
+```
+
+---
+
+## 单独使用（不安装 Skill）
+
+从 `references/styles/` 取出任意 DESIGN.md，直接粘贴给 AI 提示词：
+
+```
+以下是设计规范，请按照其中的颜色、字体、组件样式实现一个 SaaS 产品落地页：
+
+[粘贴 DESIGN.md 内容]
+
+页面需要包含：Hero 区、功能特性区、价格区、CTA 区。
+```
+
+---
+
+## License
+
+MIT — 自由使用、修改、分发。欢迎 PR 贡献新风格。
+
+---
+
+*Made with Claude Cowork · 持续更新中*
