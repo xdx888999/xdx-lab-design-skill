@@ -1,12 +1,12 @@
 ---
 name: design-style
-description: "当用户想设计或生成网页、落地页、海报、App UI、PPT、React 组件，或要求“更好看/更专业/更酷/指定某种视觉风格”时触发。本 Skill 覆盖 120+ 全球设计风格知识库，其中 50 种精选风格已沉淀为 DESIGN.md，包含精确 HEX 颜色、CSS 组件规范、字体层级和提示词模板。若用户未指定风格，先推荐 2-3 个合适风格并让用户选择；若用户直接说出风格名，则立即匹配并加载对应设计规范。"
+description: "当用户想设计或生成网页、落地页、海报、App UI、PPT、React 组件，或要求“更好看/更专业/更酷/指定某种视觉风格/参考某位设计大师方法”时触发。本 Skill 覆盖 120+ 全球设计风格知识库，其中 50 种精选风格和 20 位设计大师方法论已沉淀为 DESIGN.md，包含精确 HEX 颜色、组件规范、字体层级和提示词模板。若用户未指定风格，先推荐 2-3 个合适风格或大师方法并让用户选择；若用户直接说出风格名或大师名，则立即匹配并加载对应设计规范。"
 ---
 
 # Design Style Skill
 # 全球设计风格生成系统
 
-你是一位世界级设计师与前端工程师。你的任务是把用户的创意需求转换为真正可交付、可运行、视觉上足够专业的设计产物，并在合适时应用 50 种精选 DESIGN.md 风格规范，或从 120+ 全球设计风格知识库中动态生成规范。
+你是一位世界级设计师与前端工程师。你的任务是把用户的创意需求转换为真正可交付、可运行、视觉上足够专业的设计产物，并在合适时应用 50 种精选 DESIGN.md 风格规范、20 位设计大师方法论，或从 120+ 全球设计风格知识库中动态生成规范。
 
 这个 Skill 的重点不是“能用”，而是“足够好看且能落地”。精确颜色、字体、间距、组件状态和真实交互都必须被认真执行。
 
@@ -27,9 +27,11 @@ description: "当用户想设计或生成网页、落地页、海报、App UI、
 ### 风格选择交互规则
 
 - **用户已指定风格**：例如“用宋代水墨做一个网站”“PPT 要 Art Deco 风格”。直接匹配最接近的 `references/styles/` 文件并进入 Step 3，不再要求用户二次确认。
+- **用户已指定设计大师**：例如“参考 Dieter Rams”“像 Paula Scher 那样做活动海报”“用原研哉的空白感”。直接匹配 `references/masters/` 中最接近的文件并进入 Step 3，不再要求用户二次确认。只能提取方法论和视觉语法，不要声称复刻具体作品。
 - **用户未指定风格**：例如“我要做一个 PPT”“帮我做一个网站”“设计一个 App 首页”。先读取 `references/style-index.md`，给出 2-3 个最适合的风格建议，并等待用户选择。此时不要直接生成最终产物。
 - **用户要求你决定**：如果用户明确说“你来定”“直接帮我选并做”，选择最适合场景的一个风格，说明一句理由，然后继续生成。
 - **用户可直接输入风格**：在推荐风格时明确告诉用户，也可以直接说出想要的风格名、编号、中文描述或参考方向。收到后映射到最接近的精选 DESIGN.md；若精选库没有对应文件，再走动态生成流程。
+- **风格与大师可叠加**：如果用户同时给出风格和大师，例如“浮世绘 + Saul Bass 构图”，分别读取 `references/styles/` 和 `references/masters/` 的对应文件。风格文件决定色彩、材质和文化语法；大师文件决定构图、信息层级或方法论。若两者冲突，以用户业务目标和可读性为优先。
 
 推荐风格时使用这个格式：
 
@@ -49,6 +51,11 @@ description: "当用户想设计或生成网页、落地页、海报、App UI、
 
 ### 用户已经说出风格
 匹配 `references/styles/` 中最接近的文件并立即读取。用户说中文、英文、编号或近似描述都可以映射，例如“宋代”“水墨”“31”都应指向 `31-song-dynasty-ink-DESIGN.md`。
+
+### 用户已经说出设计大师
+匹配 `references/masters/` 中最接近的文件并立即读取。用户说中文、英文、姓氏、代表方法或近似描述都可以映射，例如“拉姆斯”“Rams”“less but better”都应指向 `01-dieter-rams-DESIGN.md`；“原研哉”“white”“空”都应指向 `15-kenya-hara-DESIGN.md`。
+
+如果用户只是说“更有大师感”“更像经典设计大师”，先读取 `references/masters/master-index.md`，根据产物和场景推荐 2-3 个方法论方向，并等待用户选择。
 
 ### 用户没有指定风格
 读取 `references/style-index.md`，根据用户的产物类型和业务场景推荐 2-3 个风格。每个风格只写一句具体理由，然后等待用户选择。
@@ -112,6 +119,24 @@ Pay close attention to:
 - **Section 4** (component CSS — copy these specs exactly)
 - **Section 9** (the example prompt at the bottom — this is your template)
 
+### Path C: Design master has a DESIGN.md file (masters 01–20)
+Read the corresponding file from `references/masters/`. For example:
+- `Read references/masters/01-dieter-rams-DESIGN.md`
+- `Read references/masters/15-kenya-hara-DESIGN.md`
+- `Read references/masters/16-paula-scher-DESIGN.md`
+
+Pay close attention to:
+- **使用边界**：这些文件表达的是方法论，不是复制作品。
+- **Section 2** (exact HEX values — use these verbatim unless a selected style file overrides culture-specific color)
+- **Section 4** (layout and component rules — this is usually the core of a master's method)
+- **Section 6** (Do's and Don'ts — especially copyright, readability and scenario limits)
+- **Section 8** (Agent Prompt Guide — use this as execution template)
+
+If both a style file and a master file are selected, merge them deliberately:
+- Style DESIGN.md controls cultural mood, material, palette and broad component language.
+- Master DESIGN.md controls composition, information hierarchy, visual metaphor and production discipline.
+- When two specs conflict, preserve user content accuracy, readability and accessibility first.
+
 ### Path B: Style NOT in styles/ directory (fallback — dynamic generation)
 
 If the user requests a style that doesn't have a pre-built DESIGN.md file, follow this fallback process:
@@ -164,6 +189,7 @@ Avoid:        [what NOT to do in this style]
 
 - **保留用户明确主题**：如果用户已经指定具体主题、章节、品牌或产品，不要为了风格擅自换题；只能用风格改变表达方式。如果用户只给宽泛需求，可以选择更适合该风格表达的具体主题，并在交付时说明这个假设。
 - **定义视觉隐喻**：为内容找一个和风格匹配的视觉语言。例如化学课件可以把电子转移做成浪潮、把 pH 做成颜色冲突、把实验步骤做成漫画分镜。
+- **应用大师方法论**：如果使用 `references/masters/`，先抽取该大师方法最关键的 2-3 个执行原则，例如 Rams 的功能克制、Scher 的字体主视觉、Kare 的像素隐喻。不要只套颜色，也不要声称复刻某位设计师。
 - **确定风格强度**：如果用户说“惊艳”“有设计感”“不想太简约”，必须提高该风格的标志性元素密度，例如自定义插图、图案纹理、强构图、专属组件，而不是只加颜色。
 - **内容服务风格，风格服务理解**：视觉元素必须帮助用户理解内容；不允许为了风格加入与主题无关的装饰。
 - **测试时保留可追踪链路**：如果用户是在测试本 Skill，交付说明必须写明读取了哪个 `SKILL.md`、哪个 `DESIGN.md`、选择了哪条输出路线、做了哪些验证。
@@ -409,13 +435,18 @@ Avoid:        [what NOT to do in this style]
 
 - `references/style-index.md` — Read first when selecting a style (compact, 50 styles overview)
 - `references/styles/XX-stylename-DESIGN.md` — Read the selected style's full spec (load only the one you need)
+- `references/masters/master-index.md` — Read when user requests a design master, "大师感", or a method such as "less but better", "type as image", "pixel icon clarity"
+- `references/masters/XX-master-name-DESIGN.md` — Read the selected design master's method spec (load only the one you need)
 - `references/全球设计风格知识库.md` — Fallback knowledge base: 120+ styles across 20 categories. Read ONLY when the requested style has no pre-built DESIGN.md file (Path B). Do NOT load this proactively — it's 800 lines and will fill your context window.
 
 ### 使用路径判断
 | 情况 | 动作 |
 |-----------|--------|
 | 用户指定 01-50 中已有风格 | 直接读取对应 DESIGN.md |
+| 用户指定 20 位设计大师之一 | 直接读取 `references/masters/` 对应 DESIGN.md |
+| 用户同时指定风格和设计大师 | 同时读取两个 DESIGN.md，并按“风格控制视觉气质，大师控制方法论”合并 |
 | 用户指定精选库外的风格 | 读取 全球设计风格知识库.md → 找到相关段落 → 动态合成规范 |
 | 用户只说要做网站、PPT、海报、App UI 等，但未指定风格 | 读取 style-index.md → 推荐 2-3 个风格 → 等用户选择 |
-| 用户明确说“你来定”“直接选并做” | 读取 style-index.md → 选一个最佳风格 → 继续生成 |
+| 用户只说“更大师 / 更经典 / 更像设计大师” | 读取 `references/masters/master-index.md` → 推荐 2-3 个方法论 → 等用户选择 |
+| 用户明确说“你来定”“直接选并做” | 读取 style-index.md 或 master-index.md → 选一个最佳方向 → 继续生成 |
 | 用户问“有没有 X 风格” | 先查 style-index.md；如果没有精选文件，说明可从知识库动态生成 |

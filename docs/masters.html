@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>设计大师方法论画廊 — xdx-lab-design-skill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;700&family=Oswald:wght@600;700&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F3EC;
+    --ink: #171615;
+    --muted: #6E6A63;
+    --line: #D7D0C4;
+    --panel: #FFFCF5;
+    --accent: #C43B2A;
+    --max-width: 1760px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .hero {
+    border-bottom: 2px solid var(--ink);
+    background:
+      linear-gradient(90deg, rgba(23, 22, 21, 0.055) 1px, transparent 1px),
+      linear-gradient(180deg, #FFFCF5 0%, #F4EEE5 100%);
+    background-size: 64px 64px, auto;
+  }
+
+  .hero-inner {
+    width: min(var(--max-width), calc(100% - 64px));
+    margin: 0 auto;
+    padding: 56px 0 46px;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow::before {
+    content: "";
+    width: 36px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    max-width: 1160px;
+    margin: 0;
+    font-family: "Fraunces", "Noto Serif SC", serif;
+    font-size: clamp(42px, 6vw, 90px);
+    font-weight: 800;
+    line-height: 0.98;
+  }
+
+  .hero-title em {
+    color: #8A8177;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .hero-copy {
+    max-width: 860px;
+    margin: 26px 0 0;
+    color: #4F4B45;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .hero-link {
+    min-height: 42px;
+    padding: 12px 22px;
+    border: 1px solid var(--ink);
+    margin-right: -1px;
+    background: rgba(255, 252, 245, 0.68);
+    font-size: 12px;
+    font-weight: 850;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .hero-link:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 2px solid var(--ink);
+    background: var(--panel);
+  }
+
+  .stat {
+    padding: 22px 32px;
+    border-right: 1px solid var(--line);
+  }
+
+  .stat:last-child {
+    border-right: 0;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .stat-label {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .gallery-wrap {
+    width: min(var(--max-width), calc(100% - 64px));
+    margin: 0 auto;
+    padding: 44px 0 70px;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .toolbar-title {
+    margin: 0;
+    font-family: "Fraunces", "Noto Serif SC", serif;
+    font-size: clamp(28px, 3vw, 46px);
+    line-height: 1.1;
+  }
+
+  .toolbar-copy {
+    max-width: 690px;
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .category-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+
+  .category-chip {
+    display: inline-flex;
+    min-height: 32px;
+    align-items: center;
+    border: 1px solid var(--line);
+    padding: 7px 11px;
+    background: #FFFCF5;
+    color: #5E5952;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    border: 2px solid var(--ink);
+    background: var(--line);
+    gap: 1px;
+  }
+
+  .master-card {
+    position: relative;
+    display: flex;
+    min-height: 504px;
+    flex-direction: column;
+    overflow: hidden;
+    background: #FFFCF5;
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+
+  .master-card:hover {
+    z-index: 2;
+    transform: translateY(-4px);
+    box-shadow: 0 18px 42px rgba(23, 22, 21, 0.16);
+  }
+
+  .work-preview {
+    position: relative;
+    display: grid;
+    min-height: 252px;
+    place-items: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(23, 22, 21, 0.1);
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  .work-preview::before,
+  .work-preview::after,
+  .piece-mark::before,
+  .piece-mark::after {
+    position: absolute;
+    content: "";
+    pointer-events: none;
+  }
+
+  .piece-core {
+    position: relative;
+    z-index: 3;
+    width: min(78%, 260px);
+  }
+
+  .piece-title {
+    color: var(--fg);
+    font-family: var(--display-font);
+    font-size: clamp(26px, 7vw, 42px);
+    font-weight: var(--title-weight);
+    line-height: 0.95;
+    text-transform: var(--title-transform);
+  }
+
+  .piece-subtitle {
+    margin-top: 12px;
+    color: var(--accent-color);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .piece-mark {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .piece-mark span {
+    position: absolute;
+    display: block;
+  }
+
+  .master-rams .piece-core {
+    padding: 24px;
+    border: 1px solid var(--secondary);
+    background: #FFFFFF;
+  }
+
+  .master-rams .piece-mark span {
+    width: 42px;
+    height: 42px;
+    border: 2px solid var(--fg);
+    border-radius: 50%;
+  }
+
+  .master-rams .piece-mark span:nth-child(1) { left: 34px; bottom: 40px; }
+  .master-rams .piece-mark span:nth-child(2) { left: 88px; bottom: 40px; border-color: var(--accent-color); }
+  .master-rams .piece-mark span:nth-child(3) { right: 40px; top: 38px; width: 8px; height: 8px; background: var(--accent-color); border: 0; }
+
+  .master-vignelli .work-preview {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--fg), transparent 90%) 1px, transparent 1px),
+      linear-gradient(180deg, color-mix(in srgb, var(--fg), transparent 90%) 1px, transparent 1px),
+      var(--bg);
+    background-size: 38px 38px;
+  }
+
+  .master-vignelli .piece-mark::before {
+    left: 42px;
+    right: 42px;
+    top: 92px;
+    height: 10px;
+    background: var(--accent-color);
+    box-shadow: 0 38px 0 var(--secondary), 0 76px 0 var(--fg);
+  }
+
+  .master-rand .piece-mark span:nth-child(1) { left: 38px; top: 34px; width: 94px; height: 94px; border-radius: 50%; background: var(--accent-color); }
+  .master-rand .piece-mark span:nth-child(2) { right: 38px; bottom: 38px; width: 106px; height: 72px; background: var(--secondary); }
+  .master-rand .piece-mark span:nth-child(3) { right: 96px; top: 50px; width: 64px; height: 64px; background: var(--tertiary); transform: rotate(12deg); }
+
+  .master-bass .work-preview::before {
+    inset: 0;
+    background:
+      linear-gradient(128deg, transparent 0 38%, var(--accent-color) 39% 52%, transparent 53%),
+      linear-gradient(24deg, transparent 0 58%, var(--secondary) 59% 70%, transparent 71%);
+  }
+
+  .master-bass .piece-mark span:nth-child(1) { left: 44px; top: 42px; width: 108px; height: 132px; background: var(--fg); clip-path: polygon(0 0, 100% 20%, 78% 100%, 18% 80%); }
+  .master-bass .piece-core { transform: rotate(-4deg); }
+
+  .master-brockmann .piece-mark::before {
+    left: 26px;
+    top: 28px;
+    width: 212px;
+    height: 212px;
+    border: 22px solid var(--accent-color);
+    border-radius: 50%;
+  }
+
+  .master-brockmann .piece-mark::after {
+    left: 112px;
+    top: 22px;
+    width: 10px;
+    height: 230px;
+    background: var(--secondary);
+    transform: rotate(38deg);
+  }
+
+  .master-hofmann .piece-mark::before {
+    right: -50px;
+    bottom: -70px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: var(--fg);
+  }
+
+  .master-hofmann .piece-mark::after {
+    left: 34px;
+    bottom: 44px;
+    width: 124px;
+    height: 6px;
+    background: var(--accent-color);
+  }
+
+  .master-aicher .piece-mark {
+    display: grid;
+    grid-template-columns: repeat(4, 48px);
+    gap: 14px;
+    place-content: center;
+  }
+
+  .master-aicher .piece-mark span {
+    position: static;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent-color);
+  }
+
+  .master-aicher .piece-mark span:nth-child(2) { background: var(--secondary); border-radius: 4px; }
+  .master-aicher .piece-mark span:nth-child(3) { background: var(--tertiary); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .master-aicher .piece-mark span:nth-child(4) { background: var(--fg); clip-path: polygon(0 42%, 70% 42%, 70% 20%, 100% 50%, 70% 80%, 70% 58%, 0 58%); }
+
+  .master-moholy .work-preview::before {
+    left: -30px;
+    top: 26px;
+    width: 340px;
+    height: 80px;
+    background: color-mix(in srgb, var(--tertiary), transparent 18%);
+    transform: rotate(-18deg);
+    mix-blend-mode: multiply;
+  }
+
+  .master-moholy .piece-mark span:nth-child(1) { left: 48px; top: 40px; width: 130px; height: 130px; border-radius: 50%; border: 2px solid var(--secondary); }
+  .master-moholy .piece-mark span:nth-child(2) { right: 46px; bottom: 36px; width: 90px; height: 90px; background: color-mix(in srgb, var(--accent-color), transparent 24%); border-radius: 50%; }
+
+  .master-eames .piece-mark {
+    display: grid;
+    grid-template-columns: repeat(3, 64px);
+    gap: 10px;
+    place-content: center;
+  }
+
+  .master-eames .piece-mark span {
+    position: static;
+    width: 64px;
+    height: 64px;
+    background: var(--tertiary);
+    border: 2px solid var(--fg);
+  }
+
+  .master-eames .piece-mark span:nth-child(2) { background: var(--accent-color); border-radius: 50%; }
+  .master-eames .piece-mark span:nth-child(3) { background: var(--secondary); transform: rotate(8deg); }
+  .master-eames .piece-mark span:nth-child(4) { background: #B9824A; }
+  .master-eames .piece-mark span:nth-child(5) { background: #FFF7E8; border-radius: 18px; }
+  .master-eames .piece-mark span:nth-child(6) { background: #2E6B4F; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+  .master-loewy .piece-mark::before {
+    left: 34px;
+    right: 34px;
+    top: 92px;
+    height: 74px;
+    border-radius: 80px 22px 80px 22px;
+    background: linear-gradient(90deg, var(--secondary), #FFFFFF 42%, var(--accent-color));
+    border: 2px solid var(--fg);
+  }
+
+  .master-loewy .piece-mark::after {
+    left: 34px;
+    right: 34px;
+    top: 184px;
+    height: 2px;
+    background: var(--accent-color);
+    box-shadow: 0 12px 0 var(--tertiary), 0 24px 0 var(--secondary);
+  }
+
+  .master-sottsass .work-preview {
+    background:
+      radial-gradient(circle at 20% 20%, var(--tertiary) 0 8px, transparent 9px),
+      linear-gradient(45deg, transparent 0 44%, var(--fg) 45% 48%, transparent 49%),
+      var(--bg);
+  }
+
+  .master-sottsass .piece-mark span:nth-child(1) { left: 34px; bottom: 36px; width: 120px; height: 52px; background: var(--secondary); border: 3px solid var(--fg); }
+  .master-sottsass .piece-mark span:nth-child(2) { right: 42px; top: 38px; width: 74px; height: 118px; background: var(--accent-color); border: 3px solid var(--fg); transform: rotate(7deg); }
+  .master-sottsass .piece-mark span:nth-child(3) { left: 118px; top: 48px; width: 62px; height: 62px; border-radius: 50%; background: var(--tertiary); border: 3px solid var(--fg); }
+
+  .master-glaser .piece-mark span:nth-child(1) { left: 64px; top: 34px; width: 112px; height: 112px; border-radius: 60% 40% 62% 38%; background: var(--accent-color); }
+  .master-glaser .piece-mark span:nth-child(2) { right: 48px; top: 72px; width: 90px; height: 90px; border-radius: 50%; background: var(--tertiary); }
+  .master-glaser .piece-mark span:nth-child(3) { left: 112px; bottom: 34px; width: 118px; height: 54px; background: var(--secondary); clip-path: polygon(0 100%, 26% 0, 52% 100%, 76% 0, 100% 100%); }
+
+  .master-tanaka .piece-mark::before {
+    left: 50%;
+    top: 48%;
+    width: 168px;
+    height: 168px;
+    background:
+      linear-gradient(90deg, var(--accent-color) 0 50%, var(--secondary) 50%),
+      var(--bg);
+    clip-path: polygon(50% 0, 100% 34%, 82% 100%, 18% 100%, 0 34%);
+    transform: translate(-50%, -50%);
+  }
+
+  .master-tanaka .piece-mark::after {
+    left: calc(50% - 46px);
+    top: calc(48% - 20px);
+    width: 92px;
+    height: 40px;
+    background: var(--tertiary);
+  }
+
+  .master-fukuda .piece-mark::before {
+    left: 50%;
+    top: 50%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 64% 36%, var(--bg) 0 28px, transparent 29px),
+      var(--fg);
+    transform: translate(-50%, -50%);
+  }
+
+  .master-fukuda .piece-mark::after {
+    left: 50%;
+    top: 50%;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+  }
+
+  .master-hara .piece-core {
+    width: min(66%, 220px);
+    padding: 32px 26px;
+    background: #FFFFFF;
+    border: 1px solid var(--secondary);
+  }
+
+  .master-hara .work-preview::before {
+    left: 54px;
+    top: 38px;
+    width: 1px;
+    height: 170px;
+    background: var(--accent-color);
+  }
+
+  .master-scher .piece-title {
+    font-size: clamp(42px, 12vw, 78px);
+    line-height: 0.78;
+  }
+
+  .master-scher .work-preview {
+    background:
+      linear-gradient(90deg, var(--accent-color) 0 18%, transparent 18%),
+      linear-gradient(180deg, transparent 0 56%, var(--secondary) 56% 76%, transparent 76%),
+      var(--bg);
+  }
+
+  .master-carson .piece-core {
+    transform: rotate(-5deg);
+  }
+
+  .master-carson .piece-mark span:nth-child(1) { left: 28px; top: 32px; width: 146px; height: 112px; background: var(--secondary); opacity: 0.82; transform: rotate(7deg); }
+  .master-carson .piece-mark span:nth-child(2) { right: 34px; bottom: 42px; width: 128px; height: 86px; background: var(--accent-color); opacity: 0.76; transform: rotate(-9deg); }
+  .master-carson .piece-mark span:nth-child(3) { left: 64px; bottom: 42px; width: 190px; height: 2px; background: var(--fg); transform: rotate(-18deg); }
+
+  .master-brody .work-preview {
+    background: var(--bg);
+  }
+
+  .master-brody .piece-title {
+    color: var(--fg);
+    font-size: clamp(38px, 10vw, 68px);
+    letter-spacing: -0.02em;
+  }
+
+  .master-brody .piece-mark::before {
+    right: 28px;
+    top: 28px;
+    width: 10px;
+    height: 190px;
+    background: var(--accent-color);
+    box-shadow: -22px 44px 0 var(--secondary), -44px 88px 0 var(--tertiary);
+  }
+
+  .master-kare .work-preview {
+    image-rendering: pixelated;
+  }
+
+  .master-kare .piece-mark {
+    display: grid;
+    grid-template-columns: repeat(6, 20px);
+    grid-auto-rows: 20px;
+    gap: 8px;
+    place-content: center;
+  }
+
+  .master-kare .piece-mark span {
+    position: static;
+    width: 20px;
+    height: 20px;
+    background: var(--fg);
+    box-shadow: 28px 0 0 var(--accent-color), 56px 0 0 var(--secondary), 84px 0 0 var(--tertiary);
+  }
+
+  .master-greiman .work-preview::before {
+    inset: 28px 46px 46px 30px;
+    background: color-mix(in srgb, var(--accent-color), transparent 28%);
+    transform: rotate(-8deg);
+    mix-blend-mode: multiply;
+  }
+
+  .master-greiman .work-preview::after {
+    inset: 54px 26px 26px 74px;
+    border: 2px solid var(--secondary);
+    background:
+      repeating-linear-gradient(0deg, transparent 0 7px, color-mix(in srgb, var(--secondary), transparent 58%) 8px 9px);
+    transform: rotate(7deg);
+  }
+
+  .card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px 24px 24px;
+  }
+
+  .card-kicker {
+    color: #969086;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .card-title {
+    margin-top: 8px;
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 850;
+    line-height: 1.25;
+  }
+
+  .card-method {
+    margin-top: 5px;
+    color: var(--accent-color);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .card-desc {
+    margin: 12px 0 18px;
+    color: #645F58;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .card-work {
+    margin: 0 0 18px;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 10px;
+    color: #3F3A33;
+    font-size: 12px;
+    font-weight: 750;
+    line-height: 1.55;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .tag {
+    border: 1px solid #D4CDC2;
+    padding: 4px 8px;
+    color: #837D73;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .card-link {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 4;
+    border: 1px solid rgba(23, 22, 21, 0.22);
+    padding: 5px 8px;
+    background: rgba(255, 252, 245, 0.86);
+    color: #3F3A33;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .footer {
+    border-top: 2px solid var(--ink);
+    background: #FFFCF5;
+  }
+
+  .footer-inner {
+    width: min(var(--max-width), calc(100% - 64px));
+    margin: 0 auto;
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .footer a {
+    color: var(--ink);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .footer a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 980px) {
+    .hero-inner,
+    .gallery-wrap,
+    .footer-inner {
+      width: min(100% - 36px, var(--max-width));
+    }
+
+    .stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .stat:nth-child(2) {
+      border-right: 0;
+    }
+
+    .stat:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toolbar {
+      align-items: start;
+      flex-direction: column;
+    }
+
+    .category-strip {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .hero-link {
+      margin-right: 0;
+      margin-bottom: -1px;
+      text-align: center;
+    }
+
+    .stats {
+      grid-template-columns: 1fr;
+    }
+
+    .stat {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-bottom: 0;
+    }
+
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .master-card {
+      min-height: 470px;
+    }
+
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="site-shell">
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">design master methods</span>
+      <h1 class="hero-title">20 位设计大师方法，<br><em>20 张原创样张。</em></h1>
+      <p class="hero-copy">这不是作品复制，也不是设计史简介。我们把每位大师的公开方法论转译成可执行的 AI 设计规范，并用一张原创样张展示它如何落到网页、海报、图标、导视或产品界面中。</p>
+      <nav class="hero-actions" aria-label="项目链接">
+        <a class="hero-link" href="index.html">50 风格画廊</a>
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill/tree/main/references/masters">大师 DESIGN.md</a>
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill/blob/main/references/masters/master-index.md">大师索引</a>
+        <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill">GitHub</a>
+      </nav>
+    </div>
+    <div class="stats" aria-label="项目统计">
+      <div class="stat"><span class="stat-value">20</span><span class="stat-label">设计大师方法论</span></div>
+      <div class="stat"><span class="stat-value">20</span><span class="stat-label">原创作品样张</span></div>
+      <div class="stat"><span class="stat-value">50</span><span class="stat-label">精选风格 DESIGN.md</span></div>
+      <div class="stat"><span class="stat-value">120+</span><span class="stat-label">全球风格知识库</span></div>
+    </div>
+  </header>
+
+  <main class="gallery-wrap">
+    <section class="toolbar" aria-labelledby="gallery-title">
+      <div>
+        <h2 class="toolbar-title" id="gallery-title">大师方法展示</h2>
+        <p class="toolbar-copy">每张卡片都包含方法论摘要和一件原创演示作品。点进详情页可查看更大的样张、执行原则、色彩系统和对应 DESIGN.md。</p>
+      </div>
+      <div class="category-strip" aria-label="方法类别">
+        <span class="category-chip">Product</span>
+        <span class="category-chip">Typography</span>
+        <span class="category-chip">Poster</span>
+        <span class="category-chip">Wayfinding</span>
+        <span class="category-chip">Digital</span>
+      </div>
+    </section>
+
+    <section class="gallery-grid" id="master-grid" aria-label="20 位设计大师方法论"></section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>xdx-lab-design-skill · 20 位设计大师方法论 · 原创样张展示</span>
+      <a href="index.html">返回 50 风格画廊 →</a>
+    </div>
+  </footer>
+</div>
+
+<script src="master-data.js"></script>
+<script>
+  const masters = window.designMasterData.masters;
+
+  function createTag(tag) {
+    const element = document.createElement("span");
+    element.className = "tag";
+    element.textContent = tag;
+    return element;
+  }
+
+  function createPieceMark() {
+    const mark = document.createElement("div");
+    mark.className = "piece-mark";
+    for (let index = 0; index < 6; index += 1) {
+      mark.appendChild(document.createElement("span"));
+    }
+    return mark;
+  }
+
+  function createCard(master) {
+    const card = document.createElement("a");
+    card.className = `master-card ${master.mode}`;
+    card.href = `master.html?id=${master.id}`;
+    card.setAttribute("aria-label", `${master.name} 方法论详情`);
+
+    card.style.setProperty("--bg", master.bg);
+    card.style.setProperty("--fg", master.fg);
+    card.style.setProperty("--accent-color", master.accent);
+    card.style.setProperty("--secondary", master.secondary);
+    card.style.setProperty("--tertiary", master.tertiary);
+    card.style.setProperty("--display-font", master.font);
+    card.style.setProperty("--title-weight", master.mode === "master-scher" || master.mode === "master-brody" ? 900 : 800);
+    card.style.setProperty("--title-transform", "none");
+
+    const preview = document.createElement("div");
+    preview.className = "work-preview";
+
+    const core = document.createElement("div");
+    core.className = "piece-core";
+
+    const title = document.createElement("div");
+    title.className = "piece-title";
+    title.textContent = master.sample;
+
+    const subtitle = document.createElement("div");
+    subtitle.className = "piece-subtitle";
+    subtitle.textContent = master.method;
+
+    core.append(title, subtitle);
+    preview.append(createPieceMark(), core);
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const kicker = document.createElement("div");
+    kicker.className = "card-kicker";
+    kicker.textContent = `Master ${master.id} · ${master.category}`;
+
+    const cardTitle = document.createElement("div");
+    cardTitle.className = "card-title";
+    cardTitle.textContent = `${master.name} · ${master.zhName}`;
+
+    const method = document.createElement("div");
+    method.className = "card-method";
+    method.textContent = master.method;
+
+    const desc = document.createElement("p");
+    desc.className = "card-desc";
+    desc.textContent = master.desc;
+
+    const work = document.createElement("p");
+    work.className = "card-work";
+    work.textContent = `${master.workTitle}：${master.workType}`;
+
+    const tags = document.createElement("div");
+    tags.className = "card-tags";
+    master.tags.forEach((tag) => tags.appendChild(createTag(tag)));
+
+    body.append(kicker, cardTitle, method, desc, work, tags);
+
+    const linkLabel = document.createElement("span");
+    linkLabel.className = "card-link";
+    linkLabel.textContent = "查看";
+
+    card.append(linkLabel, preview, body);
+    return card;
+  }
+
+  const masterGrid = document.getElementById("master-grid");
+  masters.forEach((master) => masterGrid.appendChild(createCard(master)));
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 # xdx-lab Design Style Skill
-### 全球设计系统 — 50 种精选视觉语言 + 120+ 风格知识库
+### 全球设计系统 — 50 种精选视觉语言 + 20 位设计大师方法论 + 120+ 风格知识库
 
 > 一个面向所有智能体的设计风格 Skill，适用于 Codex / Code X / Claude Code / Cursor / v0 / Bolt / Lovable / DeepSeek / Gemini / 任何能读取 Markdown 与仓库文件的 Agent。
 
@@ -7,12 +7,13 @@
 
 ## 是什么？
 
-这是一个面向 Agent 的全球设计系统。它把不同文化、行业和媒介中的视觉方法整理成可执行的 `DESIGN.md`：颜色、字体、组件、版式、禁忌和输出规则都写在同一份规范里。
+这是一个面向 Agent 的全球设计系统。它把不同文化、行业、媒介和设计大师方法整理成可执行的 `DESIGN.md`：颜色、字体、组件、版式、视觉隐喻、禁忌和输出规则都写在同一份规范里。
 
-它不是简单的配色表，也不是提示词合集。目标是让 Agent 在制作网页、PPT、海报、App UI、报告或组件时，能先选择合适的视觉语言，再按明确的生产路线交付真实文件。
+它不是简单的配色表，也不是提示词合集。目标是让 Agent 在制作网页、PPT、海报、App UI、报告或组件时，能先选择合适的视觉语言，再按明确的生产路线交付真实文件；如果用户指定某位设计大师，也能把大师的方法论转译成构图、排版、图标或交互层面的执行规则。
 
 **核心特性：**
 - **50 个精选 DESIGN.md**：每个风格都有精确 HEX 色彩、字体层级、组件规范、版式原则和禁忌清单。
+- **20 位设计大师方法论**：整理 Dieter Rams、Vignelli、Paul Rand、Saul Bass、Kenya Hara、Paula Scher、Susan Kare 等方法，用于指导构图、信息层级、图标、排版和视觉隐喻；每位都有独立 `DESIGN.md` 和原创展示样张。
 - **120+ 风格知识库**：精选库之外的风格，可从知识库中提取关键特征并动态合成规范。
 - **Agent 无关**：纯 Markdown + HTML 结构，任何能读取仓库文件的智能体都可以使用。
 - **输出路线清晰**：覆盖网站、React 组件、PPT、海报、App UI、Word/报告和 Figma 设计稿。
@@ -22,15 +23,24 @@
 
 ## 效果展示
 
-在线预览：[GitHub Pages 画廊](https://xdx888999.github.io/xdx-lab-design-skill/)
+在线预览：[GitHub Pages 统一画廊](https://xdx888999.github.io/xdx-lab-design-skill/)  
+首页已经合并展示 50 种精选风格和 20 位设计大师方法论，也保留了 [独立大师方法页](https://xdx888999.github.io/xdx-lab-design-skill/masters.html)。
 
-### 50 种精选风格总览
+### 统一首页：50 种风格 + 20 位大师方法
 
-![50 种精选风格画廊](docs/assets/gallery-overview.png)
+![全球设计系统统一画廊](docs/assets/gallery-overview.png)
+
+### 首页中的设计大师方法样张
+
+![20 位设计大师方法论样张](docs/assets/master-overview.png)
 
 ### 单个风格详情页
 
 ![宋代水墨风格详情](docs/assets/style-detail-song.png)
+
+### 单个大师方法详情页
+
+![Paula Scher 方法论详情](docs/assets/master-detail-scher.png)
 
 ---
 
@@ -48,6 +58,7 @@
 | 行业专项 I | 5 | 医疗健康, 法律权威, 教育平台, 豪宅地产, 高端餐饮 |
 | 行业专项 II | 5 | 金融企业, 电竞, 时尚编辑, 旅行酒店, 公益NGO |
 | 全球文化 | 5 | 伊斯兰几何, 非洲未来主义, 波普艺术, 暗系学院, 野蛮主义 |
+| 设计大师方法论 | 20 | Dieter Rams, Vignelli, Paul Rand, Saul Bass, Kenya Hara, Paula Scher, Susan Kare |
 
 ---
 
@@ -78,6 +89,8 @@ git clone https://github.com/xdx888999/xdx-lab-design-skill.git
 请把这个仓库当作 design-style Skill 使用。
 优先读取 SKILL.md；需要选择风格时读取 references/style-index.md；
 需要具体规范时读取 references/styles/ 中对应的 DESIGN.md。
+如果我指定某位设计大师或“更有大师方法论”，请读取 references/masters/master-index.md，
+再读取 references/masters/ 中对应的 DESIGN.md。
 ```
 
 ### 方式 3：不安装，直接引用某个 DESIGN.md
@@ -108,12 +121,17 @@ cp references/styles/31-song-dynasty-ink-DESIGN.md /path/to/your/project/DESIGN.
 "给我做一个金融科技公司官网，配色要专业"
 "制作一个电竞赛事品牌页面"
 "设计一个米其林餐厅的在线菜单"
+"参考 Dieter Rams 方法设计一个硬件产品页"
+"用 Paula Scher 的字体主视觉方法做一个音乐节海报"
+"用原研哉的空白感做一本品牌手册"
 ```
 
 ### 风格选择方式
 
 - **未指定风格时**：Agent 先从 50 种精选风格中推荐 2-3 个方向，并等待你选择。
 - **直接指定风格时**：Agent 立即匹配对应 DESIGN.md，例如“用宋代水墨”“用 Art Deco”“用 42 电竞风”。
+- **直接指定设计大师时**：Agent 立即读取 `references/masters/` 中对应方法论，例如“参考 Dieter Rams”“像 Saul Bass 的电影海报构图”“用 Susan Kare 的像素图标逻辑”。
+- **风格与大师叠加时**：Agent 会同时读取两个规范，例如“浮世绘 + Saul Bass 构图”，让风格控制视觉气质，大师方法控制结构和表达。
 - **精选库没有对应风格时**：Agent 从 120+ 风格知识库中提取特征，动态合成一份可执行设计规范。
 - **需要图片时**：Agent 会判断是否使用用户素材、Unsplash、生成式图片、SVG 图示或图案纹理，并在交付中说明来源与处理方式。
 - **回复方式**：你可以回复编号、风格名、中文描述，或直接说“你来定”。
@@ -127,18 +145,27 @@ design-style-skill/
 ├── SKILL.md                          # 主指令文件（AI 的行动手册）
 ├── README.md                         # 本文件
 ├── docs/
-│   ├── index.html                    # GitHub Pages 50 风格画廊
+│   ├── index.html                    # GitHub Pages 统一画廊（50 风格 + 20 大师）
 │   ├── style.html                    # 通用风格详情页
 │   ├── style-data.js                 # 50 种风格展示数据
+│   ├── masters.html                  # 20 位设计大师方法论画廊
+│   ├── master.html                   # 通用大师详情页
+│   ├── master-data.js                # 20 位大师展示数据
 │   └── assets/                       # README 截图资源
 └── references/
     ├── style-index.md                # 50 种风格目录索引（轻量，先读此文件）
     ├── 全球设计风格知识库.md           # 120+ 种风格知识库（兜底动态生成）
-    └── styles/
-        ├── 01-glassmorphism-dark-DESIGN.md
-        ├── 02-tech-minimal-DESIGN.md
-        ├── ...（共 50 个文件）
-        └── 50-brutalist-web-DESIGN.md
+    ├── styles/
+    │   ├── 01-glassmorphism-dark-DESIGN.md
+    │   ├── 02-tech-minimal-DESIGN.md
+    │   ├── ...（共 50 个文件）
+    │   └── 50-brutalist-web-DESIGN.md
+    └── masters/
+        ├── master-index.md           # 20 位设计大师方法论索引
+        ├── 01-dieter-rams-DESIGN.md
+        ├── 02-massimo-vignelli-DESIGN.md
+        ├── ...（共 20 个文件）
+        └── 20-april-greiman-DESIGN.md
 ```
 
 ---
@@ -157,6 +184,18 @@ design-style-skill/
 ## 7. Do's and Don'ts            — 风格禁忌
 ## 8. Responsive Behavior        — 响应式断点
 ## 9. Agent Prompt Guide         — AI 快速提示词
+```
+
+设计大师方法论文件也使用相近结构，但重点放在：
+
+```
+## 1. Visual Theme & Philosophy  — 方法论定位
+## 2. Color Palette & Roles      — 可执行色彩系统
+## 3. Typography Rules           — 字体与排版规则
+## 4. Layout & Component Rules   — 构图与组件语言
+## 5. Imagery & Iconography      — 图像、符号、图标方法
+## 6. Do's and Don'ts            — 版权边界与风格禁忌
+## 8. Agent Prompt Guide         — AI 快速提示词
 ```
 
 ---

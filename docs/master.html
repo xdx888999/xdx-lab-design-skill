@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>设计大师方法论详情 — xdx-lab-design-skill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&family=Fraunces:wght@600;800&family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@500;700&family=Oswald:wght@600;700&family=Space+Grotesk:wght@500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F3EC;
+    --ink: #171615;
+    --muted: #6E6A63;
+    --line: #D7D0C4;
+    --panel: #FFFCF5;
+    --max-width: 1440px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .topbar {
+    border-bottom: 2px solid var(--ink);
+    background: var(--panel);
+  }
+
+  .topbar-inner {
+    width: min(var(--max-width), calc(100% - 48px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 0;
+  }
+
+  .brand {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .nav-link,
+  .action {
+    min-height: 36px;
+    border: 1px solid var(--ink);
+    margin-right: -1px;
+    padding: 9px 14px;
+    background: transparent;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .nav-link:hover,
+  .action:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .detail {
+    width: min(var(--max-width), calc(100% - 48px));
+    margin: 0 auto;
+    padding: 46px 0 72px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(460px, 1fr);
+    border: 2px solid var(--ink);
+    background: var(--panel);
+  }
+
+  .summary {
+    padding: clamp(28px, 5vw, 58px);
+    border-right: 1px solid var(--line);
+  }
+
+  .kicker {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    margin: 0;
+    font-family: "Fraunces", "Noto Serif SC", serif;
+    font-size: clamp(42px, 5.5vw, 76px);
+    line-height: 0.98;
+  }
+
+  .zh-name {
+    margin-top: 14px;
+    color: var(--accent-color);
+    font-family: "Noto Serif SC", serif;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    margin-top: 18px;
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .description {
+    max-width: 640px;
+    margin: 26px 0 0;
+    color: #4F4B45;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .work-note {
+    margin: 28px 0 0;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 14px;
+    color: #302C28;
+    font-size: 14px;
+    font-weight: 750;
+    line-height: 1.7;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 26px;
+  }
+
+  .tag {
+    border: 1px solid var(--line);
+    padding: 7px 10px;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .work-preview {
+    position: relative;
+    display: grid;
+    min-height: 620px;
+    place-items: center;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  .work-preview::before,
+  .work-preview::after,
+  .piece-mark::before,
+  .piece-mark::after {
+    position: absolute;
+    content: "";
+    pointer-events: none;
+  }
+
+  .piece-core {
+    position: relative;
+    z-index: 3;
+    width: min(72%, 520px);
+  }
+
+  .piece-title {
+    color: var(--fg);
+    font-family: var(--display-font);
+    font-size: clamp(48px, 7vw, 92px);
+    font-weight: var(--title-weight);
+    line-height: 0.92;
+    text-transform: var(--title-transform);
+  }
+
+  .piece-subtitle {
+    margin-top: 18px;
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .piece-caption {
+    margin-top: 28px;
+    color: color-mix(in srgb, var(--fg), transparent 18%);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.6;
+  }
+
+  .piece-mark {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .piece-mark span {
+    position: absolute;
+    display: block;
+  }
+
+  .master-rams .piece-core {
+    padding: 42px;
+    border: 1px solid var(--secondary);
+    background: #FFFFFF;
+  }
+
+  .master-rams .piece-mark span {
+    width: 76px;
+    height: 76px;
+    border: 3px solid var(--fg);
+    border-radius: 50%;
+  }
+
+  .master-rams .piece-mark span:nth-child(1) { left: 70px; bottom: 82px; }
+  .master-rams .piece-mark span:nth-child(2) { left: 168px; bottom: 82px; border-color: var(--accent-color); }
+  .master-rams .piece-mark span:nth-child(3) { right: 82px; top: 78px; width: 12px; height: 12px; background: var(--accent-color); border: 0; }
+
+  .master-vignelli .work-preview {
+    background:
+      linear-gradient(90deg, color-mix(in srgb, var(--fg), transparent 90%) 1px, transparent 1px),
+      linear-gradient(180deg, color-mix(in srgb, var(--fg), transparent 90%) 1px, transparent 1px),
+      var(--bg);
+    background-size: 48px 48px;
+  }
+
+  .master-vignelli .piece-mark::before {
+    left: 72px;
+    right: 72px;
+    top: 194px;
+    height: 16px;
+    background: var(--accent-color);
+    box-shadow: 0 62px 0 var(--secondary), 0 124px 0 var(--fg);
+  }
+
+  .master-rand .piece-mark span:nth-child(1) { left: 70px; top: 68px; width: 168px; height: 168px; border-radius: 50%; background: var(--accent-color); }
+  .master-rand .piece-mark span:nth-child(2) { right: 74px; bottom: 86px; width: 200px; height: 130px; background: var(--secondary); }
+  .master-rand .piece-mark span:nth-child(3) { right: 176px; top: 92px; width: 112px; height: 112px; background: var(--tertiary); transform: rotate(12deg); }
+
+  .master-bass .work-preview::before {
+    inset: 0;
+    background:
+      linear-gradient(128deg, transparent 0 38%, var(--accent-color) 39% 52%, transparent 53%),
+      linear-gradient(24deg, transparent 0 58%, var(--secondary) 59% 70%, transparent 71%);
+  }
+
+  .master-bass .piece-mark span:nth-child(1) { left: 74px; top: 80px; width: 184px; height: 230px; background: var(--fg); clip-path: polygon(0 0, 100% 20%, 78% 100%, 18% 80%); }
+  .master-bass .piece-core { transform: rotate(-4deg); }
+
+  .master-brockmann .piece-mark::before {
+    left: 54px;
+    top: 62px;
+    width: 350px;
+    height: 350px;
+    border: 36px solid var(--accent-color);
+    border-radius: 50%;
+  }
+
+  .master-brockmann .piece-mark::after {
+    left: 210px;
+    top: 54px;
+    width: 14px;
+    height: 430px;
+    background: var(--secondary);
+    transform: rotate(38deg);
+  }
+
+  .master-hofmann .piece-mark::before {
+    right: -86px;
+    bottom: -118px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: var(--fg);
+  }
+
+  .master-hofmann .piece-mark::after {
+    left: 70px;
+    bottom: 96px;
+    width: 220px;
+    height: 8px;
+    background: var(--accent-color);
+  }
+
+  .master-aicher .piece-mark {
+    display: grid;
+    grid-template-columns: repeat(4, 74px);
+    gap: 22px;
+    place-content: center;
+  }
+
+  .master-aicher .piece-mark span {
+    position: static;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: var(--accent-color);
+  }
+
+  .master-aicher .piece-mark span:nth-child(2) { background: var(--secondary); border-radius: 6px; }
+  .master-aicher .piece-mark span:nth-child(3) { background: var(--tertiary); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .master-aicher .piece-mark span:nth-child(4) { background: var(--fg); clip-path: polygon(0 42%, 70% 42%, 70% 20%, 100% 50%, 70% 80%, 70% 58%, 0 58%); }
+
+  .master-moholy .work-preview::before {
+    left: -56px;
+    top: 110px;
+    width: 620px;
+    height: 124px;
+    background: color-mix(in srgb, var(--tertiary), transparent 18%);
+    transform: rotate(-18deg);
+    mix-blend-mode: multiply;
+  }
+
+  .master-moholy .piece-mark span:nth-child(1) { left: 90px; top: 90px; width: 220px; height: 220px; border-radius: 50%; border: 3px solid var(--secondary); }
+  .master-moholy .piece-mark span:nth-child(2) { right: 90px; bottom: 78px; width: 150px; height: 150px; background: color-mix(in srgb, var(--accent-color), transparent 24%); border-radius: 50%; }
+
+  .master-eames .piece-mark {
+    display: grid;
+    grid-template-columns: repeat(3, 96px);
+    gap: 16px;
+    place-content: center;
+  }
+
+  .master-eames .piece-mark span {
+    position: static;
+    width: 96px;
+    height: 96px;
+    background: var(--tertiary);
+    border: 3px solid var(--fg);
+  }
+
+  .master-eames .piece-mark span:nth-child(2) { background: var(--accent-color); border-radius: 50%; }
+  .master-eames .piece-mark span:nth-child(3) { background: var(--secondary); transform: rotate(8deg); }
+  .master-eames .piece-mark span:nth-child(4) { background: #B9824A; }
+  .master-eames .piece-mark span:nth-child(5) { background: #FFF7E8; border-radius: 24px; }
+  .master-eames .piece-mark span:nth-child(6) { background: #2E6B4F; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+
+  .master-loewy .piece-mark::before {
+    left: 70px;
+    right: 70px;
+    top: 222px;
+    height: 118px;
+    border-radius: 120px 30px 120px 30px;
+    background: linear-gradient(90deg, var(--secondary), #FFFFFF 42%, var(--accent-color));
+    border: 3px solid var(--fg);
+  }
+
+  .master-loewy .piece-mark::after {
+    left: 70px;
+    right: 70px;
+    top: 374px;
+    height: 3px;
+    background: var(--accent-color);
+    box-shadow: 0 20px 0 var(--tertiary), 0 40px 0 var(--secondary);
+  }
+
+  .master-sottsass .work-preview {
+    background:
+      radial-gradient(circle at 20% 20%, var(--tertiary) 0 12px, transparent 13px),
+      linear-gradient(45deg, transparent 0 44%, var(--fg) 45% 48%, transparent 49%),
+      var(--bg);
+  }
+
+  .master-sottsass .piece-mark span:nth-child(1) { left: 66px; bottom: 76px; width: 220px; height: 92px; background: var(--secondary); border: 4px solid var(--fg); }
+  .master-sottsass .piece-mark span:nth-child(2) { right: 84px; top: 76px; width: 124px; height: 210px; background: var(--accent-color); border: 4px solid var(--fg); transform: rotate(7deg); }
+  .master-sottsass .piece-mark span:nth-child(3) { left: 220px; top: 88px; width: 110px; height: 110px; border-radius: 50%; background: var(--tertiary); border: 4px solid var(--fg); }
+
+  .master-glaser .piece-mark span:nth-child(1) { left: 112px; top: 74px; width: 194px; height: 194px; border-radius: 60% 40% 62% 38%; background: var(--accent-color); }
+  .master-glaser .piece-mark span:nth-child(2) { right: 92px; top: 136px; width: 150px; height: 150px; border-radius: 50%; background: var(--tertiary); }
+  .master-glaser .piece-mark span:nth-child(3) { left: 188px; bottom: 78px; width: 220px; height: 94px; background: var(--secondary); clip-path: polygon(0 100%, 26% 0, 52% 100%, 76% 0, 100% 100%); }
+
+  .master-tanaka .piece-mark::before {
+    left: 50%;
+    top: 48%;
+    width: 280px;
+    height: 280px;
+    background:
+      linear-gradient(90deg, var(--accent-color) 0 50%, var(--secondary) 50%),
+      var(--bg);
+    clip-path: polygon(50% 0, 100% 34%, 82% 100%, 18% 100%, 0 34%);
+    transform: translate(-50%, -50%);
+  }
+
+  .master-tanaka .piece-mark::after {
+    left: calc(50% - 78px);
+    top: calc(48% - 34px);
+    width: 156px;
+    height: 68px;
+    background: var(--tertiary);
+  }
+
+  .master-fukuda .piece-mark::before {
+    left: 50%;
+    top: 50%;
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 64% 36%, var(--bg) 0 48px, transparent 49px),
+      var(--fg);
+    transform: translate(-50%, -50%);
+  }
+
+  .master-fukuda .piece-mark::after {
+    left: 50%;
+    top: 50%;
+    width: 126px;
+    height: 126px;
+    border-radius: 50%;
+    background: var(--accent-color);
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+  }
+
+  .master-hara .piece-core {
+    width: min(60%, 390px);
+    padding: 58px 46px;
+    background: #FFFFFF;
+    border: 1px solid var(--secondary);
+  }
+
+  .master-hara .work-preview::before {
+    left: 108px;
+    top: 82px;
+    width: 1px;
+    height: 360px;
+    background: var(--accent-color);
+  }
+
+  .master-scher .piece-title {
+    font-size: clamp(72px, 12vw, 128px);
+    line-height: 0.78;
+  }
+
+  .master-scher .work-preview {
+    background:
+      linear-gradient(90deg, var(--accent-color) 0 18%, transparent 18%),
+      linear-gradient(180deg, transparent 0 56%, var(--secondary) 56% 76%, transparent 76%),
+      var(--bg);
+  }
+
+  .master-carson .piece-core {
+    transform: rotate(-5deg);
+  }
+
+  .master-carson .piece-mark span:nth-child(1) { left: 60px; top: 72px; width: 260px; height: 196px; background: var(--secondary); opacity: 0.82; transform: rotate(7deg); }
+  .master-carson .piece-mark span:nth-child(2) { right: 72px; bottom: 90px; width: 220px; height: 150px; background: var(--accent-color); opacity: 0.76; transform: rotate(-9deg); }
+  .master-carson .piece-mark span:nth-child(3) { left: 120px; bottom: 100px; width: 330px; height: 3px; background: var(--fg); transform: rotate(-18deg); }
+
+  .master-brody .work-preview {
+    background: var(--bg);
+  }
+
+  .master-brody .piece-title {
+    color: var(--fg);
+    font-size: clamp(68px, 10vw, 118px);
+    letter-spacing: -0.02em;
+  }
+
+  .master-brody .piece-mark::before {
+    right: 58px;
+    top: 58px;
+    width: 14px;
+    height: 360px;
+    background: var(--accent-color);
+    box-shadow: -34px 72px 0 var(--secondary), -68px 144px 0 var(--tertiary);
+  }
+
+  .master-kare .work-preview {
+    image-rendering: pixelated;
+  }
+
+  .master-kare .piece-mark {
+    display: grid;
+    grid-template-columns: repeat(6, 32px);
+    grid-auto-rows: 32px;
+    gap: 14px;
+    place-content: center;
+  }
+
+  .master-kare .piece-mark span {
+    position: static;
+    width: 32px;
+    height: 32px;
+    background: var(--fg);
+    box-shadow: 46px 0 0 var(--accent-color), 92px 0 0 var(--secondary), 138px 0 0 var(--tertiary);
+  }
+
+  .master-greiman .work-preview::before {
+    inset: 72px 92px 118px 58px;
+    background: color-mix(in srgb, var(--accent-color), transparent 28%);
+    transform: rotate(-8deg);
+    mix-blend-mode: multiply;
+  }
+
+  .master-greiman .work-preview::after {
+    inset: 120px 52px 70px 142px;
+    border: 3px solid var(--secondary);
+    background:
+      repeating-linear-gradient(0deg, transparent 0 11px, color-mix(in srgb, var(--secondary), transparent 58%) 12px 14px);
+    transform: rotate(7deg);
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 2px solid var(--ink);
+    border-top: 0;
+    background: var(--line);
+    gap: 1px;
+  }
+
+  .meta-card {
+    min-height: 190px;
+    padding: 24px;
+    background: var(--panel);
+  }
+
+  .meta-label {
+    color: #969086;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 760;
+    line-height: 1.55;
+  }
+
+  .principle-list {
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .principle-list li {
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    font-size: 15px;
+    font-weight: 780;
+    line-height: 1.45;
+  }
+
+  .principle-list li:last-child {
+    border-bottom: 0;
+  }
+
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border: 2px solid var(--ink);
+    border-top: 0;
+  }
+
+  .swatch {
+    min-height: 132px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 1px solid rgba(23, 22, 21, 0.18);
+    background: var(--color);
+    color: var(--label-color);
+  }
+
+  .swatch:last-child {
+    border-right: 0;
+  }
+
+  .swatch-name {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .swatch-code {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .error {
+    border: 2px solid var(--ink);
+    padding: 40px;
+    background: var(--panel);
+  }
+
+  @media (max-width: 980px) {
+    .topbar-inner,
+    .detail {
+      width: min(100% - 32px, var(--max-width));
+    }
+
+    .hero,
+    .meta-grid,
+    .palette {
+      grid-template-columns: 1fr;
+    }
+
+    .summary {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .work-preview {
+      min-height: 520px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .nav-actions,
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    .nav-link,
+    .action {
+      margin-right: 0;
+      margin-bottom: -1px;
+      text-align: center;
+    }
+
+    .work-preview {
+      min-height: 420px;
+    }
+
+    .piece-core {
+      width: min(78%, 360px);
+    }
+
+    .swatch {
+      min-height: 96px;
+      border-right: 0;
+      border-bottom: 1px solid rgba(23, 22, 21, 0.18);
+    }
+
+    .swatch:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">xdx-lab-design-skill</div>
+      <nav class="nav-actions" aria-label="页面导航">
+        <a class="nav-link" href="masters.html">返回大师画廊</a>
+        <a class="nav-link" href="index.html">50 风格画廊</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="detail" id="detail"></main>
+</div>
+
+<script src="master-data.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const masterId = (params.get("id") || "01").padStart(2, "0");
+  const master = window.designMasterData.masters.find((item) => item.id === masterId);
+  const detail = document.getElementById("detail");
+
+  function getLabelColor(color) {
+    const hex = color.replace("#", "");
+    if (hex.length !== 6) {
+      return "#171615";
+    }
+
+    const red = parseInt(hex.slice(0, 2), 16);
+    const green = parseInt(hex.slice(2, 4), 16);
+    const blue = parseInt(hex.slice(4, 6), 16);
+    const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+    return luminance > 0.58 ? "#171615" : "#FFFCF5";
+  }
+
+  function createTag(tag) {
+    const element = document.createElement("span");
+    element.className = "tag";
+    element.textContent = tag;
+    return element;
+  }
+
+  function createSwatch(name, color) {
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.setProperty("--color", color);
+    swatch.style.setProperty("--label-color", getLabelColor(color));
+
+    const swatchName = document.createElement("div");
+    swatchName.className = "swatch-name";
+    swatchName.textContent = name;
+
+    const swatchCode = document.createElement("div");
+    swatchCode.className = "swatch-code";
+    swatchCode.textContent = color;
+
+    swatch.append(swatchName, swatchCode);
+    return swatch;
+  }
+
+  function createPieceMark() {
+    const mark = document.createElement("div");
+    mark.className = "piece-mark";
+    for (let index = 0; index < 6; index += 1) {
+      mark.appendChild(document.createElement("span"));
+    }
+    return mark;
+  }
+
+  function renderError() {
+    detail.innerHTML = `
+      <section class="error">
+        <h1>没有找到这位设计大师</h1>
+        <p>请回到大师画廊重新选择。</p>
+        <p><a class="action" href="masters.html">返回大师画廊</a></p>
+      </section>
+    `;
+  }
+
+  function renderMasterPage(currentMaster) {
+    document.title = `${currentMaster.id} · ${currentMaster.name} — 设计大师方法论`;
+    detail.className = `detail ${currentMaster.mode}`;
+    detail.style.setProperty("--bg", currentMaster.bg);
+    detail.style.setProperty("--fg", currentMaster.fg);
+    detail.style.setProperty("--accent-color", currentMaster.accent);
+    detail.style.setProperty("--secondary", currentMaster.secondary);
+    detail.style.setProperty("--tertiary", currentMaster.tertiary);
+    detail.style.setProperty("--display-font", currentMaster.font);
+    detail.style.setProperty("--title-weight", currentMaster.mode === "master-scher" || currentMaster.mode === "master-brody" ? 900 : 800);
+    detail.style.setProperty("--title-transform", "none");
+
+    const designUrl = `${window.designMasterData.githubBase}${currentMaster.file}`;
+
+    detail.innerHTML = `
+      <section class="hero">
+        <div class="summary">
+          <div class="kicker">Master ${currentMaster.id} · ${currentMaster.category}</div>
+          <h1 class="title">${currentMaster.name}</h1>
+          <div class="zh-name">${currentMaster.zhName}</div>
+          <div class="subtitle">${currentMaster.method}</div>
+          <p class="description">${currentMaster.desc}</p>
+          <p class="work-note"><strong>${currentMaster.workTitle}</strong>：${currentMaster.workBrief}</p>
+          <div class="actions">
+            <a class="action" href="${designUrl}">查看 DESIGN.md</a>
+            <a class="action" href="masters.html">返回大师画廊</a>
+          </div>
+          <div class="tag-row" id="tag-row"></div>
+        </div>
+        <div class="work-preview" aria-label="${currentMaster.workTitle} 原创样张">
+          <div class="piece-mark">${Array.from({ length: 6 }).map(() => "<span></span>").join("")}</div>
+          <div class="piece-core">
+            <div class="piece-title">${currentMaster.sample}</div>
+            <div class="piece-subtitle">${currentMaster.workType}</div>
+            <div class="piece-caption">${currentMaster.workTitle}</div>
+          </div>
+        </div>
+      </section>
+      <section class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">原创作品样张</div>
+          <div class="meta-value">${currentMaster.workBrief}</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">执行原则</div>
+          <ul class="principle-list" id="principle-list"></ul>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">规范文件</div>
+          <div class="meta-value">${currentMaster.file}</div>
+        </div>
+      </section>
+      <section class="palette" id="palette" aria-label="色彩样本"></section>
+    `;
+
+    const tagRow = document.getElementById("tag-row");
+    currentMaster.tags.forEach((tag) => tagRow.appendChild(createTag(tag)));
+
+    const principleList = document.getElementById("principle-list");
+    currentMaster.principles.forEach((principle) => {
+      const item = document.createElement("li");
+      item.textContent = principle;
+      principleList.appendChild(item);
+    });
+
+    const palette = document.getElementById("palette");
+    [
+      ["Background", currentMaster.bg],
+      ["Foreground", currentMaster.fg],
+      ["Accent", currentMaster.accent],
+      ["Secondary", currentMaster.secondary],
+      ["Tertiary", currentMaster.tertiary]
+    ].forEach(([name, color]) => palette.appendChild(createSwatch(name, color)));
+  }
+
+  if (master) {
+    renderMasterPage(master);
+  } else {
+    renderError();
+  }
+</script>
+</body>
+</html>
