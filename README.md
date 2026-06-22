@@ -24,13 +24,13 @@
 ## 效果展示
 
 在线预览：[GitHub Pages 统一画廊](https://xdx888999.github.io/xdx-lab-design-skill/)  
-首页已经合并展示 50 种精选风格和 20 位设计大师方法论，也保留了 [独立大师方法页](https://xdx888999.github.io/xdx-lab-design-skill/masters.html)。
+[大师方法页](https://xdx888999.github.io/xdx-lab-design-skill/masters.html)。
 
-### 统一首页：50 种风格 + 20 位大师方法
+### 50 种精选风格 + 20 位大师方法
 
 ![全球设计系统统一画廊](docs/assets/gallery-overview.png)
 
-### 首页中的设计大师方法样张
+### 设计大师方法样张
 
 ![20 位设计大师方法论样张](docs/assets/master-overview.png)
 
