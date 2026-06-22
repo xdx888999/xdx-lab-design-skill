@@ -79,8 +79,9 @@ https://github.com/xdx888999/xdx-lab-design-skill
 
 ## 效果展示
 
-在线预览：[GitHub Pages 统一画廊](https://xdx888999.github.io/xdx-lab-design-skill/)  
-[大师方法页](https://xdx888999.github.io/xdx-lab-design-skill/masters.html)。
+在线预览：
+[GitHub Pages 统一画廊](https://xdx888999.github.io/xdx-lab-design-skill/)  
+[大师方法页](https://xdx888999.github.io/xdx-lab-design-skill/masters.html)
 
 ### 50 种精选风格 + 20 位大师方法
 
