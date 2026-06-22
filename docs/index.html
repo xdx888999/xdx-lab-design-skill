@@ -233,15 +233,6 @@
     box-shadow: 0 18px 40px rgba(23, 22, 21, 0.16);
   }
 
-  .style-card.is-static {
-    cursor: default;
-  }
-
-  .style-card.is-static:hover {
-    transform: none;
-    box-shadow: none;
-  }
-
   .preview {
     position: relative;
     display: grid;
@@ -303,15 +294,26 @@
   }
 
   /* 预览模式用于快速传达每种风格的视觉骨架。 */
-  .m-glass .preview::before,
-  .m-aurora .preview::before {
+  .m-glass .preview::before {
     inset: -40px;
     background:
-      radial-gradient(circle at 24% 22%, var(--accent-color) 0 12%, transparent 34%),
-      radial-gradient(circle at 80% 18%, var(--secondary) 0 13%, transparent 36%),
-      radial-gradient(circle at 48% 86%, var(--tertiary) 0 10%, transparent 32%);
+      radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--accent-color), transparent 18%) 0 10%, transparent 34%),
+      radial-gradient(circle at 78% 86%, color-mix(in srgb, var(--secondary), transparent 28%) 0 12%, transparent 36%);
     filter: blur(28px);
-    opacity: 0.76;
+    opacity: 0.72;
+  }
+
+  .m-glass .preview::after {
+    left: 34px;
+    top: 38px;
+    width: 76px;
+    height: 112px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      128px 16px 0 rgba(255, 255, 255, 0.06),
+      84px 96px 0 rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
   }
 
   .m-glass .preview-core {
@@ -319,6 +321,47 @@
     border: 1px solid rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
+  }
+
+  .m-aurora .preview {
+    background:
+      radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--accent-color), transparent 26%), transparent 28%),
+      radial-gradient(circle at 88% 20%, color-mix(in srgb, var(--secondary), transparent 28%), transparent 32%),
+      radial-gradient(circle at 48% 92%, color-mix(in srgb, var(--tertiary), transparent 28%), transparent 38%),
+      var(--bg);
+  }
+
+  .m-aurora .preview::before {
+    inset: auto 0 0;
+    height: 44%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1), transparent);
+    transform: skewY(-5deg);
+  }
+
+  .m-aurora .preview-title {
+    background: linear-gradient(135deg, #FFFFFF, var(--accent-color), var(--secondary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .m-ai .preview {
+    background:
+      radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--tertiary), transparent 10%) 0 18%, transparent 19%),
+      linear-gradient(135deg, #FFFFFF, #F8F5FF);
+  }
+
+  .m-ai .preview::before {
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 54%);
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 34px color-mix(in srgb, var(--secondary), transparent 88%),
+      0 0 0 70px color-mix(in srgb, var(--accent-color), transparent 92%);
+    transform: translate(-50%, -50%);
   }
 
   .m-minimal .preview::before {
@@ -393,6 +436,218 @@
       linear-gradient(var(--tertiary), var(--tertiary)) 0 56px / 88% 10px no-repeat,
       linear-gradient(var(--accent-color), var(--accent-color)) 0 84px / 42% 10px no-repeat;
     opacity: 0.86;
+  }
+
+  .m-fintech .preview {
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 20px;
+    background:
+      linear-gradient(135deg, #FFFFFF 0%, color-mix(in srgb, var(--accent-color), transparent 94%) 100%);
+  }
+
+  .m-fintech .preview-core {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    align-content: end;
+    text-align: left;
+  }
+
+  .m-fintech .preview::before {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+    height: 74px;
+    border-bottom: 2px solid color-mix(in srgb, var(--fg), transparent 82%);
+    background:
+      linear-gradient(to top, var(--accent-color) 0 48%, transparent 48%) 0 100% / 28px 70px no-repeat,
+      linear-gradient(to top, var(--secondary) 0 72%, transparent 72%) 44px 100% / 28px 70px no-repeat,
+      linear-gradient(to top, var(--accent-color) 0 56%, transparent 56%) 88px 100% / 28px 70px no-repeat,
+      linear-gradient(to top, var(--secondary) 0 86%, transparent 86%) 132px 100% / 28px 70px no-repeat;
+    opacity: 0.72;
+  }
+
+  .m-corporate .preview {
+    justify-items: start;
+    padding-left: 34px;
+    background:
+      linear-gradient(90deg, var(--accent-color) 0 18px, transparent 18px),
+      linear-gradient(to bottom, #FFFFFF, color-mix(in srgb, var(--secondary), transparent 48%));
+  }
+
+  .m-corporate .preview::before {
+    right: 28px;
+    top: 28px;
+    width: 78px;
+    height: 78px;
+    border: 12px solid color-mix(in srgb, var(--accent-color), transparent 26%);
+  }
+
+  .m-corporate .preview-core {
+    text-align: left;
+  }
+
+  .m-saas .preview {
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 18px;
+    background: #F8FAFC;
+  }
+
+  .m-saas .preview-core {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 58px 1fr;
+    gap: 12px;
+    text-align: left;
+  }
+
+  .m-saas .preview-title {
+    display: flex;
+    min-height: 132px;
+    align-items: end;
+    padding: 12px;
+    border-radius: 8px;
+    background: #FFFFFF;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    font-size: 18px;
+  }
+
+  .m-saas .preview-subtitle {
+    display: block;
+    margin: 0;
+    border-radius: 10px;
+    background:
+      linear-gradient(var(--accent-color), var(--accent-color)) 14px 20px / 46px 8px no-repeat,
+      linear-gradient(var(--secondary), var(--secondary)) 14px 48px / 34px 8px no-repeat,
+      linear-gradient(var(--tertiary), var(--tertiary)) 14px 76px / 42px 8px no-repeat,
+      #111827;
+    color: transparent;
+  }
+
+  .m-analytics .preview {
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 18px;
+  }
+
+  .m-analytics .preview-core {
+    width: 100%;
+    padding: 18px;
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 62%);
+    background:
+      linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+    text-align: left;
+  }
+
+  .m-analytics .preview-subtitle {
+    height: 70px;
+    color: transparent;
+    background:
+      linear-gradient(135deg, transparent 0 22%, var(--accent-color) 23% 25%, transparent 26% 44%, var(--secondary) 45% 47%, transparent 48%);
+  }
+
+  .m-pitch .preview {
+    background: linear-gradient(135deg, var(--bg), #172033);
+  }
+
+  .m-pitch .preview::before {
+    left: 24px;
+    bottom: 24px;
+    width: 70%;
+    height: 44px;
+    background:
+      linear-gradient(var(--accent-color), var(--accent-color)) 0 0 / 42% 100% no-repeat,
+      linear-gradient(var(--secondary), var(--secondary)) 48% 0 / 24% 100% no-repeat,
+      linear-gradient(var(--tertiary), var(--tertiary)) 78% 0 / 18% 100% no-repeat;
+  }
+
+  .m-material .preview::before {
+    left: 26px;
+    top: 28px;
+    width: 110px;
+    height: 110px;
+    border-radius: 36px;
+    background: var(--secondary);
+    box-shadow: 114px 58px 0 var(--tertiary);
+  }
+
+  .m-terminal .preview {
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 20px;
+  }
+
+  .m-terminal .preview-core {
+    width: 100%;
+    padding: 18px;
+    border: 1px solid #30363D;
+    border-radius: 8px;
+    background:
+      linear-gradient(var(--accent-color), var(--accent-color)) 18px 70px / 68% 8px no-repeat,
+      linear-gradient(var(--secondary), var(--secondary)) 18px 94px / 46% 8px no-repeat,
+      #010409;
+    text-align: left;
+  }
+
+  .m-medical .preview::before {
+    left: 34px;
+    top: 34px;
+    width: 74px;
+    height: 74px;
+    background:
+      linear-gradient(var(--accent-color), var(--accent-color)) 50% 0 / 22px 100% no-repeat,
+      linear-gradient(var(--accent-color), var(--accent-color)) 0 50% / 100% 22px no-repeat;
+    opacity: 0.82;
+  }
+
+  .m-education .preview {
+    background:
+      linear-gradient(135deg, #FFFFFF, color-mix(in srgb, var(--tertiary), transparent 8%));
+  }
+
+  .m-education .preview::before {
+    left: 30px;
+    right: 30px;
+    bottom: 34px;
+    height: 46px;
+    border-radius: 999px;
+    background:
+      linear-gradient(90deg, var(--accent-color) 0 68%, transparent 68%),
+      color-mix(in srgb, var(--accent-color), transparent 86%);
+  }
+
+  .m-finance .preview {
+    align-items: stretch;
+    justify-items: stretch;
+    padding: 18px;
+  }
+
+  .m-finance .preview-core {
+    width: 100%;
+    padding: 16px;
+    border-top: 5px solid var(--fg);
+    background:
+      linear-gradient(to right, color-mix(in srgb, var(--fg), transparent 84%) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--fg), transparent 84%) 1px, transparent 1px),
+      #FFFFFF;
+    background-size: 54px 30px;
+    text-align: left;
+  }
+
+  .m-nonprofit .preview::before {
+    left: 30px;
+    top: 34px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--secondary);
+    box-shadow:
+      76px 44px 0 color-mix(in srgb, var(--accent-color), transparent 12%),
+      156px 10px 0 color-mix(in srgb, var(--tertiary), transparent 8%);
   }
 
   .m-editorial .preview {
@@ -652,7 +907,7 @@
     <div class="hero-inner">
       <span class="eyebrow">xdx-lab-design-skill</span>
       <h1 class="hero-title">全球设计风格系统，<br><em>50 种精选视觉样张。</em></h1>
-      <p class="hero-copy">这个 Skill 内置 120+ 全球设计风格知识库，其中 50 种已经沉淀为可执行的 DESIGN.md。下面的画廊展示每种精选风格的视觉气质、主色、适用场景和可点击示例页。</p>
+      <p class="hero-copy">这个 Skill 内置 120+ 全球设计风格知识库，其中 50 种已经沉淀为可执行的 DESIGN.md。下面的画廊展示每种精选风格的视觉气质、主色、适用场景；每张卡片都可以点进统一详情页。</p>
       <nav class="hero-actions" aria-label="项目链接">
         <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill">GitHub</a>
         <a class="hero-link" href="https://github.com/xdx888999/xdx-lab-design-skill#安装方式">安装 Skill</a>
@@ -664,7 +919,7 @@
       <div class="stat"><span class="stat-value">120+</span><span class="stat-label">全球风格知识库</span></div>
       <div class="stat"><span class="stat-value">50</span><span class="stat-label">精选 DESIGN.md</span></div>
       <div class="stat"><span class="stat-value">10</span><span class="stat-label">风格大类</span></div>
-      <div class="stat"><span class="stat-value">13</span><span class="stat-label">已发布详情页</span></div>
+      <div class="stat"><span class="stat-value">50</span><span class="stat-label">可点风格详情</span></div>
     </div>
   </header>
 
@@ -672,7 +927,7 @@
     <section class="toolbar" aria-labelledby="gallery-title">
       <div>
         <h2 class="toolbar-title" id="gallery-title">精选风格预览</h2>
-        <p class="toolbar-copy">卡片会优先链接到已有 HTML 详情页；尚未制作详情页的风格先以视觉样张形式展示，后续可以逐步补齐完整页面。</p>
+        <p class="toolbar-copy">每张卡片都进入新的统一详情页，详情页会展示风格定位、色彩样本、适用场景，并链接到对应 DESIGN.md。</p>
       </div>
       <div class="category-strip" aria-label="风格类别">
         <span class="category-chip">Web / UI</span>
@@ -694,75 +949,9 @@
   </footer>
 </div>
 
+<script src="style-data.js"></script>
 <script>
-  const demoPages = new Map([
-    ["01", "02-glassmorphism-dark.html"],
-    ["03", "01-aurora-ui.html"],
-    ["04", "03-neobrutalism.html"],
-    ["07", "06-luxury-premium.html"],
-    ["11", "02-japandi-minimal.html"],
-    ["14", "08-bauhaus.html"],
-    ["15", "01-art-deco.html"],
-    ["16", "05-synthwave.html"],
-    ["21", "05-editorial-magazine.html"],
-    ["31", "04-song-dynasty.html"],
-    ["33", "07-republican-shanghai.html"],
-    ["42", "07-esports-gaming.html"],
-    ["46", "08-islamic-geometric.html"]
-  ]);
-
-  const styles = [
-    { id: "01", name: "Glassmorphism Dark", sample: "Glass AI", subtitle: "blur · violet · depth", category: "Web/UI", bg: "#0D0D1A", fg: "#FFFFFF", accent: "#8B5CF6", secondary: "#22D3EE", tertiary: "#F472B6", mode: "m-glass", font: '"Inter", sans-serif', size: "32px", weight: 800, transform: "none", desc: "深色玻璃拟态、半透明卡片、紫色光晕，适合 AI 产品、音乐应用和夜间作品集。", tags: ["Dark", "Glass", "AI"] },
-    { id: "02", name: "Tech Minimal", sample: "Core Labs", subtitle: "clean · precise · white", category: "Web/UI", bg: "#FFFFFF", fg: "#0A0A0A", accent: "#111827", secondary: "#E5E7EB", tertiary: "#F9FAFB", mode: "m-minimal", font: '"Inter", sans-serif', size: "34px", weight: 800, transform: "none", desc: "黑白留白、精确栅格和克制动效，适合开发者工具、技术产品和创业公司首页。", tags: ["White", "Precise", "Startup"] },
-    { id: "03", name: "Aurora UI", sample: "AURORA", subtitle: "future interface", category: "Web/UI", bg: "#06061A", fg: "#FFFFFF", accent: "#818CF8", secondary: "#22D3EE", tertiary: "#F472B6", mode: "m-aurora", font: '"Inter", sans-serif', size: "36px", weight: 900, transform: "uppercase", desc: "深色宇宙背景与极光色块组合，适合 AI 官网、下一代 SaaS 和未来感产品。", tags: ["Dark", "Gradient", "Future"] },
-    { id: "04", name: "Neobrutalism", sample: "RAW BOLD", subtitle: "noisy · boxed · loud", category: "Web/UI", bg: "#FFFEF5", fg: "#0A0A0A", accent: "#FFDD00", secondary: "#FF4D00", tertiary: "#00C2FF", mode: "m-brutal", font: '"Space Grotesk", sans-serif', size: "30px", weight: 900, transform: "uppercase", desc: "粗黑边框、错位阴影和高对比黄色，适合创意工具、独立品牌和年轻化产品。", tags: ["Bold", "Yellow", "Graphic"] },
-    { id: "05", name: "FinTech Clean", sample: "Mercury Pay", subtitle: "trust · data · money", category: "商业/电商", bg: "#FFFFFF", fg: "#111827", accent: "#6366F1", secondary: "#10B981", tertiary: "#F3F4F6", mode: "m-dashboard", font: '"Inter", sans-serif', size: "22px", weight: 800, transform: "none", desc: "Stripe 式紫色、干净图表和可信赖排版，适合支付、银行和金融科技产品。", tags: ["Finance", "Clean", "Data"] },
-    { id: "06", name: "E-Commerce Energetic", sample: "Flash Cart", subtitle: "sale · product · action", category: "商业/电商", bg: "#FFFFFF", fg: "#111111", accent: "#FF3D00", secondary: "#FFB000", tertiary: "#F5F5F5", mode: "m-brutal", font: '"Inter", sans-serif', size: "30px", weight: 900, transform: "uppercase", desc: "红橙促销色、强 CTA 和商品网格，适合电商促销、快闪活动和产品页。", tags: ["Sale", "CTA", "Shop"] },
-    { id: "07", name: "Luxury Premium", sample: "LUXURY", subtitle: "gold · ivory · serif", category: "商业/电商", bg: "#FAFAF8", fg: "#1A1A18", accent: "#C9A96E", secondary: "#E8E4DC", tertiary: "#FFFFFF", mode: "m-luxury", font: '"Cormorant Garamond", serif', size: "38px", weight: 300, transform: "uppercase", desc: "象牙白、大量留白、衬线字体与香槟金，适合珠宝、酒店、香水和高端美妆。", tags: ["Luxury", "Gold", "Serif"] },
-    { id: "08", name: "Corporate Blue", sample: "TrustCorp", subtitle: "enterprise · stable", category: "商业/电商", bg: "#FFFFFF", fg: "#0B1F3A", accent: "#0055A5", secondary: "#E6EEF7", tertiary: "#DDE7F1", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 800, transform: "none", desc: "机构蓝、理性布局和稳健信息层级，适合企业软件、咨询、政府和 B2B 销售。", tags: ["Blue", "B2B", "Trust"] },
-    { id: "09", name: "SaaS Dashboard Light", sample: "Pulse OS", subtitle: "sidebar · cards · metrics", category: "商业/电商", bg: "#F9FAFB", fg: "#111827", accent: "#4F46E5", secondary: "#06B6D4", tertiary: "#E5E7EB", mode: "m-dashboard", font: '"Inter", sans-serif', size: "24px", weight: 800, transform: "none", desc: "浅色后台、卡片指标和清晰侧边栏，适合 SaaS、CRM、运营平台和分析产品。", tags: ["SaaS", "Dashboard", "Light"] },
-    { id: "10", name: "Dark Analytics Dashboard", sample: "Ops Grid", subtitle: "monitor · chart · dark", category: "Web/UI", bg: "#0F1117", fg: "#F0F6FC", accent: "#3FB950", secondary: "#58A6FF", tertiary: "#30363D", mode: "m-dashboard", font: '"Inter", sans-serif', size: "24px", weight: 800, transform: "none", desc: "深色监控界面、绿色数据状态和高密度图表，适合 DevOps、交易和 BI 仪表盘。", tags: ["Dark", "Charts", "Ops"] },
-    { id: "11", name: "Japandi Minimal", sample: "Tsuchi", subtitle: "wabi-sabi · quiet", category: "文化/创意", bg: "#FAF8F3", fg: "#2C2C2C", accent: "#6B7C5A", secondary: "#D5CDBD", tertiary: "#EDE7DA", mode: "m-minimal", font: '"Cormorant Garamond", serif', size: "40px", weight: 600, transform: "none", desc: "日本侘寂与北欧极简结合，适合生活方式、瑜伽、手作、陶瓷和有机产品。", tags: ["Zen", "Warm", "Minimal"] },
-    { id: "12", name: "AI-Native Product", sample: "Cognition", subtitle: "assistant · flow", category: "文化/创意", bg: "#FFFFFF", fg: "#18181B", accent: "#7C3AED", secondary: "#06B6D4", tertiary: "#F3E8FF", mode: "m-aurora", font: '"Inter", sans-serif', size: "30px", weight: 850, transform: "none", desc: "明亮 AI 紫、智能流线和轻量玻璃感，适合 LLM 产品、智能助理和自动化工具。", tags: ["AI", "Purple", "Product"] },
-    { id: "13", name: "Health & Wellness", sample: "Calm Path", subtitle: "sage · breath · care", category: "文化/创意", bg: "#FAF8F5", fg: "#2F3A2F", accent: "#7BAE7F", secondary: "#D9E8D5", tertiary: "#F0E7DA", mode: "m-playful", font: '"Inter", sans-serif', size: "30px", weight: 700, transform: "none", desc: "鼠尾草绿、柔和曲线和疗愈节奏，适合冥想、睡眠、营养和心理健康产品。", tags: ["Health", "Soft", "Green"] },
-    { id: "14", name: "Bauhaus", sample: "FORM", subtitle: "circle · square · triangle", category: "文化/创意", bg: "#FFFFFF", fg: "#000000", accent: "#E63329", secondary: "#1B5FA0", tertiary: "#F7C948", mode: "m-geometric", font: '"Inter", sans-serif', size: "38px", weight: 900, transform: "uppercase", desc: "红黄蓝基础几何、功能主义排版和硬边界，适合设计学校、建筑事务所和艺术机构。", tags: ["Geometry", "Primary", "Flat"] },
-    { id: "15", name: "Art Deco", sample: "MAISON", subtitle: "noir · gold · 1924", category: "文化/创意", bg: "#0A0A0A", fg: "#D4AF37", accent: "#C9A84C", secondary: "#3B2F19", tertiary: "#111111", mode: "m-artdeco", font: '"Cormorant Garamond", serif', size: "40px", weight: 600, transform: "uppercase", desc: "黑金对称、双线边框和 1920s 摩登感，适合高级活动、酒店、婚礼和复古奢华品牌。", tags: ["Dark", "Gold", "Deco"] },
-    { id: "16", name: "Synthwave / Retrowave", sample: "NEON 84", subtitle: "sunset · grid · chrome", category: "复古/亚文化", bg: "#1A0533", fg: "#FFFFFF", accent: "#FF2D7F", secondary: "#00F5FF", tertiary: "#FFD166", mode: "m-retro", font: '"Space Grotesk", sans-serif', size: "34px", weight: 900, transform: "uppercase", desc: "80 年代霓虹、网格地平线和热粉紫，适合电音、游戏、夜生活和复古主题产品。", tags: ["Neon", "Retro", "Music"] },
-    { id: "17", name: "Cyberpunk", sample: "CYBER//", subtitle: "warning · hacker · neon", category: "复古/亚文化", bg: "#0A0A0F", fg: "#F8F8F2", accent: "#FFE000", secondary: "#00F0FF", tertiary: "#FF003C", mode: "m-brutal", font: '"Space Grotesk", sans-serif', size: "32px", weight: 900, transform: "uppercase", desc: "警示黄、霓虹青和赛博故障感，适合安全工具、科幻游戏和高能科技品牌。", tags: ["Cyber", "Yellow", "Sharp"] },
-    { id: "18", name: "Y2K / 2000s Revival", sample: "Y2K POP", subtitle: "chrome · bubble · glossy", category: "复古/亚文化", bg: "#F0F4FF", fg: "#24304A", accent: "#FF69B4", secondary: "#8BE9FD", tertiary: "#D7C8FF", mode: "m-playful", font: '"Inter", sans-serif', size: "34px", weight: 900, transform: "uppercase", desc: "千禧粉、冰蓝高光和软塑料质感，适合 Gen-Z 时尚、音乐和流行文化产品。", tags: ["Y2K", "Pink", "Chrome"] },
-    { id: "19", name: "Vaporwave / Aesthetic", sample: "AESTHETIC", subtitle: "marble · sunset · net", category: "复古/亚文化", bg: "#1A0533", fg: "#FFFFFF", accent: "#FF71CE", secondary: "#01CDFE", tertiary: "#B967FF", mode: "m-retro", font: '"Space Grotesk", sans-serif', size: "30px", weight: 800, transform: "uppercase", desc: "90 年代互联网、粉蓝渐变和梦幻怀旧，适合另类音乐、艺术项目和互联网文化。", tags: ["Vapor", "Dream", "90s"] },
-    { id: "20", name: "New Chinese Trendy / 国潮", sample: "国潮新造", subtitle: "vermilion · gold", category: "文化/创意", bg: "#F5F0E8", fg: "#241612", accent: "#C8372D", secondary: "#D4A847", tertiary: "#0F3D2E", mode: "m-culture", font: '"Noto Serif SC", serif', size: "34px", weight: 700, transform: "none", desc: "朱砂红、金色点缀和现代国货语汇，适合茶酒、节庆、文创和中国品牌。", tags: ["Chinese", "Red", "Trendy"] },
-    { id: "21", name: "Editorial Magazine", sample: "ÆTHER", subtitle: "culture · ideas", category: "出版/演示", bg: "#FAF9F7", fg: "#121212", accent: "#B5121B", secondary: "#EDE9E1", tertiary: "#111111", mode: "m-editorial", font: '"Playfair Display", serif', size: "42px", weight: 800, transform: "none", desc: "报纸纸色、强标题和红色栏目标签，适合杂志、长文、媒体站和作者作品集。", tags: ["Editorial", "Serif", "Media"] },
-    { id: "22", name: "Academic / Research", sample: "Research", subtitle: "citation · rigor", category: "出版/演示", bg: "#FFFFFF", fg: "#111827", accent: "#0D4EA6", secondary: "#E8F0FB", tertiary: "#F3F4F6", mode: "m-minimal", font: '"Inter", sans-serif', size: "32px", weight: 800, transform: "none", desc: "学术蓝、脚注感信息层级和严谨排版，适合研究站点、大学页面和科学可视化。", tags: ["Academic", "Blue", "Rigor"] },
-    { id: "23", name: "Startup Pitch Deck Dark", sample: "Series A", subtitle: "metrics · traction", category: "出版/演示", bg: "#0F1117", fg: "#F8FAFC", accent: "#3B82F6", secondary: "#22C55E", tertiary: "#334155", mode: "m-dashboard", font: '"Inter", sans-serif', size: "30px", weight: 900, transform: "none", desc: "深色路演、关键数字和投资人视角，适合融资 deck、发布会和 Demo Day。", tags: ["Pitch", "Dark", "Metrics"] },
-    { id: "24", name: "Swiss International", sample: "Grid 24", subtitle: "helvetica · order", category: "出版/演示", bg: "#FFFFFF", fg: "#111111", accent: "#E3001B", secondary: "#F2F2F2", tertiary: "#D9D9D9", mode: "m-geometric", font: '"Inter", sans-serif', size: "36px", weight: 900, transform: "none", desc: "瑞士网格、左对齐和现代主义红，适合身份系统、年报、建筑和设计机构。", tags: ["Grid", "Swiss", "Modern"] },
-    { id: "25", name: "Nature Organic", sample: "Field & Co", subtitle: "earth · linen · leaf", category: "App 专项", bg: "#FAF6F0", fg: "#2F2A22", accent: "#4A8B3A", secondary: "#C9B79C", tertiary: "#E6D8C7", mode: "m-minimal", font: '"Cormorant Garamond", serif', size: "34px", weight: 600, transform: "none", desc: "米色亚麻、叶绿和有机笔触，适合可持续品牌、有机食品和自然生活方式。", tags: ["Organic", "Earth", "Food"] },
-    { id: "26", name: "Kawaii / Cute UI", sample: "Mochi", subtitle: "cute · candy · round", category: "App 专项", bg: "#FFFBF9", fg: "#4A2B37", accent: "#FFB3D1", secondary: "#B8E7FF", tertiary: "#FFF1A8", mode: "m-playful", font: '"Inter", sans-serif', size: "36px", weight: 900, transform: "none", desc: "糖果粉、圆润形体和可爱语气，适合宠物、甜品、儿童产品和社交应用。", tags: ["Cute", "Pink", "Round"] },
-    { id: "27", name: "Claymorphism", sample: "Clay UI", subtitle: "puffy · tactile", category: "App 专项", bg: "#F7F5FF", fg: "#241F3A", accent: "#3D8EFF", secondary: "#FFB84D", tertiary: "#E8E2FF", mode: "m-playful", font: '"Inter", sans-serif', size: "34px", weight: 850, transform: "none", desc: "柔软 3D 泥塑、厚阴影和游戏化触感，适合创意 App、教育产品和年轻化工具。", tags: ["Clay", "3D", "Play"] },
-    { id: "28", name: "Pixel Art / Retro Gaming", sample: "8-BIT", subtitle: "arcade · terminal", category: "App 专项", bg: "#1A1A2E", fg: "#FFFFFF", accent: "#00FF41", secondary: "#FFCC00", tertiary: "#FF006E", mode: "m-pixel", font: '"Space Grotesk", sans-serif', size: "38px", weight: 900, transform: "uppercase", desc: "像素格、终端绿和街机感，适合独立游戏、复古周边、开发者站点和 NFT 艺术。", tags: ["Pixel", "Game", "Retro"] },
-    { id: "29", name: "Material You", sample: "Material", subtitle: "tonal · android", category: "App 专项", bg: "#FFFBFE", fg: "#1C1B1F", accent: "#6750A4", secondary: "#EADDFF", tertiary: "#F3EDF7", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 800, transform: "none", desc: "Material 3 动态色、tonal surface 和圆角组件，适合 Android 应用和 Google 生态产品。", tags: ["Material", "Android", "Tonal"] },
-    { id: "30", name: "Dark Developer", sample: "~/dev", subtitle: "terminal · github", category: "App 专项", bg: "#0D1117", fg: "#C9D1D9", accent: "#58A6FF", secondary: "#3FB950", tertiary: "#30363D", mode: "m-dashboard", font: '"Space Grotesk", sans-serif', size: "34px", weight: 800, transform: "none", desc: "GitHub 深色、代码块和终端审美，适合 CLI、开源项目、开发者工具和技术文档。", tags: ["Developer", "Dark", "Code"] },
-    { id: "31", name: "Song Dynasty Ink", sample: "宋代水墨", subtitle: "ru celadon · ink", category: "东亚文化", bg: "#F7F3EC", fg: "#1C1C1C", accent: "#8BB5B0", secondary: "#C43B2A", tertiary: "#EEE8DB", mode: "m-culture", font: '"Noto Serif SC", serif', size: "34px", weight: 600, transform: "none", desc: "宣纸、水墨、汝窑天青和克制印章，适合文博、茶道、文学平台和国风奢品。", tags: ["Ink", "Chinese", "Quiet"] },
-    { id: "32", name: "Tang Dynasty Splendor", sample: "盛唐华彩", subtitle: "dunhuang · silk road", category: "东亚文化", bg: "#0D0805", fg: "#F8E7C0", accent: "#C9A84C", secondary: "#B91C1C", tertiary: "#1F5E5A", mode: "m-artdeco", font: '"Noto Serif SC", serif', size: "34px", weight: 700, transform: "none", desc: "帝王金、朱砂和敦煌矿物色，适合博物馆大展、文旅、唐风游戏和中式奢华品牌。", tags: ["Tang", "Gold", "Dunhuang"] },
-    { id: "33", name: "Republican Era Shanghai", sample: "华茂楼", subtitle: "shanghai · 1928", category: "东亚文化", bg: "#F5EDD8", fg: "#3A251B", accent: "#C41E3A", secondary: "#D4A847", tertiary: "#276A73", mode: "m-culture", font: '"Noto Serif SC", serif', size: "36px", weight: 700, transform: "none", desc: "月份牌、上海红和中西混合 Art Deco，适合老上海餐饮、复古时尚和文创产品。", tags: ["Shanghai", "Vintage", "Red"] },
-    { id: "34", name: "Ukiyo-e Woodblock", sample: "浮世绘", subtitle: "edo · wave · print", category: "东亚文化", bg: "#F5F0E6", fg: "#1B1B1B", accent: "#1A4B7A", secondary: "#C0392B", tertiary: "#E8C547", mode: "m-culture", font: '"Noto Serif SC", serif', size: "36px", weight: 700, transform: "none", desc: "普鲁士蓝、平涂色块和木版画黑轮廓，适合日本文化、和风游戏、餐饮和旅行。", tags: ["Ukiyo-e", "Blue", "Print"] },
-    { id: "35", name: "Zen Wabi-Sabi", sample: "侘寂", subtitle: "stone · moss · silence", category: "东亚文化", bg: "#F4F1EC", fg: "#2E2D28", accent: "#6B7B5A", secondary: "#C7B9A6", tertiary: "#E5DED4", mode: "m-minimal", font: '"Noto Serif SC", serif', size: "38px", weight: 600, transform: "none", desc: "不完美、自然肌理、石庭和苔绿，适合冥想 App、茶品牌、手工艺和高端 SPA。", tags: ["Zen", "Wabi", "Natural"] },
-    { id: "36", name: "Medical & Healthcare", sample: "CareOne", subtitle: "clinical · safe", category: "行业专项", bg: "#FFFFFF", fg: "#0F172A", accent: "#0891B2", secondary: "#ECFEFF", tertiary: "#E2E8F0", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 800, transform: "none", desc: "医疗青、洁净白和清晰表单，适合医院官网、健康 App、医疗器械和远程问诊。", tags: ["Medical", "Clean", "Trust"] },
-    { id: "37", name: "Legal Professional", sample: "Sterling Law", subtitle: "authority · counsel", category: "行业专项", bg: "#FAFAF8", fg: "#0D2040", accent: "#B8962E", secondary: "#E8E0D0", tertiary: "#FFFFFF", mode: "m-luxury", font: '"Playfair Display", serif', size: "34px", weight: 700, transform: "none", desc: "权威深蓝、金色细节和稳重衬线，适合律所、法律科技、咨询和会计师事务所。", tags: ["Legal", "Blue", "Authority"] },
-    { id: "38", name: "Education Platform", sample: "LearnKit", subtitle: "course · progress", category: "行业专项", bg: "#FFFFFF", fg: "#111827", accent: "#4F46E5", secondary: "#F59E0B", tertiary: "#EEF2FF", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 850, transform: "none", desc: "学习靛蓝、进度卡片和成就反馈，适合在线教育、技能培训、学校官网和教辅工具。", tags: ["Education", "Progress", "SaaS"] },
-    { id: "39", name: "Real Estate Luxury", sample: "Avenue 39", subtitle: "residence · space", category: "行业专项", bg: "#FAFAF8", fg: "#1C1A17", accent: "#B8962E", secondary: "#DDD3C4", tertiary: "#F4F0E8", mode: "m-photo", font: '"Playfair Display", serif', size: "36px", weight: 700, transform: "none", desc: "摄影优先、地产金和空间感留白，适合豪宅销售、高端经纪和奢侈公寓预售。", tags: ["Real Estate", "Luxury", "Photo"] },
-    { id: "40", name: "Restaurant Fine Dining", sample: "Noir Table", subtitle: "chef · menu · wine", category: "行业专项", bg: "#FAF7F0", fg: "#1F1A14", accent: "#B8902A", secondary: "#6D2E1F", tertiary: "#EFE3D0", mode: "m-luxury", font: '"Cormorant Garamond", serif', size: "36px", weight: 600, transform: "none", desc: "金箔色、菜单留白和法式克制，适合米其林餐厅、主厨品牌、私宴和精品葡萄酒。", tags: ["Dining", "Gold", "Menu"] },
-    { id: "41", name: "Finance Enterprise", sample: "CapitalOS", subtitle: "assets · risk · table", category: "行业专项", bg: "#F8F9FA", fg: "#0A1628", accent: "#0A1628", secondary: "#2563EB", tertiary: "#D9E2EC", mode: "m-dashboard", font: '"Inter", sans-serif', size: "28px", weight: 900, transform: "none", desc: "机构深蓝、数据密度和 Bloomberg 式表格，适合资产管理、私募、投行和券商软件。", tags: ["Finance", "Enterprise", "Data"] },
-    { id: "42", name: "Esports & Gaming", sample: "ARENA", subtitle: "team · tournament", category: "行业专项", bg: "#0A0C14", fg: "#FFFFFF", accent: "#00D4FF", secondary: "#FF2D55", tertiary: "#6D28D9", mode: "m-retro", font: '"Space Grotesk", sans-serif', size: "38px", weight: 900, transform: "uppercase", desc: "赛博青、斜切构图和高速度感，适合电竞战队、赛事、游戏外设和直播平台。", tags: ["Esports", "Neon", "Fast"] },
-    { id: "43", name: "Fashion Editorial", sample: "MODE", subtitle: "runway · beauty", category: "行业专项", bg: "#FFFFFF", fg: "#0A0A0A", accent: "#0A0A0A", secondary: "#EDEDED", tertiary: "#C9C9C9", mode: "m-editorial", font: '"Playfair Display", serif', size: "46px", weight: 800, transform: "uppercase", desc: "全版面摄影、黑白强对比和极端字号，适合时装秀、奢侈品电商和高端美妆。", tags: ["Fashion", "B&W", "Photo"] },
-    { id: "44", name: "Travel & Hospitality", sample: "Solea Stay", subtitle: "destination · sunset", category: "行业专项", bg: "#FAFAF8", fg: "#1C2520", accent: "#E8724A", secondary: "#2E6F75", tertiary: "#F4D6C8", mode: "m-photo", font: '"Playfair Display", serif', size: "34px", weight: 700, transform: "none", desc: "日落珊瑚、目的地摄影和预订信息，适合精品酒店、旅行平台、邮轮和民宿。", tags: ["Travel", "Warm", "Booking"] },
-    { id: "45", name: "Nonprofit & Cause", sample: "Impact", subtitle: "story · donation", category: "行业专项", bg: "#FAFAF8", fg: "#1F2937", accent: "#2563EB", secondary: "#16A34A", tertiary: "#DBEAFE", mode: "m-dashboard", font: '"Inter", sans-serif', size: "30px", weight: 850, transform: "none", desc: "信任蓝、故事化模块和影响力数字，适合 NGO、慈善基金会、社会企业和环保组织。", tags: ["Cause", "Impact", "Trust"] },
-    { id: "46", name: "Islamic Geometric", sample: "Al Noor", subtitle: "geometry · arch", category: "全球文化", bg: "#0D3340", fg: "#F7E7C4", accent: "#C9A84C", secondary: "#1F6F78", tertiary: "#F2EFE6", mode: "m-geometric", font: '"Cormorant Garamond", serif', size: "36px", weight: 700, transform: "none", desc: "星形几何、清真寺金和拱形秩序，适合伊斯兰文化品牌、中东酒店和艺术机构。", tags: ["Islamic", "Geometry", "Gold"] },
-    { id: "47", name: "Afrofuturism", sample: "ORBIT", subtitle: "adinkra · future", category: "全球文化", bg: "#050505", fg: "#F7E7C4", accent: "#C05A2A", secondary: "#F2C14E", tertiary: "#3A6EA5", mode: "m-culture", font: '"Space Grotesk", sans-serif', size: "36px", weight: 900, transform: "uppercase", desc: "赤陶、肯特布纹样和宇宙未来感，适合非洲创意品牌、泛非文化机构和当代艺术。", tags: ["Afro", "Future", "Culture"] },
-    { id: "48", name: "Pop Art 60s", sample: "POP!", subtitle: "warhol · dots", category: "全球文化", bg: "#FFFEF5", fg: "#111111", accent: "#E8002A", secondary: "#FFD400", tertiary: "#0066FF", mode: "m-geometric", font: '"Space Grotesk", sans-serif', size: "44px", weight: 900, transform: "uppercase", desc: "原色、粗轮廓和漫画网点，适合艺术展、复古时尚、流行音乐和创意机构。", tags: ["Pop", "Primary", "Art"] },
-    { id: "49", name: "Dark Academia", sample: "Vellum", subtitle: "oxford · candle", category: "全球文化", bg: "#1A1208", fg: "#F2E4C8", accent: "#C8A050", secondary: "#4B2E1F", tertiary: "#2A1E15", mode: "m-luxury", font: '"Cormorant Garamond", serif', size: "40px", weight: 700, transform: "none", desc: "牛津旧书、蜡烛光和古典金，适合文学平台、独立书店、古典音乐和学术出版。", tags: ["Academia", "Dark", "Book"] },
-    { id: "50", name: "Brutalist Web", sample: "HTML", subtitle: "raw · system · black", category: "全球文化", bg: "#FFFFFF", fg: "#000000", accent: "#000000", secondary: "#DADADA", tertiary: "#F5F5F5", mode: "m-brutal", font: '"Inter", sans-serif', size: "40px", weight: 900, transform: "uppercase", desc: "绝对黑白、原始网页边界和反精致姿态，适合前卫艺术机构、建筑事务所和独立媒体。", tags: ["Brutalist", "Raw", "Web"] }
-  ];
+  const styles = window.designStyleData.styles;
 
   function createTag(tag) {
     const element = document.createElement("span");
@@ -772,14 +961,10 @@
   }
 
   function createCard(style) {
-    const href = demoPages.get(style.id);
-    const card = document.createElement(href ? "a" : "article");
-    card.className = `style-card ${style.mode}${href ? "" : " is-static"}`;
-
-    if (href) {
-      card.href = href;
-      card.setAttribute("aria-label", `${style.name} 详情页`);
-    }
+    const card = document.createElement("a");
+    card.className = `style-card ${style.mode}`;
+    card.href = `style.html?id=${style.id}`;
+    card.setAttribute("aria-label", `${style.name} 风格详情`);
 
     card.style.setProperty("--bg", style.bg);
     card.style.setProperty("--fg", style.fg);
@@ -837,12 +1022,10 @@
 
     body.append(kicker, title, desc, tags);
 
-    if (href) {
-      const linkLabel = document.createElement("span");
-      linkLabel.className = "card-link";
-      linkLabel.textContent = "Demo";
-      card.append(linkLabel);
-    }
+    const linkLabel = document.createElement("span");
+    linkLabel.className = "card-link";
+    linkLabel.textContent = "查看";
+    card.append(linkLabel);
 
     card.append(preview, body);
     return card;

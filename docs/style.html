@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>设计风格详情 — xdx-lab-design-skill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F3EC;
+    --ink: #171615;
+    --muted: #6E6A63;
+    --line: #D7D0C4;
+    --panel: #FFFCF5;
+    --max-width: 1360px;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .shell {
+    min-height: 100vh;
+  }
+
+  .topbar {
+    border-bottom: 2px solid var(--ink);
+    background: var(--panel);
+  }
+
+  .topbar-inner {
+    width: min(var(--max-width), calc(100% - 48px));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 18px 0;
+  }
+
+  .brand {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .nav-link {
+    min-height: 36px;
+    border: 1px solid var(--ink);
+    padding: 9px 14px;
+    background: transparent;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .nav-link:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .detail {
+    width: min(var(--max-width), calc(100% - 48px));
+    margin: 0 auto;
+    padding: 46px 0 70px;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1fr);
+    border: 2px solid var(--ink);
+    background: var(--panel);
+  }
+
+  .summary {
+    padding: clamp(28px, 5vw, 58px);
+    border-right: 1px solid var(--line);
+  }
+
+  .kicker {
+    margin-bottom: 18px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    margin: 0;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(42px, 6vw, 76px);
+    line-height: 0.98;
+  }
+
+  .subtitle {
+    margin-top: 18px;
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .description {
+    max-width: 620px;
+    margin: 26px 0 0;
+    color: #4F4B45;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 34px;
+  }
+
+  .action {
+    min-height: 42px;
+    padding: 12px 18px;
+    border: 1px solid var(--ink);
+    margin-right: -1px;
+    color: var(--ink);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: background 200ms ease, color 200ms ease;
+  }
+
+  .action:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .visual {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    background:
+      radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--accent-color), transparent 18%) 0 14%, transparent 34%),
+      radial-gradient(circle at 86% 28%, color-mix(in srgb, var(--secondary), transparent 24%) 0 12%, transparent 34%),
+      radial-gradient(circle at 50% 92%, color-mix(in srgb, var(--tertiary), transparent 20%) 0 16%, transparent 36%),
+      var(--bg);
+    color: var(--fg);
+  }
+
+  .visual::before {
+    content: "";
+    position: absolute;
+    inset: 28px;
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 52%);
+    pointer-events: none;
+  }
+
+  .visual::after {
+    content: "";
+    position: absolute;
+    right: 34px;
+    bottom: 34px;
+    width: 118px;
+    height: 118px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent-color), transparent 8%);
+    box-shadow:
+      -74px -62px 0 color-mix(in srgb, var(--secondary), transparent 18%),
+      -152px 28px 0 color-mix(in srgb, var(--tertiary), transparent 18%);
+    opacity: 0.82;
+  }
+
+  .visual-card {
+    position: relative;
+    z-index: 2;
+    width: min(72%, 520px);
+    padding: clamp(28px, 5vw, 54px);
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 76%);
+    background: color-mix(in srgb, var(--bg), transparent 12%);
+    text-align: center;
+  }
+
+  .visual-title {
+    color: var(--fg);
+    font-family: var(--display-font);
+    font-size: clamp(38px, 6vw, 70px);
+    font-weight: var(--title-weight);
+    line-height: 1;
+    text-transform: var(--title-transform);
+  }
+
+  .visual-subtitle {
+    margin-top: 18px;
+    color: var(--accent-color);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 2px solid var(--ink);
+    border-top: 0;
+    background: var(--line);
+    gap: 1px;
+  }
+
+  .meta-card {
+    min-height: 180px;
+    padding: 24px;
+    background: var(--panel);
+  }
+
+  .meta-label {
+    color: #969086;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    margin-top: 12px;
+    font-size: 20px;
+    font-weight: 850;
+    line-height: 1.35;
+  }
+
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border: 2px solid var(--ink);
+    border-top: 0;
+  }
+
+  .swatch {
+    min-height: 132px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 1px solid rgba(23, 22, 21, 0.18);
+    background: var(--color);
+    color: var(--label-color);
+  }
+
+  .swatch:last-child {
+    border-right: 0;
+  }
+
+  .swatch-name {
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .swatch-code {
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 26px;
+  }
+
+  .tag {
+    border: 1px solid var(--line);
+    padding: 7px 10px;
+    background: var(--panel);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .error {
+    border: 2px solid var(--ink);
+    padding: 40px;
+    background: var(--panel);
+  }
+
+  @media (max-width: 900px) {
+    .topbar-inner,
+    .detail {
+      width: min(100% - 32px, var(--max-width));
+    }
+
+    .hero,
+    .meta-grid,
+    .palette {
+      grid-template-columns: 1fr;
+    }
+
+    .summary {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .visual {
+      min-height: 420px;
+    }
+
+    .swatch {
+      min-height: 96px;
+      border-right: 0;
+      border-bottom: 1px solid rgba(23, 22, 21, 0.18);
+    }
+
+    .swatch:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">xdx-lab-design-skill</div>
+      <a class="nav-link" href="index.html">返回画廊</a>
+    </div>
+  </header>
+
+  <main class="detail" id="detail"></main>
+</div>
+
+<script src="style-data.js"></script>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const styleId = (params.get("id") || "01").padStart(2, "0");
+  const style = window.designStyleData.styles.find((item) => item.id === styleId);
+  const detail = document.getElementById("detail");
+
+  function getLabelColor(color) {
+    const hex = color.replace("#", "");
+    if (hex.length !== 6) {
+      return "#171615";
+    }
+
+    const red = parseInt(hex.slice(0, 2), 16);
+    const green = parseInt(hex.slice(2, 4), 16);
+    const blue = parseInt(hex.slice(4, 6), 16);
+    const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
+    return luminance > 0.58 ? "#171615" : "#FFFCF5";
+  }
+
+  function createTag(tag) {
+    const element = document.createElement("span");
+    element.className = "tag";
+    element.textContent = tag;
+    return element;
+  }
+
+  function createSwatch(name, color) {
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.setProperty("--color", color);
+    swatch.style.setProperty("--label-color", getLabelColor(color));
+
+    const swatchName = document.createElement("div");
+    swatchName.className = "swatch-name";
+    swatchName.textContent = name;
+
+    const swatchCode = document.createElement("div");
+    swatchCode.className = "swatch-code";
+    swatchCode.textContent = color;
+
+    swatch.append(swatchName, swatchCode);
+    return swatch;
+  }
+
+  function renderError() {
+    detail.innerHTML = `
+      <section class="error">
+        <h1>没有找到这个风格</h1>
+        <p>请回到画廊重新选择一个风格编号。</p>
+        <p><a class="action" href="index.html">返回画廊</a></p>
+      </section>
+    `;
+  }
+
+  function renderStylePage(currentStyle) {
+    document.title = `${currentStyle.id} · ${currentStyle.name} — xdx-lab-design-skill`;
+    detail.style.setProperty("--bg", currentStyle.bg);
+    detail.style.setProperty("--fg", currentStyle.fg);
+    detail.style.setProperty("--accent-color", currentStyle.accent);
+    detail.style.setProperty("--secondary", currentStyle.secondary);
+    detail.style.setProperty("--tertiary", currentStyle.tertiary);
+    detail.style.setProperty("--display-font", currentStyle.font);
+    detail.style.setProperty("--title-weight", currentStyle.weight);
+    detail.style.setProperty("--title-transform", currentStyle.transform);
+
+    const designUrl = `${window.designStyleData.githubBase}${currentStyle.file}`;
+
+    detail.innerHTML = `
+      <section class="hero">
+        <div class="summary">
+          <div class="kicker">Style ${currentStyle.id} · ${currentStyle.category}</div>
+          <h1 class="title">${currentStyle.name}</h1>
+          <div class="subtitle">${currentStyle.subtitle}</div>
+          <p class="description">${currentStyle.desc}</p>
+          <div class="actions">
+            <a class="action" href="${designUrl}">查看 DESIGN.md</a>
+            <a class="action" href="index.html">返回 50 风格画廊</a>
+          </div>
+          <div class="tag-row" id="tag-row"></div>
+        </div>
+        <div class="visual">
+          <div class="visual-card">
+            <div class="visual-title">${currentStyle.sample}</div>
+            <div class="visual-subtitle">${currentStyle.subtitle}</div>
+          </div>
+        </div>
+      </section>
+      <section class="meta-grid">
+        <div class="meta-card">
+          <div class="meta-label">适合场景</div>
+          <div class="meta-value">${currentStyle.desc}</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">关键词</div>
+          <div class="meta-value">${currentStyle.tags.join(" · ")}</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">规范文件</div>
+          <div class="meta-value">${currentStyle.file}</div>
+        </div>
+      </section>
+      <section class="palette" id="palette" aria-label="色彩样本"></section>
+    `;
+
+    const tagRow = document.getElementById("tag-row");
+    currentStyle.tags.forEach((tag) => tagRow.appendChild(createTag(tag)));
+
+    const palette = document.getElementById("palette");
+    [
+      ["Background", currentStyle.bg],
+      ["Foreground", currentStyle.fg],
+      ["Accent", currentStyle.accent],
+      ["Secondary", currentStyle.secondary],
+      ["Tertiary", currentStyle.tertiary]
+    ].forEach(([name, color]) => palette.appendChild(createSwatch(name, color)));
+  }
+
+  if (style) {
+    renderStylePage(style);
+  } else {
+    renderError();
+  }
+</script>
+</body>
+</html>
