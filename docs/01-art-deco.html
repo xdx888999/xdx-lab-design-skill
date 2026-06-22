@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAISON DORÉE — Art Deco</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --noir:       #0A0A0A;
+    --onyx:       #111111;
+    --charcoal:   #1E1E1E;
+    --gold:       #C9A84C;
+    --gold-bright:#D4AF37;
+    --gold-pale:  #E8C97A;
+    --gold-dark:  #8B6914;
+    --ivory:      #F5F0E8;
+    --body-text:  rgba(245,240,232,0.80);
+    --gold-dim:   rgba(201,168,76,0.30);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--ivory);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--noir);
+    border-bottom: 1px solid var(--gold-dim);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 60px;
+    height: 72px;
+  }
+  .nav-logo {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--body-text);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-reserve {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 8px 24px;
+    background: transparent;
+    cursor: pointer;
+    transition: background 200ms ease;
+  }
+  .nav-reserve:hover { background: rgba(201,168,76,0.1); }
+
+  /* ── GOLD ORNAMENT ───────────────────────────── */
+  .deco-diamond {
+    display: flex; align-items: center; gap: 12px;
+    color: var(--gold);
+  }
+  .deco-diamond::before,
+  .deco-diamond::after {
+    content: '';
+    height: 1px; background: var(--gold);
+    flex: 1; min-width: 40px;
+  }
+  .diamond-shape {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── HERO ────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    background: radial-gradient(ellipse at 50% 40%, #1a1400 0%, var(--noir) 70%);
+  }
+
+  /* double-frame */
+  .hero-frame {
+    position: relative;
+    max-width: 800px; width: 100%;
+    padding: 64px 80px;
+    border: 1px solid var(--gold);
+  }
+  .hero-frame::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 1px solid rgba(201,168,76,0.4);
+    pointer-events: none;
+  }
+
+  /* corner ornaments */
+  .hero-frame::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    pointer-events: none;
+  }
+  .corner {
+    position: absolute;
+    width: 20px; height: 20px;
+  }
+  .corner svg { display: block; }
+  .corner-tl { top: -1px;  left: -1px; }
+  .corner-tr { top: -1px;  right: -1px; transform: rotate(90deg); }
+  .corner-bl { bottom: -1px; left: -1px;  transform: rotate(-90deg); }
+  .corner-br { bottom: -1px; right: -1px; transform: rotate(180deg); }
+
+  .hero-inner { text-align: center; }
+
+  .hero-eyebrow {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    display: block;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px; font-weight: 300;
+    letter-spacing: 10px;
+    color: var(--ivory);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300;
+    letter-spacing: 8px;
+    color: var(--gold-bright);
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+
+  .gold-rule {
+    width: 120px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 32px;
+  }
+
+  .hero-desc {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 300;
+    letter-spacing: 1.5px;
+    color: var(--body-text);
+    max-width: 440px; margin: 0 auto 48px;
+    line-height: 2;
+  }
+  .hero-cta-row {
+    display: flex; gap: 20px; justify-content: center;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--noir);
+    border: none;
+    padding: 16px 48px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 15px 48px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 4px; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 200ms ease;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { background: rgba(201,168,76,0.1); }
+
+  /* ── SECTION WRAPPER ─────────────────────────── */
+  section { padding: 100px 40px; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 6px; text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    display: block;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--ivory);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .section-divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin-bottom: 60px;
+  }
+  .section-divider .line {
+    width: 60px; height: 1px; background: var(--gold-dim);
+  }
+
+  /* ── SUITES ──────────────────────────────────── */
+  .suites { background: var(--onyx); }
+  .suites-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;
+  }
+  .suite-card {
+    background: var(--charcoal);
+    border-top: 1px solid var(--gold-dim);
+    padding: 40px 32px 36px;
+    position: relative;
+    transition: background 300ms ease;
+  }
+  .suite-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 300ms ease;
+    transform-origin: left;
+  }
+  .suite-card:hover { background: #222; }
+  .suite-card:hover::before { transform: scaleX(1); }
+
+  .suite-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px; font-weight: 300;
+    color: var(--gold-dim);
+    display: block; margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+  .suite-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 13px; font-weight: 300;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold);
+    display: block; margin-bottom: 12px;
+  }
+  .suite-desc {
+    font-size: 14px; font-weight: 300;
+    color: var(--body-text);
+    line-height: 1.9;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+  }
+  .suite-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 2px;
+  }
+  .suite-price span {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px; letter-spacing: 2px;
+    color: var(--gold); margin-left: 6px;
+  }
+
+  /* ── EXPERIENCE / QUOTE ──────────────────────── */
+  .experience {
+    background: var(--noir);
+    text-align: center;
+  }
+  .experience-frame {
+    border: 1px solid var(--gold-dim);
+    padding: 80px;
+    max-width: 720px; margin: 0 auto;
+    position: relative;
+  }
+  .experience-frame::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 1px solid rgba(201,168,76,0.15);
+    pointer-events: none;
+  }
+  .quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px; font-weight: 300;
+    color: var(--gold-dim);
+    line-height: 0.5;
+    margin-bottom: 32px;
+    display: block;
+  }
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: var(--ivory);
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  .quote-attr {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── AMENITIES ───────────────────────────────── */
+  .amenities { background: var(--onyx); }
+  .amenities-grid {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 32px;
+    margin-top: 0;
+  }
+  .amenity {
+    text-align: center;
+    padding: 40px 24px;
+    border: 1px solid var(--gold-dim);
+    transition: border-color 300ms ease;
+  }
+  .amenity:hover { border-color: var(--gold); }
+  .amenity-icon {
+    width: 40px; height: 40px;
+    margin: 0 auto 20px;
+  }
+  .amenity-name {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gold);
+    display: block; margin-bottom: 10px;
+  }
+  .amenity-desc {
+    font-size: 13px; font-weight: 300;
+    color: var(--body-text);
+    letter-spacing: 0.3px;
+    line-height: 1.8;
+  }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--noir);
+    border-top: 1px solid var(--gold-dim);
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px; font-weight: 300;
+    letter-spacing: 12px;
+    color: var(--gold-bright);
+    display: block; margin-bottom: 24px;
+  }
+  .footer-tagline {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 5px; text-transform: uppercase;
+    color: var(--body-text);
+    margin-bottom: 32px;
+  }
+  .footer-links {
+    display: flex; justify-content: center; gap: 40px;
+    list-style: none; margin-bottom: 40px;
+  }
+  .footer-links a {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 10px; font-weight: 300;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--body-text);
+    text-decoration: none;
+    transition: color 200ms ease;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy {
+    font-size: 11px; font-weight: 300;
+    color: rgba(245,240,232,0.3);
+    letter-spacing: 1px;
+  }
+
+  /* corner ornament SVG inline */
+  .corner-svg {
+    position: absolute;
+    width: 24px; height: 24px;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Maison Dorée</span>
+  <ul class="nav-links">
+    <li><a href="#">Suites</a></li>
+    <li><a href="#">Dining</a></li>
+    <li><a href="#">Spa</a></li>
+    <li><a href="#">Events</a></li>
+  </ul>
+  <button class="nav-reserve">Reserve</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-frame">
+    <!-- corner ornaments -->
+    <svg class="corner-svg" style="top:-1px;left:-1px" viewBox="0 0 24 24" fill="none">
+      <path d="M0 24V4L4 0H24" stroke="#C9A84C" stroke-width="1"/>
+      <path d="M5 22V6L7 4H22" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+    </svg>
+    <svg class="corner-svg" style="top:-1px;right:-1px;transform:rotate(90deg)" viewBox="0 0 24 24" fill="none">
+      <path d="M0 24V4L4 0H24" stroke="#C9A84C" stroke-width="1"/>
+      <path d="M5 22V6L7 4H22" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+    </svg>
+    <svg class="corner-svg" style="bottom:-1px;left:-1px;transform:rotate(-90deg)" viewBox="0 0 24 24" fill="none">
+      <path d="M0 24V4L4 0H24" stroke="#C9A84C" stroke-width="1"/>
+      <path d="M5 22V6L7 4H22" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+    </svg>
+    <svg class="corner-svg" style="bottom:-1px;right:-1px;transform:rotate(180deg)" viewBox="0 0 24 24" fill="none">
+      <path d="M0 24V4L4 0H24" stroke="#C9A84C" stroke-width="1"/>
+      <path d="M5 22V6L7 4H22" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+    </svg>
+
+    <div class="hero-inner">
+      <span class="hero-eyebrow">Établi en 1924 · Paris</span>
+      <div class="hero-title">MAISON<br>DORÉE</div>
+      <div class="hero-subtitle">Grand Hôtel de Luxe</div>
+      <div class="gold-rule"></div>
+      <p class="hero-desc">
+        Where the golden age of travel lives on. Forty suites of uncompromising elegance, a dining room of legendary repute, and a spa conceived for those who refuse to accept anything less than perfection.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#" class="btn-primary">Reserve a Suite</a>
+        <a href="#" class="btn-ghost">Explore the Hotel</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUITES -->
+<section class="suites">
+  <div class="container">
+    <span class="section-label">Accommodations</span>
+    <h2 class="section-title">The Suites</h2>
+    <div class="section-divider">
+      <div class="line"></div>
+      <div style="width:8px;height:8px;background:#C9A84C;transform:rotate(45deg)"></div>
+      <div class="line"></div>
+    </div>
+
+    <div class="suites-grid">
+      <div class="suite-card">
+        <span class="suite-num">I</span>
+        <span class="suite-name">Chambre Classique</span>
+        <p class="suite-desc">Refined proportions and original 1924 parquet floors. A writing desk of dark mahogany, linen curtains to the ceiling. The city at your window.</p>
+        <div class="suite-price">€ 680 <span>Per Night</span></div>
+      </div>
+      <div class="suite-card">
+        <span class="suite-num">II</span>
+        <span class="suite-name">Suite Impériale</span>
+        <p class="suite-desc">A drawing room of gold-leaf cornices and silk damask walls. Separate dressing room, double marble bath, and a panoramic view of the Palais-Royal.</p>
+        <div class="suite-price">€ 1,840 <span>Per Night</span></div>
+      </div>
+      <div class="suite-card">
+        <span class="suite-num">III</span>
+        <span class="suite-name">Penthouse Dorée</span>
+        <p class="suite-desc">Three floors of private residence with a terrace garden above the rooftops of Paris. A private butler, in-suite dining, and a grand piano by the fireplace.</p>
+        <div class="suite-price">€ 6,200 <span>Per Night</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="experience">
+  <div class="experience-frame">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">
+      There are hotels that give you a room.<br>
+      Then there is Maison Dorée, which gives you a life.
+    </p>
+    <div class="gold-rule" style="margin-bottom:24px"></div>
+    <span class="quote-attr">— Condé Nast Traveller, Best Hotel in Europe, 2024</span>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities">
+  <div class="container">
+    <span class="section-label">The Arts of Living</span>
+    <h2 class="section-title">Services & Amenities</h2>
+    <div class="section-divider">
+      <div class="line"></div>
+      <div style="width:8px;height:8px;background:#C9A84C;transform:rotate(45deg)"></div>
+      <div class="line"></div>
+    </div>
+
+    <div class="amenities-grid">
+      <div class="amenity">
+        <svg class="amenity-icon" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="18" stroke="#C9A84C" stroke-width="1"/>
+          <path d="M12 20h16M20 12v16" stroke="#C9A84C" stroke-width="1"/>
+          <circle cx="20" cy="20" r="3" fill="#C9A84C"/>
+        </svg>
+        <span class="amenity-name">Michelin Dining</span>
+        <p class="amenity-desc">Three-star restaurant under Chef Armand Lefèvre, open for breakfast, lunch, and dinner.</p>
+      </div>
+      <div class="amenity">
+        <svg class="amenity-icon" viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="4" width="32" height="32" stroke="#C9A84C" stroke-width="1"/>
+          <rect x="10" y="10" width="20" height="20" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+          <path d="M4 20h32" stroke="#C9A84C" stroke-width="0.5"/>
+          <path d="M20 4v32" stroke="#C9A84C" stroke-width="0.5"/>
+        </svg>
+        <span class="amenity-name">Private Spa</span>
+        <p class="amenity-desc">Five treatment rooms, thermal pools, and a curated menu of care rituals by La Mer.</p>
+      </div>
+      <div class="amenity">
+        <svg class="amenity-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M20 4L36 36H4L20 4Z" stroke="#C9A84C" stroke-width="1"/>
+          <path d="M20 10L32 32H8L20 10Z" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+          <circle cx="20" cy="26" r="2" fill="#C9A84C"/>
+        </svg>
+        <span class="amenity-name">Grand Bar</span>
+        <p class="amenity-desc">Over four hundred vintage champagnes. A sommelier of thirty years' experience to guide your selection.</p>
+      </div>
+      <div class="amenity">
+        <svg class="amenity-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M8 8h24v24H8z" stroke="#C9A84C" stroke-width="1"/>
+          <path d="M12 12h16v16H12z" stroke="rgba(201,168,76,0.4)" stroke-width="0.5"/>
+          <path d="M16 20h8M20 16v8" stroke="#C9A84C" stroke-width="1"/>
+        </svg>
+        <span class="amenity-name">Concierge</span>
+        <p class="amenity-desc">Available at all hours. Opera tickets, private museum tours, vintage motor cars — nothing is impossible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">M A I S O N   D O R É E</span>
+  <div class="footer-tagline">1, Rue de la Paix · Paris · Since 1924</div>
+  <div class="section-divider" style="margin-bottom:32px">
+    <div class="line"></div>
+    <div style="width:6px;height:6px;background:#C9A84C;transform:rotate(45deg)"></div>
+    <div class="line"></div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">Suites</a></li>
+    <li><a href="#">Dining</a></li>
+    <li><a href="#">Spa</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Press</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2024 Maison Dorée. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

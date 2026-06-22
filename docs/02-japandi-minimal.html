@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSUCHI — Japandi Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --paper:     #FAF8F3;
+    --linen:     #F2EEE6;
+    --sand:      #E8E2D5;
+    --border:    #D5CDBD;
+    --charcoal:  #2C2C2C;
+    --graphite:  #4A4A4A;
+    --stone:     #7A7068;
+    --dust:      #A89F91;
+    --matcha:    #6B7C5A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--graphite);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    letter-spacing: 0.2px;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--paper);
+    border-bottom: 1px solid var(--sand);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 64px; height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 300;
+    letter-spacing: 8px;
+    color: var(--charcoal);
+  }
+  .nav-links {
+    display: flex; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color 300ms ease;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cart {
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--charcoal);
+    background: transparent; border: none; cursor: pointer;
+    transition: color 300ms ease;
+  }
+  .nav-cart:hover { color: var(--matcha); }
+
+  /* ── HERO ────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 68px;
+  }
+  .hero-image {
+    background: var(--linen);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+  /* abstract ceramic texture using CSS */
+  .hero-image::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 40% 50%, #e8ddd0 0%, transparent 60%),
+      radial-gradient(ellipse 30% 40% at 70% 30%, #d5cabb 0%, transparent 50%);
+  }
+  .hero-image-label {
+    position: absolute; bottom: 40px; left: 40px;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--stone);
+  }
+  /* Large abstract vessel shape */
+  .vessel {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px; height: 340px;
+  }
+
+  .hero-content {
+    background: var(--paper);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 100px 80px;
+  }
+  .hero-eyebrow {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--matcha);
+    margin-bottom: 32px;
+  }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px; font-weight: 300;
+    letter-spacing: -1px;
+    color: var(--charcoal);
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+  .hero-divider {
+    width: 40px; height: 1px;
+    background: var(--border);
+    margin-bottom: 28px;
+  }
+  .hero-desc {
+    font-size: 16px; font-weight: 300;
+    color: var(--stone);
+    max-width: 380px;
+    line-height: 1.9; letter-spacing: 0.2px;
+    margin-bottom: 48px;
+  }
+  .btn-dark {
+    display: inline-block;
+    background: var(--charcoal);
+    color: var(--paper);
+    padding: 14px 36px;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 300ms ease;
+  }
+  .btn-dark:hover { background: var(--graphite); }
+
+  /* ── SECTION BASE ────────────────────────────── */
+  section { padding: 120px 64px; }
+  .container { max-width: 960px; margin: 0 auto; }
+
+  .section-eyebrow {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--matcha);
+    display: block; margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px; font-weight: 300;
+    letter-spacing: -0.5px;
+    color: var(--charcoal);
+    line-height: 1.2;
+  }
+
+  /* ── COLLECTION ──────────────────────────────── */
+  .collection { background: var(--linen); }
+  .collection-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 64px;
+  }
+  .collection-link {
+    font-size: 12px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--stone);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    transition: color 300ms ease, border-color 300ms ease;
+  }
+  .collection-link:hover { color: var(--charcoal); border-color: var(--charcoal); }
+
+  .product-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;
+  }
+  .product-card { cursor: pointer; }
+  .product-image {
+    aspect-ratio: 4/5;
+    background: var(--sand);
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(44,44,44,0);
+    transition: background 400ms ease;
+  }
+  .product-card:hover .product-image::after {
+    background: rgba(44,44,44,0.04);
+  }
+  /* Abstract ceramic forms in CSS */
+  .ceramic-1 {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .product-mat {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--dust);
+    display: block; margin-bottom: 6px;
+  }
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 400;
+    color: var(--charcoal);
+    display: block; margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+  .product-price {
+    font-size: 14px; font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--graphite);
+  }
+
+  /* ── PHILOSOPHY ──────────────────────────────── */
+  .philosophy { background: var(--paper); }
+  .philosophy-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 120px;
+    align-items: center;
+  }
+  .philosophy-text .section-title { margin-bottom: 32px; }
+  .philosophy-body {
+    font-size: 16px; font-weight: 300;
+    color: var(--stone);
+    line-height: 1.9; letter-spacing: 0.2px;
+    margin-bottom: 20px;
+  }
+  .philosophy-body + .philosophy-body { margin-bottom: 40px; }
+  .philosophy-visual {
+    background: var(--linen);
+    aspect-ratio: 3/4;
+    position: relative;
+  }
+  .philosophy-visual::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 70% 50% at 30% 60%, #ddd4c4 0%, transparent 60%);
+  }
+  .philosophy-note {
+    position: absolute; bottom: 32px; right: 32px;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--stone);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+
+  /* ── MATERIAL STRIP ──────────────────────────── */
+  .materials { background: var(--charcoal); }
+  .materials .section-eyebrow { color: var(--matcha); }
+  .materials .section-title { color: #F2EEE6; margin-bottom: 64px; }
+  .mat-grid {
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+    background: rgba(255,255,255,0.05);
+  }
+  .mat-cell {
+    background: #333;
+    padding: 40px 32px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 300ms ease;
+  }
+  .mat-cell:hover { border-color: var(--matcha); }
+  .mat-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 300;
+    color: #F2EEE6;
+    display: block; margin-bottom: 10px;
+  }
+  .mat-origin {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--dust);
+  }
+
+  /* ── NEWSLETTER ──────────────────────────────── */
+  .newsletter {
+    background: var(--paper);
+    text-align: center;
+  }
+  .newsletter-inner {
+    max-width: 520px; margin: 0 auto;
+  }
+  .newsletter .section-title { margin-bottom: 16px; }
+  .newsletter-sub {
+    font-size: 15px; font-weight: 300;
+    color: var(--stone);
+    letter-spacing: 0.3px; line-height: 1.8;
+    margin-bottom: 48px;
+  }
+  .form-row {
+    display: flex; gap: 0;
+  }
+  .form-input {
+    flex: 1;
+    background: transparent;
+    border: none; border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 300;
+    color: var(--charcoal);
+    letter-spacing: 0.3px;
+    outline: none;
+    transition: border-color 300ms ease;
+  }
+  .form-input::placeholder { color: var(--dust); }
+  .form-input:focus { border-color: var(--charcoal); }
+  .form-submit {
+    background: var(--charcoal);
+    color: var(--paper);
+    border: none;
+    padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    cursor: pointer;
+    transition: background 300ms ease;
+  }
+  .form-submit:hover { background: var(--graphite); }
+
+  /* ── FOOTER ──────────────────────────────────── */
+  footer {
+    background: var(--charcoal);
+    padding: 64px 64px 48px;
+    color: rgba(242,238,230,0.6);
+  }
+  .footer-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 32px;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300;
+    letter-spacing: 8px;
+    color: #F2EEE6;
+  }
+  .footer-nav { display: flex; gap: 64px; }
+  .footer-col h4 {
+    font-size: 11px; font-weight: 400;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: #F2EEE6;
+    margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 12px; }
+  .footer-col a {
+    font-size: 13px; font-weight: 300;
+    letter-spacing: 0.3px;
+    color: rgba(242,238,230,0.5);
+    text-decoration: none;
+    transition: color 300ms ease;
+  }
+  .footer-col a:hover { color: #F2EEE6; }
+  .footer-copy {
+    font-size: 11px; font-weight: 300;
+    letter-spacing: 0.5px;
+    color: rgba(242,238,230,0.3);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">T S U C H I</span>
+  <ul class="nav-links">
+    <li><a href="#">Collection</a></li>
+    <li><a href="#">Materials</a></li>
+    <li><a href="#">Philosophy</a></li>
+    <li><a href="#">Journal</a></li>
+  </ul>
+  <button class="nav-cart">0  Items</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-image">
+    <svg class="vessel" viewBox="0 0 260 340" fill="none">
+      <!-- Minimalist ceramic vessel outline -->
+      <path d="M100 60 Q80 120 80 180 Q80 280 130 300 Q180 280 180 180 Q180 120 160 60 Q150 40 130 40 Q110 40 100 60Z" stroke="#B8AD9E" stroke-width="1" fill="#E0D8CC"/>
+      <path d="M110 65 Q92 125 92 185 Q92 270 130 288 Q168 270 168 185 Q168 125 150 65" stroke="#C8BEB0" stroke-width="0.5" fill="none"/>
+      <!-- rim -->
+      <ellipse cx="130" cy="60" rx="32" ry="8" stroke="#B8AD9E" stroke-width="1" fill="#D8D0C4"/>
+    </svg>
+    <span class="hero-image-label">Stoneware · Tamba Ware · Unglazed</span>
+  </div>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">Ceramics &amp; Vessels</span>
+    <h1 class="hero-title">
+      Made by<br>
+      hands that<br>
+      understand<br>
+      clay.
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      Each piece is thrown on a wheel in Kyoto, fired with wood from the forest behind our workshop, and left to find its own imperfection. No two are alike.
+    </p>
+    <a href="#" class="btn-dark">Shop the Collection</a>
+  </div>
+</div>
+
+<!-- COLLECTION -->
+<section class="collection">
+  <div class="container">
+    <div class="collection-header">
+      <div>
+        <span class="section-eyebrow">New Arrivals</span>
+        <h2 class="section-title">Spring Collection<br>2026</h2>
+      </div>
+      <a href="#" class="collection-link">View all pieces</a>
+    </div>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-image">
+          <svg class="ceramic-1" viewBox="0 0 160 200" width="160" height="200" fill="none">
+            <path d="M60 40 Q45 80 45 110 Q45 165 80 180 Q115 165 115 110 Q115 80 100 40 Q95 30 80 30 Q65 30 60 40Z" fill="#D4C8B8" stroke="#C0B4A4" stroke-width="0.5"/>
+            <ellipse cx="80" cy="40" rx="22" ry="6" fill="#C8BCA8"/>
+          </svg>
+        </div>
+        <span class="product-mat">Stoneware · Hand-thrown</span>
+        <span class="product-name">Kyo-yaki Vase, Tall</span>
+        <span class="product-price">¥ 38,000</span>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background:#E5DDD0">
+          <svg class="ceramic-1" viewBox="0 0 160 160" width="140" height="140" fill="none">
+            <!-- wide bowl -->
+            <path d="M20 80 Q20 130 80 140 Q140 130 140 80 Q140 60 80 55 Q20 60 20 80Z" fill="#D8D0C0" stroke="#C4BAA8" stroke-width="0.5"/>
+            <ellipse cx="80" cy="80" rx="60" ry="15" stroke="#C4BAA8" stroke-width="0.5" fill="none"/>
+          </svg>
+        </div>
+        <span class="product-mat">Porcelain · Celadon Glaze</span>
+        <span class="product-name">Morning Tea Bowl</span>
+        <span class="product-price">¥ 14,500</span>
+      </div>
+      <div class="product-card">
+        <div class="product-image" style="background:#DDD6CA">
+          <svg class="ceramic-1" viewBox="0 0 160 200" width="160" height="200" fill="none">
+            <!-- bottle with narrow neck -->
+            <path d="M65 130 Q50 150 50 165 Q50 185 80 192 Q110 185 110 165 Q110 150 95 130Z" fill="#BFB5A5" stroke="#AFA59A" stroke-width="0.5"/>
+            <path d="M70 80 Q65 110 65 130 L95 130 Q95 110 90 80Z" fill="#CCC4B0" stroke="#BEB5A5" stroke-width="0.5"/>
+            <path d="M74 40 Q72 60 70 80 L90 80 Q88 60 86 40Z" fill="#D8D0BC" stroke="#C8C0B0" stroke-width="0.5"/>
+            <ellipse cx="80" cy="40" rx="8" ry="3" fill="#D4CCC0"/>
+          </svg>
+        </div>
+        <span class="product-mat">Shigaraki · Natural Ash Glaze</span>
+        <span class="product-name">Tokkuri Sake Bottle</span>
+        <span class="product-price">¥ 22,000</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="container">
+    <div class="philosophy-grid">
+      <div class="philosophy-text">
+        <span class="section-eyebrow">Our Practice</span>
+        <h2 class="section-title">The beauty of the unfinished.</h2>
+        <p class="philosophy-body">
+          We have been making ceramics in the same Kyoto workshop since 1971. Our methods have not changed. We do not use electric wheels. We fire only in wood-burning kilns, accepting that the flame makes decisions we cannot.
+        </p>
+        <p class="philosophy-body">
+          Wabi-sabi is not a style choice. It is a way of seeing — finding the beautiful in what is impermanent, incomplete, imperfect. A crack in the glaze is not a flaw. It is the object's story, told honestly.
+        </p>
+        <a href="#" style="display:inline-block; font-size:12px; font-weight:400; letter-spacing:2px; text-transform:uppercase; color:var(--matcha); text-decoration:none; border-bottom:1px solid var(--matcha); padding-bottom:4px;">Read our story</a>
+      </div>
+      <div class="philosophy-visual">
+        <svg style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)" viewBox="0 0 200 240" width="200" height="240" fill="none">
+          <path d="M70 60 Q50 120 55 160 Q60 200 100 215 Q140 200 145 160 Q150 120 130 60" stroke="#B8B0A0" stroke-width="0.8" fill="none"/>
+          <path d="M78 64 Q62 122 66 160 Q70 195 100 208 Q130 195 134 160 Q138 122 122 64" stroke="#D0C8B8" stroke-width="0.5" fill="none"/>
+          <ellipse cx="100" cy="62" rx="30" ry="6" stroke="#B8B0A0" stroke-width="0.8" fill="none"/>
+        </svg>
+        <span class="philosophy-note">Kyoto · Since 1971</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials">
+  <div class="container">
+    <span class="section-eyebrow">Origins</span>
+    <h2 class="section-title">Clay &amp; Earth</h2>
+
+    <div class="mat-grid">
+      <div class="mat-cell">
+        <span class="mat-name">Shigaraki</span>
+        <span class="mat-origin">Shiga Prefecture · Natural Ash</span>
+      </div>
+      <div class="mat-cell">
+        <span class="mat-name">Bizen</span>
+        <span class="mat-origin">Okayama · Unglazed, Iron-rich</span>
+      </div>
+      <div class="mat-cell">
+        <span class="mat-name">Hagi</span>
+        <span class="mat-origin">Yamaguchi · Milky White</span>
+      </div>
+      <div class="mat-cell">
+        <span class="mat-name">Tamba</span>
+        <span class="mat-origin">Hyogo · Six Ancient Kilns</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <span class="section-eyebrow">Studio Notes</span>
+    <h2 class="section-title">Slow letters<br>about slow making.</h2>
+    <p class="newsletter-sub">
+      Once a season, we write about the kiln, the clay, the work. No announcements. No promotions. Just the process, honestly.
+    </p>
+    <div class="form-row">
+      <input type="email" class="form-input" placeholder="Your email address">
+      <button class="form-submit">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <span class="footer-logo">T S U C H I</span>
+    <div class="footer-nav">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Vessels</a></li>
+          <li><a href="#">Tea Ware</a></li>
+          <li><a href="#">Tableware</a></li>
+          <li><a href="#">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="#">Our Process</a></li>
+          <li><a href="#">Kiln Journal</a></li>
+          <li><a href="#">Visit Kyoto</a></li>
+          <li><a href="#">Commissions</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <span class="footer-copy">© 2026 Tsuchi Studio · Kyoto, Japan · Made by hand, fired by wood.</span>
+</footer>
+
+</body>
+</html>
