@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus AI — Aurora UI Style Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #06061A;
+    --surface: #0E0E2A;
+    --card: rgba(255,255,255,0.04);
+    --border: rgba(129,140,248,0.15);
+    --primary: #818CF8;
+    --accent: #C084FC;
+    --teal: #34D399;
+    --text: #F1F5F9;
+    --muted: #94A3B8;
+    --dim: #475569;
+  }
+
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(6,6,26,0.8); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+  .logo { font-size: 18px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-btn { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none; padding: 10px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+  .nav-btn:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(ellipse, rgba(129,140,248,0.18) 0%, rgba(192,132,252,0.1) 40%, transparent 70%); pointer-events: none; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(129,140,248,0.1); border: 1px solid rgba(129,140,248,0.3); border-radius: 100px; padding: 6px 16px; font-size: 12px; color: var(--primary); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 32px; }
+  .hero-badge span { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); display: inline-block; }
+  h1 { font-size: clamp(42px, 6vw, 76px); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; max-width: 860px; background: linear-gradient(135deg, #FFFFFF 0%, #C8C8FF 50%, var(--accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 24px; }
+  .hero-sub { font-size: 18px; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 14px 32px; border-radius: 10px; font-weight: 600; font-size: 15px; border: none; cursor: pointer; transition: all 0.2s; box-shadow: 0 0 32px rgba(129,140,248,0.35); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 48px rgba(129,140,248,0.5); }
+  .btn-ghost { background: transparent; color: var(--text); padding: 14px 32px; border-radius: 10px; font-weight: 500; font-size: 15px; border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; }
+  .btn-ghost:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* STATS */
+  .stats { display: flex; justify-content: center; gap: 64px; padding: 40px; flex-wrap: wrap; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 0 60px; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 32px; font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* FEATURES */
+  .section { padding: 100px 60px; }
+  .section-label { font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--primary); margin-bottom: 16px; text-align: center; }
+  .section-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; text-align: center; max-width: 600px; margin: 0 auto 64px; letter-spacing: -0.02em; line-height: 1.2; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.25s; }
+  .card:hover { border-color: rgba(129,140,248,0.4); background: rgba(129,140,248,0.06); transform: translateY(-4px); }
+  .card-icon { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, rgba(129,140,248,0.2), rgba(192,132,252,0.2)); display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 20px; border: 1px solid rgba(129,140,248,0.25); }
+  .card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+  .card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* TESTIMONIAL */
+  .quote-section { padding: 80px 60px; text-align: center; }
+  .quote { font-size: clamp(20px, 2.5vw, 28px); font-weight: 400; color: var(--text); max-width: 720px; margin: 0 auto 32px; line-height: 1.6; font-style: italic; opacity: 0.9; }
+  .quote-author { font-size: 14px; color: var(--muted); }
+  .quote-author strong { color: var(--primary); }
+
+  /* CTA */
+  .cta-section { padding: 100px 60px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(192,132,252,0.12) 0%, transparent 70%); pointer-events: none; }
+  .cta-section h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 700; letter-spacing: -0.025em; margin-bottom: 20px; background: linear-gradient(135deg, #FFFFFF, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .cta-section p { color: var(--muted); font-size: 17px; margin-bottom: 40px; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 32px 60px; display: flex; justify-content: space-between; align-items: center; color: var(--dim); font-size: 13px; }
+  .footer-badge { font-size: 11px; background: rgba(129,140,248,0.1); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; color: var(--primary); }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .section, .stats { padding: 60px 24px; }
+    .stats { margin: 0 24px; gap: 32px; }
+    .cards { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 16px; padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Nexus AI</div>
+  <div class="nav-links">
+    <a href="#">Product</a>
+    <a href="#">Docs</a>
+    <a href="#">Pricing</a>
+    <a href="#">Blog</a>
+  </div>
+  <button class="nav-btn">Start Free →</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge"><span></span> Now in Public Beta</div>
+  <h1>The AI Platform Built for Serious Teams</h1>
+  <p class="hero-sub">Nexus AI gives your team the intelligence infrastructure to move faster, reason deeper, and ship products that actually work.</p>
+  <div class="hero-ctas">
+    <button class="btn-primary">Get Started Free</button>
+    <button class="btn-ghost">View Documentation →</button>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">12M+</div><div class="stat-label">API Calls Daily</div></div>
+  <div class="stat"><div class="stat-num">99.9%</div><div class="stat-label">Uptime SLA</div></div>
+  <div class="stat"><div class="stat-num">4,200+</div><div class="stat-label">Teams Onboarded</div></div>
+  <div class="stat"><div class="stat-num">&lt;80ms</div><div class="stat-label">Median Latency</div></div>
+</div>
+
+<section class="section">
+  <div class="section-label">Core Capabilities</div>
+  <h2 class="section-title">Everything you need. Nothing you don't.</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Real-Time Inference</h3>
+      <p>Sub-100ms response times even under peak load. Our distributed architecture scales with you automatically.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h3>Enterprise Security</h3>
+      <p>SOC2 Type II certified. All data encrypted at rest and in transit. Zero retention by default on all API calls.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>Multi-Model Routing</h3>
+      <p>Automatically route tasks to the optimal model based on complexity, cost, and latency requirements.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📊</div>
+      <h3>Usage Analytics</h3>
+      <p>Granular cost attribution, token tracking, and performance insights across every model and endpoint.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔧</div>
+      <h3>Fine-Tuning API</h3>
+      <p>Adapt any foundation model to your domain with our no-code fine-tuning pipeline. Production-ready in hours.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>Global Edge Network</h3>
+      <p>18 regions worldwide. Requests are served from the closest edge node for minimal round-trip latency.</p>
+    </div>
+  </div>
+</section>
+
+<div class="quote-section">
+  <p class="quote">"Nexus AI cut our inference costs by 60% while improving response quality. It's the infrastructure layer we didn't know we needed."</p>
+  <p class="quote-author"><strong>Sarah Chen</strong> · CTO at Meridian Labs</p>
+</div>
+
+<section class="cta-section">
+  <h2>Start building today</h2>
+  <p>Free tier includes 1M tokens/month. No credit card required.</p>
+  <button class="btn-primary">Create Free Account →</button>
+</section>
+
+<footer>
+  <span>© 2026 Nexus AI, Inc.</span>
+  <span class="footer-badge">Style: 03 Aurora UI — xdx-lab-design-skill</span>
+</footer>
+
+</body>
+</html>

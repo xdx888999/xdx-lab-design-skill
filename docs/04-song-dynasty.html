@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山居 · 宋茶 — 宋代水墨风格演示</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --xuan: #F7F3EC;
+    --ink1: #1C1C1C;
+    --ink2: #4A4A46;
+    --ink3: #8A8A84;
+    --ink4: #BCBAB4;
+    --celadon: #8BB5B0;
+    --seal: #C43B2A;
+    --bg2: #F0EBE2;
+  }
+  body { background: var(--xuan); color: var(--ink1); font-family: 'Noto Serif SC', Georgia, serif; line-height: 2.0; }
+
+  /* NAV */
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 28px 80px; border-bottom: 1px solid var(--ink4); }
+  .logo { font-size: 16px; font-weight: 500; letter-spacing: 0.3em; color: var(--ink1); }
+  .logo span { color: var(--seal); }
+  .nav-links { display: flex; gap: 48px; }
+  .nav-links a { color: var(--ink3); text-decoration: none; font-size: 14px; letter-spacing: 0.15em; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--ink1); }
+  .nav-contact { font-size: 13px; color: var(--ink3); letter-spacing: 0.1em; border-bottom: 1px solid var(--ink4); padding-bottom: 2px; cursor: pointer; }
+
+  /* HERO */
+  .hero { padding: 100px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 80vh; }
+  .hero-left { }
+  .verse { font-size: 11px; color: var(--ink4); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 48px; }
+  h1 { font-size: clamp(28px, 3vw, 42px); font-weight: 300; letter-spacing: 0.1em; line-height: 1.8; color: var(--ink1); margin-bottom: 40px; }
+  h1 strong { font-weight: 500; color: var(--celadon); }
+  .hero-text { font-size: 15px; color: var(--ink3); line-height: 2.2; max-width: 420px; margin-bottom: 56px; letter-spacing: 0.05em; }
+  .hero-ctas { display: flex; gap: 24px; align-items: center; }
+  .btn-ink { background: var(--ink1); color: var(--xuan); border: none; padding: 14px 36px; font-family: 'Noto Serif SC', serif; font-size: 13px; letter-spacing: 0.2em; cursor: pointer; transition: background 0.3s; }
+  .btn-ink:hover { background: var(--ink2); }
+  .btn-ghost { background: none; border: 1px solid var(--ink4); color: var(--ink2); padding: 14px 36px; font-family: 'Noto Serif SC', serif; font-size: 13px; letter-spacing: 0.2em; cursor: pointer; transition: all 0.3s; }
+  .btn-ghost:hover { border-color: var(--ink2); }
+  .seal-mark { color: var(--seal); font-size: 28px; letter-spacing: 0.1em; writing-mode: vertical-rl; border: 1px solid var(--seal); padding: 10px 8px; }
+  .hero-right { display: flex; justify-content: center; align-items: center; position: relative; }
+  .ink-block { width: 100%; aspect-ratio: 3/4; background: var(--bg2); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .ink-brushstroke { font-size: 140px; font-weight: 300; color: var(--ink1); opacity: 0.08; position: absolute; }
+  .ink-center-text { text-align: center; z-index: 1; }
+  .ink-chinese { font-size: 52px; font-weight: 300; letter-spacing: 0.3em; color: var(--ink2); line-height: 1.5; }
+  .ink-pinyin { font-size: 12px; color: var(--ink4); letter-spacing: 0.3em; margin-top: 16px; }
+  .celadon-line { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--celadon); }
+
+  /* DIVIDER */
+  .divider { text-align: center; padding: 40px; color: var(--ink4); font-size: 18px; letter-spacing: 0.5em; }
+
+  /* PRODUCTS */
+  .products { padding: 60px 80px 100px; }
+  .section-label { font-size: 11px; color: var(--ink4); letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+  .section-title { font-size: clamp(22px, 2.5vw, 32px); font-weight: 300; letter-spacing: 0.1em; text-align: center; margin-bottom: 72px; color: var(--ink1); }
+  .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; max-width: 960px; margin: 0 auto; }
+  .product { border-top: 1px solid var(--ink4); padding-top: 28px; }
+  .product-name { font-size: 18px; font-weight: 400; letter-spacing: 0.15em; color: var(--ink1); margin-bottom: 8px; }
+  .product-sub { font-size: 12px; color: var(--celadon); letter-spacing: 0.2em; margin-bottom: 20px; }
+  .product-desc { font-size: 13px; color: var(--ink3); line-height: 2.0; letter-spacing: 0.05em; margin-bottom: 24px; }
+  .product-price { font-size: 15px; font-weight: 500; color: var(--ink2); letter-spacing: 0.1em; }
+
+  /* PHILOSOPHY */
+  .philosophy { background: var(--bg2); padding: 100px 80px; }
+  .phil-inner { max-width: 720px; margin: 0 auto; }
+  .phil-quote { font-size: clamp(20px, 2.5vw, 30px); font-weight: 300; color: var(--ink1); line-height: 2.0; letter-spacing: 0.08em; margin-bottom: 40px; text-align: center; }
+  .phil-attr { text-align: center; font-size: 12px; color: var(--ink4); letter-spacing: 0.3em; }
+  .celadon-accent { color: var(--celadon); }
+
+  /* BANNER */
+  .banner { padding: 100px 80px; text-align: center; border-top: 1px solid var(--ink4); }
+  .banner h2 { font-size: clamp(26px, 3vw, 40px); font-weight: 300; letter-spacing: 0.15em; margin-bottom: 16px; }
+  .banner-sub { font-size: 14px; color: var(--ink3); letter-spacing: 0.1em; margin-bottom: 48px; }
+
+  footer { padding: 32px 80px; border-top: 1px solid var(--ink4); display: flex; justify-content: space-between; align-items: center; }
+  .footer-text { font-size: 12px; color: var(--ink4); letter-spacing: 0.15em; }
+  .footer-badge { font-size: 10px; color: var(--ink4); border: 1px solid var(--ink4); padding: 3px 8px; letter-spacing: 0.1em; }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; } .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+    .products { padding: 60px 24px; }
+    .product-grid { grid-template-columns: 1fr; gap: 32px; }
+    .philosophy, .banner { padding: 60px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">山居<span>·</span>宋茶</div>
+  <div class="nav-links">
+    <a href="#">茶品</a>
+    <a href="#">茶事</a>
+    <a href="#">茶道</a>
+    <a href="#">关于</a>
+  </div>
+  <div class="nav-contact">联系我们</div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="verse">品宋代茶艺 · 悟千年之静</div>
+    <h1>以一盏清茗<br><strong>留住</strong>宋时<br>山林之意</h1>
+    <p class="hero-text">山居宋茶，取宋代贡茶产地原叶，以古法蒸青，还原那一缕跨越千年的清香。饮茶，是与时间的对话。</p>
+    <div class="hero-ctas">
+      <button class="btn-ink">品鉴茶品</button>
+      <button class="btn-ghost">了解茶道</button>
+      <div class="seal-mark">茶</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="ink-block">
+      <div class="ink-brushstroke">茶</div>
+      <div class="ink-center-text">
+        <div class="ink-chinese">碧<br>水<br>丹<br>山</div>
+        <div class="ink-pinyin">Bi Shui Dan Shan</div>
+      </div>
+      <div class="celadon-line"></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider">· · · ·</div>
+
+<div class="products">
+  <div class="section-label">精选茶品</div>
+  <h2 class="section-title">择一事，终一生</h2>
+  <div class="product-grid">
+    <div class="product">
+      <div class="product-name">御前龙井</div>
+      <div class="product-sub">GREEN TEA · LONGJING</div>
+      <p class="product-desc">西湖狮峰山头采，明前嫩芽，一芽一叶。汤色黄绿清透，香气持久，回甘绵长，宋徽宗御笔亲题之茶。</p>
+      <div class="product-price">¥ 380 / 50g</div>
+    </div>
+    <div class="product">
+      <div class="product-name">建安白茶</div>
+      <div class="product-sub">WHITE TEA · JIAN'AN</div>
+      <p class="product-desc">福建建安产，宋代斗茶首选。以古法炭焙，茶饼细腻，冲泡后色如玉乳，香气幽兰，气质清贵。</p>
+      <div class="product-price">¥ 520 / 50g</div>
+    </div>
+    <div class="product">
+      <div class="product-name">宋代点茶套组</div>
+      <div class="product-sub">MATCHA · CEREMONY SET</div>
+      <p class="product-desc">含茶末、汝窑茶盏、竹制茶筅。依《大观茶论》之法，自点一盏，体验宋人雅致生活之趣。</p>
+      <div class="product-price">¥ 960 / 套</div>
+    </div>
+  </div>
+</div>
+
+<div class="philosophy">
+  <div class="phil-inner">
+    <p class="phil-quote">「茶之为饮，发乎神农氏，闻于鲁周公。齐有晏婴，汉有杨雄、司马相如，吴有韦曜，晋有刘琨……」</p>
+    <div class="phil-attr">— 陆羽《茶经》· <span class="celadon-accent">公元 760 年</span></div>
+  </div>
+</div>
+
+<div class="banner">
+  <h2>开启你的宋代茶事</h2>
+  <p class="banner-sub">每月精选茶叶，配以茶道手册，寄至你手中的一片宁静</p>
+  <button class="btn-ink">订阅月茶礼盒</button>
+</div>
+
+<footer>
+  <div class="footer-text">© 2026 山居宋茶 · 杭州</div>
+  <div class="footer-badge">Style: 31 Song Dynasty Ink — xdx-lab-design-skill</div>
+</footer>
+
+</body>
+</html>
