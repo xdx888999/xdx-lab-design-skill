@@ -21,6 +21,62 @@
 
 ---
 
+## Multilingual Overview / 多语言简介
+
+### English
+
+xdx-lab Design Style Skill is an AI-agent-ready design system. It provides 50 executable `DESIGN.md` style specs, 20 design master method specs, and a 120+ style knowledge base for websites, slide decks, posters, app UI, reports, and components. Agents can use it to choose a visual direction, load the matching spec, and produce real design outputs instead of generic color changes.
+
+Quick prompt:
+
+```text
+Use this GitHub repository as the design-style Skill:
+https://github.com/xdx888999/xdx-lab-design-skill
+
+Read SKILL.md first. When I ask for a website, PPT, poster, app UI, report, or component, recommend suitable styles if I have not chosen one, then load the matching DESIGN.md and produce the output.
+```
+
+### 繁體中文
+
+xdx-lab Design Style Skill 是一套面向 AI Agent 的全球設計系統。它包含 50 份可執行的 `DESIGN.md` 風格規範、20 位設計大師方法論，以及 120+ 種風格知識庫，適用於網站、簡報、海報、App UI、報告與元件設計。Agent 可以先選擇視覺方向，再讀取對應規範，產出真正可交付的設計文件。
+
+快速提示詞：
+
+```text
+請把這個 GitHub 倉庫當作 design-style Skill 使用：
+https://github.com/xdx888999/xdx-lab-design-skill
+
+請先讀取 SKILL.md。當我要製作網站、PPT、海報、App UI、報告或元件時，如果我尚未指定風格，請先推薦合適方向，再讀取對應 DESIGN.md 並產出成品。
+```
+
+### 日本語
+
+xdx-lab Design Style Skill は、AI Agent 向けのグローバル・デザインシステムです。50 種の実行可能な `DESIGN.md` スタイル仕様、20 名のデザインマスターの方法論、120 種以上のスタイル知識ベースを収録しています。Web サイト、スライド、ポスター、App UI、レポート、コンポーネント制作で、Agent が適切な視覚方向を選び、対応する仕様を読み込んで制作できます。
+
+クイックプロンプト：
+
+```text
+この GitHub リポジトリを design-style Skill として使用してください：
+https://github.com/xdx888999/xdx-lab-design-skill
+
+まず SKILL.md を読んでください。Web サイト、PPT、ポスター、App UI、レポート、コンポーネントを作るとき、スタイル未指定なら候補を提案し、選択後に対応する DESIGN.md を読み込んで成果物を作成してください。
+```
+
+### 한국어
+
+xdx-lab Design Style Skill은 AI Agent를 위한 글로벌 디자인 시스템입니다. 실행 가능한 50개의 `DESIGN.md` 스타일 명세, 20명의 디자인 마스터 방법론, 120개 이상의 스타일 지식 베이스를 포함합니다. 웹사이트, 슬라이드, 포스터, App UI, 보고서, 컴포넌트 작업에서 Agent가 적절한 시각 방향을 고르고 해당 명세를 읽어 실제 산출물을 만들 수 있게 돕습니다.
+
+빠른 프롬프트:
+
+```text
+이 GitHub 저장소를 design-style Skill로 사용해 주세요:
+https://github.com/xdx888999/xdx-lab-design-skill
+
+먼저 SKILL.md를 읽어 주세요. 웹사이트, PPT, 포스터, App UI, 보고서, 컴포넌트를 만들 때 스타일을 지정하지 않았다면 적합한 방향을 추천하고, 선택 후 해당 DESIGN.md를 읽어 결과물을 만들어 주세요.
+```
+
+---
+
 ## 效果展示
 
 在线预览：[GitHub Pages 统一画廊](https://xdx888999.github.io/xdx-lab-design-skill/)  
@@ -216,7 +272,7 @@ design-style-skill/
 
 ## License
 
-MIT — 自由使用、修改、分发。欢迎 PR 贡献新风格。
+MIT — 自由使用、修改、分发。详见 [LICENSE](LICENSE)。欢迎 PR 贡献新风格。
 
 ---
 
