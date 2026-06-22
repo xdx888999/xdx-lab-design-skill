@@ -1,5 +1,5 @@
 # xdx-lab Design Style Skill
-### 全球设计风格生成系统 — 50 种精选 + 120 种动态生成
+### 全球设计系统 — 50 种精选视觉语言 + 120+ 风格知识库
 
 > 一个面向所有智能体的设计风格 Skill，适用于 Codex / Code X / Claude Code / Cursor / v0 / Bolt / Lovable / DeepSeek / Gemini / 任何能读取 Markdown 与仓库文件的 Agent。
 
@@ -7,13 +7,16 @@
 
 ## 是什么？
 
-这是一个基于 [Google Stitch DESIGN.md 格式](https://stitch.withgoogle.com/docs/design-md/overview/) 构建的设计风格知识库 Skill。安装后，AI 可以将任意创意内容——网页、落地页、PPT、海报、App UI——自动套用专业设计风格，输出生产级代码。
+这是一个面向 Agent 的全球设计系统。它把不同文化、行业和媒介中的视觉方法整理成可执行的 `DESIGN.md`：颜色、字体、组件、版式、禁忌和输出规则都写在同一份规范里。
+
+它不是简单的配色表，也不是提示词合集。目标是让 Agent 在制作网页、PPT、海报、App UI、报告或组件时，能先选择合适的视觉语言，再按明确的生产路线交付真实文件。
 
 **核心特性：**
-- **50 个精选 DESIGN.md 文件**：每个包含精确 HEX 颜色、CSS 组件规范、字体层级表、AI 提示词模板
-- **120+ 种动态生成**：内置全球设计风格知识库，无对应文件的风格可动态合成设计规范
-- **Agent 无关**：纯 Markdown + HTML 展示页，任何能读取仓库文件的智能体都可以使用
-- **生产级输出**：完整 HTML 文件、React 组件、PPT 主题、Word 文档
+- **50 个精选 DESIGN.md**：每个风格都有精确 HEX 色彩、字体层级、组件规范、版式原则和禁忌清单。
+- **120+ 风格知识库**：精选库之外的风格，可从知识库中提取关键特征并动态合成规范。
+- **Agent 无关**：纯 Markdown + HTML 结构，任何能读取仓库文件的智能体都可以使用。
+- **输出路线清晰**：覆盖网站、React 组件、PPT、海报、App UI、Word/报告和 Figma 设计稿。
+- **强调视觉资产**：按场景选择用户素材、Unsplash、生成式图片、SVG 图形或风格化图案，避免只做文字排版。
 
 ---
 
@@ -52,13 +55,13 @@
 
 ### 方式 1：让你的 Agent 通过仓库链接安装（推荐）
 
-如果你的智能体支持安装 Skill、读取 GitHub 仓库或管理本地能力包，直接把这个仓库链接交给它：
+如果你的 Agent 支持安装 Skill、读取 GitHub 仓库或管理本地能力包，可以直接把仓库链接交给它：
 
 ```text
 请根据这个 GitHub 仓库帮我安装并启用 design-style Skill：
 https://github.com/xdx888999/xdx-lab-design-skill
 
-安装后，请读取 SKILL.md，并在我要求设计网页、PPT、海报、App UI 或组件时使用它。
+安装后，请读取 SKILL.md。之后当我要求制作网页、PPT、海报、App UI、报告或组件时，请先用它选择风格，再按对应输出路线生成文件。
 ```
 
 适用于 Codex / Code X / Claude Code / Cursor 等可访问本地文件或 GitHub 仓库的 Agent。不同工具的 Skill 目录不同，请让对应 Agent 按它自己的规范安装。
@@ -109,9 +112,10 @@ cp references/styles/31-song-dynasty-ink-DESIGN.md /path/to/your/project/DESIGN.
 
 ### 风格选择方式
 
-- **未指定风格时**：Agent 会先从 50 种精选 DESIGN.md 中推荐 2-3 个适合当前场景的风格，并等待你选择。
-- **直接指定风格时**：Agent 会立即匹配对应 DESIGN.md，例如“用宋代水墨”“用 Art Deco”“用 42 电竞风”。
-- **精选库没有对应风格时**：Agent 会从 120+ 全球设计风格知识库中动态合成一份可执行设计规范。
+- **未指定风格时**：Agent 先从 50 种精选风格中推荐 2-3 个方向，并等待你选择。
+- **直接指定风格时**：Agent 立即匹配对应 DESIGN.md，例如“用宋代水墨”“用 Art Deco”“用 42 电竞风”。
+- **精选库没有对应风格时**：Agent 从 120+ 风格知识库中提取特征，动态合成一份可执行设计规范。
+- **需要图片时**：Agent 会判断是否使用用户素材、Unsplash、生成式图片、SVG 图示或图案纹理，并在交付中说明来源与处理方式。
 - **回复方式**：你可以回复编号、风格名、中文描述，或直接说“你来定”。
 
 ---
@@ -141,7 +145,7 @@ design-style-skill/
 
 ## DESIGN.md 格式说明
 
-每个文件遵循 9 节统一结构：
+每个精选风格遵循统一结构，方便 Agent 快速读取并落地：
 
 ```
 ## 1. Visual Theme & Atmosphere  — 风格定位与氛围
@@ -159,7 +163,7 @@ design-style-skill/
 
 ## 单独使用（不安装 Skill）
 
-从 `references/styles/` 取出任意 DESIGN.md，直接粘贴给 AI 提示词：
+从 `references/styles/` 取出任意 DESIGN.md，直接粘贴给 Agent：
 
 ```
 以下是设计规范，请按照其中的颜色、字体、组件样式实现一个 SaaS 产品落地页：
