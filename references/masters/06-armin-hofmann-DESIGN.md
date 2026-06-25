@@ -1,3 +1,18 @@
+---
+version: alpha
+name: "Armin Hofmann Method"
+colors:
+  surface: "#F5F5F2"
+  on-surface: "#111111"
+  primary: "#CC0000"
+  on-primary: "#FFFFFF"
+  text-muted: "#5F5F59"
+  mid-gray: "#8A8A84"
+  light-gray: "#D6D6D0"
+rounded:
+  none: 0px
+---
+
 # Design System: Armin Hofmann Method
 # 阿明·霍夫曼设计方法
 
@@ -21,6 +36,13 @@ Light gray:   #D6D6D0
 Accent red:   #CC0000
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F5F5F2` | 17.3:1 | AAA |
+| Text muted | `#5F5F59` | `#F5F5F2` | 5.9:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Helvetica Neue`, `Arial`, `Inter`, sans-serif; weight 500-700.
@@ -40,6 +62,14 @@ Accent red:   #CC0000
 - 使用高对比摄影、局部裁切、单个抽象形。
 - 图标保持几何、粗细统一，避免彩色插画。
 - 可以把图片当作黑白形体，而不是普通配图。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

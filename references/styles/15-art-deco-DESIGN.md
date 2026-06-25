@@ -1,3 +1,53 @@
+---
+version: alpha
+name: "Art Deco"
+colors:
+  surface: "#0A0A0A"
+  surface-variant: "#111111"
+  on-surface: "#F5F0E8"
+  primary: "#8B6914"
+  on-primary: "#FFFFFF"
+  accent: "#C9A84C"
+  charcoal: "#1E1E1E"
+  bright-gold: "#D4AF37"
+  pale-gold: "#E8C97A"
+  champagne: "#F0E4C4"
+  deep-teal: "#0D3B3E"
+  deep-burgundy: "#5C1A1A"
+typography:
+  josefin-sans:
+    fontFamily: "Jost"
+    fontSize: 24px
+    fontWeight: 300
+rounded:
+  none: 0px
+spacing:
+  card-padding: 40px
+  section-padding: 80px
+  max-width: 960px
+components:
+  button:
+    backgroundColor: "transparent"
+    textColor: "{colors.accent}"
+    border: "1px solid {colors.accent}"
+    padding: "14px 40px"
+    rounded: "0px"
+    typography: "Josefin Sans 12px weight 300 uppercase letter-spacing 4px"
+    hover: "background rgba(201,168,76,0.1)"
+  filled-button:
+    backgroundColor: "linear-gradient(135deg, {colors.accent}, {colors.primary})"
+    textColor: "{colors.surface}"
+    typography: "Josefin Sans 12px weight 600 uppercase letter-spacing 3px"
+    border: "none, border-radius: 0px, padding: 14px 40px"
+  content-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid rgba(201,168,76,0.3)"
+    rounded: "0px"
+    padding: "32px"
+  art-deco-divider:
+    textColor: "{colors.accent}"
+---
+
 # Design System: Art Deco
 # 装饰艺术风格
 
@@ -45,6 +95,15 @@ Where Bauhaus says "form follows function," Art Deco says "function deserves cer
 - **Deep Burgundy** (`#5C1A1A`): Warm rich panel alternative.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Noir | `#0A0A0A` | `#0A0A0A` | 1:1 | FAIL |
+| Charcoal | `#1E1E1E` | `#0A0A0A` | 1.2:1 | FAIL |
+| Burnished Gold | `#C9A84C` | `#0A0A0A` | 8.7:1 | AAA |
+| Ivory | `#F5F0E8` | `#0A0A0A` | 17.5:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -152,12 +211,28 @@ Lines: 1px, extend to panel edges or fixed width
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| card-padding | 40px |
+| section-padding | 80px |
+| max-width | 960px |
+
 ## 6. Depth & Elevation
 
 Art Deco uses layered frames, not shadows:
 - Multiple nested borders create perceived depth
 - Gold inner glow: `box-shadow: inset 0 0 20px rgba(201,168,76,0.1)`
 - Background texture: subtle radial gradient from center (#111111 → #0A0A0A)
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

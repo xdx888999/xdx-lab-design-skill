@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Raymond Loewy Method"
+colors:
+  surface: "#F7F4EC"
+  on-surface: "#101820"
+  primary: "#B91C1C"
+  on-primary: "#FFFFFF"
+  text-muted: "#5E6670"
+  chrome: "#C8D2D9"
+  gold: "#C7A24B"
+  line: "#DCD8CE"
+rounded:
+  none: 0px
+---
+
 # Design System: Raymond Loewy Method
 # 雷蒙德·洛维设计方法
 
@@ -23,6 +39,13 @@ Gold:         #C7A24B
 Line:         #DCD8CE
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#101820` | `#F7F4EC` | 16.3:1 | AAA |
+| Text muted | `#5E6670` | `#F7F4EC` | 5.3:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Avenir`, `Montserrat`, `Inter`, sans-serif; weight 600-800.
@@ -42,6 +65,14 @@ Line:         #DCD8CE
 - 使用高质量产品图、金属材质、剖面图、流线轮廓。
 - 图标使用简化工业符号，不使用复杂插画。
 - 可把产品 silhouette 作为主视觉。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

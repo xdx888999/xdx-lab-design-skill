@@ -1,3 +1,57 @@
+---
+version: alpha
+name: "Tang Dynasty Splendor"
+colors:
+  surface: "#F0DFA0"
+  on-surface: "#0D0805"
+  primary: "#3D1200"
+  on-primary: "#FFFFFF"
+  accent: "#E8C456"
+  error: "#C43B2A"
+  midnight-jade: "#0A1A15"
+  imperial-gold: "#C9A84C"
+  dark-gold: "#8B6B2A"
+  lapis-blue: "#2B5BA8"
+  malachite: "#2D7A5A"
+  jadeite-white: "#E8EDE5"
+typography:
+  emperor-title:
+    fontFamily: "Noto Serif SC"
+    fontSize: 72px
+    fontWeight: 700
+  sub-heading:
+    fontFamily: "Noto Serif SC"
+    fontSize: 24px
+    fontWeight: 600
+  caption:
+    fontFamily: "Noto Serif SC"
+    fontSize: 13px
+    fontWeight: 300
+rounded:
+  none: 0px
+spacing:
+  section-padding: 80px
+components:
+  card:
+    backgroundColor: "rgba(201,168,76,0.06)"
+    border: "1.5px solid {colors.accent}"
+    rounded: "0px"
+    padding: "28px 32px"
+    shadow: "0 0 24px rgba(201,168,76,0.2)"
+  button:
+    backgroundColor: "transparent"
+    textColor: "{colors.imperial-gold}"
+    rounded: "0px"
+    padding: "12px 36px"
+    typography: "Noto Serif SC 600 14px letter-spacing: 0.12em"
+    hover: "background rgba(201,168,76,0.1)"
+    border: "1.5px solid {colors.imperial-gold}"
+  ornamental-divider:
+    textColor: "{colors.imperial-gold}"
+  pattern-border:
+    border: "3px solid {colors.imperial-gold}"
+---
+
 # Design System: Tang Dynasty Splendor
 # 唐代华彩风格
 
@@ -44,6 +98,16 @@ This design system captures Tang visual language: rich jewel tones against dark 
 - **Jadeite White** (`#E8EDE5`): Off-white for body text on dark.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Imperial Gold | `#C9A84C` | `#F0DFA0` | 1.7:1 | FAIL |
+| Pale Gold | `#F0DFA0` | `#F0DFA0` | 1:1 | FAIL |
+| Lapis Blue | `#2B5BA8` | `#F0DFA0` | 5:1 | AA |
+| Malachite | `#2D7A5A` | `#F0DFA0` | 3.9:1 | AA-large |
+| Jadeite White | `#E8EDE5` | `#F0DFA0` | 1.1:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -123,6 +187,12 @@ border: 3px solid #C9A84C
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -131,6 +201,14 @@ border: 3px solid #C9A84C
 | Content | `rgba(201,168,76,0.06)` panel |
 | Elevated | `rgba(201,168,76,0.12)` + gold border |
 | Glow | `box-shadow: 0 0 20px rgba(232,196,86,0.3)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

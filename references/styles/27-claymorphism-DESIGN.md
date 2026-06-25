@@ -1,3 +1,63 @@
+---
+version: alpha
+name: "Claymorphism / Clay UI"
+colors:
+  surface: "#F7F5FF"
+  on-surface: "#8B5CF6"
+  primary: "#3D8EFF"
+  on-primary: "#111111"
+  accent: "#FF4D8F"
+  success: "#2DCA72"
+  clay-orange: "#FF7A3D"
+  clay-yellow: "#FFD600"
+  clay-teal: "#00C9B8"
+typography:
+  h2:
+    fontFamily: "Nunito"
+    fontSize: 28px
+    fontWeight: 700
+rounded:
+  none: 16px
+  sm: 20px
+  md: 28px
+  lg: 100px
+components:
+  clay-button:
+    backgroundColor: "linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%), {colors.primary};"
+    textColor: "#FFFFFF;"
+    padding: "14px 28px;"
+    rounded: "16px;"
+    border: "3px solid #1A6FE0; /* darker outline */"
+    typography: "Nunito 16px weight 700;"
+    hover: "transform translateY(-2px);"
+    shadow: "0 4px 0 #1A6FE0, 0 6px 12px rgba(61,142,255,0.3);"
+    active: "transform translateY(4px);"
+  clay-card:
+    backgroundColor: "linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 20%), #FFFFFF;"
+    rounded: "28px;"
+    border: "3px solid #E0E0F0;"
+    padding: "28px;"
+  clay-icon-button:
+    width: "64px; height: 64px;"
+    rounded: "20px;"
+    backgroundColor: "{colors.primary};"
+    border: "3px solid #1A6FE0;"
+    shadow: "0 6px 0 #1A6FE0, 0 8px 16px rgba(61,142,255,0.3);"
+  clay-toggle:
+    backgroundColor: "{colors.success};"
+    border: "3px solid #1AA558;"
+    shadow: "inset 0 2px 0 rgba(255,255,255,0.3), 0 4px 0 #1AA558;"
+    rounded: "100px;"
+  clay-input:
+    backgroundColor: "{colors.surface};"
+    border: "3px solid #D4D0FF;"
+    rounded: "16px;"
+    shadow: "inset 0 4px 8px rgba(0,0,0,0.06); /* recessed — not raised */"
+    padding: "14px 16px;"
+    typography: "Nunito 15px weight 500;"
+    focus: "border-color {colors.on-surface}; box-shadow: inset 0 4px 8px rgba(0,0,0,0.06), 0 0 0 4px rgba(139,92,246,0.15);"
+---
+
 # Design System: Claymorphism / Clay UI
 # 黏土形态主义风格
 
@@ -45,6 +105,12 @@ Each clay element uses a shadow derived from its own color:
 - The "0 8px 0" creates the 3D raised effect (thick bottom shadow = physical depth)
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Clay Pink | `#FF4D8F` | `#F7F5FF` | 2.9:1 | FAIL |
 
 ## 3. Typography Rules
 

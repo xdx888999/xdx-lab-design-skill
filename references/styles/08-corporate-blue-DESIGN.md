@@ -1,3 +1,82 @@
+---
+version: alpha
+name: "Corporate Blue"
+colors:
+  surface: "#FFFFFF"
+  surface-variant: "#EEF0F3"
+  on-surface: "#001F4E"
+  primary: "#0055A5"
+  on-primary: "#FFFFFF"
+  accent: "#5C9EEB"
+  error: "#C7000B"
+  success: "#006B3C"
+  warning: "#9E5C00"
+  off-white: "#F4F6F8"
+  mid-gray: "#D0D5DC"
+  blue-700: "#003B7A"
+  blue-500: "#0F62FE"
+  blue-100: "#E8F1FB"
+  heading: "#1A2332"
+  body: "#3D4F61"
+  secondary: "#6B7A8D"
+  muted: "#9BA8B5"
+typography:
+  115:
+    fontFamily: "IBM Plex Sans"
+    fontSize: 5px
+    fontWeight: 1
+  h2:
+    fontFamily: "IBM Plex Sans"
+    fontSize: 28px
+    fontWeight: 600
+  body:
+    fontFamily: "IBM Plex Sans"
+    fontSize: 16px
+    fontWeight: 400
+  1:
+    fontFamily: "IBM Plex Sans"
+    fontSize: 2px
+    fontWeight: 3
+rounded:
+  none: 0px
+  default: 4px
+spacing:
+  base: 8px
+  card-padding: 24px
+  section-padding: 64px
+  max-width: 1200px
+components:
+  primary-button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.on-primary}"
+    padding: "12px 24px"
+    rounded: "4px"
+    border: "none"
+    typography: "IBM Plex Sans 15px weight 500"
+    height: "44px"
+    hover: "background {colors.blue-700}"
+    focus: "outline 2px solid {colors.primary} offset 2px"
+  ghost-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.primary}"
+    padding: "11px 23px"
+    border: "1px solid {colors.primary}"
+    rounded: "4px"
+    typography: "IBM Plex Sans 15px weight 500"
+    hover: "background {colors.blue-100}"
+  card:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.mid-gray}"
+    rounded: "4px"
+    padding: "24px"
+    shadow: "0 2px 4px rgba(0,0,0,0.06)"
+  data-table:
+    typography: "14px weight 400 {colors.body}"
+  navigation:
+    backgroundColor: "{colors.blue-700} (dark blue header)"
+    height: "64px"
+---
+
 # Design System: Corporate Blue
 # 企业标准蓝风格
 
@@ -55,6 +134,20 @@ This is not boring design — it is disciplined design. Every element is where i
 - **Info** (`#0055A5`): Blue — informational (same as brand blue).
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Blue 700 | `#003B7A` | `#FFFFFF` | 11:1 | AAA |
+| Blue 600 | `#0055A5` | `#FFFFFF` | 7.4:1 | AAA |
+| Blue 500 | `#0F62FE` | `#FFFFFF` | 5:1 | AA |
+| Blue 300 | `#5C9EEB` | `#FFFFFF` | 2.8:1 | FAIL |
+| Heading | `#1A2332` | `#FFFFFF` | 15.8:1 | AAA |
+| Body | `#3D4F61` | `#FFFFFF` | 8.4:1 | AAA |
+| Secondary | `#6B7A8D` | `#FFFFFF` | 4.4:1 | AA-large |
+| Muted | `#9BA8B5` | `#FFFFFF` | 2.4:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -167,6 +260,15 @@ Error:   background #FDE8EA, border-left 4px solid #C7000B, color #1A2332
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 8px |
+| card-padding | 24px |
+| section-padding | 64px |
+| max-width | 1200px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment | Use |
@@ -175,6 +277,15 @@ Error:   background #FDE8EA, border-left 4px solid #C7000B, color #1A2332
 | Lifted | `0 2px 4px rgba(0,0,0,0.06)` | Hovered cards |
 | Raised | `0 4px 8px rgba(0,0,0,0.1)` | Modals, dropdowns |
 | Hero | `0 8px 24px rgba(0,21,74,0.15)` | Brand-tinted shadow for hero |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 4px | Default radius |
 
 ---
 

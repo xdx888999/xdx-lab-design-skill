@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Dieter Rams Method"
+colors:
+  surface: "#F5F3EE"
+  on-surface: "#111111"
+  primary: "#E53935"
+  on-primary: "#111111"
+  success: "#2F6F4E"
+  surface: "#FFFFFF"
+  text-muted: "#6F6F68"
+  line: "#D8D6CF"
+rounded:
+  none: 0px
+---
+
 # Design System: Dieter Rams Method
 # 迪特·拉姆斯设计方法
 
@@ -22,6 +38,13 @@ Accent:       #E53935  small operational highlight
 Success:      #2F6F4E  quiet positive state
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F5F3EE` | 17:1 | AAA |
+| Text muted | `#6F6F68` | `#F5F3EE` | 4.6:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Inter`, `Helvetica Neue`, `Arial`, sans-serif; weight 500-650.
@@ -41,6 +64,14 @@ Success:      #2F6F4E  quiet positive state
 - 产品图、线框图、爆炸图、剖面图优先；图片背景尽量干净。
 - 图标使用单线或实体几何，轮廓要可识别，不做拟物高光。
 - 可加入小红点、小刻度、网格线作为功能定位，不要把 accent 大面积铺开。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

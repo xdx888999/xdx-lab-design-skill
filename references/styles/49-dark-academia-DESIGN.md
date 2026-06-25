@@ -1,3 +1,56 @@
+---
+version: alpha
+name: "Dark Academia"
+colors:
+  surface: "#1A1208"
+  surface-variant: "#2C1F0E"
+  on-surface: "#FAF0DC"
+  primary: "#8B1A1A"
+  on-primary: "#FFFFFF"
+  accent: "#E0B860"
+  oak: "#3D2E1A"
+  parchment: "#F5EDD8"
+  cream: "#EDE3CC"
+  scholar-gold: "#C8A050"
+  gold-dim: "#8A6C30"
+  crimson-light: "#C43A3A"
+  faded-parchment: "#C8B89A"
+  muted-scholar: "#8A7858"
+typography:
+  sub-heading:
+    fontFamily: "Cormorant Garamond"
+    fontSize: 24px
+    fontWeight: 600
+  caption:
+    fontFamily: "Cormorant Garamond"
+    fontSize: 13px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  section-padding: 100px
+components:
+  card:
+    backgroundColor: "{colors.surface-variant} walnut"
+    border: "1px solid rgba(200,160,80,0.3)  ← gold subtle"
+    rounded: "0px"
+    padding: "28px 32px"
+    hover: "border-color rgba(200,160,80,0.6)"
+  quote-block:
+    typography: "Cormorant Garamond 24px italic weight 300"
+    textColor: "{colors.parchment}"
+  button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.scholar-gold}"
+    rounded: "0px"
+    padding: "12px 32px"
+    typography: "Cormorant Garamond 600 15px letter-spacing: 1px"
+    hover: "background rgba(200,160,80,0.1)"
+    border: "1px solid {colors.scholar-gold}"
+  divider:
+    textColor: "{colors.scholar-gold} or {colors.gold-dim}"
+---
+
 # Design System: Dark Academia
 # 暗系学院派风格
 
@@ -53,6 +106,16 @@ The visual language: warm dark backgrounds (not cold black — dark like aged wo
 - **Dark on Light** (`#1A1208`): Text on parchment backgrounds.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Scholar Gold | `#C8A050` | `#1A1208` | 7.6:1 | AAA |
+| Gold Dim | `#8A6C30` | `#1A1208` | 3.8:1 | AA-large |
+| Academic Crimson | `#8B1A1A` | `#1A1208` | 2:1 | FAIL |
+| Faded Parchment | `#C8B89A` | `#1A1208` | 9.5:1 | AAA |
+| Muted Scholar | `#8A7858` | `#1A1208` | 4.3:1 | AA-large |
 
 ## 3. Typography Rules
 
@@ -151,6 +214,12 @@ Never a plain HR — always ornamented
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 100px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -159,6 +228,14 @@ Never a plain HR — always ornamented
 | Surface | `#2C1F0E` walnut |
 | Raised | `#3D2E1A` oak |
 | Candlelight glow | `box-shadow: 0 0 40px rgba(200,160,80,0.15)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

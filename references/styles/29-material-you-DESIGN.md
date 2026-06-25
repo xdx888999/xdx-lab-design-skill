@@ -1,3 +1,98 @@
+---
+version: alpha
+name: "Material You / Material Design 3"
+colors:
+  surface: "#E8DEF8"
+  on-surface: "#21005D"
+  primary: "#6750A4"
+  on-primary: "#FFFFFF"
+  primary-container: "#EADDFF"
+  secondary: "#625B71"
+  on-secondary-container: "#1D192B"
+  tertiary: "#7D5260"
+  tertiary-container: "#FFD8E4"
+  background: "#FFFBFE"
+  surface-variant: "#E7E0EC"
+  surface-container-low: "#F7F2FA"
+  surface-container-high: "#ECE6F0"
+  on-background: "#1C1B1F"
+  on-surface-variant: "#49454F"
+  outline: "#79747E"
+  outline-variant: "#CAC4D0"
+  surface-container: "#F3EDF7"
+typography:
+  display-large:
+    fontFamily: "Roboto Flex"
+    fontSize: 57px
+    fontWeight: 400
+  display-small:
+    fontFamily: "Roboto Flex"
+    fontSize: 36px
+    fontWeight: 400
+  headline-medium:
+    fontFamily: "Roboto Flex"
+    fontSize: 28px
+    fontWeight: 400
+  title-large:
+    fontFamily: "Roboto Flex"
+    fontSize: 22px
+    fontWeight: 400
+  title-small:
+    fontFamily: "Roboto Flex"
+    fontSize: 14px
+    fontWeight: 500
+  body-medium:
+    fontFamily: "Roboto Flex"
+    fontSize: 14px
+    fontWeight: 400
+  label-large:
+    fontFamily: "Roboto Flex"
+    fontSize: 14px
+    fontWeight: 500
+  label-small:
+    fontFamily: "Roboto Flex"
+    fontSize: 11px
+    fontWeight: 500
+rounded:
+  none: 8px
+  sm: 12px
+  md: 16px
+  lg: 28px
+  xl: 100px
+components:
+  fab:
+    backgroundColor: "{colors.primary-container} (Primary Container)"
+    textColor: "{colors.on-surface} (On Primary Container)"
+    width: "56px, height: 56px"
+    rounded: "16px"
+    shadow: "elevation 3 (0 4px 8px rgba(0,0,0,0.15))"
+  filled-button:
+    backgroundColor: "{colors.primary} (Primary)"
+    textColor: "{colors.on-primary} (On Primary)"
+    padding: "10px 24px"
+    rounded: "100px (pill in M3)"
+    border: "none"
+    height: "40px"
+    typography: "Roboto 14px weight 500 (Label Large)"
+    hover: "state layer rgba(255,255,255,0.08) on top"
+  tonal-button:
+    backgroundColor: "{colors.primary-container} (Primary Container)"
+    textColor: "{colors.on-surface} (On Primary Container)"
+    padding: "10px 24px"
+    rounded: "100px"
+    height: "40px"
+    typography: "Roboto 14px weight 500"
+    hover: "state layer rgba(33,0,93,0.08)"
+  navigation-bar:
+    backgroundColor: "{colors.background}"
+    height: "80px"
+  chip:
+    border: "1px solid {colors.outline-variant}"
+    rounded: "8px (M3 chips are slightly less round)"
+    padding: "6px 16px, height: 32px"
+    typography: "Roboto 14px weight 500 {colors.on-surface-variant}"
+---
+
 # Design System: Material You / Material Design 3
 # Material You 动态色彩风格
 
@@ -61,6 +156,18 @@ Material You uses a seed color to generate the full scheme. Here is a default bl
 - **Outline Variant** (`#CAC4D0`): Subtle borders.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Primary | `#6750A4` | `#E8DEF8` | 5:1 | AA |
+| On Primary | `#FFFFFF` | `#E8DEF8` | 1.3:1 | FAIL |
+| Primary Container | `#EADDFF` | `#E8DEF8` | 1:1 | FAIL |
+| On Primary Container | `#21005D` | `#E8DEF8` | 13.3:1 | AAA |
+| Secondary | `#625B71` | `#E8DEF8` | 5:1 | AA |
+| Secondary Container | `#E8DEF8` | `#E8DEF8` | 1:1 | FAIL |
+| On Secondary Container | `#1D192B` | `#E8DEF8` | 13.2:1 | AAA |
 
 ## 3. Typography Rules
 

@@ -1,3 +1,97 @@
+---
+version: alpha
+name: "Luxury Premium"
+colors:
+  surface: "#FAFAF8"
+  surface-variant: "#FFFFFF"
+  on-surface: "#111111"
+  primary: "#B8973A"
+  on-primary: "#111111"
+  deep-charcoal: "#1A1A1A"
+  medium-gray: "#6B6B6B"
+  light-gray: "#ABABAB"
+  faint-gray: "#E8E8E4"
+  champagne-gold: "#C9A96E"
+  warm-nude: "#D4B896"
+  muted-rose: "#C4917A"
+  platinum: "#C8C8C8"
+typography:
+  09:
+    fontSize: 5px
+    fontWeight: 400
+  10:
+    fontSize: 3px
+    fontWeight: 400
+  11:
+    fontSize: 5px
+    fontWeight: 400
+  12:
+    fontSize: 5px
+    fontWeight: 400
+  13:
+    fontSize: 2px
+    fontWeight: 400
+  18:
+    fontSize: 5px
+    fontWeight: 400
+  17:
+    fontSize: 5px
+    fontWeight: 400
+  15:
+    fontSize: 8px
+    fontWeight: 400
+  1:
+    fontSize: 4px
+    fontWeight: 400
+  1:
+    fontSize: 1px
+    fontWeight: 400
+  1:
+    fontSize: 3px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  base: 8px
+  section-padding: 120px
+  max-width: 1400px
+  gutter: 32px
+components:
+  primary-button:
+    backgroundColor: "{colors.on-primary}"
+    textColor: "{colors.surface}"
+    padding: "14px 40px"
+    rounded: "0px (sharp edges)"
+    border: "none"
+    typography: "Jost 12px weight 400 uppercase letter-spacing 3px"
+    height: "48px"
+    hover: "background {colors.deep-charcoal}, opacity 0.85"
+  ghost-outline-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.on-primary}"
+    padding: "13px 39px"
+    border: "1px solid {colors.on-primary}"
+    rounded: "0px"
+    typography: "Jost 12px weight 400 uppercase letter-spacing 3px"
+    hover: "background {colors.on-primary}, color {colors.surface}"
+  product-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "none (no border — luxury uses whitespace for separation)"
+    padding: "0"
+  navigation:
+    backgroundColor: "transparent (on hero) → {colors.surface} on scroll"
+    height: "72px"
+  divider:
+    height: "1px"
+    backgroundColor: "{colors.faint-gray}"
+  form-newsletter:
+    border: "none"
+    rounded: "0"
+    padding: "12px 0"
+    typography: "Jost 14px weight 300 letter-spacing 1px"
+    backgroundColor: "transparent"
+---
+
 # Design System: Luxury Premium
 # 奢华高端风格
 
@@ -51,6 +145,17 @@ Chanel, Hermès, Bottega Veneta, Rolex — these brands share a visual language 
 - Multiple accent colors simultaneously
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Ivory | `#FAFAF8` | `#FAFAF8` | 1:1 | FAIL |
+| Warm Black | `#111111` | `#FAFAF8` | 18.1:1 | AAA |
+| Deep Charcoal | `#1A1A1A` | `#FAFAF8` | 16.7:1 | AAA |
+| Medium Gray | `#6B6B6B` | `#FAFAF8` | 5.1:1 | AA |
+| Light Gray | `#ABABAB` | `#FAFAF8` | 2.2:1 | FAIL |
+| Muted Rose | `#C4917A` | `#FAFAF8` | 2.6:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -180,6 +285,15 @@ Submit button: full-width or side-by-side, black #111111 background
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 8px |
+| section-padding | 120px |
+| max-width | 1400px |
+| gutter | 32px |
+
 ## 6. Depth & Elevation
 
 Luxury design avoids shadow almost entirely. Depth is created through:
@@ -193,6 +307,14 @@ Luxury design avoids shadow almost entirely. Depth is created through:
 | Subtle | `0 1px 0 rgba(0,0,0,0.05)` | Very light separator |
 | Overlay | `rgba(0,0,0,0.4)` | Image overlay for text legibility |
 | Modal | `0 40px 80px rgba(0,0,0,0.15)` | Lightbox, size guide overlay |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

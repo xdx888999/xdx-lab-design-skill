@@ -1,3 +1,49 @@
+---
+version: alpha
+name: "Bauhaus"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#000000"
+  primary: "#1B5FA0"
+  on-primary: "#FFFFFF"
+  bauhaus-red: "#E63329"
+  bauhaus-yellow: "#F7C948"
+  orange: "#F08030"
+  green: "#2D7A3A"
+  violet: "#6B3A8C"
+typography:
+  h2:
+    fontFamily: "Futura PT"
+    fontSize: 36px
+    fontWeight: 600
+  label:
+    fontFamily: "Futura PT"
+    fontSize: 11px
+    fontWeight: 700
+rounded:
+  none: 0px
+spacing:
+  section-padding: 64px
+  max-width: 1200px
+components:
+  button:
+    backgroundColor: "{colors.bauhaus-red} (or any primary)"
+    textColor: "{colors.on-primary}"
+    padding: "14px 32px"
+    rounded: "0px (always rectangular)"
+    border: "none"
+    typography: "Futura/Jost 14px weight 700 uppercase letter-spacing 2px"
+    hover: "background darken 10%"
+  card:
+    backgroundColor: "{colors.on-primary}"
+    border: "2px solid {colors.on-surface}"
+    rounded: "0px"
+    padding: "32px"
+  divider:
+    height: "4px (thick — structural)"
+    backgroundColor: "{colors.on-surface} or primary color"
+---
+
 # Design System: Bauhaus
 # 包豪斯风格
 
@@ -47,6 +93,12 @@ The visual language is built on three shapes (circle, square, triangle), three p
 - Triangle = Yellow (sharp, pointing, light)
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -146,6 +198,13 @@ margin: 32px 0
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 64px |
+| max-width | 1200px |
+
 ## 6. Depth & Elevation
 
 Bauhaus is 2D. Depth is created through:
@@ -154,6 +213,14 @@ Bauhaus is 2D. Depth is created through:
 - **Overlap**: Shapes overlapping each other
 
 No shadows, no gradients, no blur effects.
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

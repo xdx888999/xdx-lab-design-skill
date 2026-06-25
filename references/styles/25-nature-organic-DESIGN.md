@@ -1,3 +1,71 @@
+---
+version: alpha
+name: "Nature Organic"
+colors:
+  surface: "#FAF6F0"
+  surface-variant: "#E2D5C0"
+  on-surface: "#2A2218"
+  primary: "#4A8B3A"
+  on-primary: "#111111"
+  linen: "#F0E8D8"
+  border-warm: "#CBBFA8"
+  forest: "#2D5A27"
+  sage: "#8FAE8A"
+  mint-light: "#C8DFC4"
+  ochre: "#C4832A"
+  clay: "#9C5A3C"
+  terracotta: "#C4614A"
+  bark: "#6B4226"
+  body: "#4A3B2A"
+  muted: "#7A6B55"
+  color: "#FFFFFF"
+typography:
+  caveat:
+    fontFamily: "Source Serif 4"
+    fontSize: 28px
+    fontWeight: 400
+rounded:
+  none: 16px
+  sm: 100px
+spacing:
+  section-padding: 24px
+  max-width: 1200px
+  gutter: 24px
+components:
+  primary-button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.color}"
+    padding: "14px 28px"
+    rounded: "100px (pill — organic, no hard corners)"
+    border: "none"
+    typography: "Jost 15px weight 500"
+    shadow: "0 4px 12px rgba(74,139,58,0.25)"
+    hover: "background {colors.forest}"
+  ghost-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.primary}"
+    border: "2px solid {colors.primary}"
+    rounded: "100px"
+    padding: "12px 26px"
+    typography: "Jost 15px weight 500"
+    hover: "background rgba(74,139,58,0.08)"
+  product-card:
+    backgroundColor: "{colors.surface}"
+    border: "1px solid {colors.border-warm}"
+    rounded: "16px (slightly generous — organic)"
+  ingredientfeature-tag:
+    backgroundColor: "{colors.mint-light}"
+    textColor: "{colors.forest}"
+    rounded: "100px"
+    padding: "4px 12px"
+    typography: "Jost 12px weight 500"
+  section-with-texture:
+    backgroundColor: "{colors.linen}"
+    padding: "80px 0"
+  handwritten-accent:
+    typography: "Caveat 28px weight 400 {colors.primary}"
+---
+
 # Design System: Nature Organic
 # 自然有机风格
 
@@ -50,6 +118,17 @@ This is not the corporate green of sustainability-washing — it is the genuine 
 - **Muted** (`#7A6B55`): Captions, metadata.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Forest | `#2D5A27` | `#FAF6F0` | 7.5:1 | AAA |
+| Sage | `#8FAE8A` | `#FAF6F0` | 2.3:1 | FAIL |
+| Bark | `#6B4226` | `#FAF6F0` | 8:1 | AAA |
+| Primary | `#2A2218` | `#FAF6F0` | 14.6:1 | AAA |
+| Body | `#4A3B2A` | `#FAF6F0` | 10:1 | AAA |
+| Muted | `#7A6B55` | `#FAF6F0` | 4.8:1 | AA |
 
 ## 3. Typography Rules
 
@@ -162,6 +241,14 @@ Used for: "Fresh daily", product callouts, section labels
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 24px |
+| max-width | 1200px |
+| gutter | 24px |
+
 ## 6. Depth & Elevation
 
 Organic depth — no harsh shadows:
@@ -169,6 +256,15 @@ Organic depth — no harsh shadows:
 - Product cards: `0 4px 16px rgba(74,59,42,0.08)`
 - Hover: `0 8px 24px rgba(74,59,42,0.12)`
 - No cool/blue-tinted shadows
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 16px | Square elements |
+| sm | 100px | Inputs, tags |
 
 ---
 

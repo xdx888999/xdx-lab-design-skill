@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Shigeo Fukuda Method"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#111111"
+  primary: "#0057B8"
+  on-primary: "#FFFFFF"
+  text-muted: "#606060"
+  red: "#E31B23"
+  soft-gray: "#F2F2F2"
+  line: "#D6D6D6"
+rounded:
+  none: 0px
+---
+
 # Design System: Shigeo Fukuda Method
 # 福田繁雄设计方法
 
@@ -22,6 +38,13 @@ Soft gray:    #F2F2F2
 Line:         #D6D6D6
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#FFFFFF` | 18.9:1 | AAA |
+| Text muted | `#606060` | `#FFFFFF` | 6.3:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Helvetica Neue`, `Inter`, `Arial`, sans-serif; weight 600-800.
@@ -41,6 +64,14 @@ Line:         #D6D6D6
 - 使用原创错视图形、负空间、影子和符号替换。
 - 图标应可在黑白状态成立。
 - 避免真实照片，除非照片能形成明确视觉悖论。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

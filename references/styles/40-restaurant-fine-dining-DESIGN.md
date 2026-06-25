@@ -1,3 +1,51 @@
+---
+version: alpha
+name: "Restaurant Fine Dining"
+colors:
+  surface: "#FAF7F0"
+  surface-variant: "#F2EDE4"
+  on-surface: "#0F0F0E"
+  primary: "#1A1614"
+  on-primary: "#FFFFFF"
+  aged-cream: "#E8E0D4"
+  charcoal: "#1C1A18"
+  deep-warm-dark: "#2A2520"
+  gold-ochre: "#B8902A"
+  terracotta: "#C0654A"
+  champagne: "#D4B896"
+  sage: "#6B7B5A"
+  body: "#4A4540"
+  muted: "#8A8580"
+  reverse: "#F5F0EA"
+typography:
+  dish-name:
+    fontFamily: "EB Garamond"
+    fontSize: 22px
+    fontWeight: 400
+  label:
+    fontFamily: "EB Garamond"
+    fontSize: 11px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  section-padding: 120px
+  margin: 120px
+components:
+  hero-cover:
+    textColor: "{colors.surface} (light on dark) or {colors.primary} (dark on light)"
+  reservation-cta:
+    backgroundColor: "{colors.primary} or {colors.gold-ochre}"
+    textColor: "{colors.surface}"
+    rounded: "0px"
+    padding: "14px 48px"
+    typography: "Inter 400 12px uppercase letter-spacing: 0.3em"
+    hover: "opacity 0.85 (fade, not transform)"
+  chefs-story-card:
+    backgroundColor: "{colors.surface-variant}"
+    padding: "32px 40px"
+---
+
 # Design System: Restaurant Fine Dining
 # 高端餐饮风格
 
@@ -50,6 +98,17 @@ The aesthetic draws from restaurant monographs, wine lists, and chef's tasting m
 - **Gold accent text** (`#B8902A`): Label, price, key detail.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Cream | `#FAF7F0` | `#FAF7F0` | 1:1 | FAIL |
+| Void Black | `#0F0F0E` | `#FAF7F0` | 17.9:1 | AAA |
+| Primary | `#1A1614` | `#FAF7F0` | 16.8:1 | AAA |
+| Body | `#4A4540` | `#FAF7F0` | 8.9:1 | AAA |
+| Muted | `#8A8580` | `#FAF7F0` | 3.4:1 | AA-large |
+| Reverse | `#F5F0EA` | `#FAF7F0` | 1.1:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -126,12 +185,27 @@ No box-shadow
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 120px |
+| margin | 120px |
+
 ## 6. Depth & Elevation
 
 No shadows. Like a menu printed on stock paper, everything is flat:
 - Light mode: cream → warm paper → aged cream (background differentiation only)
 - Dark mode: void → charcoal → warm dark
 - One exception: food photography may have a subtle CSS drop-shadow if floating
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

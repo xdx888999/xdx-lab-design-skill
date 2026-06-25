@@ -1,3 +1,20 @@
+---
+version: alpha
+name: "April Greiman Method"
+colors:
+  surface: "#F3E8FF"
+  on-surface: "#111111"
+  primary: "#00AEEF"
+  on-primary: "#111111"
+  text-muted: "#5B5266"
+  magenta: "#FF2D95"
+  yellow: "#FFD100"
+  purple: "#8E44AD"
+  white: "#FFFFFF"
+rounded:
+  none: 0px
+---
+
 # Design System: April Greiman Method
 # 艾普丽尔·格雷曼设计方法
 
@@ -23,6 +40,13 @@ Purple:       #8E44AD
 White:        #FFFFFF
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F3E8FF` | 16:1 | AAA |
+| Text muted | `#5B5266` | `#F3E8FF` | 6.3:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Syne`, `Space Grotesk`, `Helvetica Neue`, sans-serif; weight 700-900.
@@ -42,6 +66,14 @@ White:        #FFFFFF
 - 使用身体局部、扫描图、电脑界面片段、色彩通道错位。
 - 图像可半透明、叠印、网点化、低分辨率化。
 - 图标可以像早期数字界面符号，但要原创。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

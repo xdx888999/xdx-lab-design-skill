@@ -1,3 +1,64 @@
+---
+version: alpha
+name: "Legal & Professional Authority"
+colors:
+  surface: "#FAFAF8"
+  surface-variant: "#0D2040"
+  on-surface: "#0D1421"
+  primary: "#2E5E9A"
+  on-primary: "#FFFFFF"
+  accent: "#B8962E"
+  light-gray: "#F5F5F4"
+  navy-mid: "#1A3660"
+  navy-tint: "#EBF0F8"
+  gold-light: "#D4AE52"
+  gold-tint: "#FBF5E6"
+  text-body: "#374151"
+  text-muted: "#6B7280"
+  border: "#E2E0DC"
+typography:
+  firm-name-hero:
+    fontSize: 64px
+    fontWeight: 700
+  h3-sub:
+    fontFamily: "Georgia"
+    fontSize: 24px
+    fontWeight: 600
+  navigation:
+    fontFamily: "Georgia"
+    fontSize: 14px
+    fontWeight: 500
+  small-label:
+    fontFamily: "Georgia"
+    fontSize: 11px
+    fontWeight: 600
+rounded:
+  none: 0px
+  sm: 2px
+spacing:
+  section-padding: 96px
+components:
+  card:
+    backgroundColor: "{colors.surface}"
+    border: "1px solid {colors.border}"
+    rounded: "0px  ← formality requires straight edges"
+    padding: "28px 32px"
+  button:
+    backgroundColor: "transparent"
+    textColor: "{colors.surface-variant}"
+    rounded: "2px  ← minimal rounding only"
+    padding: "12px 28px"
+    typography: "Inter 600 14px letter-spacing: 0.05em"
+    hover: "background {colors.navy-tint}"
+    border: "1.5px solid {colors.surface-variant}"
+  practice-area-card:
+    backgroundColor: "{colors.surface-variant}"
+    rounded: "0px"
+    padding: "32px"
+    textColor: "{colors.surface}"
+    hover: "background {colors.navy-mid}"
+---
+
 # Design System: Legal & Professional Authority
 # 法律专业权威风格
 
@@ -50,6 +111,16 @@ Reference points: Cravath Swaine & Moore's dark navy, Sullivan & Cromwell's seri
 - **Border** (`#E2E0DC`): Warm-toned borders — not cold gray.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Navy Mid | `#1A3660` | `#FAFAF8` | 11.5:1 | AAA |
+| Navy Light | `#2E5E9A` | `#FAFAF8` | 6.3:1 | AA |
+| Text Primary | `#0D1421` | `#FAFAF8` | 17.6:1 | AAA |
+| Text Body | `#374151` | `#FAFAF8` | 9.9:1 | AAA |
+| Text Muted | `#6B7280` | `#FAFAF8` | 4.6:1 | AA |
 
 ## 3. Typography Rules
 
@@ -151,6 +222,12 @@ No background color — stat floats in white space
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 96px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -160,6 +237,15 @@ No background color — stat floats in white space
 | Featured | Gold left stripe |
 | Dark Panels | `#0D2040` navy with `#FAFAF8` text |
 | Modal | White + `box-shadow: 0 20px 60px rgba(13,32,64,0.2)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| sm | 2px | Inputs, tags |
 
 ---
 

@@ -1,3 +1,41 @@
+---
+version: alpha
+name: "AI-Native Product"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#0D0B1A"
+  primary: "#6D28D9"
+  on-primary: "#FFFFFF"
+  surface: "#F8F7FF"
+  heading: "#1A1033"
+  border: "#E5E1F5"
+  heading: "#F0EEFF"
+  primary: "#9B72F5"
+typography:
+  h2:
+    fontFamily: "rgba(240,238,255,0.72)"
+    fontSize: 32px
+    fontWeight: 600
+rounded:
+  none: 12px
+  sm: 16px
+spacing:
+  max-width: 1100px
+components:
+  hero-cta-button:
+    backgroundColor: "linear-gradient(135deg, #7C3AED, #4F46E5)"
+    textColor: "{colors.on-primary}, padding: 14px 28px, border-radius: 12px"
+    border: "1px solid rgba(124,58,237,0.3)"
+    shadow: "0 0 30px rgba(124,58,237,0.3)"
+    typography: "Inter 16px weight 600"
+  capability-card:
+    backgroundColor: "rgba(124,58,237,0.06) (light) / rgba(255,255,255,0.06) (dark)"
+    border: "1px solid rgba(124,58,237,0.15)"
+    rounded: "16px, padding: 24px"
+  stat-benchmark-card:
+    backgroundColor: "{colors.surface}, border: 1px solid {colors.border}, border-radius: 12px, padding: 20px"
+---
+
 # Design System: AI-Native Product
 # AI 产品风格
 
@@ -50,6 +88,15 @@ The typography is bold but elegant. Hero headlines often use gradient text. The 
 - **Gradient Glow**: `radial-gradient(circle, rgba(124,58,237,0.3) 0%, transparent 70%)`
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Heading | `#1A1033` | `#FFFFFF` | 18:1 | AAA |
+| Primary Hover | `#6D28D9` | `#FFFFFF` | 7.1:1 | AAA |
+| Heading | `#F0EEFF` | `#FFFFFF` | 1.1:1 | FAIL |
+| Primary | `#9B72F5` | `#FFFFFF` | 3.4:1 | AA-large |
 
 ## 3. Typography Rules
 

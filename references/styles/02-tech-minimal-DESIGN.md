@@ -1,3 +1,108 @@
+---
+version: alpha
+name: "Tech Minimal"
+colors:
+  surface: "#FFFFFF"
+  surface-variant: "#FAFAFA"
+  on-surface: "#0A0A0A"
+  primary: "#0060D0"
+  on-primary: "#FFFFFF"
+  surface-raised: "#F5F5F5"
+  surface-border: "#E5E5E5"
+  body: "#404040"
+  muted: "#737373"
+  faint: "#A3A3A3"
+  surface: "#111111"
+  surface-raised: "#1A1A1A"
+  surface-border: "#262626"
+  heading: "#EDEDED"
+  muted: "#525252"
+  electric-blue: "#0070F3"
+  pure-purple: "#7C3AED"
+  vivid-green: "#16A34A"
+  sharp-orange: "#F97316"
+  minimal-red: "#DC2626"
+typography:
+  105:
+    fontFamily: "Inter"
+    fontSize: 2px
+    fontWeight: 400
+  h2:
+    fontFamily: "Inter"
+    fontSize: 36px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter"
+    fontSize: 16px
+    fontWeight: 400
+rounded:
+  none: 6px
+  sm: 8px
+  md: 10px
+spacing:
+  base: 4px
+  card-padding: 24px
+  section-padding: 80px
+  max-width: 1080px
+  gutter: 24px
+components:
+  primary-button:
+    backgroundColor: "{colors.on-surface} (light mode) / {colors.heading} (dark mode)"
+    textColor: "{colors.on-primary} / {colors.on-surface}"
+    padding: "10px 20px"
+    rounded: "8px"
+    border: "none"
+    typography: "14px Inter weight 500"
+    height: "40px"
+    hover: "opacity 0.85"
+  secondary-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.on-surface} / {colors.heading}"
+    padding: "10px 20px"
+    rounded: "8px"
+    border: "1px solid {colors.surface-border} / {colors.surface-border}"
+    typography: "14px Inter weight 500"
+    hover: "background {colors.surface-raised} / {colors.surface-raised}"
+  accent-button:
+    backgroundColor: "{colors.electric-blue}"
+    textColor: "{colors.on-primary}"
+    padding: "10px 20px"
+    rounded: "8px"
+    border: "none"
+    typography: "14px Inter weight 500"
+    hover: "background {colors.primary}"
+    shadow: "none (no glow — this is minimal)"
+  card:
+    backgroundColor: "{colors.on-primary} / {colors.surface}"
+    border: "1px solid {colors.surface-border} / {colors.surface-border}"
+    rounded: "10px"
+    padding: "24px"
+    shadow: "none (or 0 1px 3px rgba(0,0,0,0.06) max)"
+    hover: "border-color #D4D4D4 / {colors.body}"
+  input:
+    backgroundColor: "{colors.surface-variant} / {colors.surface}"
+    border: "1px solid {colors.surface-border} / {colors.surface-border}"
+    rounded: "8px"
+    padding: "10px 14px"
+    typography: "14px Inter"
+    textColor: "{colors.on-surface} / {colors.heading}"
+    focus: "border-color {colors.on-surface} / {colors.muted}, outline: none"
+  code-block:
+    backgroundColor: "{colors.surface-raised} / {colors.surface-raised}"
+    border: "1px solid {colors.surface-border} / {colors.surface-border}"
+    rounded: "8px"
+    padding: "16px 20px"
+    typography: "13px Geist Mono / JetBrains Mono"
+    textColor: "{colors.on-surface} / {colors.surface-border}"
+  badge:
+    backgroundColor: "{colors.surface-raised} / {colors.surface-raised}"
+    textColor: "{colors.muted} / {colors.faint}"
+    border: "1px solid {colors.surface-border} / {colors.surface-border}"
+    rounded: "6px"
+    padding: "2px 8px"
+    typography: "11px Inter weight 500 uppercase letter-spacing 0.5px"
+---
+
 # Design System: Tech Minimal
 # 科技极简风格
 
@@ -62,6 +167,18 @@ The defining characteristic is **controlled contrast**: headings that stop conve
 - **Focus Ring** (`rgba(0,112,243,0.25)`): Keyboard focus outline.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Heading | `#0A0A0A` | `#FFFFFF` | 19.8:1 | AAA |
+| Body | `#404040` | `#FFFFFF` | 10.4:1 | AAA |
+| Muted | `#737373` | `#FFFFFF` | 4.7:1 | AA |
+| Faint | `#A3A3A3` | `#FFFFFF` | 2.5:1 | FAIL |
+| Heading | `#EDEDED` | `#FFFFFF` | 1.2:1 | FAIL |
+| Muted | `#525252` | `#FFFFFF` | 7.8:1 | AAA |
+| Primary Hover | `#0060D0` | `#FFFFFF` | 5.9:1 | AA |
 
 ## 3. Typography Rules
 
@@ -200,6 +317,16 @@ font: 11px Inter weight 500 uppercase letter-spacing 0.5px
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 4px |
+| card-padding | 24px |
+| section-padding | 80px |
+| max-width | 1080px |
+| gutter | 24px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment | Use |
@@ -219,6 +346,16 @@ font: 11px Inter weight 500 uppercase letter-spacing 0.5px
 - 10px: Cards, containers (standard)
 - 12px: Featured cards, larger panels
 - Never pills/full-round on rectangles
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 6px | Square elements |
+| sm | 8px | Inputs, tags |
+| md | 10px | Cards, buttons |
 
 ---
 

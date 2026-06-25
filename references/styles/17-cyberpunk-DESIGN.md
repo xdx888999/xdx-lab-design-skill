@@ -1,3 +1,67 @@
+---
+version: alpha
+name: "Cyberpunk"
+colors:
+  surface: "#0A0A0F"
+  surface-variant: "#1A1A24"
+  on-surface: "#E0E0F0"
+  primary: "#FFE000"
+  on-primary: "#111111"
+  accent: "#00FFD1"
+  error: "#FF003C"
+  urban-dark: "#111118"
+  grid: "#22222E"
+  neon-orange: "#FF6B00"
+typography:
+  rajdhani:
+    fontFamily: "Rajdhani"
+    fontSize: 28px
+    fontWeight: 600
+  rajdhani:
+    fontFamily: "Rajdhani"
+    fontSize: 12px
+    fontWeight: 700
+rounded:
+  none: 0px
+components:
+  primary-button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    padding: "12px 28px"
+    rounded: "0px"
+    border: "none"
+    typography: "Rajdhani 15px weight 700 uppercase letter-spacing 2px"
+    hover: "background #FFD000, box-shadow 0 0 20px rgba(255,224,0,0.5)"
+    clipPath: "polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%)"
+  dangeralert-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.error}"
+    border: "1px solid {colors.error}"
+    shadow: "0 0 10px rgba(255,0,60,0.3)"
+    padding: "12px 28px, border-radius: 0px"
+    typography: "Rajdhani 15px weight 700 uppercase letter-spacing 2px"
+    hover: "background rgba(255,0,60,0.15)"
+  panel-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid rgba(255,224,0,0.2)"
+    rounded: "0px"
+    padding: "24px"
+  hazard-stripe:
+    backgroundColor: "repeating-linear-gradient("
+    height: "6px"
+    width: "100%"
+  glitch-text-effect:
+    textColor: "#0044FF;"
+    clipPath: "polygon(0 65%, 100% 65%, 100% 100%, 0 100%);"
+  terminal-block:
+    backgroundColor: "rgba(0,255,209,0.05)"
+    border: "1px solid rgba(0,255,209,0.3)"
+    typography: "Share Tech Mono 13px"
+    textColor: "{colors.accent}"
+    padding: "16px"
+    rounded: "0px"
+---
+
 # Design System: Cyberpunk
 # 赛博朋克风格
 
@@ -46,6 +110,15 @@ Inspired by Blade Runner, Ghost in the Shell, and Cyberpunk 2077, this design sy
 - Blue channel: `#0044FF` offset +2px
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Urban Dark | `#111118` | `#0A0A0F` | 1.1:1 | FAIL |
+| Warning Yellow | `#FFE000` | `#0A0A0F` | 15:1 | AAA |
+| Toxic Cyan | `#00FFD1` | `#0A0A0F` | 15.3:1 | AAA |
+| Ghost White | `#E0E0F0` | `#0A0A0F` | 15.1:1 | AAA |
 
 ## 3. Typography Rules
 

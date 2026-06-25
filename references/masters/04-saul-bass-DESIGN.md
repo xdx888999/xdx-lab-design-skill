@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Saul Bass Method"
+colors:
+  surface: "#F4E5CF"
+  on-surface: "#0B0B0B"
+  primary: "#F2B705"
+  on-primary: "#111111"
+  text-muted: "#5B5248"
+  red: "#D7261E"
+  green: "#2F5D50"
+  cream: "#FFF3D8"
+rounded:
+  none: 0px
+---
+
 # Design System: Saul Bass Method
 # 索尔·巴斯设计方法
 
@@ -22,6 +38,13 @@ Green:        #2F5D50
 Cream:        #FFF3D8
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#0B0B0B` | `#F4E5CF` | 15.9:1 | AAA |
+| Text muted | `#5B5248` | `#F4E5CF` | 6.2:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Oswald`, `Futura Condensed`, `Arial Narrow`, sans-serif; weight 700.
@@ -41,6 +64,14 @@ Cream:        #FFF3D8
 - 优先使用剪影、断裂形、手工纸边、粗线条符号。
 - 人物和物体只保留最能讲故事的特征。
 - 可把图形拆成可运动的层，方便做片头或演示转场。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

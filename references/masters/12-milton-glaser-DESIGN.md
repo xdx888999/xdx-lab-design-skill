@@ -1,3 +1,20 @@
+---
+version: alpha
+name: "Milton Glaser Method"
+colors:
+  surface: "#F5E6C8"
+  on-surface: "#111111"
+  primary: "#E63946"
+  on-primary: "#111111"
+  text-muted: "#665A4A"
+  blue: "#1D3557"
+  teal: "#2A9D8F"
+  orange: "#F4A261"
+  cream: "#FFF6E3"
+rounded:
+  none: 0px
+---
+
 # Design System: Milton Glaser Method
 # 米尔顿·格雷泽设计方法
 
@@ -23,6 +40,13 @@ Orange:       #F4A261
 Cream:        #FFF6E3
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F5E6C8` | 15.3:1 | AAA |
+| Text muted | `#665A4A` | `#F5E6C8` | 5.4:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Fraunces`, `Cooper Black`, `Georgia`, serif; weight 700-900.
@@ -42,6 +66,14 @@ Cream:        #FFF6E3
 - 使用原创插画、手绘人物、城市符号、文化物件。
 - 可用一笔线、拼贴和复古印刷质感。
 - 图像要有观念，不只是装饰。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

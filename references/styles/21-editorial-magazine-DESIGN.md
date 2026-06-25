@@ -1,3 +1,37 @@
+---
+version: alpha
+name: "Editorial Magazine"
+colors:
+  surface: "#FAF9F7"
+  on-surface: "#0A0A0A"
+  primary: "#B5121B"
+  on-primary: "#FFFFFF"
+  ink: "#121212"
+  mid-gray: "#6B6B6B"
+  light-gray: "#E5E5E5"
+  mid: "#555555"
+typography:
+  deck-subtitle:
+    fontFamily: "Source Serif 4"
+    fontSize: 22px
+    fontWeight: 400
+  caption:
+    fontFamily: "Source Serif 4"
+    fontSize: 12px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  max-width: 720px
+components:
+  pull-quote:
+    typography: "40px Playfair Display italic weight 400 {colors.ink}"
+    padding: "0 0 0 24px"
+  full-bleed-image:
+    width: "100vw"
+    height: "60vh"
+---
+
 # Design System: Editorial Magazine
 # 编辑杂志风格
 
@@ -41,6 +75,16 @@ The style celebrates imperfection and surprise — an unexpected column width, a
 - **Accent** (one vivid color): `#FF4500` (orange), `#0052CC` (blue), or brand-specific.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Ink | `#121212` | `#FAF9F7` | 17.8:1 | AAA |
+| Mid Gray | `#6B6B6B` | `#FAF9F7` | 5.1:1 | AA |
+| Accent Red | `#B5121B` | `#FAF9F7` | 6.5:1 | AA |
+| Ink | `#0A0A0A` | `#FAF9F7` | 18.8:1 | AAA |
+| Mid | `#555555` | `#FAF9F7` | 7.1:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -140,6 +184,12 @@ Or: single 2px solid #121212 with section label in left notch
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| max-width | 720px |
+
 ## 6. Depth & Elevation
 
 Editorial uses no shadows. Hierarchy is entirely typographic:
@@ -147,6 +197,14 @@ Editorial uses no shadows. Hierarchy is entirely typographic:
 - Weight contrast (bold vs regular)
 - Spatial separation (80px between sections)
 - Rules (horizontal lines of varying weight)
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

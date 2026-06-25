@@ -1,3 +1,21 @@
+---
+version: alpha
+name: "Charles & Ray Eames Method"
+colors:
+  surface: "#F7E7C6"
+  on-surface: "#111111"
+  primary: "#1E5AA8"
+  on-primary: "#FFFFFF"
+  surface: "#FFF7E8"
+  text-muted: "#6D6258"
+  orange: "#E65A2E"
+  yellow: "#F5C542"
+  green: "#2E6B4F"
+  wood: "#B9824A"
+rounded:
+  none: 0px
+---
+
 # Design System: Charles & Ray Eames Method
 # 查尔斯与雷·伊姆斯设计方法
 
@@ -24,6 +42,13 @@ Green:        #2E6B4F
 Wood:         #B9824A
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F7E7C6` | 15.5:1 | AAA |
+| Text muted | `#6D6258` | `#F7E7C6` | 4.9:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Futura`, `Inter`, `Avenir`, sans-serif; weight 600-700.
@@ -43,6 +68,14 @@ Wood:         #B9824A
 - 优先使用模型、材料、手、实验、家庭空间、展览照片式构图。
 - 插图保持几何和手作之间的平衡。
 - 可用小物件、样本、拼块表达系统。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

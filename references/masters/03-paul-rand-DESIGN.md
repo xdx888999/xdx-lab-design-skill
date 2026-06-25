@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Paul Rand Method"
+colors:
+  surface: "#F7F2E7"
+  on-surface: "#111827"
+  primary: "#1D4ED8"
+  on-primary: "#FFFFFF"
+  text-muted: "#6B5F52"
+  red: "#E63946"
+  yellow: "#F7C948"
+  black: "#111111"
+rounded:
+  none: 0px
+---
+
 # Design System: Paul Rand Method
 # 保罗·兰德设计方法
 
@@ -23,6 +39,13 @@ Yellow:       #F7C948
 Black:        #111111
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111827` | `#F7F2E7` | 15.9:1 | AAA |
+| Text muted | `#6B5F52` | `#F7F2E7` | 5.6:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Futura`, `Avenir`, `Inter`, sans-serif; weight 600-800.
@@ -42,6 +65,14 @@ Black:        #111111
 - 使用拼贴、几何形、手绘感符号和简化物象。
 - 图标应像商标一样可在小尺寸下识别。
 - 可用一个意外的视觉双关作为封面主概念。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

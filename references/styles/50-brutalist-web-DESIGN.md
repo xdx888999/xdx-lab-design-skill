@@ -1,3 +1,46 @@
+---
+version: alpha
+name: "Brutalist Web"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#000000"
+  primary: "#FF0000"
+  on-primary: "#111111"
+  accent: "#FFFF00"
+  link-blue: "#0000EE"
+  neon-green: "#00FF00"
+  hot-magenta: "#FF00FF"
+typography:
+  sub-heading:
+    fontSize: 22px
+    fontWeight: 700
+  counter-number:
+    fontSize: 144px
+    fontWeight: 900
+rounded:
+  none: 0px
+components:
+  card:
+    backgroundColor: "{colors.surface}"
+    border: "2px solid {colors.on-surface}  ← raw, visible"
+    rounded: "0px"
+    padding: "20px"
+  button:
+    backgroundColor: "{colors.accent} or {colors.primary}"
+    textColor: "{colors.on-surface}"
+    border: "2px solid {colors.on-surface}"
+    rounded: "0px"
+    padding: "10px 20px"
+    typography: "Arial 700 14px"
+    hover: "background {colors.surface}, color {colors.on-surface} (instant, no transition)"
+  table:
+    border: "1px solid {colors.on-surface}"
+    width: "100%"
+  navigation:
+    typography: "Arial 700 14px"
+    textColor: "{colors.on-surface} (or {colors.link-blue} for link-blue variant)"
+---
+
 # Design System: Brutalist Web
 # 网页野蛮主义风格
 
@@ -43,6 +86,14 @@ Inspired by architectural brutalism (exposed concrete, structural honesty), web 
 - **Pure White** (`#FFFFFF`): Text on dark.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Black | `#000000` | `#FFFFFF` | 21:1 | AAA |
+| Link Blue | `#0000EE` | `#FFFFFF` | 9.4:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -151,6 +202,14 @@ No gradual depth:
 - Elements are on one plane or another — no in-between
 - Hard offset shadow (5px 5px 0 black) where shadow is needed
 - Overlapping elements with clear z-index stacking — no blur
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

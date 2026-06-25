@@ -1,3 +1,86 @@
+---
+version: alpha
+name: "E-Commerce Energetic"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#212121"
+  primary: "#FF3D00"
+  on-primary: "#111111"
+  success: "#2E7D32"
+  surface: "#F5F5F5"
+  border: "#E0E0E0"
+  primary-hover: "#E53500"
+  secondary-cta: "#FF6D00"
+  sale-red: "#E53935"
+  deal-orange: "#F57C00"
+  success-light: "#E8F5E9"
+  rating-yellow: "#FFC107"
+  platform-blue: "#1976D2"
+  marketplace-orange: "#FF6600"
+  commerce-purple: "#7B1FA2"
+  body: "#424242"
+  muted: "#757575"
+  original-price: "#9E9E9E"
+typography:
+  hero-headline:
+    fontFamily: "Roboto"
+    fontSize: 40px
+    fontWeight: 800
+  product-name:
+    fontFamily: "Roboto"
+    fontSize: 16px
+    fontWeight: 500
+  original-price:
+    fontFamily: "Roboto"
+    fontSize: 14px
+    fontWeight: 400
+  description:
+    fontFamily: "Roboto"
+    fontSize: 14px
+    fontWeight: 400
+  button:
+    fontFamily: "Roboto"
+    fontSize: 16px
+    fontWeight: 600
+rounded:
+  none: 4px
+  sm: 8px
+  md: 100px
+components:
+  add-to-cart-button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    padding: "12px 24px"
+    rounded: "4px"
+    border: "none"
+    typography: "Roboto 16px weight 600"
+    width: "100% (on product card)"
+    height: "48px"
+    hover: "background {colors.primary-hover}"
+    shadow: "0 2px 8px rgba(255,61,0,0.3)"
+  product-card:
+    backgroundColor: "{colors.surface}"
+    border: "1px solid {colors.border}"
+    rounded: "8px"
+    hover: "box-shadow 0 4px 16px rgba(0,0,0,0.12), transform translateY(-2px)"
+  sale-badge:
+    backgroundColor: "{colors.sale-red}"
+    textColor: "{colors.surface}"
+    rounded: "4px"
+    padding: "2px 8px"
+    typography: "11px Roboto weight 700 uppercase"
+  bestseller-badge:
+    backgroundColor: "{colors.secondary-cta}"
+    textColor: "{colors.surface}"
+    rounded: "4px"
+    padding: "2px 8px"
+    typography: "11px weight 700 uppercase"
+  category-filter:
+    active: "background {colors.primary}, color {colors.surface}, border-color {colors.primary}"
+    typography: "13px Roboto weight 500"
+    padding: "6px 16px"
+---
+
 # Design System: E-Commerce Energetic
 # 电商促销风格
 
@@ -58,6 +141,17 @@ This style is not about restraint. It's about clarity at speed. A user scans in 
 - **Discount Price** (`#E53935`): Sale price — red for urgency.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Primary CTA | `#FF3D00` | `#FFFFFF` | 3.5:1 | AA-large |
+| Primary Hover | `#E53500` | `#FFFFFF` | 4.3:1 | AA-large |
+| Secondary CTA | `#FF6D00` | `#FFFFFF` | 2.8:1 | FAIL |
+| Heading | `#212121` | `#FFFFFF` | 16.1:1 | AAA |
+| Body | `#424242` | `#FFFFFF` | 10:1 | AAA |
+| Muted | `#757575` | `#FFFFFF` | 4.6:1 | AA |
 
 ## 3. Typography Rules
 
@@ -186,6 +280,16 @@ Padding: 6px 16px
 | Hover | `0 4px 16px rgba(0,0,0,0.12)` + `translateY(-2px)` | Card hover state |
 | Floating | `0 8px 24px rgba(0,0,0,0.15)` | Quick-view modals, cart drawer |
 | Sticky | `0 2px 8px rgba(0,0,0,0.1)` | Sticky header on scroll |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 4px | Square elements |
+| sm | 8px | Inputs, tags |
+| md | 100px | Cards, buttons |
 
 ---
 

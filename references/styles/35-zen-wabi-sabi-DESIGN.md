@@ -1,3 +1,53 @@
+---
+version: alpha
+name: "Zen Wabi-Sabi"
+colors:
+  surface: "#F4F1EC"
+  surface-variant: "#EAE5DC"
+  on-surface: "#1A1714"
+  primary: "#8B5E3C"
+  on-primary: "#FFFFFF"
+  stone-mid: "#C8C0B8"
+  soot: "#2A2520"
+  ash: "#3D3830"
+  moss: "#6B7B5A"
+  storm-cloud: "#6A7080"
+  bamboo: "#B8A870"
+  stone-gray: "#6A6560"
+  muted-stone: "#9A9590"
+typography:
+  koan-title:
+    fontSize: 48px
+    fontWeight: 300
+  body:
+    fontSize: 17px
+    fontWeight: 400
+  decorative-cjk:
+    fontSize: 120px
+    fontWeight: 700
+rounded:
+  none: 0px
+  default: 2px
+spacing:
+  section-padding: 680px
+components:
+  card:
+    backgroundColor: "{colors.soot}"
+    border: "1px solid {colors.ash}"
+    rounded: "2px  ← slight rounding, like a smoothed stone"
+    padding: "32px"
+  button:
+    backgroundColor: "{colors.moss}"
+    textColor: "{colors.surface}"
+    rounded: "2px"
+    padding: "12px 32px"
+    typography: "Noto Serif JP 400 14px"
+    hover: "border-color {colors.soot}, color {colors.soot}"
+    border: "1px solid {colors.muted-stone}"
+  organic-divider:
+    textColor: "{colors.stone-mid}"
+---
+
 # Design System: Zen Wabi-Sabi
 # 禅意侘寂风格
 
@@ -50,6 +100,15 @@ Unlike Japandi Minimal (which is clean and Scandinavian-influenced), Zen Wabi-Sa
 - **Muted Stone** (`#9A9590`): Captions, metadata.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Warm Parchment | `#EAE5DC` | `#F4F1EC` | 1.1:1 | FAIL |
+| Ink Charcoal | `#1A1714` | `#F4F1EC` | 15.8:1 | AAA |
+| Stone Gray | `#6A6560` | `#F4F1EC` | 5.1:1 | AA |
+| Muted Stone | `#9A9590` | `#F4F1EC` | 2.6:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -141,12 +200,27 @@ This gives the "hand-made" quality of wabi-sabi objects
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 680px |
+
 ## 6. Depth & Elevation
 
 Minimal depth — all elements feel like they belong to the same level:
 - Light mode: backgrounds go `#F4F1EC` → `#EAE5DC` → `#D8D2C8`
 - Dark mode: `#1A1714` → `#2A2520` → `#3D3830`
 - Never use box-shadow — it's too modern, too artificial
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 2px | Default radius |
 
 ---
 

@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Neville Brody Method"
+colors:
+  surface: "#0A0A0A"
+  on-surface: "#FFFFFF"
+  primary: "#B9FF00"
+  on-primary: "#111111"
+  surface: "#1F1F1F"
+  text-muted: "#A6A6A6"
+  red: "#FF3B30"
+  steel: "#7A7F87"
+rounded:
+  none: 0px
+---
+
 # Design System: Neville Brody Method
 # 内维尔·布罗迪设计方法
 
@@ -22,6 +38,13 @@ Acid green:   #B9FF00
 Steel:        #7A7F87
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#FFFFFF` | `#0A0A0A` | 19.8:1 | AAA |
+| Text muted | `#A6A6A6` | `#0A0A0A` | 8.1:1 | AAA |
+
 ## 3. Typography Rules
 
 - Heading: `Space Grotesk`, `Unbounded`, `Eurostile`, sans-serif; weight 700-900.
@@ -41,6 +64,14 @@ Steel:        #7A7F87
 - 图片可高对比、黑白、金属感或强裁切。
 - 图标使用锐利几何、工业符号、数字标记。
 - 视觉资产要服务编辑态度，不要普通装饰。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

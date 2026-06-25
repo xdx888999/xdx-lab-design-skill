@@ -1,3 +1,122 @@
+---
+version: alpha
+name: "FinTech Clean"
+colors:
+  surface: "#FFFFFF"
+  surface-variant: "#F8FAFC"
+  on-surface: "#0F172A"
+  primary: "#4338CA"
+  on-primary: "#FFFFFF"
+  error: "#DC2626"
+  success: "#059669"
+  warning: "#D97706"
+  surface-raised: "#F1F5F9"
+  body: "#475569"
+  muted: "#94A3B8"
+  faint: "#CBD5E1"
+  border-default: "#E2E8F0"
+  neutral: "#64748B"
+  surface: "#1E293B"
+  surface-raised: "#334155"
+  background: "#6366F1"
+typography:
+  display:
+    fontFamily: "Inter"
+    fontSize: 52px
+    fontWeight: 300
+  h1:
+    fontFamily: "Inter"
+    fontSize: 40px
+    fontWeight: 600
+  h2:
+    fontFamily: "Inter"
+    fontSize: 28px
+    fontWeight: 600
+  h3:
+    fontFamily: "Inter"
+    fontSize: 20px
+    fontWeight: 600
+  h4:
+    fontFamily: "Inter"
+    fontSize: 16px
+    fontWeight: 600
+  body-l:
+    fontFamily: "Inter"
+    fontSize: 18px
+    fontWeight: 400
+  body:
+    fontFamily: "Inter"
+    fontSize: 16px
+    fontWeight: 400
+  body-s:
+    fontFamily: "Inter"
+    fontSize: 14px
+    fontWeight: 400
+  numeric:
+    fontFamily: "Inter"
+    fontSize: 32px
+    fontWeight: 600
+  label:
+    fontFamily: "Inter"
+    fontSize: 12px
+    fontWeight: 500
+  code-id:
+    fontFamily: "JetBrains Mono"
+    fontSize: 13px
+    fontWeight: 400
+rounded:
+  none: 6px
+  sm: 8px
+spacing:
+  base: 8px
+  card-padding: 24px
+  max-width: 1080px
+components:
+  primary-button:
+    backgroundColor: "{colors.background} (or brand accent)"
+    textColor: "{colors.on-primary}"
+    padding: "10px 20px"
+    rounded: "6px"
+    border: "none"
+    typography: "Inter 14px weight 500"
+    shadow: "0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06)"
+    hover: "background {colors.primary}"
+    height: "40px"
+  secondary-button:
+    backgroundColor: "{colors.on-primary}"
+    textColor: "{colors.on-surface}"
+    padding: "10px 20px"
+    rounded: "6px"
+    border: "1px solid {colors.border-default}"
+    typography: "Inter 14px weight 500"
+    shadow: "0 1px 2px rgba(0,0,0,0.05)"
+    hover: "background {colors.surface-variant}, border-color {colors.faint}"
+  card:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border-default}"
+    rounded: "8px"
+    padding: "24px"
+    shadow: "rgba(50,50,93,0.25) 0px 30px 60px -12px, rgba(0,0,0,0.3) 0px 18px 36px -18px"
+  data-table:
+    typography: "Inter 14px weight 400 color {colors.body}"
+  metric-kpi-card:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border-default}"
+    rounded: "8px"
+    padding: "20px 24px"
+  input:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border-default}"
+    rounded: "6px"
+    padding: "10px 14px"
+    typography: "Inter 14px"
+    textColor: "{colors.on-surface}"
+    focus: "border-color {colors.background}, box-shadow 0 0 0 3px rgba(99,102,241,0.12)"
+  navigation:
+    backgroundColor: "{colors.on-primary}"
+    height: "64px"
+---
+
 # Design System: FinTech Clean
 # 金融科技极简风格
 
@@ -79,6 +198,15 @@ Stripe pioneered much of this language: the multi-layer blue-tinted shadows, the
 - **Border** (`#334155`): Subtle borders.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Heading | `#0F172A` | `#FFFFFF` | 17.9:1 | AAA |
+| Body | `#475569` | `#FFFFFF` | 7.6:1 | AAA |
+| Muted | `#94A3B8` | `#FFFFFF` | 2.6:1 | FAIL |
+| Primary hover | `#4338CA` | `#FFFFFF` | 7.9:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -236,6 +364,14 @@ All: border-radius 6px, padding 2px 10px, font 12px weight 500
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 8px |
+| card-padding | 24px |
+| max-width | 1080px |
+
 ## 6. Depth & Elevation
 
 | Level | Shadow | Use |
@@ -246,6 +382,15 @@ All: border-radius 6px, padding 2px 10px, font 12px weight 500
 | Raised | `0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05)` | Hovered/featured cards |
 | FinTech Signature | `rgba(50,50,93,0.25) 0px 30px 60px -12px, rgba(0,0,0,0.3) 0px 18px 36px -18px` | Hero cards, product showcases |
 | Modal | `rgba(50,50,93,0.25) 0px 50px 100px -20px, rgba(0,0,0,0.3) 0px 30px 60px -30px` | Modals, dialogs |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 6px | Square elements |
+| sm | 8px | Inputs, tags |
 
 ---
 

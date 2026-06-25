@@ -1,3 +1,44 @@
+---
+version: alpha
+name: "Swiss International Style / International Typographic Style"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#000000"
+  primary: "#E3001B"
+  on-primary: "#FFFFFF"
+  accent: "#0047AB"
+  mid-gray: "#777777"
+  light-gray: "#CCCCCC"
+  very-light: "#F5F5F5"
+typography:
+  display:
+    fontSize: 120px
+    fontWeight: 700
+  h2:
+    fontSize: 36px
+    fontWeight: 700
+  body-l:
+    fontSize: 18px
+    fontWeight: 400
+  caption:
+    fontSize: 11px
+    fontWeight: 400
+rounded:
+  none: 0px
+components:
+  navigation:
+    backgroundColor: "{colors.on-primary}"
+    height: "64px"
+    active: "text color {colors.primary}"
+  content-card:
+    border: "1px solid {colors.light-gray} or borderless (whitespace separates)"
+  bold-statement-block:
+    backgroundColor: "{colors.on-surface} (or {colors.primary})"
+    padding: "64px"
+  caption-system:
+    typography: "11px Helvetica Neue uppercase letter-spacing 1px {colors.mid-gray}"
+---
+
 # Design System: Swiss International Style / International Typographic Style
 # 国际主义排版风格
 
@@ -45,6 +86,14 @@ This is not minimalism — it is rigor. Where minimalism removes for aesthetic r
 - Large color blocks are layout elements, not backgrounds
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Black | `#000000` | `#FFFFFF` | 21:1 | AAA |
+| Mid Gray | `#777777` | `#FFFFFF` | 4.5:1 | AA |
 
 ## 3. Typography Rules
 
@@ -156,6 +205,14 @@ Flat — zero shadows. Depth through:
 - Scale: large type vs small text
 - Color: black block vs white space
 - Weight: bold vs regular
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

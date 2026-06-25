@@ -1,3 +1,52 @@
+---
+version: alpha
+name: "Ukiyo-e Woodblock"
+colors:
+  surface: "#F5F0E6"
+  surface-variant: "#EDE6D4"
+  on-surface: "#1A1614"
+  primary: "#1A4B7A"
+  on-primary: "#FFFFFF"
+  deep-indigo: "#1E2A5E"
+  cerulean: "#4A88C0"
+  sky-pale: "#A8C8D8"
+  terracotta: "#D4603A"
+  vermillion: "#C43B2A"
+  sap-green: "#4A7A3A"
+typography:
+  title:
+    fontFamily: "Noto Serif JP"
+    fontSize: 64px
+    fontWeight: 700
+  sub-heading:
+    fontFamily: "Noto Serif JP"
+    fontSize: 20px
+    fontWeight: 600
+  caption:
+    fontFamily: "Noto Serif JP"
+    fontSize: 13px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  section-padding: 80px
+components:
+  card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "2px solid {colors.on-surface}  ← strong woodblock outline"
+    rounded: "0px"
+    padding: "24px"
+  button:
+    backgroundColor: "transparent"
+    textColor: "{colors.primary}"
+    border: "2px solid {colors.primary}"
+    rounded: "0px"
+    padding: "10px 28px"
+    hover: "background {colors.primary}, color {colors.surface}"
+  wave-divider:
+    height: "60–80px"
+---
+
 # Design System: Ukiyo-e Woodblock
 # 浮世绘版画风格
 
@@ -42,6 +91,14 @@ This design system translates woodblock aesthetics into digital form: strong bla
 - **Cream** (`#F5F0E6`): Paper white — negative space fill.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Washi Ivory | `#F5F0E6` | `#F5F0E6` | 1:1 | FAIL |
+| Prussian Blue | `#1A4B7A` | `#F5F0E6` | 7.9:1 | AAA |
+| Ink Black | `#1A1614` | `#F5F0E6` | 15.8:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -122,12 +179,26 @@ Use for alternating section contrast — flat, no gradient
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 No shadows. Elevation through:
 - Outline weight: base 1px → elevated 2px → featured 3px
 - Color contrast: ivory → aged washi → blue panels
 - Scale: larger = more important (woodblock principle)
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

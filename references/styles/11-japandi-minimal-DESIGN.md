@@ -1,3 +1,69 @@
+---
+version: alpha
+name: "Japandi Minimal"
+colors:
+  surface: "#FAF8F3"
+  surface-variant: "#F2EEE6"
+  on-surface: "#2C2C2C"
+  primary: "#9C6B52"
+  on-primary: "#111111"
+  sand: "#E8E2D5"
+  warm-border: "#D5CDBD"
+  graphite: "#4A4A4A"
+  stone: "#7A7068"
+  dust: "#A89F91"
+  matcha: "#6B7C5A"
+  indigo: "#4A5568"
+  ash: "#8C8178"
+typography:
+  cormorant:
+    fontFamily: "DM Sans"
+    fontSize: 28px
+    fontWeight: 400
+  dm-sans:
+    fontFamily: "DM Sans"
+    fontSize: 12px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  section-padding: 120px
+  max-width: 960px
+components:
+  button:
+    backgroundColor: "{colors.on-surface}"
+    textColor: "{colors.surface}"
+    padding: "14px 36px"
+    rounded: "0px (or 2px — nearly sharp)"
+    border: "none"
+    typography: "DM Sans 12px weight 400 uppercase letter-spacing 3px"
+    hover: "background: {colors.graphite}"
+  ghost-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.on-surface}"
+    border: "1px solid {colors.on-surface}"
+    padding: "13px 35px"
+    rounded: "0px"
+    typography: "DM Sans 12px weight 400 uppercase letter-spacing 3px"
+    hover: "background {colors.on-surface}, color {colors.surface}"
+  product-content-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "none (whitespace separates)"
+    padding: "0"
+  input-form:
+    backgroundColor: "transparent"
+    border: "none"
+    rounded: "0"
+    padding: "12px 0"
+    typography: "DM Sans 14px weight 300 letter-spacing 0.3px"
+    textColor: "{colors.on-surface}"
+    focus: "border-bottom-color {colors.on-surface}"
+  section-divider:
+    height: "1px"
+    backgroundColor: "{colors.sand}"
+    width: "60px (short lines — Japanese restraint)"
+---
+
 # Design System: Japandi Minimal
 # 日式极简风格（侘寂美学）
 
@@ -50,6 +116,15 @@ The palette draws from the natural world as filtered through Japanese sensibilit
 - Saturated or neon colors
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Charcoal Ink | `#2C2C2C` | `#FAF8F3` | 13.2:1 | AAA |
+| Graphite | `#4A4A4A` | `#FAF8F3` | 8.4:1 | AAA |
+| Stone | `#7A7068` | `#FAF8F3` | 4.6:1 | AA |
+| Dust | `#A89F91` | `#FAF8F3` | 2.5:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -161,6 +236,13 @@ width: 60px (short lines — Japanese restraint)
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 120px |
+| max-width | 960px |
+
 ## 6. Depth & Elevation
 
 No shadows in Japandi. Depth is created through:
@@ -169,6 +251,14 @@ No shadows in Japandi. Depth is created through:
 - **Isolation**: Negative space around important elements
 
 If shadow must be used: `0 2px 4px rgba(44,44,44,0.06)` — barely perceptible.
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

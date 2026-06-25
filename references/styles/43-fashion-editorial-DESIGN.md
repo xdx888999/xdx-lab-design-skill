@@ -1,3 +1,43 @@
+---
+version: alpha
+name: "Fashion Editorial"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#000000"
+  primary: "#C41E3A"
+  on-primary: "#FFFFFF"
+  off-black: "#0A0A0A"
+  light-gray: "#F5F5F5"
+  medium-gray: "#9B9B9B"
+  dark-gray: "#3A3A3A"
+  powder-blue: "#A8C8D8"
+  acid-yellow: "#F5E642"
+typography:
+  cover-subhead:
+    fontSize: 14px
+    fontWeight: 300
+  pull-quote:
+    fontSize: 36px
+    fontWeight: 400
+rounded:
+  none: 0px
+components:
+  productcampaign-card:
+    backgroundColor: "{colors.on-primary}"
+    border: "none — no borders in fashion editorial"
+    hover: "image subtle zoom (scale 1.03, 600ms ease)"
+  pull-quote:
+    typography: "Bodoni Moda 32px italic weight 400 {colors.off-black}"
+  button:
+    backgroundColor: "{colors.off-black}"
+    textColor: "{colors.off-black}"
+    rounded: "0px"
+    padding: "12px 32px"
+    typography: "Inter 400 11px uppercase letter-spacing: 3px"
+    hover: "background {colors.off-black}, color {colors.on-primary}"
+    border: "1px solid {colors.off-black}"
+---
+
 # Design System: Fashion Editorial
 # 时尚编辑风格
 
@@ -40,6 +80,15 @@ Visual references: Vogue's full-bleed cover energy, i-D magazine's conceptual ty
 - **Acid Yellow** (`#F5E642`): Conceptual fashion energy.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Off-Black | `#0A0A0A` | `#FFFFFF` | 19.8:1 | AAA |
+| Medium Gray | `#9B9B9B` | `#FFFFFF` | 2.8:1 | FAIL |
+| Dark Gray | `#3A3A3A` | `#FFFFFF` | 11.4:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -135,6 +184,14 @@ Pure flatness:
 - No gradients (except subtle overlay on hero photography)
 - Elevation only through z-index layering (type over images)
 - Foreground text over background images — no box separation
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

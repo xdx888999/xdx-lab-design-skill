@@ -1,3 +1,50 @@
+---
+version: alpha
+name: "Pop Art 60s"
+colors:
+  surface: "#FFFEF5"
+  surface-variant: "#F5F0E0"
+  on-surface: "#0A0A0A"
+  primary: "#E8002A"
+  on-primary: "#FFFFFF"
+  accent: "#00ADEF"
+  pop-yellow: "#FFD700"
+  pop-green: "#00A550"
+  pop-orange: "#FF6900"
+  pink: "#FF69B4"
+typography:
+  speech-bubble:
+    fontFamily: "Inter"
+    fontSize: 32px
+    fontWeight: 700
+rounded:
+  none: 0px
+  sm: 8px
+spacing:
+  section-padding: 80px
+components:
+  card:
+    backgroundColor: "{colors.surface}"
+    border: "3px solid {colors.on-surface}  ← thick black outline"
+    rounded: "0px"
+    padding: "20px"
+    hover: "background fill in a primary color, text color switches to paper white"
+  speech-bubble:
+    backgroundColor: "{colors.pop-yellow} (yellow) or {colors.surface}"
+    border: "3px solid {colors.on-surface}"
+    rounded: "8px"
+    padding: "16px 20px"
+    typography: "Bangers 28px {colors.on-surface}"
+  button:
+    backgroundColor: "{colors.accent}"
+    textColor: "{colors.surface}"
+    border: "3px solid {colors.on-surface}"
+    rounded: "0px"
+    padding: "12px 28px"
+    typography: "Bebas 20px uppercase letter-spacing: 2px"
+    hover: "background {colors.primary}, color {colors.surface}"
+---
+
 # Design System: Pop Art 60s
 # 60年代波普艺术风格
 
@@ -43,6 +90,15 @@ The visual language is immediately recognizable: pure primary colors (red, yello
 - **Pink** (`#FF69B4`): Warhol's feminine palette.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Pop Red | `#E8002A` | `#FFFEF5` | 4.6:1 | AA |
+| Ink Black | `#0A0A0A` | `#FFFEF5` | 19.6:1 | AAA |
+| Pop Orange | `#FF6900` | `#FFFEF5` | 2.9:1 | FAIL |
+| Pink | `#FF69B4` | `#FFFEF5` | 2.6:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -142,6 +198,12 @@ Creates the Warhol silkscreen effect
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 No depth — everything is flat, like a printed poster:
@@ -149,6 +211,15 @@ No depth — everything is flat, like a printed poster:
 - Scale (bigger = more important)
 - Outline weight (thicker border = more emphasis)
 - Zero box-shadows
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| sm | 8px | Inputs, tags |
 
 ---
 

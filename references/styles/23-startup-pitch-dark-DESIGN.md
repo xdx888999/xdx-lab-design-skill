@@ -1,3 +1,46 @@
+---
+version: alpha
+name: "Startup Pitch Deck Dark"
+colors:
+  surface: "#0F1117"
+  surface-variant: "#161B22"
+  on-surface: "#FFFFFF"
+  primary: "#F59E0B"
+  on-primary: "#111111"
+  border: "#30363D"
+  secondary: "#94A3B8"
+  muted: "#64748B"
+  blue: "#3B82F6"
+  purple: "#8B5CF6"
+  emerald: "#10B981"
+typography:
+  hero-stat:
+    fontFamily: "Inter"
+    fontSize: 120px
+    fontWeight: 800
+  sub-headline:
+    fontSize: 36px
+    fontWeight: 600
+  support:
+    fontSize: 18px
+    fontWeight: 400
+  source-footnote:
+    fontSize: 11px
+    fontWeight: 400
+rounded:
+  none: 0px
+  default: 4px
+spacing:
+  margin: 80px
+components:
+  comparison-bar-chart:
+    backgroundColor: "transparent"
+  quote-social-proof:
+    backgroundColor: "rgba(255,255,255,0.05)"
+    padding: "24px 32px"
+    rounded: "0 8px 8px 0"
+---
+
 # Design System: Startup Pitch Deck Dark
 # 暗色创业路演 PPT 风格
 
@@ -49,6 +92,15 @@ The visual language is borrowed from the best decks in Silicon Valley history �
 - Negative: `#EF4444`
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Slide Dark | `#0F1117` | `#0F1117` | 1:1 | FAIL |
+| Primary | `#FFFFFF` | `#0F1117` | 18.9:1 | AAA |
+| Secondary | `#94A3B8` | `#0F1117` | 7.4:1 | AAA |
+| Muted | `#64748B` | `#0F1117` | 4:1 | AA-large |
 
 ## 3. Typography Rules
 
@@ -150,6 +202,21 @@ Right — Solution:
 - Max content area: 1760×920px
 
 ---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 4px | Default radius |
+
+---
+
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| margin | 80px |
 
 ## 6. Do's and Don'ts
 

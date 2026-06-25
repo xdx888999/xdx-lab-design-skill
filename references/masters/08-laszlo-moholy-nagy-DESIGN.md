@@ -1,3 +1,20 @@
+---
+version: alpha
+name: "Laszlo Moholy-Nagy Method"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#0A0A0A"
+  primary: "#0057B8"
+  on-primary: "#FFFFFF"
+  text-muted: "#666666"
+  red: "#E31B23"
+  yellow: "#FFD100"
+  metal: "#C0C0C0"
+  shadow: "#1F2937"
+rounded:
+  none: 0px
+---
+
 # Design System: Laszlo Moholy-Nagy Method
 # 拉斯洛·莫霍利-纳吉设计方法
 
@@ -23,6 +40,13 @@ Metal:        #C0C0C0
 Shadow:       #1F2937
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#0A0A0A` | `#FFFFFF` | 19.8:1 | AAA |
+| Text muted | `#666666` | `#FFFFFF` | 5.7:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Space Grotesk`, `Futura`, `Inter`, sans-serif; weight 600-800.
@@ -42,6 +66,14 @@ Shadow:       #1F2937
 - 使用摄影局部、X-ray 感、实验装置、抽象光影。
 - 图标可以是机械符号和几何指示。
 - 视觉资产应强调“看见新的关系”，不是普通科技背景。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

@@ -1,3 +1,61 @@
+---
+version: alpha
+name: "Real Estate Luxury"
+colors:
+  surface: "#FAFAF8"
+  surface-variant: "#F0EDEA"
+  on-surface: "#1A1614"
+  primary: "#B8962E"
+  on-primary: "#111111"
+  accent: "#D4AE52"
+  charcoal: "#1A1A1A"
+  warm-dark: "#2C2720"
+  gold-tint: "#FBF5E6"
+  text-body: "#4A4540"
+  text-muted: "#8A8580"
+  border: "#E0DCD8"
+  reverse-text: "#F5F0EA"
+typography:
+  property-name-hero:
+    fontSize: 72px
+    fontWeight: 300
+  section-heading:
+    fontFamily: "Inter"
+    fontSize: 44px
+    fontWeight: 400
+  property-details:
+    fontFamily: "Inter"
+    fontSize: 14px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter"
+    fontSize: 12px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  section-padding: 120px
+components:
+  property-card:
+    backgroundColor: "{colors.surface}"
+    border: "1px solid {colors.border}"
+    rounded: "0px"
+  button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.primary}"
+    rounded: "0px"
+    padding: "14px 36px"
+    typography: "Inter 500 13px uppercase letter-spacing: 2px"
+    hover: "background {colors.primary}, color {colors.surface}"
+    border: "1px solid {colors.primary}"
+  full-bleed-hero:
+    height: "85vh minimum"
+    backgroundColor: "full-bleed property photo"
+  amenity-icon-row:
+    padding: "16px 24px"
+    backgroundColor: "{colors.surface-variant}"
+---
+
 # Design System: Real Estate Luxury
 # 豪宅地产风格
 
@@ -46,6 +104,17 @@ Reference points: Sotheby's Realty (dark navy, gold), Christie's Real Estate (bl
 - **Reverse Text** (`#F5F0EA`): Text on dark backgrounds.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Alabaster | `#FAFAF8` | `#FAFAF8` | 1:1 | FAIL |
+| Estate Gold | `#B8962E` | `#FAFAF8` | 2.7:1 | FAIL |
+| Text Primary | `#1A1614` | `#FAFAF8` | 17.2:1 | AAA |
+| Text Body | `#4A4540` | `#FAFAF8` | 9.1:1 | AAA |
+| Text Muted | `#8A8580` | `#FAFAF8` | 3.5:1 | AA-large |
+| Reverse Text | `#F5F0EA` | `#FAFAF8` | 1.1:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -139,6 +208,12 @@ background: #F0EDEA
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 120px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -148,6 +223,14 @@ background: #F0EDEA
 | Featured | Gold border `2px solid #B8962E` |
 | Dark hero | `#1A1A1A` with subtle gradient |
 | Modal | `rgba(26,22,20,0.9)` lightbox-style overlay |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

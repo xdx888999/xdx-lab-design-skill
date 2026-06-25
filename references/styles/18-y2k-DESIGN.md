@@ -1,3 +1,62 @@
+---
+version: alpha
+name: "Y2K / 2000s Revival"
+colors:
+  surface: "#F0F4FF"
+  on-surface: "#0A0A1A"
+  primary: "#00CED1"
+  on-primary: "#111111"
+  silver: "#C8D0E0"
+  baby-blue: "#7EC8E3"
+  hot-pink: "#FF69B4"
+  lime: "#ADFF2F"
+  lavender: "#E6B3FF"
+  butter-yellow: "#FFD700"
+  chrome-light: "#E8EEF8"
+  chrome-mid: "#B8C4D4"
+  chrome-dark: "#8090A8"
+typography:
+  body:
+    fontFamily: "Nunito"
+rounded:
+  none: 20px
+  sm: 100px
+components:
+  chrome-button:
+    backgroundColor: "linear-gradient(180deg, #FFFFFF 0%, {colors.silver} 40%, {colors.chrome-dark} 100%)"
+    textColor: "#1A1A2E"
+    border: "1px solid {colors.chrome-dark}"
+    rounded: "100px (pill)"
+    padding: "12px 28px"
+    typography: "Nunito 15px weight 800"
+    shadow: "0 2px 0 {colors.chrome-dark}, 0 4px 12px rgba(0,0,0,0.2)"
+    hover: "brightness(1.1)"
+  bubblegum-button:
+    backgroundColor: "linear-gradient(135deg, {colors.hot-pink}, {colors.lavender})"
+    textColor: "#FFFFFF"
+    border: "none"
+    rounded: "100px"
+    padding: "14px 32px"
+    typography: "Nunito 16px weight 800"
+    shadow: "0 4px 0 #CC4490, 0 4px 20px rgba(255,105,180,0.4)"
+    hover: "transform translateY(-2px)"
+    active: "transform translateY(2px), box-shadow reduce"
+  frosted-plastic-card:
+    backgroundColor: "rgba(255,255,255,0.4)"
+    backdropFilter: "blur(10px)"
+    border: "1px solid rgba(255,255,255,0.7)"
+    rounded: "20px"
+    shadow: "0 4px 24px rgba(126,200,227,0.3), inset 0 1px 0 rgba(255,255,255,0.8)"
+    padding: "24px"
+  holographic-badge:
+    backgroundColor: "conic-gradient(from 0deg, {colors.hot-pink}, #FF9900, {colors.lime}, {colors.primary}, {colors.baby-blue}, {colors.lavender}, {colors.hot-pink})"
+    rounded: "100px"
+    padding: "4px 16px"
+    typography: "Nunito 12px weight 800 #FFFFFF"
+  starsparkle-divider:
+    textColor: "alternating {colors.hot-pink} and {colors.baby-blue}"
+---
+
 # Design System: Y2K / 2000s Revival
 # Y2K 千禧复古风格
 
@@ -55,6 +114,12 @@ background: conic-gradient(
 ```
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Hot Pink | `#FF69B4` | `#F0F4FF` | 2.4:1 | FAIL |
 
 ## 3. Typography Rules
 

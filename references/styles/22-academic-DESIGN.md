@@ -1,3 +1,44 @@
+---
+version: alpha
+name: "Academic / Research"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#212529"
+  primary: "#0D4EA6"
+  on-primary: "#FFFFFF"
+  light-gray: "#F8F9FA"
+  border: "#DEE2E6"
+  secondary: "#495057"
+  muted: "#6C757D"
+  nature-green: "#1D7348"
+  physics-teal: "#0D6E6E"
+  medical-burgundy: "#8B1A35"
+typography:
+  alternative:
+    fontFamily: "EB Garamond"
+rounded:
+  none: 0px
+  default: 4px
+components:
+  abstract-box:
+    backgroundColor: "{colors.light-gray}"
+    border: "1px solid {colors.border}"
+    padding: "20px 24px"
+  figure:
+    backgroundColor: "{colors.light-gray}"
+    border: "1px solid {colors.border}"
+    padding: "16px"
+  code-block:
+    backgroundColor: "{colors.light-gray}"
+    border: "1px solid {colors.border}"
+    rounded: "4px"
+    typography: "JetBrains Mono 14px {colors.on-surface}"
+    padding: "16px"
+  navigation:
+    backgroundColor: "{colors.on-primary}"
+    height: "56px"
+---
+
 # Design System: Academic / Research
 # 学术研究风格
 
@@ -47,6 +88,15 @@ Inspired by Nature, Science, arXiv, and the best university press websites — c
 - **Warning/Limitation** (`#856404` on `#FFF3CD`): Methodological caveats.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Dark | `#212529` | `#FFFFFF` | 15.4:1 | AAA |
+| Secondary | `#495057` | `#FFFFFF` | 8.2:1 | AAA |
+| Muted | `#6C757D` | `#FFFFFF` | 4.7:1 | AA |
 
 ## 3. Typography Rules
 
@@ -164,6 +214,15 @@ No shadows. Structure through:
 - Horizontal rules (1–2px)
 - Background differentiation (#FFFFFF vs #F8F9FA)
 - Border-left accents on call-out boxes
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 4px | Default radius |
 
 ---
 

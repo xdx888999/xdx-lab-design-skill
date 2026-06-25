@@ -1,3 +1,54 @@
+---
+version: alpha
+name: "Health & Wellness"
+colors:
+  surface: "#FAF8F5"
+  on-surface: "#0D1B2A"
+  primary: "#7BAE7F"
+  on-primary: "#111111"
+  surface: "#F2EDE4"
+  accent-teal: "#4A9E9E"
+  heading: "#2D3436"
+  body: "#636E72"
+  border: "#DDD8CF"
+  surface: "#152334"
+  accent-indigo: "#6C8EBF"
+  accent-lavender: "#9B8EC4"
+  heading: "#E8EEF4"
+  sunrise-gold: "#E8A87C"
+  mint-fresh: "#A8D8C2"
+  color: "#FFFFFF"
+typography:
+  h2:
+    fontFamily: "rgba(232,238,244,0.7)"
+    fontSize: 28px
+    fontWeight: 500
+rounded:
+  none: 12px
+  sm: 20px
+  md: 100px
+components:
+  primary-button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.color}"
+    padding: "14px 28px, border-radius: 100px (pill)"
+    typography: "DM Sans 15px weight 500"
+    shadow: "0 4px 16px rgba(123,174,127,0.3)"
+    hover: "background #6A9E6E"
+  breathing-meditation-circle:
+    width: "160px, height: 160px, border-radius: 50%"
+    backgroundColor: "radial-gradient(circle, rgba(123,174,127,0.3) 0%, rgba(74,158,158,0.1) 100%)"
+    border: "2px solid rgba(123,174,127,0.4)"
+  activity-card:
+    backgroundColor: "{colors.surface} (day) / {colors.surface} (night)"
+    rounded: "20px"
+    padding: "20px"
+    border: "none (soft bg difference creates separation)"
+  streak-badge:
+    backgroundColor: "linear-gradient(135deg, {colors.sunrise-gold}, #D4956A)"
+    rounded: "12px, padding: 12px 16px"
+---
+
 # Design System: Health & Wellness
 # 健康 Wellness 风格
 
@@ -47,6 +98,14 @@ The palette draws from nature and twilight: deep ocean blues for the night/sleep
 - **Mint Fresh**: `#A8D8C2` — light, refreshing variant
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Heading | `#2D3436` | `#FAF8F5` | 12:1 | AAA |
+| Body | `#636E72` | `#FAF8F5` | 4.9:1 | AA |
+| Heading | `#E8EEF4` | `#FAF8F5` | 1.1:1 | FAIL |
 
 ## 3. Typography Rules
 

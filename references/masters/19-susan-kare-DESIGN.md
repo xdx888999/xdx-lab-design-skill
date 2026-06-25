@@ -1,3 +1,20 @@
+---
+version: alpha
+name: "Susan Kare Method"
+colors:
+  surface: "#F4F4F0"
+  on-surface: "#111111"
+  primary: "#0066FF"
+  on-primary: "#FFFFFF"
+  text-muted: "#5E5E58"
+  pixel-black: "#000000"
+  yellow: "#FFCC00"
+  red: "#FF3B30"
+  green: "#34C759"
+rounded:
+  none: 0px
+---
+
 # Design System: Susan Kare Method
 # 苏珊·凯尔设计方法
 
@@ -24,6 +41,13 @@ Red:          #FF3B30
 Green:        #34C759
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F4F4F0` | 17.1:1 | AAA |
+| Text muted | `#5E5E58` | `#F4F4F0` | 5.9:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Silkscreen`, `Chicago`, `ui-monospace`, monospace; weight 400-700.
@@ -43,6 +67,14 @@ Green:        #34C759
 - 图标使用像素网格、黑白优先，再加少量颜色。
 - 每个图标必须有功能隐喻：容器、工具、动作、状态。
 - 可使用小表情和幽默细节，但不能影响功能判断。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

@@ -1,3 +1,43 @@
+---
+version: alpha
+name: "Vaporwave / Aesthetic"
+colors:
+  surface: "#1A0533"
+  surface-variant: "#280845"
+  on-surface: "#FFFB96"
+  primary: "#01CDFE"
+  on-primary: "#111111"
+  accent: "#B967FF"
+  deep-teal: "#0D2137"
+  hot-pink: "#FF71CE"
+  mint: "#05FFA1"
+typography:
+  righteous:
+    fontFamily: "Comfortaa"
+    fontSize: 48px
+    fontWeight: 400
+rounded:
+  none: 4px
+  sm: 8px
+components:
+  neon-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.hot-pink}"
+    border: "2px solid {colors.hot-pink}"
+    shadow: "0 0 10px {colors.hot-pink}, inset 0 0 10px rgba(255,113,206,0.1)"
+    padding: "12px 28px, border-radius: 4px"
+    typography: "Orbitron 13px weight 600 uppercase letter-spacing 3px"
+    hover: "color {colors.accent}, border-color {colors.accent}, box-shadow update"
+  gradient-card:
+    backgroundColor: "linear-gradient(135deg, rgba(255,113,206,0.1) 0%, rgba(185,103,255,0.1) 50%, rgba(1,205,254,0.1) 100%)"
+    border: "1px solid rgba(185,103,255,0.4)"
+    rounded: "8px"
+    padding: "24px"
+    shadow: "0 0 30px rgba(185,103,255,0.2)"
+  vhscrt-overlay:
+    backgroundColor: "repeating-linear-gradient("
+---
+
 # Design System: Vaporwave / Aesthetic
 # 蒸汽波/复古赛博风格
 
@@ -50,6 +90,14 @@ The visual world includes: Greek busts in digital voids, Windows 95 error boxes,
 - Mint: `0 0 10px #05FFA1, 0 0 30px rgba(5,255,161,0.5)`
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Void Purple | `#1A0533` | `#1A0533` | 1:1 | FAIL |
+| Hot Pink | `#FF71CE` | `#1A0533` | 7.6:1 | AAA |
+| Lavender | `#B967FF` | `#1A0533` | 5.8:1 | AA |
 
 ## 3. Typography Rules
 

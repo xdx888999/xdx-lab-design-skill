@@ -1,3 +1,62 @@
+---
+version: alpha
+name: "Finance Enterprise"
+colors:
+  surface: "#F8F9FA"
+  surface-variant: "#F1F3F5"
+  on-surface: "#0D1B2E"
+  primary: "#3B6BB5"
+  on-primary: "#FFFFFF"
+  navy: "#0A1628"
+  navy-mid: "#1A3A6A"
+  navy-tint: "#E8EEF8"
+  positive: "#0F6B4A"
+  positive-muted: "#D1FAE5"
+  negative: "#C0392B"
+  negative-muted: "#FEE2E2"
+  neutral: "#6B7280"
+  text-body: "#374151"
+  border: "#DEE2E6"
+typography:
+  section-heading:
+    fontFamily: "IBM Plex Sans"
+    fontSize: 32px
+    fontWeight: 600
+  body:
+    fontFamily: "IBM Plex Sans"
+    fontSize: 16px
+    fontWeight: 400
+rounded:
+  none: 0px
+  default: 4px
+spacing:
+  section-padding: 40px
+components:
+  data-table:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border}"
+    rounded: "4px"
+    hover: "background {colors.navy-tint}"
+  fund-card-asset-card:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border}"
+    rounded: "4px"
+    padding: "20px 24px"
+  chart-container:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border}"
+    rounded: "4px"
+    padding: "20px"
+  button:
+    backgroundColor: "{colors.positive}"
+    textColor: "{colors.navy}"
+    rounded: "4px"
+    padding: "10px 20px"
+    typography: "IBM Plex Sans 600 14px"
+    hover: "background {colors.navy-tint}"
+    border: "1.5px solid {colors.navy}"
+---
+
 # Design System: Finance Enterprise
 # 金融企业级风格
 
@@ -52,6 +111,20 @@ This is not consumer fintech (bright, friendly). This is institutional: muted na
 - **Border** (`#DEE2E6`): Table borders, card borders.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Off White | `#F8F9FA` | `#F8F9FA` | 1:1 | FAIL |
+| Light Gray | `#F1F3F5` | `#F8F9FA` | 1.1:1 | FAIL |
+| Navy | `#0A1628` | `#F8F9FA` | 17.2:1 | AAA |
+| Navy Mid | `#1A3A6A` | `#F8F9FA` | 10.7:1 | AAA |
+| Navy Light | `#3B6BB5` | `#F8F9FA` | 5:1 | AA |
+| Positive Muted | `#D1FAE5` | `#F8F9FA` | 1.1:1 | FAIL |
+| Negative Muted | `#FEE2E2` | `#F8F9FA` | 1.2:1 | FAIL |
+| Text Primary | `#0D1B2E` | `#F8F9FA` | 16.4:1 | AAA |
+| Text Body | `#374151` | `#F8F9FA` | 9.8:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -152,6 +225,12 @@ Outline:
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 40px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -160,6 +239,15 @@ Outline:
 | Card | `#FFFFFF` + 1px border |
 | Featured | `#FFFFFF` + 1px border + navy left stripe |
 | Modal | `#FFFFFF` + `0 20px 60px rgba(0,0,0,0.15)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 4px | Default radius |
 
 ---
 

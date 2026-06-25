@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Otl Aicher Method"
+colors:
+  surface: "#F8F7F1"
+  on-surface: "#111111"
+  primary: "#00A3E0"
+  on-primary: "#111111"
+  text-muted: "#5E625D"
+  grass-green: "#78BE20"
+  warm-orange: "#F05A28"
+  line: "#D7D8D2"
+rounded:
+  none: 0px
+---
+
 # Design System: Otl Aicher Method
 # 奥托·艾舍设计方法
 
@@ -23,6 +39,13 @@ Warm orange:  #F05A28
 Line:         #D7D8D2
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F8F7F1` | 17.6:1 | AAA |
+| Text muted | `#5E625D` | `#F8F7F1` | 5.8:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Source Sans 3`, `Inter`, `Arial`, sans-serif; weight 600.
@@ -42,6 +65,14 @@ Line:         #D7D8D2
 - 图标优先使用人体、方向、动作和物体的简化轮廓。
 - 图形必须在 16px、24px、48px 下都可识别。
 - 避免复杂阴影；用平涂和负空间表达。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

@@ -1,3 +1,98 @@
+---
+version: alpha
+name: "Aurora UI"
+colors:
+  surface: "#06061A"
+  on-surface: "#FFFFFF"
+  primary: "#818CF8"
+  on-primary: "#111111"
+  accent: "#0891B2"
+  success: "#34D399"
+  warning: "#FBBF24"
+  cosmos: "#0A0A1F"
+  void: "#04040F"
+  aurora-violet: "#7C3AED"
+  aurora-indigo: "#4338CA"
+  aurora-magenta: "#BE185D"
+  aurora-rose: "#E11D48"
+  aurora-emerald: "#059669"
+  primary-bright: "#6366F1"
+  secondary: "#22D3EE"
+  highlight: "#F472B6"
+  text-accent: "#A5B4FC"
+typography:
+  10:
+    fontFamily: "Inter"
+    fontSize: 5px
+    fontWeight: 400
+  h1:
+    fontFamily: "Inter"
+    fontSize: 48px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter"
+    fontSize: 16px
+    fontWeight: 400
+rounded:
+  none: 12px
+  sm: 16px
+  md: 20px
+  lg: 100px
+spacing:
+  base: 8px
+  card-padding: 28px
+  card-gap: 16px
+  max-width: 1200px
+  gutter: 24px
+components:
+  hero-cta-button:
+    backgroundColor: "linear-gradient(135deg, {colors.primary-bright}, #8B5CF6)"
+    textColor: "{colors.on-surface}"
+    padding: "14px 28px"
+    rounded: "12px"
+    border: "1px solid rgba(139,92,246,0.4)"
+    shadow: "0 0 30px rgba(99,102,241,0.35), 0 4px 20px rgba(0,0,0,0.3)"
+    typography: "Inter 16px weight 600"
+    hover: "box-shadow 0 0 50px rgba(99,102,241,0.5), scale(1.02)"
+  secondary-button:
+    backgroundColor: "rgba(255,255,255,0.07)"
+    textColor: "rgba(255,255,255,0.85)"
+    padding: "14px 28px"
+    rounded: "12px"
+    border: "1px solid rgba(255,255,255,0.14)"
+    backdropFilter: "blur(10px)"
+    typography: "Inter 16px weight 500"
+    hover: "background rgba(255,255,255,0.11)"
+  feature-card:
+    backgroundColor: "rgba(255,255,255,0.07)"
+    border: "1px solid rgba(255,255,255,0.12)"
+    rounded: "20px"
+    backdropFilter: "blur(16px) saturate(180%)"
+    padding: "28px"
+    shadow: "0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)"
+    hover: "border-color rgba(255,255,255,0.2), background rgba(255,255,255,0.10)"
+  stats-metric-card:
+    backgroundColor: "rgba(255,255,255,0.05)"
+    border: "1px solid rgba(255,255,255,0.08)"
+    rounded: "16px"
+    backdropFilter: "blur(10px)"
+    padding: "20px 24px"
+  navigation:
+    backgroundColor: "rgba(6,6,26,0.7)"
+    backdropFilter: "blur(24px) saturate(160%)"
+    height: "64px"
+  eyebrow-label:
+    backgroundColor: "rgba(129,140,248,0.12)"
+    textColor: "{colors.primary}"
+    border: "1px solid rgba(129,140,248,0.25)"
+    rounded: "100px (pill)"
+    padding: "4px 14px"
+    typography: "12px Inter weight 600 uppercase letter-spacing 1.5px"
+  glow-line-divider:
+    height: "1px"
+    backgroundColor: "linear-gradient(90deg, transparent, rgba(129,140,248,0.4), transparent)"
+---
+
 # Design System: Aurora UI
 # 极光界面风格
 
@@ -63,6 +158,19 @@ Unlike pure Glassmorphism Dark (which focuses on the glass cards), Aurora UI is 
 - **Text Accent** (`#A5B4FC`): Links, highlighted text.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Deep Space | `#06061A` | `#06061A` | 1:1 | FAIL |
+| Aurora Indigo | `#4338CA` | `#06061A` | 2.5:1 | FAIL |
+| Primary | `#818CF8` | `#06061A` | 6.7:1 | AA |
+| Primary Bright | `#6366F1` | `#06061A` | 4.5:1 | AA |
+| Secondary | `#22D3EE` | `#06061A` | 11.1:1 | AAA |
+| Highlight | `#F472B6` | `#06061A` | 7.6:1 | AAA |
+| Text High | `#FFFFFF` | `#06061A` | 20:1 | AAA |
+| Text Accent | `#A5B4FC` | `#06061A` | 10:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -220,6 +328,16 @@ Blob 3 (Magenta, bottom-right):
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 8px |
+| card-padding | 28px |
+| card-gap | 16px |
+| max-width | 1200px |
+| gutter | 24px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment | Use |
@@ -230,6 +348,17 @@ Blob 3 (Magenta, bottom-right):
 | Featured Card | `rgba(255,255,255,0.10)` + `blur(20px)` + glow border | Hero/CTA cards |
 | Modal | `rgba(10,10,30,0.85)` + `blur(24px)` | Full overlay dialogs |
 | Tooltip | `rgba(15,15,35,0.95)` + `blur(12px)` | Inline help, tooltips |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 12px | Square elements |
+| sm | 16px | Inputs, tags |
+| md | 20px | Cards, buttons |
+| lg | 100px | Modals, large cards |
 
 ---
 

@@ -1,3 +1,73 @@
+---
+version: alpha
+name: "Education Platform"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#111827"
+  primary: "#4F46E5"
+  on-primary: "#FFFFFF"
+  accent: "#818CF8"
+  success: "#ECFDF5"
+  learning-gray: "#F9FAFB"
+  active-surface: "#F5F3FF"
+  indigo-dark: "#3730A3"
+  indigo-tint: "#EEF2FF"
+  achievement-gold: "#F59E0B"
+  gold-tint: "#FFFBEB"
+  complete-green: "#10B981"
+  text-body: "#374151"
+  text-muted: "#6B7280"
+  border: "#E5E7EB"
+typography:
+  hero-course-title:
+    fontFamily: "Plus Jakarta Sans"
+    fontSize: 52px
+    fontWeight: 700
+  h3-lesson-title:
+    fontFamily: "Plus Jakarta Sans"
+    fontSize: 20px
+    fontWeight: 600
+  progress-label:
+    fontFamily: "Plus Jakarta Sans"
+    fontSize: 13px
+    fontWeight: 600
+  caption:
+    fontFamily: "Plus Jakarta Sans"
+    fontSize: 13px
+    fontWeight: 400
+rounded:
+  none: 8px
+  sm: 12px
+  md: 999px
+spacing:
+  section-padding: 64px
+components:
+  course-card:
+    backgroundColor: "{colors.on-primary}"
+    border: "1px solid {colors.border}"
+    rounded: "12px"
+    padding: "0  (image top, content bottom with 16px padding)"
+    shadow: "0 1px 3px rgba(0,0,0,0.08)"
+    hover: "box-shadow 0 4px 12px rgba(79,70,229,0.1), transform translateY(-2px)"
+  button:
+    backgroundColor: "{colors.achievement-gold}"
+    textColor: "{colors.primary}"
+    rounded: "8px"
+    padding: "12px 24px"
+    typography: "Plus Jakarta Sans 600 15px"
+    hover: "background {colors.indigo-tint}"
+    border: "2px solid {colors.primary}"
+  achievement-badge:
+    backgroundColor: "linear-gradient(135deg, {colors.achievement-gold}, #D97706)"
+    textColor: "{colors.on-primary}"
+    rounded: "999px"
+    padding: "4px 12px"
+    typography: "Plus Jakarta Sans 700 11px uppercase letter-spacing: 0.5px"
+    shadow: "0 2px 8px rgba(245,158,11,0.4)"
+  lesson-progress-indicator:
+    active: "24px circle, {colors.primary} fill, current number"
+---
+
 # Design System: Education Platform
 # 在线教育平台风格
 
@@ -53,6 +123,19 @@ This system is calibrated for adult learners and older students (12+). It borrow
 - **Border** (`#E5E7EB`): Cards, form fields.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Pure White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Learning Gray | `#F9FAFB` | `#FFFFFF` | 1:1 | FAIL |
+| Learning Indigo | `#4F46E5` | `#FFFFFF` | 6.3:1 | AA |
+| Indigo Dark | `#3730A3` | `#FFFFFF` | 9.9:1 | AAA |
+| Indigo Light | `#818CF8` | `#FFFFFF` | 3:1 | AA-large |
+| Text Primary | `#111827` | `#FFFFFF` | 17.7:1 | AAA |
+| Text Body | `#374151` | `#FFFFFF` | 10.3:1 | AAA |
+| Text Muted | `#6B7280` | `#FFFFFF` | 4.8:1 | AA |
 
 ## 3. Typography Rules
 
@@ -151,6 +234,12 @@ Connector line: 2px solid #E5E7EB between dots
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 64px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -159,6 +248,16 @@ Connector line: 2px solid #E5E7EB between dots
 | Card | `#FFFFFF` + 1px border + subtle shadow |
 | Active/Hover | Indigo shadow `rgba(79,70,229,0.1)` |
 | Modal / Overlay | White + `0 20px 60px rgba(0,0,0,0.12)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 8px | Square elements |
+| sm | 12px | Inputs, tags |
+| md | 999px | Cards, buttons |
 
 ---
 

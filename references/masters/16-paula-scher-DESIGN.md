@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Paula Scher Method"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#111111"
+  primary: "#FFD100"
+  on-primary: "#111111"
+  red: "#E31B23"
+  blue: "#0057B8"
+  orange: "#FF5A1F"
+  gray: "#EDEDED"
+rounded:
+  none: 0px
+---
+
 # Design System: Paula Scher Method
 # 宝拉·谢尔设计方法
 
@@ -23,6 +39,12 @@ Orange:       #FF5A1F
 Gray:         #EDEDED
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#FFFFFF` | 18.9:1 | AAA |
+
 ## 3. Typography Rules
 
 - Heading: `Archivo Narrow`, `Oswald`, `Arial Narrow`, sans-serif; weight 700-900.
@@ -42,6 +64,14 @@ Gray:         #EDEDED
 - 图片可被大字压住、裁切或作为文字背景。
 - 图标少用；文字本身就是图像。
 - 适合用场地照片、舞台、城市纹理，但要强裁切。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

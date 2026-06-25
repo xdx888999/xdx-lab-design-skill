@@ -1,3 +1,69 @@
+---
+version: alpha
+name: "Nonprofit & Cause"
+colors:
+  surface: "#FAFAF8"
+  on-surface: "#111827"
+  primary: "#D97706"
+  on-primary: "#111111"
+  success: "#ECFDF5"
+  light-gray: "#F3F4F6"
+  hope-tint: "#FFF7ED"
+  trust-blue: "#2563EB"
+  blue-dark: "#1D4ED8"
+  blue-tint: "#EFF6FF"
+  hope-amber: "#F59E0B"
+  amber-tint: "#FFFBEB"
+  impact-green: "#059669"
+  text-body: "#374151"
+  text-muted: "#6B7280"
+  border: "#E5E7EB"
+  background: "#FFFFFF"
+typography:
+  mission-statement:
+    fontFamily: "Inter"
+    fontSize: 56px
+    fontWeight: 700
+  section-heading:
+    fontFamily: "Inter"
+    fontSize: 36px
+    fontWeight: 700
+  story-quote:
+    fontFamily: "Inter"
+    fontSize: 20px
+    fontWeight: 400
+  label:
+    fontFamily: "Inter"
+    fontSize: 12px
+    fontWeight: 600
+rounded:
+  none: 8px
+  sm: 10px
+  md: 12px
+  lg: 999px
+spacing:
+  section-padding: 80px
+components:
+  donation-card-giving-tier:
+    backgroundColor: "{colors.background}"
+    border: "2px solid {colors.border}"
+    rounded: "12px"
+    padding: "24px"
+  story-beneficiary-card:
+    backgroundColor: "{colors.background}"
+    border: "1px solid {colors.border}"
+    rounded: "10px"
+    padding: "20px"
+  donation-button:
+    backgroundColor: "{colors.trust-blue}"
+    textColor: "{colors.background}"
+    rounded: "8px"
+    padding: "14px 32px"
+    typography: "Inter 700 16px"
+    shadow: "0 4px 12px rgba(245,158,11,0.3)"
+    hover: "background {colors.primary}"
+---
+
 # Design System: Nonprofit & Cause
 # 公益/NGO 风格
 
@@ -53,6 +119,17 @@ The best examples — charity: water, Oxfam, Patagonia's environmental campaigns
 - **Border** (`#E5E7EB`): Cards, sections.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Warm White | `#FAFAF8` | `#FAFAF8` | 1:1 | FAIL |
+| Trust Blue | `#2563EB` | `#FAFAF8` | 4.9:1 | AA |
+| Blue Dark | `#1D4ED8` | `#FAFAF8` | 6.4:1 | AA |
+| Text Primary | `#111827` | `#FAFAF8` | 17:1 | AAA |
+| Text Body | `#374151` | `#FAFAF8` | 9.9:1 | AAA |
+| Text Muted | `#6B7280` | `#FAFAF8` | 4.6:1 | AA |
 
 ## 3. Typography Rules
 
@@ -151,6 +228,12 @@ Secondary (Learn More):
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -159,6 +242,17 @@ Secondary (Learn More):
 | Card | `#FFFFFF` + 1px border + subtle shadow |
 | Selected/Featured | Blue or amber border |
 | CTA section | Amber tint background `#FFF7ED` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 8px | Square elements |
+| sm | 10px | Inputs, tags |
+| md | 12px | Cards, buttons |
+| lg | 999px | Modals, large cards |
 
 ---
 

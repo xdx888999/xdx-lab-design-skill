@@ -1,3 +1,57 @@
+---
+version: alpha
+name: "Esports & Gaming"
+colors:
+  surface: "#0A0C14"
+  surface-variant: "#0D1120"
+  on-surface: "#FFFFFF"
+  primary: "#00D4FF"
+  on-primary: "#111111"
+  surface-raised: "#141929"
+  venom-green: "#39FF14"
+  electric-purple: "#8B5CF6"
+  plasma-orange: "#FF6B00"
+  kill-red: "#FF2D55"
+  gold-rank: "#F5A623"
+  secondary: "#94A3B8"
+typography:
+  player-name:
+    fontFamily: "Inter"
+    fontSize: 24px
+    fontWeight: 600
+  neon-callout:
+    fontFamily: "Inter"
+    fontSize: 20px
+    fontWeight: 700
+rounded:
+  none: 0px
+spacing:
+  section-padding: 80px
+components:
+  playerteam-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid rgba(0,212,255,0.3)  ← neon border subtle"
+    clipPath: "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%)"
+    padding: "20px"
+    hover: "border-color rgba(0,212,255,0.8), box-shadow 0 0 20px rgba(0,212,255,0.2)"
+  neon-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.primary}"
+    rounded: "0px"
+    clipPath: "polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%)  ← parallelogram"
+    padding: "12px 32px"
+    typography: "Rajdhani 700 14px uppercase letter-spacing: 2px"
+    shadow: "0 0 20px rgba(0,212,255,0.5)"
+    hover: "box-shadow 0 0 16px rgba(0,212,255,0.3)"
+    border: "1.5px solid {colors.primary}"
+  match-score-display:
+    backgroundColor: "{colors.surface-variant}"
+  diagonal-section-separator:
+    width: "100%;"
+    height: "80px;"
+    backgroundColor: "{colors.surface};"
+---
+
 # Design System: Esports & Gaming
 # 电竞赛事风格
 
@@ -47,6 +101,14 @@ The visual language draws from competitive gaming culture: Riot Games' League Ch
 - **Accent Text** (`#00D4FF`): Neon text for emphasis.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Void | `#0A0C14` | `#0A0C14` | 1:1 | FAIL |
+| Primary | `#FFFFFF` | `#0A0C14` | 19.5:1 | AAA |
+| Secondary | `#94A3B8` | `#0A0C14` | 7.6:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -149,6 +211,12 @@ position: relative
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -157,6 +225,14 @@ position: relative
 | Panel | `#0D1120` dark panel + neon border subtle |
 | Elevated | `#141929` + stronger neon glow |
 | Active | Full neon glow `box-shadow: 0 0 30px rgba(neon, 0.6)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

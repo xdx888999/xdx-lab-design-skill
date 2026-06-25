@@ -1,3 +1,56 @@
+---
+version: alpha
+name: "Republican Era Shanghai"
+colors:
+  surface: "#F5EDD8"
+  surface-variant: "#EDE0C0"
+  on-surface: "#1A1410"
+  primary: "#C41E3A"
+  on-primary: "#FFFFFF"
+  deep-night: "#1A0D0D"
+  poster-gold: "#D4A847"
+  blush-rose: "#D4927A"
+  jade-green: "#3D7A5A"
+  cobalt: "#2A4B8A"
+  warm-gray: "#9A8F82"
+typography:
+  poster-title:
+    fontFamily: "Noto Serif SC"
+    fontSize: 72px
+    fontWeight: 700
+  section-heading:
+    fontFamily: "Noto Serif SC"
+    fontSize: 28px
+    fontWeight: 600
+  caption:
+    fontFamily: "Noto Serif SC"
+    fontSize: 12px
+    fontWeight: 400
+rounded:
+  none: 0px
+spacing:
+  section-padding: 80px
+components:
+  art-deco-frame:
+    backgroundColor: "{colors.surface}"
+  card:
+    backgroundColor: "{colors.surface}"
+    border: "2px solid {colors.primary}"
+    rounded: "0px"
+    padding: "24px 28px"
+  button:
+    backgroundColor: "transparent"
+    textColor: "{colors.poster-gold}"
+    rounded: "0px"
+    padding: "10px 32px"
+    typography: "Josefin Sans 600 13px ALL CAPS letter-spacing: 4px"
+    hover: "background {colors.poster-gold}, color {colors.on-surface}"
+    border: "2px solid {colors.poster-gold}"
+  chevrondeco-divider:
+    textColor: "{colors.poster-gold} on {colors.surface} background"
+    height: "8px  (used as section separator)"
+---
+
 # Design System: Republican Era Shanghai
 # 民国海报风格
 
@@ -43,6 +96,17 @@ This design system captures that era: warm yellows and deep reds of vintage Chin
 - **Warm Gray** (`#9A8F82`): Supporting text, secondary elements.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Deep Night | `#1A0D0D` | `#F5EDD8` | 16.2:1 | AAA |
+| Shanghai Red | `#C41E3A` | `#F5EDD8` | 5:1 | AA |
+| Ink Black | `#1A1410` | `#F5EDD8` | 15.6:1 | AAA |
+| Jade Green | `#3D7A5A` | `#F5EDD8` | 4.4:1 | AA-large |
+| Cobalt | `#2A4B8A` | `#F5EDD8` | 7.3:1 | AAA |
+| Warm Gray | `#9A8F82` | `#F5EDD8` | 2.7:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -121,6 +185,12 @@ Or: simple double-line: 1px + 2px gap + 1px in gold
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -129,6 +199,14 @@ Or: simple double-line: 1px + 2px gap + 1px in gold
 | Card | `#EDE0C0` + red or gold border |
 | Featured | White header bar + deep red/gold frame |
 | Night mode | `#1A0D0D` bg, neon gold glow |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

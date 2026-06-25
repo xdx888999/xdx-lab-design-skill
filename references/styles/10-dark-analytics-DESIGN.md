@@ -1,3 +1,61 @@
+---
+version: alpha
+name: "Dark Analytics Dashboard"
+colors:
+  surface: "#0F1117"
+  surface-variant: "#161B22"
+  on-surface: "#E6EDF3"
+  primary: "#D29922"
+  on-primary: "#111111"
+  accent: "#39C5CF"
+  deepest: "#0A0B0F"
+  surface-raised: "#1C2333"
+  surface-high: "#21262D"
+  border: "#30363D"
+  border-strong: "#484F58"
+  text-secondary: "#8B949E"
+  text-muted: "#6E7681"
+  data-green: "#3FB950"
+  data-red: "#F85149"
+  data-blue: "#388BFD"
+  data-purple: "#BC8CFF"
+  data-yellow: "#E3B341"
+typography:
+  jetbrains-mono:
+    fontSize: 36px
+    fontWeight: 700
+  jetbrains-mono:
+    fontSize: 11px
+    fontWeight: 400
+rounded:
+  none: 4px
+  sm: 6px
+  md: 8px
+components:
+  kpi-metric-panel:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.border}"
+    rounded: "8px"
+    padding: "16px 20px"
+  chart-panel:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.border}"
+    rounded: "8px"
+    padding: "16px 20px"
+  data-table:
+    backgroundColor: "transparent"
+    border: "1px solid {colors.border}"
+    rounded: "8px"
+    hover: "background {colors.surface-raised}"
+  alert-banner:
+    rounded: "4px, padding: 10px 14px"
+  time-range-selector:
+    backgroundColor: "{colors.surface-raised}"
+    border: "1px solid {colors.border}"
+    rounded: "6px"
+    padding: "4px"
+---
+
 # Design System: Dark Analytics Dashboard
 # 暗色数据分析看板风格
 
@@ -65,6 +123,17 @@ This is the design system of tools that handle real consequences — servers goi
 6. `#39C5CF` Cyan
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Base | `#0F1117` | `#0F1117` | 1:1 | FAIL |
+| Text Primary | `#E6EDF3` | `#0F1117` | 16:1 | AAA |
+| Text Secondary | `#8B949E` | `#0F1117` | 6.1:1 | AA |
+| Text Muted | `#6E7681` | `#0F1117` | 4.1:1 | AA-large |
+| Data Blue | `#388BFD` | `#0F1117` | 5.6:1 | AA |
+| Data Purple | `#BC8CFF` | `#0F1117` | 7.5:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -197,6 +266,16 @@ Active pill: background #21262D, color #E6EDF3, border-radius 4px
 | Raised | `#1C2333` + stronger border | Table headers, active rows |
 | High | `#21262D` + `0 8px 24px rgba(0,0,0,0.5)` | Modals, tooltips |
 | Overlay | `rgba(0,0,0,0.7)` | Full-screen modal backdrop |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 4px | Square elements |
+| sm | 6px | Inputs, tags |
+| md | 8px | Cards, buttons |
 
 ---
 

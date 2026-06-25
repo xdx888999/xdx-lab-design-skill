@@ -1,3 +1,58 @@
+---
+version: alpha
+name: "Islamic Geometric"
+colors:
+  surface: "#0D3340"
+  on-surface: "#FAF6EE"
+  primary: "#0D4858"
+  on-primary: "#FFFFFF"
+  accent: "#E8C456"
+  warm-white: "#F5F0E8"
+  iznik-teal: "#1B6B7B"
+  moroccan-blue: "#2E4E7E"
+  sky-tile: "#5B9BB5"
+  tile-tint: "#E0F0F5"
+  mosque-gold: "#C9A84C"
+  gold-tint: "#FAF2DC"
+  terracotta: "#C0562A"
+  rose: "#C4547A"
+  emerald: "#2A7A5A"
+  dark: "#1A2830"
+  muted: "#8A9AAA"
+typography:
+  sub-heading:
+    fontFamily: "Inter"
+    fontSize: 24px
+    fontWeight: 500
+rounded:
+  none: 0px
+spacing:
+  section-padding: 80px
+components:
+  geometric-pattern-background:
+    textColor: "gold ({colors.mosque-gold}) at 6–10% opacity on dark, or 8% on light"
+  card:
+    backgroundColor: "rgba(255,255,255,0.06) on dark"
+    border: "1px solid rgba(201,168,76,0.4)  ← gold border subtle"
+    rounded: "0 0 0 0  ← flat, or arch top (CSS clip-path)"
+    padding: "28px 24px"
+    shadow: "0 4px 20px rgba(0,0,0,0.3) on dark mode"
+  arch-top-clip-path:
+    clipPath: "polygon(0 8%, 50% 0%, 100% 8%, 100% 100%, 0 100%);"
+    rounded: "50% 50% 0 0 / 25% 25% 0 0;"
+  button:
+    backgroundColor: "{colors.iznik-teal}"
+    textColor: "{colors.mosque-gold}"
+    rounded: "0px"
+    padding: "12px 32px"
+    typography: "Inter 600 13px uppercase letter-spacing: 2px"
+    hover: "background rgba(201,168,76,0.1)"
+    border: "1.5px solid {colors.mosque-gold}"
+  divider:
+    height: "12px"
+    backgroundColor: "repeating SVG pattern in gold on dark teal"
+---
+
 # Design System: Islamic Geometric
 # 伊斯兰几何风格
 
@@ -55,6 +110,15 @@ For digital design, this aesthetic translates into: geometric pattern background
 - **Muted** (`#8A9AAA`): Secondary text.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Deep Teal | `#0D3340` | `#0D3340` | 1:1 | FAIL |
+| Iznik Teal | `#1B6B7B` | `#0D3340` | 2.2:1 | FAIL |
+| Iznik Dark | `#0D4858` | `#0D3340` | 1.3:1 | FAIL |
+| Muted | `#8A9AAA` | `#0D3340` | 4.7:1 | AA |
 
 ## 3. Typography Rules
 
@@ -148,6 +212,12 @@ Use between major sections
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -156,6 +226,14 @@ Use between major sections
 | Card | `rgba(white, 0.06)` + gold border |
 | Featured | Gold border `2px solid #C9A84C` |
 | Light base | `#FAF6EE` ivory + teal accent elements |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

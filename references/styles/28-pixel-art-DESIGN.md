@@ -1,3 +1,44 @@
+---
+version: alpha
+name: "Pixel Art / Retro Gaming"
+colors:
+  surface: "#0D0D0D"
+  on-surface: "#FFFFFF"
+  primary: "#00FF41"
+  on-primary: "#111111"
+  error: "#FF2020"
+  dark-screen: "#1A1A2E"
+  nes-black: "#000000"
+  pixel-blue: "#0074FF"
+  coin-yellow: "#FFD700"
+typography:
+  share-tech-mono:
+    fontSize: 14px
+    fontWeight: 400
+rounded:
+  none: 0px
+components:
+  button:
+    backgroundColor: "{colors.pixel-blue} (or any palette color)"
+    textColor: "{colors.on-surface}"
+    padding: "16px 24px"
+    rounded: "0px (always 0 in pixel style)"
+    border: "4px solid {colors.on-surface} (thick pixel border)"
+    typography: "Press Start 2P 12px"
+    shadow: "4px 4px 0 {colors.nes-black} (offset shadow — no blur)"
+    hover: "box-shadow: 6px 6px 0 {colors.nes-black}, transform none"
+    active: "box-shadow: 2px 2px 0 {colors.nes-black}, transform: translate(2px, 2px)"
+  card:
+    backgroundColor: "{colors.dark-screen}"
+    border: "4px solid {colors.on-surface}"
+    rounded: "0px"
+    padding: "16px"
+    shadow: "4px 4px 0 {colors.nes-black}"
+    hover: "box-shadow: 6px 6px 0 {colors.nes-black}"
+  score-stats-row:
+    typography: "Press Start 2P 12px {colors.on-surface}"
+---
+
 # Design System: Pixel Art / Retro Gaming
 # 像素艺术/复古游戏风格
 
@@ -50,6 +91,13 @@ Modern pixel art design applies these principles to the web: pixelated fonts, gr
 - Highlight: `#FFFFFF`
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| NES Black | `#000000` | `#0D0D0D` | 1.1:1 | FAIL |
+| White | `#FFFFFF` | `#0D0D0D` | 19.4:1 | AAA |
 
 ## 3. Typography Rules
 

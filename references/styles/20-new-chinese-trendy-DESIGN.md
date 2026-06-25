@@ -1,3 +1,64 @@
+---
+version: alpha
+name: "New Chinese Trendy / 国潮风格"
+colors:
+  surface: "#F5F0E8"
+  on-surface: "#1A1008"
+  primary: "#FFE000"
+  on-primary: "#111111"
+  accent: "#A8C5A0"
+  vermillion: "#C8372D"
+  vermillion-light: "#E85545"
+  emperor-yellow: "#E8A020"
+  gold: "#C9A84C"
+  stone: "#7A7060"
+  jade: "#4A7C59"
+  ochre: "#C4832A"
+  neon-red: "#FF2D2D"
+  body-text: "#3D3020"
+typography:
+  noto-serif-sc:
+    fontSize: 28px
+    fontWeight: 600
+  zcool-qingke:
+    fontSize: 24px
+    fontWeight: 400
+rounded:
+  none: 2px
+  sm: 4px
+components:
+  primary-button:
+    backgroundColor: "{colors.vermillion}"
+    textColor: "{colors.surface}"
+    padding: "12px 28px"
+    rounded: "2px (slightly square — refined)"
+    border: "none"
+    typography: "PingFang SC / Noto Sans SC 15px weight 600"
+    hover: "background #A82520"
+    shadow: "0 4px 12px rgba(200,55,45,0.3)"
+  gold-outline-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.gold}"
+    border: "1px solid {colors.gold}"
+    padding: "11px 27px"
+    rounded: "2px"
+    typography: "15px weight 500"
+    hover: "background rgba(201,168,76,0.1)"
+  heritage-card:
+    backgroundColor: "{colors.surface} (Xuan paper tone)"
+    border: "1px solid rgba(200,55,45,0.2)"
+    rounded: "4px"
+    padding: "24px"
+    shadow: "0 4px 16px rgba(26,16,8,0.08)"
+  seal-stamp-element:
+    border: "2px solid {colors.vermillion}"
+    textColor: "{colors.vermillion} text on transparent"
+    typography: "ZCOOL QingKe HuangYou"
+  festival-banner:
+    backgroundColor: "{colors.vermillion} or linear-gradient(135deg, {colors.vermillion}, {colors.emperor-yellow})"
+    border: "thin gold line frame"
+---
+
 # Design System: New Chinese Trendy / 国潮风格
 # 国潮新中式设计风格
 
@@ -45,6 +106,13 @@ The palette draws from imperial colors (emperor yellow, vermillion, ink black) a
 - **Electric Yellow** (`#FFE000`): Streetwear yellow.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Ink Black | `#1A1008` | `#F5F0E8` | 16.5:1 | AAA |
+| Body text | `#3D3020` | `#F5F0E8` | 11.3:1 | AAA |
 
 ## 3. Typography Rules
 

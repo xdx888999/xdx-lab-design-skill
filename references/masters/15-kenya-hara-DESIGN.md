@@ -1,3 +1,18 @@
+---
+version: alpha
+name: "Kenya Hara Method"
+colors:
+  surface: "#FBFAF5"
+  on-surface: "#111111"
+  primary: "#2F2A24"
+  on-primary: "#FFFFFF"
+  text-muted: "#7A7166"
+  paper: "#E8E1D2"
+  warm-gray: "#C7B299"
+rounded:
+  none: 0px
+---
+
 # Design System: Kenya Hara Method
 # 原研哉设计方法
 
@@ -22,6 +37,14 @@ Warm gray:    #C7B299
 Ink:          #2F2A24
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#FBFAF5` | 18.1:1 | AAA |
+| Text muted | `#7A7166` | `#FBFAF5` | 4.6:1 | AA |
+| Ink | `#2F2A24` | `#FBFAF5` | 13.6:1 | AAA |
+
 ## 3. Typography Rules
 
 - Chinese/Japanese heading: `Noto Serif SC`, `Noto Serif JP`, serif; weight 500-600.
@@ -41,6 +64,14 @@ Ink:          #2F2A24
 - 使用静物、纸、织物、自然材质、手部细节、空间光影。
 - 图片应浅色、干净、可呼吸；必要时做柔和去饱和。
 - 图标用细线和简单物象，不用彩色卡通。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

@@ -1,3 +1,74 @@
+---
+version: alpha
+name: "Medical & Healthcare"
+colors:
+  surface: "#FFFFFF"
+  surface-variant: "#EFF6FF"
+  on-surface: "#111827"
+  primary: "#D97706"
+  on-primary: "#111111"
+  accent: "#67E8F9"
+  error: "#DC2626"
+  success: "#059669"
+  soft-blue-gray: "#F8FAFB"
+  medical-teal: "#0891B2"
+  teal-dark: "#0E7490"
+  teal-tint: "#E0F7FC"
+  green-tint: "#ECFDF5"
+  info-blue: "#2563EB"
+  text-secondary: "#374151"
+  text-muted: "#6B7280"
+  border: "#E5E7EB"
+typography:
+  hero-headline:
+    fontFamily: "DM Sans"
+    fontSize: 56px
+    fontWeight: 700
+  sub-heading:
+    fontFamily: "DM Sans"
+    fontSize: 24px
+    fontWeight: 600
+  medical-data:
+    fontFamily: "DM Sans"
+    fontSize: 36px
+    fontWeight: 700
+  caption:
+    fontFamily: "DM Sans"
+    fontSize: 13px
+    fontWeight: 400
+rounded:
+  none: 6px
+  sm: 8px
+spacing:
+  section-padding: 80px
+components:
+  card:
+    backgroundColor: "{colors.surface}"
+    border: "1px solid {colors.border}"
+    rounded: "8px"
+    padding: "24px"
+    shadow: "0 4px 12px rgba(8,145,178,0.12)"
+  button:
+    backgroundColor: "{colors.error}"
+    textColor: "{colors.surface}"
+    rounded: "8px"
+    padding: "12px 24px"
+    typography: "DM Sans 600 15px"
+    hover: "background {colors.surface-variant}"
+    border: "2px solid {colors.medical-teal}"
+  form-field:
+    backgroundColor: "{colors.surface}"
+    border: "1.5px solid {colors.border}"
+    rounded: "6px"
+    padding: "10px 14px"
+    typography: "DM Sans 400 15px {colors.text-secondary}"
+    focus: "border-color {colors.medical-teal}, box-shadow 0 0 0 3px rgba(8,145,178,0.15)"
+  metric-vital-sign-display:
+    backgroundColor: "{colors.surface-variant} or {colors.green-tint}"
+    rounded: "8px"
+    padding: "16px 20px"
+---
+
 # Design System: Medical & Healthcare
 # 医疗健康风格
 
@@ -54,6 +125,17 @@ The visual language borrows from modern healthcare brands like One Medical, Hims
 - **Border** (`#E5E7EB`): Form fields, card borders.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Clinical White | `#FFFFFF` | `#FFFFFF` | 1:1 | FAIL |
+| Medical Teal | `#0891B2` | `#FFFFFF` | 3.7:1 | AA-large |
+| Teal Dark | `#0E7490` | `#FFFFFF` | 5.4:1 | AA |
+| Text Primary | `#111827` | `#FFFFFF` | 17.7:1 | AAA |
+| Text Secondary | `#374151` | `#FFFFFF` | 10.3:1 | AAA |
+| Text Muted | `#6B7280` | `#FFFFFF` | 4.8:1 | AA |
 
 ## 3. Typography Rules
 
@@ -156,6 +238,12 @@ Trend: 14px #059669 "↑ Normal" or #DC2626 "↑ High"
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -165,6 +253,15 @@ Trend: 14px #059669 "↑ Normal" or #DC2626 "↑ High"
 | Featured | Teal top border + stronger shadow |
 | Modal | White + `box-shadow: 0 20px 60px rgba(0,0,0,0.15)` |
 | Overlay | `rgba(0,0,0,0.5)` backdrop |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 6px | Square elements |
+| sm | 8px | Inputs, tags |
 
 ---
 

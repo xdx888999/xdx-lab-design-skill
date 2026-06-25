@@ -1,3 +1,20 @@
+---
+version: alpha
+name: "Ikko Tanaka Method"
+colors:
+  surface: "#F7F2E8"
+  on-surface: "#111111"
+  primary: "#E60012"
+  on-primary: "#FFFFFF"
+  text-muted: "#6B6258"
+  indigo: "#005BAC"
+  gold: "#F5B400"
+  purple: "#6F2DA8"
+  paper-line: "#D8CBB8"
+rounded:
+  none: 0px
+---
+
 # Design System: Ikko Tanaka Method
 # 田中一光设计方法
 
@@ -23,6 +40,13 @@ Purple:       #6F2DA8
 Paper line:   #D8CBB8
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F7F2E8` | 16.9:1 | AAA |
+| Text muted | `#6B6258` | `#F7F2E8` | 5.4:1 | AA |
+
 ## 3. Typography Rules
 
 - Japanese heading: `Noto Serif JP`, `Shippori Mincho`, serif; weight 600-700.
@@ -42,6 +66,14 @@ Paper line:   #D8CBB8
 - 优先使用几何化文化符号，不直接堆砌浮世绘或和风素材。
 - 图标保持扁平、干净、色块明确。
 - 可以使用纸纹，但必须非常克制。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

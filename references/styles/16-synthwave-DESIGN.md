@@ -1,3 +1,54 @@
+---
+version: alpha
+name: "Synthwave / Retrowave"
+colors:
+  surface: "#0D0221"
+  surface-variant: "#280845"
+  on-surface: "#FFE640"
+  primary: "#FF2D7F"
+  on-primary: "#111111"
+  accent: "#00F5FF"
+  night: "#1A0533"
+  mid: "#3D1266"
+  purple-beam: "#B44BFF"
+  chrome-white: "#E8E0FF"
+typography:
+  display:
+    fontFamily: "Orbitron"
+  alternative:
+    fontFamily: "Audiowide"
+  body:
+    fontFamily: "Rajdhani"
+rounded:
+  none: 4px
+  sm: 8px
+components:
+  neon-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.primary}"
+    border: "2px solid {colors.primary}"
+    shadow: "0 0 10px {colors.primary}, inset 0 0 10px rgba(255,45,127,0.1)"
+    padding: "14px 32px, border-radius: 4px"
+    typography: "Orbitron 13px weight 600 uppercase letter-spacing 2px"
+    hover: "background rgba(255,45,127,0.15), box-shadow intensify"
+  filled-neon-button:
+    backgroundColor: "linear-gradient(135deg, {colors.primary}, {colors.purple-beam})"
+    textColor: "#FFFFFF, border: none"
+    shadow: "0 0 20px rgba(255,45,127,0.5)"
+    padding: "14px 32px, border-radius: 4px"
+    typography: "Orbitron 13px weight 600 uppercase letter-spacing 2px"
+  card-panel:
+    backgroundColor: "rgba(26,5,51,0.8) (semi-transparent deep purple)"
+    border: "1px solid rgba(180,75,255,0.4)"
+    rounded: "8px"
+    shadow: "0 0 20px rgba(180,75,255,0.2), inset 0 1px 0 rgba(255,255,255,0.05)"
+    padding: "24px"
+  horizon-line-divider:
+    height: "2px"
+    backgroundColor: "linear-gradient(90deg, transparent, {colors.primary}, {colors.purple-beam}, transparent)"
+    shadow: "0 0 10px {colors.primary}"
+---
+
 # Design System: Synthwave / Retrowave
 # 合成波/复古波风格
 
@@ -50,6 +101,16 @@ The aesthetic draws from the visual language of VHS-era sci-fi, arcade games, an
 - Horizon line: `linear-gradient(90deg, transparent, #FF2D7F, transparent)`
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Night | `#1A0533` | `#0D0221` | 1.1:1 | FAIL |
+| Hot Pink | `#FF2D7F` | `#0D0221` | 5.7:1 | AA |
+| Electric Cyan | `#00F5FF` | `#0D0221` | 14.8:1 | AAA |
+| Purple Beam | `#B44BFF` | `#0D0221` | 5.1:1 | AA |
+| Chrome White | `#E8E0FF` | `#0D0221` | 15.8:1 | AAA |
 
 ## 3. Typography Rules
 

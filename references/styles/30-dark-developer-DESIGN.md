@@ -1,3 +1,83 @@
+---
+version: alpha
+name: "Dark Developer / Terminal Aesthetic"
+colors:
+  surface: "#0D1117"
+  surface-variant: "#161B22"
+  on-surface: "#FFFFFF"
+  primary: "#58A6FF"
+  on-primary: "#111111"
+  accent: "#A5D6FF"
+  error: "#FF7B72"
+  success: "#238636"
+  warning: "#E3B341"
+  overlay: "#1C2333"
+  subtle: "#21262D"
+  inset: "#010409"
+  default: "#E6EDF3"
+  muted: "#8B949E"
+  subtle: "#6E7681"
+  default: "#30363D"
+  syntax-green: "#3FB950"
+  syntax-blue: "#79C0FF"
+  syntax-purple: "#D2A8FF"
+  syntax-orange: "#FFA657"
+  blue-hover: "#388BFD"
+  levels: "#0E4429"
+  background: "#1F6FEB"
+typography:
+  inter:
+    fontSize: 16px
+    fontWeight: 400
+  jetbrains-mono:
+    fontSize: 32px
+    fontWeight: 700
+rounded:
+  none: 2px
+  sm: 6px
+  md: 8px
+  lg: 100px
+components:
+  code-block:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.default}"
+    rounded: "6px"
+    typography: "JetBrains Mono 14px"
+    padding: "16px"
+  cta-button:
+    backgroundColor: "{colors.success} (GitHub green — for success/start)"
+    textColor: "{colors.on-surface}"
+    padding: "8px 16px"
+    rounded: "6px"
+    typography: "Inter 14px weight 500"
+    border: "1px solid rgba(240,246,252,0.1)"
+    hover: "background #2EA043"
+  alternate-cta:
+    backgroundColor: "{colors.background}"
+    textColor: "{colors.on-surface}"
+    padding: "8px 16px"
+    rounded: "6px"
+    typography: "Inter 14px weight 500"
+    hover: "background {colors.blue-hover}"
+  feature-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.default}"
+    rounded: "6px"
+    padding: "20px"
+    hover: "border-color {colors.muted}"
+  inline-code:
+    backgroundColor: "rgba(110,118,129,0.4)"
+    rounded: "6px"
+    padding: "0.2em 0.4em"
+    typography: "JetBrains Mono 85% (of parent)"
+    textColor: "{colors.default}"
+  badge-label:
+    rounded: "100px"
+    padding: "2px 10px"
+    typography: "12px Inter weight 500"
+    border: "1px solid"
+---
+
 # Design System: Dark Developer / Terminal Aesthetic
 # 暗色开发者/终端风格
 
@@ -61,6 +141,15 @@ The palette is GitHub Dark, VS Code, or similar editor theme colors. Monospace f
 - **Blue Subtle** (`rgba(88,166,255,0.1)`): Tinted backgrounds.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Base | `#0D1117` | `#0D1117` | 1:1 | FAIL |
+| Default | `#E6EDF3` | `#0D1117` | 16:1 | AAA |
+| Muted | `#8B949E` | `#0D1117` | 6.2:1 | AA |
+| Blue | `#58A6FF` | `#0D1117` | 7.5:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -199,6 +288,17 @@ Error: border rgba(248,81,73,0.4), bg rgba(248,81,73,0.15), color #FF7B72
 | Overlay | `#161B22` | Cards |
 | Popover | `#1C2333` | Dropdowns, tooltips |
 | Modal | `0 8px 24px rgba(1,4,9,0.8)` | Dialogs |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 2px | Square elements |
+| sm | 6px | Inputs, tags |
+| md | 8px | Cards, buttons |
+| lg | 100px | Modals, large cards |
 
 ---
 

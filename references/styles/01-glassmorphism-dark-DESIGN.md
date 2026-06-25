@@ -1,3 +1,118 @@
+---
+version: alpha
+name: "Glassmorphism Dark"
+colors:
+  surface: "#0D0D1A"
+  surface-variant: "#13131F"
+  on-surface: "#FFFFFF"
+  primary: "#8B5CF6"
+  on-primary: "#111111"
+  accent: "#0891B2"
+  error: "#EF4444"
+  success: "#10B981"
+  warning: "#F59E0B"
+  elevated-surface: "#1A1A2E"
+  blob-purple: "#7C3AED"
+  blob-blue: "#2563EB"
+  blob-magenta: "#DB2777"
+  primary-cyan: "#22D3EE"
+  primary-pink: "#EC4899"
+  text-accent: "#A78BFA"
+typography:
+  display-hero:
+    fontFamily: "Cal Sans"
+    fontSize: 64px
+    fontWeight: 700
+  heading-1:
+    fontFamily: "Inter"
+    fontSize: 48px
+    fontWeight: 700
+  heading-2:
+    fontFamily: "Inter"
+    fontSize: 32px
+    fontWeight: 600
+  heading-3:
+    fontFamily: "Inter"
+    fontSize: 24px
+    fontWeight: 600
+  heading-4:
+    fontFamily: "Inter"
+    fontSize: 18px
+    fontWeight: 600
+  body-large:
+    fontFamily: "Inter"
+    fontSize: 18px
+    fontWeight: 400
+  body:
+    fontFamily: "Inter"
+    fontSize: 16px
+    fontWeight: 400
+  body-small:
+    fontFamily: "Inter"
+    fontSize: 14px
+    fontWeight: 400
+  label:
+    fontFamily: "Inter"
+    fontSize: 12px
+    fontWeight: 500
+  code:
+    fontFamily: "JetBrains Mono"
+    fontSize: 14px
+    fontWeight: 400
+rounded:
+  none: 6px
+  sm: 10px
+  md: 12px
+  lg: 16px
+spacing:
+  base: 8px
+  card-padding: 24px
+  card-gap: 16px
+  max-width: 1200px
+components:
+  primary-button:
+    backgroundColor: "linear-gradient(135deg, {colors.primary}, #6D28D9)"
+    textColor: "{colors.on-surface}"
+    padding: "12px 24px"
+    rounded: "12px"
+    border: "1px solid rgba(139,92,246,0.4)"
+    shadow: "0 0 20px rgba(139,92,246,0.3), 0 4px 15px rgba(0,0,0,0.3)"
+    typography: "16px Inter weight 600"
+    hover: "brightness(1.1), box-shadow intensifies"
+  ghost-button:
+    backgroundColor: "rgba(255,255,255,0.06)"
+    textColor: "rgba(255,255,255,0.85)"
+    padding: "12px 24px"
+    rounded: "12px"
+    border: "1px solid rgba(255,255,255,0.15)"
+    backdropFilter: "blur(8px)"
+    hover: "background rgba(255,255,255,0.10)"
+  glass-card:
+    backgroundColor: "rgba(255,255,255,0.08)"
+    border: "1px solid rgba(255,255,255,0.12)"
+    rounded: "16px"
+    backdropFilter: "blur(16px) saturate(180%)"
+    padding: "24px"
+    shadow: "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)"
+  input-form-field:
+    backgroundColor: "rgba(255,255,255,0.06)"
+    border: "1px solid rgba(255,255,255,0.12)"
+    rounded: "10px"
+    padding: "12px 16px"
+    textColor: "{colors.on-surface}"
+    focus: "border-color rgba(139,92,246,0.6), box-shadow 0 0 0 3px rgba(139,92,246,0.15)"
+  navigation-bar:
+    backgroundColor: "rgba(13,13,26,0.8)"
+    backdropFilter: "blur(20px)"
+    height: "64px"
+  badge-tag:
+    backgroundColor: "rgba(139,92,246,0.15)"
+    textColor: "{colors.text-accent}"
+    border: "1px solid rgba(139,92,246,0.3)"
+    rounded: "6px"
+    padding: "2px 10px"
+---
+
 # Design System: Glassmorphism Dark
 # 玻璃拟态（暗色版）
 
@@ -64,6 +179,17 @@ The signature effect is achieved through three layered forces: a deep dark backg
 - **Border Glow** (`rgba(139,92,246,0.3)`): Glowing border effect on CTA.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Deep Dark | `#0D0D1A` | `#0D0D1A` | 1:1 | FAIL |
+| Primary Purple | `#8B5CF6` | `#0D0D1A` | 4.6:1 | AA |
+| Primary Cyan | `#22D3EE` | `#0D0D1A` | 10.7:1 | AAA |
+| Primary Pink | `#EC4899` | `#0D0D1A` | 5.5:1 | AA |
+| Text Primary | `#FFFFFF` | `#0D0D1A` | 19.3:1 | AAA |
+| Text Accent | `#A78BFA` | `#0D0D1A` | 7.1:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -188,6 +314,15 @@ font-size: 12px weight 500
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 8px |
+| card-padding | 24px |
+| card-gap | 16px |
+| max-width | 1200px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment | Use |
@@ -200,6 +335,17 @@ font-size: 12px weight 500
 | Focus Ring | `0 0 0 3px rgba(139,92,246,0.4)` | Keyboard focus |
 
 **Critical Rule**: Never blur more than 24px on cards — beyond that, performance degrades on mobile and the effect becomes muddy. Reserve 24px blur for modals only.
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 6px | Square elements |
+| sm | 10px | Inputs, tags |
+| md | 12px | Cards, buttons |
+| lg | 16px | Modals, large cards |
 
 ---
 

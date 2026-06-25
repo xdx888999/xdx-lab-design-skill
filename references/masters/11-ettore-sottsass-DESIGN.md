@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Ettore Sottsass Method"
+colors:
+  surface: "#F8E9D2"
+  on-surface: "#111111"
+  primary: "#00A6A6"
+  on-primary: "#111111"
+  text-muted: "#5B5148"
+  pink: "#EF476F"
+  yellow: "#FFD166"
+  purple: "#5A189A"
+rounded:
+  none: 0px
+---
+
 # Design System: Ettore Sottsass Method
 # 埃托雷·索特萨斯设计方法
 
@@ -23,6 +39,14 @@ Purple:       #5A189A
 Pattern line: #111111
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#F8E9D2` | 15.8:1 | AAA |
+| Text muted | `#5B5148` | `#F8E9D2` | 6.5:1 | AA |
+| Pink | `#EF476F` | `#F8E9D2` | 3:1 | AA-large |
+
 ## 3. Typography Rules
 
 - Heading: `Archivo Black`, `Space Grotesk`, `Arial Black`, sans-serif; weight 800-900.
@@ -42,6 +66,14 @@ Pattern line: #111111
 - 插图优先于真实摄影；使用图案、物件、色块、立体感几何。
 - 图片可做硬裁切和厚描边，避免自然主义。
 - 图标像玩具或展览符号，带一点怪异人格。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

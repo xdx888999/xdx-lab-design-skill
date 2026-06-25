@@ -1,3 +1,72 @@
+---
+version: alpha
+name: "Travel & Hospitality"
+colors:
+  surface: "#FAFAF8"
+  on-surface: "#1A1614"
+  primary: "#059669"
+  on-primary: "#111111"
+  accent: "#E8724A"
+  sand: "#F5EFE6"
+  light-teal: "#E0F7F7"
+  coral-dark: "#C85A35"
+  coral-tint: "#FEF0EB"
+  ocean: "#0891B2"
+  ocean-light: "#BAE6F5"
+  gold-star: "#F5A623"
+  text-body: "#374151"
+  text-muted: "#6B7280"
+  border: "#E5E0D8"
+  background: "#FFFFFF"
+typography:
+  destination-hero:
+    fontFamily: "Lora"
+    fontSize: 72px
+    fontWeight: 600
+  property-name:
+    fontFamily: "DM Sans"
+    fontSize: 24px
+    fontWeight: 700
+  body:
+    fontFamily: "DM Sans"
+    fontSize: 16px
+    fontWeight: 400
+  label:
+    fontFamily: "DM Sans"
+    fontSize: 12px
+    fontWeight: 600
+rounded:
+  none: 8px
+  sm: 10px
+  md: 12px
+spacing:
+  section-padding: 80px
+components:
+  propertyhotel-card:
+    backgroundColor: "{colors.background}"
+    border: "1px solid {colors.border}"
+    rounded: "12px"
+    hover: "box-shadow 0 6px 20px rgba(0,0,0,0.1), transform translateY(-3px)"
+  search-box:
+    backgroundColor: "{colors.background}"
+    rounded: "12px"
+    padding: "16px 20px"
+    shadow: "0 8px 32px rgba(0,0,0,0.12)"
+  review-card:
+    backgroundColor: "{colors.background}"
+    border: "1px solid {colors.border}"
+    rounded: "10px"
+    padding: "20px"
+  button:
+    backgroundColor: "{colors.ocean}"
+    textColor: "{colors.accent}"
+    rounded: "8px"
+    padding: "12px 24px"
+    typography: "DM Sans 600 15px"
+    hover: "background {colors.coral-tint}"
+    border: "2px solid {colors.accent}"
+---
+
 # Design System: Travel & Hospitality
 # 旅行酒店风格
 
@@ -52,6 +121,17 @@ The visual language sits between luxury and adventure: warm orange-coral accent 
 - **Border** (`#E5E0D8`): Warm-toned borders.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Warm White | `#FAFAF8` | `#FAFAF8` | 1:1 | FAIL |
+| Coral | `#E8724A` | `#FAFAF8` | 2.9:1 | FAIL |
+| Ocean | `#0891B2` | `#FAFAF8` | 3.5:1 | AA-large |
+| Text Primary | `#1A1614` | `#FAFAF8` | 17.2:1 | AAA |
+| Text Body | `#374151` | `#FAFAF8` | 9.9:1 | AAA |
+| Text Muted | `#6B7280` | `#FAFAF8` | 4.6:1 | AA |
 
 ## 3. Typography Rules
 
@@ -154,6 +234,12 @@ Ghost:
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -163,6 +249,16 @@ Ghost:
 | Featured | Stronger shadow on hover + slight lift |
 | Hero overlay | `rgba(26,22,20,0.4)` for text legibility over photography |
 | Search box | Strong shadow on hero: `0 8px 32px rgba(0,0,0,0.12)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 8px | Square elements |
+| sm | 10px | Inputs, tags |
+| md | 12px | Cards, buttons |
 
 ---
 

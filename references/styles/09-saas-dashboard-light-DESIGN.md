@@ -1,3 +1,110 @@
+---
+version: alpha
+name: "SaaS Dashboard Light"
+colors:
+  surface: "#F9FAFB"
+  surface-variant: "#FFFFFF"
+  on-surface: "#111827"
+  primary: "#D97706"
+  on-primary: "#111111"
+  error: "#DC2626"
+  success: "#16A34A"
+  warning: "#FFFBEB"
+  surface-raised: "#F3F4F6"
+  border-subtle: "#E5E7EB"
+  border-default: "#D1D5DB"
+  body: "#374151"
+  secondary: "#6B7280"
+  muted: "#9CA3AF"
+  indigo: "#4F46E5"
+  blue: "#2563EB"
+  violet: "#7C3AED"
+  teal: "#0D9488"
+  success-bg: "#F0FDF4"
+  error-bg: "#FEF2F2"
+typography:
+  page-title:
+    fontFamily: "Inter"
+    fontSize: 24px
+    fontWeight: 600
+  sub-heading:
+    fontFamily: "Inter"
+    fontSize: 16px
+    fontWeight: 500
+  body-s:
+    fontFamily: "Inter"
+    fontSize: 13px
+    fontWeight: 400
+  micro:
+    fontFamily: "Inter"
+    fontSize: 11px
+    fontWeight: 500
+  metric-s:
+    fontFamily: "Inter"
+    fontSize: 20px
+    fontWeight: 600
+rounded:
+  none: 6px
+  sm: 8px
+  md: 100px
+spacing:
+  card-padding: 20px
+  card-gap: 16px
+components:
+  sidebar-navigation:
+    backgroundColor: "rgba(79,70,229,0.08)"
+    width: "240px"
+    padding: "16px 12px"
+    rounded: "6px, padding 8px 12px, color {colors.body} 14px weight 500"
+    hover: "background {colors.surface-raised}"
+    textColor: "{colors.indigo}"
+  metric-kpi-card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.border-subtle}"
+    rounded: "8px"
+    padding: "20px 24px"
+    shadow: "0 1px 3px rgba(0,0,0,0.06)"
+  data-table:
+    backgroundColor: "transparent"
+    padding: "12px 16px"
+    height: "52px"
+    hover: "background {colors.surface}"
+  primary-button:
+    backgroundColor: "{colors.indigo}"
+    textColor: "{colors.surface-variant}"
+    padding: "8px 16px"
+    rounded: "6px"
+    border: "none"
+    typography: "Inter 14px weight 500"
+    height: "36px"
+    hover: "background #4338CA"
+  secondary-button:
+    backgroundColor: "{colors.surface-variant}"
+    textColor: "{colors.body}"
+    padding: "7px 15px"
+    border: "1px solid {colors.border-default}"
+    rounded: "6px"
+    typography: "Inter 14px weight 500"
+    height: "36px"
+    hover: "background {colors.surface-raised}"
+  input:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.border-default}"
+    rounded: "6px"
+    padding: "8px 12px"
+    typography: "Inter 14px {colors.body}"
+    height: "36px"
+    focus: "border-color {colors.indigo}, ring: 0 0 0 3px rgba(79,70,229,0.1)"
+  badge-status:
+    rounded: "100px"
+    padding: "2px 10px"
+    typography: "12px Inter weight 500"
+  top-bar:
+    backgroundColor: "{colors.surface-variant}"
+    height: "56px"
+    padding: "0 24px"
+---
+
 # Design System: SaaS Dashboard Light
 # SaaS 看板浅色风格
 
@@ -57,6 +164,15 @@ The style is clean without being cold, structured without being rigid. White bac
 - **Neutral Bg** (`#F9FAFB`): Neutral badge background.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Heading | `#111827` | `#F9FAFB` | 17:1 | AAA |
+| Body | `#374151` | `#F9FAFB` | 9.9:1 | AAA |
+| Secondary | `#6B7280` | `#F9FAFB` | 4.6:1 | AA |
+| Muted | `#9CA3AF` | `#F9FAFB` | 2.4:1 | FAIL |
 
 ## 3. Typography Rules
 
@@ -226,6 +342,13 @@ Right: search input (36px) + avatar + notification icon
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| card-padding | 20px |
+| card-gap | 16px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment | Use |
@@ -236,6 +359,16 @@ Right: search input (36px) + avatar + notification icon
 | Sidebar | Right border or `2px 0 8px rgba(0,0,0,0.04)` | Navigation panel |
 | Modal | `0 20px 60px rgba(0,0,0,0.15)` | Dialogs, confirmation |
 | Dropdown | `0 4px 16px rgba(0,0,0,0.12)` | Select menus, popovers |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 6px | Square elements |
+| sm | 8px | Inputs, tags |
+| md | 100px | Cards, buttons |
 
 ---
 

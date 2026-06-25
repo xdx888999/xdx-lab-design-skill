@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Josef Mueller-Brockmann Method"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#111111"
+  primary: "#E3001B"
+  on-primary: "#FFFFFF"
+  text-muted: "#666666"
+  grid-line: "#D9D9D9"
+  accent-blue: "#0057A6"
+  accent-gray: "#F2F2F2"
+rounded:
+  none: 0px
+---
+
 # Design System: Josef Mueller-Brockmann Method
 # 约瑟夫·穆勒-布罗克曼设计方法
 
@@ -22,6 +38,13 @@ Accent blue:  #0057A6
 Accent gray:  #F2F2F2
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#FFFFFF` | 18.9:1 | AAA |
+| Text muted | `#666666` | `#FFFFFF` | 5.7:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Helvetica Neue`, `Arial`, `Inter`, sans-serif; weight 500-700.
@@ -41,6 +64,14 @@ Accent gray:  #F2F2F2
 - 摄影可做高对比黑白裁切，作为结构元素。
 - 图形使用几何抽象，不使用插画化装饰。
 - 数据图优先使用线、点、圆和模块化标签。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

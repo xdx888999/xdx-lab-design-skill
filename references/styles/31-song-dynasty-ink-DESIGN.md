@@ -1,3 +1,69 @@
+---
+version: alpha
+name: "Song Dynasty Ink"
+colors:
+  surface: "#F7F3EC"
+  surface-variant: "#EEE8DB"
+  on-surface: "#1C1C1C"
+  primary: "#8BB5B0"
+  on-primary: "#111111"
+  accent: "#C8DEDD"
+  ink-wash-tint: "#E8E2D6"
+  medium-ink: "#4A4A46"
+  light-ink: "#8A8A84"
+  ghost-ink: "#BCBAB4"
+  ink-wash: "#D8D5CF"
+  seal-vermillion: "#C43B2A"
+  ochre: "#9A6B4B"
+typography:
+  chapter-title:
+    fontFamily: "Noto Serif SC"
+    fontSize: 60px
+    fontWeight: 700
+  sub-heading:
+    fontFamily: "Noto Serif SC"
+    fontSize: 24px
+    fontWeight: 400
+  caption:
+    fontFamily: "Noto Serif SC"
+    fontSize: 14px
+    fontWeight: 300
+  seal-text:
+    fontFamily: "Noto Serif SC"
+    fontSize: 13px
+    fontWeight: 600
+rounded:
+  none: 0px
+spacing:
+  section-padding: 120px
+  max-width: 720px
+  margin: 80px
+components:
+  card:
+    backgroundColor: "{colors.surface-variant}"
+    border: "1px solid {colors.ink-wash}"
+    rounded: "0px  ← no rounding; classical woodblock has sharp corners"
+    padding: "32px 36px"
+  button:
+    backgroundColor: "{colors.primary}"
+    textColor: "{colors.surface}"
+    border: "1px solid {colors.medium-ink}"
+    rounded: "0px"
+    padding: "12px 32px"
+    typography: "Noto Serif SC 400 14px"
+    hover: "border-color {colors.on-surface}, color {colors.on-surface}"
+  quote-verse-block:
+    textColor: "{colors.medium-ink}"
+  ink-wash-section-background:
+    backgroundColor: "linear-gradient(to bottom, {colors.surface} 0%, {colors.surface-variant} 100%)"
+  tag-label:
+    backgroundColor: "transparent"
+    border: "1px solid {colors.light-ink}"
+    textColor: "{colors.light-ink}"
+    padding: "3px 10px"
+    rounded: "0  ← always square"
+---
+
 # Design System: Song Dynasty Ink
 # 宋代水墨美学风格
 
@@ -48,6 +114,18 @@ Colors are drawn from two sources: the warm ivory of Xuan paper and the muted to
 - **Ochre** (`#9A6B4B`): Warm earth accent for organic content contexts.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Ink Black | `#1C1C1C` | `#F7F3EC` | 15.4:1 | AAA |
+| Medium Ink | `#4A4A46` | `#F7F3EC` | 8:1 | AAA |
+| Light Ink | `#8A8A84` | `#F7F3EC` | 3.1:1 | AA-large |
+| Ghost Ink | `#BCBAB4` | `#F7F3EC` | 1.8:1 | FAIL |
+| Ink Wash | `#D8D5CF` | `#F7F3EC` | 1.3:1 | FAIL |
+| Ru Celadon | `#8BB5B0` | `#F7F3EC` | 2:1 | FAIL |
+| Ochre | `#9A6B4B` | `#F7F3EC` | 4.1:1 | AA-large |
 
 ## 3. Typography Rules
 
@@ -175,6 +253,14 @@ Layout flows vertically like a handscroll (手卷). The reader moves through the
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 120px |
+| max-width | 720px |
+| margin | 80px |
+
 ## 6. Depth & Elevation
 
 Song Dynasty design has **no shadows**. Depth is achieved through:
@@ -188,6 +274,14 @@ Song Dynasty design has **no shadows**. Depth is achieved through:
 | Layering | Slightly darker `#EEE8DB` for cards over `#F7F3EC` base |
 
 Never use `box-shadow` — it looks anachronistic in this aesthetic.
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
 
 ---
 

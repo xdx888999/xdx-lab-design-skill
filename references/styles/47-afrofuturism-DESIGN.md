@@ -1,3 +1,52 @@
+---
+version: alpha
+name: "Afrofuturism"
+colors:
+  surface: "#050505"
+  surface-variant: "#1A1008"
+  on-surface: "#F5EDE0"
+  primary: "#A03A1A"
+  on-primary: "#FFFFFF"
+  deep-earth: "#0F0A06"
+  terracotta: "#C05A2A"
+  ochre: "#D4862A"
+  kente-green: "#2A7A3A"
+  electric-gold: "#E8B830"
+  deep-violet: "#5B2D8A"
+  cosmic-blue: "#1A3A8A"
+  muted-earth: "#8A7060"
+  background: "#0A0A0F"
+typography:
+  sub-heading:
+    fontFamily: "Inter"
+    fontSize: 28px
+    fontWeight: 600
+rounded:
+  none: 0px
+  default: 2px
+spacing:
+  section-padding: 80px
+components:
+  card:
+    backgroundColor: "{colors.surface-variant} rich brown"
+    border: "1px solid rgba(232,184,48,0.3)  ← gold subtle"
+    rounded: "2px"
+    padding: "24px"
+    hover: "border-color rgba(232,184,48,0.7), glow 0 0 24px rgba(232,184,48,0.15)"
+  pattern-background-overlay:
+    textColor: "terracotta or gold at 5–8% opacity"
+  button:
+    backgroundColor: "{colors.electric-gold}"
+    textColor: "{colors.electric-gold}"
+    rounded: "2px"
+    padding: "12px 32px"
+    typography: "Raleway 700 13px uppercase letter-spacing: 3px"
+    hover: "background rgba(232,184,48,0.1)"
+    border: "1.5px solid {colors.electric-gold}"
+  cosmic-section:
+    backgroundColor: "{colors.background} deep space"
+---
+
 # Design System: Afrofuturism
 # 非洲未来主义风格
 
@@ -48,6 +97,15 @@ The aesthetic is bold and unapologetic: vibrant earth tones (ochre, terracotta, 
 - **Muted Earth** (`#8A7060`): Secondary text.
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Terracotta | `#C05A2A` | `#050505` | 4.6:1 | AA |
+| Ochre | `#D4862A` | `#050505` | 7:1 | AAA |
+| Warm White | `#F5EDE0` | `#050505` | 17.5:1 | AAA |
+| Muted Earth | `#8A7060` | `#050505` | 4.4:1 | AA-large |
 
 ## 3. Typography Rules
 
@@ -132,6 +190,12 @@ Creates the "interstellar" tone shift within a page
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| section-padding | 80px |
+
 ## 6. Depth & Elevation
 
 | Level | Treatment |
@@ -140,6 +204,15 @@ Creates the "interstellar" tone shift within a page
 | Earth surface | `#1A1008` |
 | Raised element | `#2A1A10` + gold border glow |
 | Cosmic glow | `box-shadow: 0 0 30px rgba(232,184,48,0.2)` |
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 2px | Default radius |
 
 ---
 

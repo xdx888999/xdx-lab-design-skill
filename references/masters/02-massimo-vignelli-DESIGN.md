@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "Massimo Vignelli Method"
+colors:
+  surface: "#FFFFFF"
+  on-surface: "#0A0A0A"
+  primary: "#E31B23"
+  on-primary: "#FFFFFF"
+  surface: "#F4F4F2"
+  text-muted: "#666666"
+  rule: "#CFCFCB"
+  accent-blue: "#0057B8"
+rounded:
+  none: 0px
+---
+
 # Design System: Massimo Vignelli Method
 # 马西莫·维涅利设计方法
 
@@ -22,6 +38,13 @@ Accent red:   #E31B23
 Accent blue:  #0057B8
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#0A0A0A` | `#FFFFFF` | 19.8:1 | AAA |
+| Text muted | `#666666` | `#FFFFFF` | 5.7:1 | AA |
+
 ## 3. Typography Rules
 
 - Heading: `Helvetica Neue`, `Arial`, `Inter`, sans-serif; weight 600.
@@ -41,6 +64,14 @@ Accent blue:  #0057B8
 - 图片以黑白、单色或高对比裁切为主。
 - 图标和导视符号保持统一笔画和几何比例。
 - 数据图要有坐标、单位、注释，不做花哨视觉。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 

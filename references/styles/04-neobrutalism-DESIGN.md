@@ -1,3 +1,94 @@
+---
+version: alpha
+name: "Neo-Brutalism"
+colors:
+  surface: "#FFFEF5"
+  surface-variant: "#FFFFFF"
+  on-surface: "#000000"
+  primary: "#FFDD00"
+  on-primary: "#111111"
+  deep-black: "#1A1A1A"
+  brutal-coral: "#FF5733"
+  brutal-lime: "#AAFF00"
+  brutal-pink: "#FF3E9D"
+  brutal-blue: "#0055FF"
+  brutal-mint: "#00E5CC"
+  brutal-orange: "#FF8C00"
+  link: "#0000FF"
+  visited: "#800080"
+  placeholder: "#888888"
+  secondary-text: "#555555"
+typography:
+  10:
+    fontFamily: "Space Grotesk"
+    fontSize: 1px
+    fontWeight: 400
+  h2:
+    fontFamily: "Space Grotesk"
+    fontSize: 36px
+    fontWeight: 700
+  body-s:
+    fontFamily: "Space Grotesk"
+    fontSize: 14px
+    fontWeight: 500
+rounded:
+  none: 0px
+  default: 4px
+spacing:
+  base: 8px
+  card-padding: 24px
+  card-gap: 20px
+  section-padding: 64px
+  max-width: 1100px
+components:
+  primary-button:
+    backgroundColor: "{colors.primary} (or brand accent)"
+    textColor: "{colors.on-surface}"
+    padding: "12px 24px"
+    border: "2px solid {colors.on-surface}"
+    rounded: "4px (or 0px)"
+    shadow: "4px 4px 0 {colors.on-surface}"
+    typography: "Space Grotesk 16px weight 700"
+    hover: "box-shadow: 2px 2px 0 {colors.on-surface}, transform: translate(2px, 2px)"
+    active: "box-shadow: 0px 0px 0 {colors.on-surface}, transform: translate(4px, 4px)"
+  secondary-button:
+    backgroundColor: "{colors.surface-variant} (or {colors.surface})"
+    textColor: "{colors.on-surface}"
+    padding: "12px 24px"
+    border: "2px solid {colors.on-surface}"
+    rounded: "4px"
+    shadow: "4px 4px 0 {colors.on-surface}"
+    typography: "Space Grotesk 16px weight 600"
+    hover: "transform: translate(2px, 2px), box-shadow: 2px 2px 0 {colors.on-surface}"
+  card:
+    backgroundColor: "{colors.surface-variant} (or pastel fill: {colors.surface}, #FFF3D0, #FFE8E8)"
+    border: "2px solid {colors.on-surface}"
+    rounded: "4px (or 0)"
+    shadow: "6px 6px 0 {colors.on-surface}"
+    padding: "24px"
+  input:
+    backgroundColor: "{colors.surface-variant}"
+    border: "2px solid {colors.on-surface}"
+    rounded: "4px"
+    padding: "12px 16px"
+    typography: "Space Grotesk 16px weight 400"
+    textColor: "{colors.on-surface}"
+    shadow: "3px 3px 0 {colors.on-surface}"
+    focus: "box-shadow: 4px 4px 0 {colors.primary} (accent)"
+  badge-tag:
+    backgroundColor: "{colors.primary} (accent) or {colors.on-surface}"
+    textColor: "{colors.on-surface} or {colors.surface-variant}"
+    border: "2px solid {colors.on-surface}"
+    rounded: "4px"
+    padding: "3px 10px"
+    typography: "12px Space Grotesk weight 700 uppercase letter-spacing 1px"
+    shadow: "2px 2px 0 {colors.on-surface}"
+  navigation:
+    backgroundColor: "{colors.surface} (or white)"
+    height: "64px"
+    padding: "0 24px"
+---
+
 # Design System: Neo-Brutalism
 # 新野兽主义风格
 
@@ -50,6 +141,16 @@ The palette is deliberately bold: black borders on yellow, coral on white, lime 
 - **Error** (`#EF4444` with black border): Red with border
 
 ---
+
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Pure Black | `#000000` | `#FFFEF5` | 20.7:1 | AAA |
+| Off-White | `#FFFEF5` | `#FFFEF5` | 1:1 | FAIL |
+| Brutal Pink | `#FF3E9D` | `#FFFEF5` | 3.2:1 | AA-large |
+| Link | `#0000FF` | `#FFFEF5` | 8.5:1 | AAA |
+| Secondary text | `#555555` | `#FFFEF5` | 7.4:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -180,6 +281,16 @@ CTA button: yellow accent with black border + offset shadow
 
 ---
 
+### Spacing Tokens
+
+| Token | Value |
+|-------|-------|
+| base | 8px |
+| card-padding | 24px |
+| card-gap | 20px |
+| section-padding | 64px |
+| max-width | 1100px |
+
 ## 6. Depth & Elevation
 
 Neo-Brutalism replaces the standard shadow system with a single, consistent language:
@@ -192,6 +303,15 @@ Neo-Brutalism replaces the standard shadow system with a single, consistent lang
 | Hover/Active | Border constant, shadow shrinks as element "presses" | Interactive feedback |
 
 **No blur radius in shadows** — EVER. `box-shadow: 4px 4px 0 #000000` — the zero is sacred.
+
+---
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+| default | 4px | Default radius |
 
 ---
 

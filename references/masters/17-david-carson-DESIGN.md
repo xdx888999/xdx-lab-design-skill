@@ -1,3 +1,19 @@
+---
+version: alpha
+name: "David Carson Method"
+colors:
+  surface: "#EAE1D0"
+  on-surface: "#111111"
+  primary: "#C2410C"
+  on-primary: "#FFFFFF"
+  text-muted: "#6B7280"
+  dust: "#A08B73"
+  deep-gray: "#394150"
+  paper: "#F7F2E7"
+rounded:
+  none: 0px
+---
+
 # Design System: David Carson Method
 # 大卫·卡森设计方法
 
@@ -22,6 +38,13 @@ Deep gray:    #394150
 Paper:        #F7F2E7
 ```
 
+### Contrast Ratios (WCAG 2.1)
+
+| Text Token | Hex | Background | Ratio | Level |
+|------------|-----|------------|-------|-------|
+| Text primary | `#111111` | `#EAE1D0` | 14.5:1 | AAA |
+| Text muted | `#6B7280` | `#EAE1D0` | 3.7:1 | AA-large |
+
 ## 3. Typography Rules
 
 - Heading: `Archivo Condensed`, `Impact`, `Helvetica Neue`, sans-serif; weight 700-900.
@@ -41,6 +64,14 @@ Paper:        #F7F2E7
 - 使用粗颗粒摄影、扫描纹理、手工痕迹、错位裁切。
 - 图片可以低保真，但不能低质量到无法辨认主题。
 - 图标少用；可用手写标记、箭头、编号。
+
+## Shapes
+
+| Scale | Value | Usage |
+|-------|-------|-------|
+| none | 0px | Square elements |
+
+---
 
 ## 6. Do's and Don'ts
 
