@@ -308,6 +308,521 @@
     background: var(--panel);
   }
 
+  /* ── Showcase Section ── */
+  .showcase {
+    margin-top: 46px;
+  }
+
+  .showcase-header {
+    margin-bottom: 28px;
+  }
+
+  .showcase-title {
+    margin: 0;
+    font-family: "Playfair Display", "Noto Serif SC", serif;
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.1;
+  }
+
+  .showcase-desc {
+    max-width: 680px;
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .mockup-frame {
+    border: 2px solid var(--ink);
+    background: var(--panel);
+    overflow: hidden;
+  }
+
+  .mockup-label {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .mockup-label-dot {
+    display: flex;
+    gap: 5px;
+  }
+
+  .mockup-label-dot span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+
+  .mockup-viewport {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Website Mockup ── */
+  .web-mock {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--display-font);
+    padding: 0;
+    min-height: 480px;
+  }
+
+  .web-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
+  }
+
+  .web-nav-logo {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+  }
+
+  .web-nav-links {
+    display: flex;
+    gap: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: color-mix(in srgb, var(--fg), transparent 36%);
+  }
+
+  .web-hero {
+    padding: 48px 20px 36px;
+    text-align: center;
+  }
+
+  .web-hero-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    margin-bottom: 14px;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%);
+    background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  }
+
+  .web-hero-title {
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: var(--title-weight);
+    line-height: 1.1;
+    text-transform: var(--title-transform);
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .web-hero-sub {
+    margin-top: 10px;
+    font-size: 11px;
+    color: color-mix(in srgb, var(--fg), transparent 40%);
+    font-weight: 400;
+    font-family: "Inter", sans-serif;
+    line-height: 1.6;
+  }
+
+  .web-hero-cta {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 24px;
+    background: var(--accent-color);
+    color: var(--bg);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    border: none;
+  }
+
+  .web-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 0 20px 24px;
+  }
+
+  .web-card {
+    padding: 16px 14px;
+    background: color-mix(in srgb, var(--secondary), transparent 40%);
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
+  }
+
+  .web-card-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 10px;
+    background: var(--accent-color);
+    opacity: 0.8;
+  }
+
+  .web-card-icon.circle { border-radius: 50%; }
+  .web-card-icon.diamond { transform: rotate(45deg); width: 22px; height: 22px; margin: 3px 0 13px 3px; }
+  .web-card-icon.triangle { background: transparent; width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 24px solid var(--accent-color); opacity: 0.8; }
+
+  .web-card-title {
+    font-size: 11px;
+    font-weight: 800;
+    margin-bottom: 5px;
+  }
+
+  .web-card-text {
+    font-size: 9px;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--fg), transparent 40%);
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+  }
+
+  .web-footer {
+    padding: 14px 20px;
+    border-top: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
+    font-size: 9px;
+    color: color-mix(in srgb, var(--fg), transparent 50%);
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* ── Mobile App Mockup ── */
+  .app-mock-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 20px;
+    min-height: 480px;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--bg), var(--panel) 70%) 0%, var(--panel) 100%);
+  }
+
+  .app-phone {
+    width: 220px;
+    background: var(--bg);
+    color: var(--fg);
+    border-radius: 24px;
+    border: 2px solid color-mix(in srgb, var(--fg), transparent 70%);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+    font-family: var(--display-font);
+  }
+
+  .app-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 18px 4px;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+  }
+
+  .app-notch {
+    width: 80px;
+    height: 20px;
+    background: color-mix(in srgb, var(--fg), transparent 90%);
+    border-radius: 0 0 12px 12px;
+    margin: 0 auto 4px;
+  }
+
+  .app-header {
+    padding: 12px 18px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .app-header-title {
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .app-header-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--accent-color);
+  }
+
+  .app-search {
+    margin: 6px 18px 12px;
+    padding: 8px 12px;
+    background: color-mix(in srgb, var(--fg), transparent 92%);
+    border-radius: 8px;
+    font-size: 9px;
+    color: color-mix(in srgb, var(--fg), transparent 50%);
+    font-family: "Inter", sans-serif;
+  }
+
+  .app-card {
+    margin: 0 18px 10px;
+    padding: 14px;
+    background: color-mix(in srgb, var(--secondary), transparent 50%);
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
+    border-radius: 10px;
+  }
+
+  .app-card-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .app-card-thumb {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    flex-shrink: 0;
+  }
+
+  .app-card-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .app-card-name {
+    font-size: 11px;
+    font-weight: 800;
+  }
+
+  .app-card-sub {
+    font-size: 8px;
+    color: color-mix(in srgb, var(--fg), transparent 40%);
+    margin-top: 2px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+  }
+
+  .app-card-badge {
+    padding: 3px 8px;
+    background: var(--accent-color);
+    color: var(--bg);
+    font-size: 8px;
+    font-weight: 800;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .app-card-bar {
+    margin-top: 10px;
+    height: 4px;
+    background: color-mix(in srgb, var(--fg), transparent 88%);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .app-card-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+  }
+
+  .app-tab-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 14px;
+    border-top: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
+    margin-top: 8px;
+  }
+
+  .app-tab {
+    text-align: center;
+    font-size: 7px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    color: color-mix(in srgb, var(--fg), transparent 50%);
+  }
+
+  .app-tab.active {
+    color: var(--accent-color);
+  }
+
+  .app-tab-icon {
+    width: 18px;
+    height: 18px;
+    margin: 0 auto 3px;
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--fg), transparent 82%);
+  }
+
+  .app-tab.active .app-tab-icon {
+    background: var(--accent-color);
+  }
+
+  /* ── Dashboard Mockup ── */
+  .dash-mock {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Inter", sans-serif;
+    min-height: 480px;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+  }
+
+  .dash-sidebar {
+    background: color-mix(in srgb, var(--fg), transparent 92%);
+    border-right: 1px solid color-mix(in srgb, var(--fg), transparent 85%);
+    padding: 14px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .dash-sidebar-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--accent-color);
+    margin-bottom: 8px;
+  }
+
+  .dash-sidebar-item {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--fg), transparent 82%);
+  }
+
+  .dash-sidebar-item.active {
+    background: var(--accent-color);
+  }
+
+  .dash-main {
+    padding: 18px;
+  }
+
+  .dash-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .dash-topbar-title {
+    font-size: 14px;
+    font-weight: 800;
+    font-family: var(--display-font);
+  }
+
+  .dash-topbar-btn {
+    padding: 5px 12px;
+    background: var(--accent-color);
+    color: var(--bg);
+    font-size: 9px;
+    font-weight: 700;
+    border-radius: 4px;
+  }
+
+  .dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .dash-stat {
+    padding: 12px;
+    background: color-mix(in srgb, var(--secondary), transparent 50%);
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
+    border-radius: 8px;
+  }
+
+  .dash-stat-value {
+    font-size: 18px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .dash-stat-label {
+    font-size: 8px;
+    color: color-mix(in srgb, var(--fg), transparent 40%);
+    margin-top: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .dash-chart {
+    padding: 14px;
+    background: color-mix(in srgb, var(--secondary), transparent 60%);
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
+    border-radius: 8px;
+    margin-bottom: 14px;
+  }
+
+  .dash-chart-title {
+    font-size: 10px;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+
+  .dash-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 80px;
+  }
+
+  .dash-bar {
+    flex: 1;
+    border-radius: 3px 3px 0 0;
+    min-width: 0;
+  }
+
+  .dash-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .dash-table-header {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr;
+    padding: 6px 10px;
+    background: color-mix(in srgb, var(--fg), transparent 92%);
+    border-radius: 4px;
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: color-mix(in srgb, var(--fg), transparent 30%);
+    margin-bottom: 4px;
+  }
+
+  .dash-table-row {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr;
+    padding: 7px 10px;
+    border-bottom: 1px solid color-mix(in srgb, var(--fg), transparent 92%);
+    font-size: 9px;
+    align-items: center;
+  }
+
+  .dash-table-status {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 7px;
+    font-weight: 700;
+  }
+
   @media (max-width: 900px) {
     .topbar-inner,
     .detail {
@@ -337,6 +852,14 @@
 
     .swatch:last-child {
       border-bottom: 0;
+    }
+
+    .showcase-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .app-mock-wrap {
+      min-height: 520px;
     }
   }
 </style>
@@ -456,6 +979,188 @@
         </div>
       </section>
       <section class="palette" id="palette" aria-label="色彩样本"></section>
+
+      <section class="showcase">
+        <div class="showcase-header">
+          <h2 class="showcase-title">效果预览</h2>
+          <p class="showcase-desc">以下展示使用该风格配色、字体和设计语言生成的网站、移动应用和仪表盘模拟效果。</p>
+        </div>
+        <div class="showcase-grid">
+
+          <div class="mockup-frame">
+            <div class="mockup-label">
+              <span>Website</span>
+              <div class="mockup-label-dot"><span></span><span></span><span></span></div>
+            </div>
+            <div class="mockup-viewport web-mock">
+              <div class="web-nav">
+                <div class="web-nav-logo">${currentStyle.sample}</div>
+                <div class="web-nav-links">
+                  <span>Product</span><span>Features</span><span>Pricing</span>
+                </div>
+              </div>
+              <div class="web-hero">
+                <div class="web-hero-tag">${currentStyle.tags[0] || "NEW"}</div>
+                <div class="web-hero-title">${currentStyle.sample}</div>
+                <div class="web-hero-sub">${currentStyle.desc}</div>
+                <div class="web-hero-cta">Get Started →</div>
+              </div>
+              <div class="web-cards">
+                <div class="web-card">
+                  <div class="web-card-icon circle"></div>
+                  <div class="web-card-title">Design</div>
+                  <div class="web-card-text">Built with precision and care for every detail.</div>
+                </div>
+                <div class="web-card">
+                  <div class="web-card-icon diamond"></div>
+                  <div class="web-card-title">Build</div>
+                  <div class="web-card-text">Ship faster with components that just work.</div>
+                </div>
+                <div class="web-card">
+                  <div class="web-card-icon triangle"></div>
+                  <div class="web-card-title">Scale</div>
+                  <div class="web-card-text">Grow without breaking your design system.</div>
+                </div>
+              </div>
+              <div class="web-footer">
+                <span>© 2025 ${currentStyle.sample}</span>
+                <span>Terms · Privacy</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockup-frame">
+            <div class="mockup-label">
+              <span>Mobile App</span>
+              <div class="mockup-label-dot"><span></span><span></span><span></span></div>
+            </div>
+            <div class="mockup-viewport app-mock-wrap">
+              <div class="app-phone">
+                <div class="app-notch"></div>
+                <div class="app-status-bar">
+                  <span>9:41</span>
+                  <span>⚡ 100%</span>
+                </div>
+                <div class="app-header">
+                  <div class="app-header-title">${currentStyle.sample}</div>
+                  <div class="app-header-avatar"></div>
+                </div>
+                <div class="app-search">🔍 Search...</div>
+                <div class="app-card">
+                  <div class="app-card-row">
+                    <div class="app-card-thumb" style="background: var(--accent-color);"></div>
+                    <div class="app-card-info">
+                      <div class="app-card-name">Featured Item</div>
+                      <div class="app-card-sub">${currentStyle.tags.join(" · ")}</div>
+                    </div>
+                    <div class="app-card-badge">NEW</div>
+                  </div>
+                  <div class="app-card-bar"><div class="app-card-bar-fill" style="width:72%;background:var(--accent-color);"></div></div>
+                </div>
+                <div class="app-card">
+                  <div class="app-card-row">
+                    <div class="app-card-thumb" style="background: var(--secondary);"></div>
+                    <div class="app-card-info">
+                      <div class="app-card-name">Trending Now</div>
+                      <div class="app-card-sub">Updated today</div>
+                    </div>
+                    <div class="app-card-badge" style="background:var(--secondary);">HOT</div>
+                  </div>
+                  <div class="app-card-bar"><div class="app-card-bar-fill" style="width:58%;background:var(--secondary);"></div></div>
+                </div>
+                <div class="app-card">
+                  <div class="app-card-row">
+                    <div class="app-card-thumb" style="background: var(--tertiary); border: 1px solid color-mix(in srgb, var(--fg), transparent 85%);"></div>
+                    <div class="app-card-info">
+                      <div class="app-card-name">Popular</div>
+                      <div class="app-card-sub">12.4k views</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="app-tab-bar">
+                  <div class="app-tab active"><div class="app-tab-icon"></div>Home</div>
+                  <div class="app-tab"><div class="app-tab-icon"></div>Explore</div>
+                  <div class="app-tab"><div class="app-tab-icon"></div>Saved</div>
+                  <div class="app-tab"><div class="app-tab-icon"></div>Profile</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mockup-frame">
+            <div class="mockup-label">
+              <span>Dashboard</span>
+              <div class="mockup-label-dot"><span></span><span></span><span></span></div>
+            </div>
+            <div class="mockup-viewport dash-mock">
+              <div class="dash-sidebar">
+                <div class="dash-sidebar-logo"></div>
+                <div class="dash-sidebar-item active"></div>
+                <div class="dash-sidebar-item"></div>
+                <div class="dash-sidebar-item"></div>
+                <div class="dash-sidebar-item"></div>
+              </div>
+              <div class="dash-main">
+                <div class="dash-topbar">
+                  <div class="dash-topbar-title">Overview</div>
+                  <div class="dash-topbar-btn">+ New</div>
+                </div>
+                <div class="dash-stats">
+                  <div class="dash-stat">
+                    <div class="dash-stat-value" style="color:var(--accent-color);">2,847</div>
+                    <div class="dash-stat-label">Users</div>
+                  </div>
+                  <div class="dash-stat">
+                    <div class="dash-stat-value">$18.2k</div>
+                    <div class="dash-stat-label">Revenue</div>
+                  </div>
+                  <div class="dash-stat">
+                    <div class="dash-stat-value" style="color:var(--secondary);">94.6%</div>
+                    <div class="dash-stat-label">Uptime</div>
+                  </div>
+                </div>
+                <div class="dash-chart">
+                  <div class="dash-chart-title">Weekly Performance</div>
+                  <div class="dash-bars">
+                    <div class="dash-bar" style="height:45%;background:var(--accent-color);"></div>
+                    <div class="dash-bar" style="height:68%;background:var(--accent-color);"></div>
+                    <div class="dash-bar" style="height:52%;background:var(--secondary);"></div>
+                    <div class="dash-bar" style="height:82%;background:var(--accent-color);"></div>
+                    <div class="dash-bar" style="height:74%;background:var(--accent-color);"></div>
+                    <div class="dash-bar" style="height:58%;background:var(--secondary);"></div>
+                    <div class="dash-bar" style="height:92%;background:var(--accent-color);"></div>
+                    <div class="dash-bar" style="height:62%;background:var(--secondary);"></div>
+                    <div class="dash-bar" style="height:78%;background:var(--accent-color);"></div>
+                    <div class="dash-bar" style="height:40%;background:var(--tertiary);"></div>
+                  </div>
+                </div>
+                <div class="dash-table-header">
+                  <span>Name</span><span>Status</span><span>Value</span><span>Change</span>
+                </div>
+                <div class="dash-table-row">
+                  <span>Project Alpha</span>
+                  <span><span class="dash-table-status" style="background:color-mix(in srgb, var(--accent-color), transparent 80%);color:var(--accent-color);">Active</span></span>
+                  <span>$4,280</span>
+                  <span style="color:var(--accent-color);">+12.4%</span>
+                </div>
+                <div class="dash-table-row">
+                  <span>Campaign B</span>
+                  <span><span class="dash-table-status" style="background:color-mix(in srgb, var(--secondary), transparent 80%);color:var(--secondary);">Review</span></span>
+                  <span>$2,150</span>
+                  <span style="color:var(--secondary);">+8.1%</span>
+                </div>
+                <div class="dash-table-row">
+                  <span>Launch v2.0</span>
+                  <span><span class="dash-table-status" style="background:color-mix(in srgb, var(--fg), transparent 88%);color:var(--fg);">Draft</span></span>
+                  <span>$960</span>
+                  <span>—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
     `;
 
     const tagRow = document.getElementById("tag-row");
