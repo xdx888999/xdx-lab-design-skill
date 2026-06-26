@@ -123,36 +123,120 @@ export function parseColors(content) {
 
 export function parseTypography(content) {
   const typo = { families: [], scale: [] };
+  const familyKeys = new Set();
 
-  // Extract font families from "Primary": `FontName` or **Primary**: `FontName`
-  const famRegex = /\*\*(?:Primary|Display|Body|Monospace|Alternative|Terminal|Code|Heading|Alternative Bold|Retro Alternative|Latin\/Numbers|Stats|Chinese\/Japanese heading)\*\*\s*:?\s*`([^`]+)`/gi;
+  // 从字体说明段落提取字体族，避免把表格里的字号误判成字体 token。
+  const famRegex = /^\s*-\s*\*\*(.+?)\*\*\s*:?\s*`([^`]+)`/gmi;
   let m;
   while ((m = famRegex.exec(content)) !== null) {
-    const role = m[0].match(/\*\*(.+?)\*\*/)[1];
-    typo.families.push({ role, family: m[1].trim() });
+    const role = m[1].trim();
+    addFamily(typo, familyKeys, role, m[2]);
   }
 
-  // Extract type scale from markdown tables in Section 3
+  // 读取 Section 3 中的 Markdown 表格，并按表头识别 Role/Family/Size/Weight。
   const section3 = extractSection(content, '3');
   if (section3) {
-    const tableRows = section3.match(/\|[^|]+\|[^|]+\|[^|]+\|/g) || [];
-    for (const row of tableRows) {
-      const cells = row.split('|').map(c => c.trim()).filter(Boolean);
-      if (cells.length >= 3 && !cells[0].match(/^-+$/) && cells[0] !== 'Role') {
-        const sizeMatch = cells[1]?.match(/(\d+)px/);
-        const weightMatch = cells[2]?.match(/(\d+)/);
-        if (sizeMatch) {
-          typo.scale.push({
-            role: cells[0],
-            fontSize: sizeMatch[1] + 'px',
-            fontWeight: weightMatch ? weightMatch[1] : '400',
-          });
-        }
+    let pendingHeader = null;
+    let activeHeader = null;
+
+    for (const line of section3.split('\n')) {
+      if (!/^\s*\|.*\|\s*$/.test(line)) continue;
+
+      const cells = splitTableCells(line);
+      if (cells.length < 2) continue;
+
+      if (isSeparatorRow(cells)) {
+        activeHeader = pendingHeader ? pendingHeader.map(normalizeHeaderName) : null;
+        pendingHeader = null;
+        continue;
+      }
+
+      if (!activeHeader) {
+        pendingHeader = cells;
+        continue;
+      }
+
+      const roleIndex = findHeaderIndex(activeHeader, ['role', 'token', 'level', 'name']);
+      const familyIndex = findHeaderIndex(activeHeader, ['family', 'font', 'font family', 'fontfamily']);
+      const sizeIndex = findHeaderIndex(activeHeader, ['size', 'font size', 'fontsize']);
+      const weightIndex = findHeaderIndex(activeHeader, ['weight', 'font weight', 'fontweight']);
+
+      if (roleIndex === -1 || sizeIndex === -1) continue;
+
+      const role = cells[roleIndex];
+      const fontSize = extractFontSize(cells[sizeIndex]);
+      if (!role || !fontSize || /^role$/i.test(role)) continue;
+
+      const fontFamily = familyIndex === -1 ? null : normalizeFontFamily(cells[familyIndex]);
+      const fontWeight = weightIndex === -1 ? '400' : extractFontWeight(cells[weightIndex]);
+
+      typo.scale.push({
+        role,
+        fontFamily,
+        fontSize,
+        fontWeight,
+      });
+
+      if (fontFamily) {
+        addFamily(typo, familyKeys, role, fontFamily);
       }
     }
   }
 
   return typo;
+}
+
+function splitTableCells(line) {
+  return line
+    .trim()
+    .replace(/^\|/, '')
+    .replace(/\|$/, '')
+    .split('|')
+    .map(c => c.trim());
+}
+
+function isSeparatorRow(cells) {
+  return cells.every(c => /^:?-{3,}:?$/.test(c));
+}
+
+function normalizeHeaderName(value) {
+  return value.toLowerCase().replace(/[`*_]/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function findHeaderIndex(headers, candidates) {
+  return headers.findIndex(header => candidates.some(candidate => header === candidate || header.includes(candidate)));
+}
+
+function extractFontSize(value) {
+  const match = value.match(/(\d+)(?:\s*[–-]\s*\d+)?\s*px/i);
+  return match ? `${match[1]}px` : null;
+}
+
+function extractFontWeight(value) {
+  const match = value.match(/\b(\d{3})\b/);
+  return match ? match[1] : '400';
+}
+
+function normalizeFontFamily(value) {
+  if (!value) return null;
+  const clean = value
+    .replace(/`/g, '')
+    .replace(/\s+or\s+.+$/i, '')
+    .replace(/,?\s*fallback:.+$/i, '')
+    .trim();
+  const first = clean.split(/\s*\/\s*|\s*,\s*/)[0]?.trim();
+  if (!first) return null;
+  if (/^Cormorant$/i.test(first)) return 'Cormorant Garamond';
+  return first;
+}
+
+function addFamily(typo, familyKeys, role, rawFamily) {
+  const family = normalizeFontFamily(rawFamily);
+  if (!family) return;
+  const key = `${role.toLowerCase()}::${family.toLowerCase()}`;
+  if (familyKeys.has(key)) return;
+  familyKeys.add(key);
+  typo.families.push({ role, family });
 }
 
 export function parseSpacing(content) {

@@ -77,10 +77,17 @@
   .d-hero {
     position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
     text-align: center; min-height: 80vh; padding: 120px clamp(24px, 5vw, 80px) 80px; overflow: hidden;
+    isolation: isolate;
   }
   .d-hero::before, .d-hero::after { content: ""; position: absolute; pointer-events: none; border-radius: 50%; }
   .d-hero::before { width: 320px; height: 320px; right: 8%; top: 12%; background: color-mix(in srgb, var(--accent-color), transparent 88%); filter: blur(60px); }
   .d-hero::after { width: 220px; height: 220px; left: 10%; bottom: 12%; background: color-mix(in srgb, var(--secondary), transparent 88%); filter: blur(50px); }
+  .d-hero::before, .d-hero::after { z-index: 0; }
+  .d-hero-copy {
+    position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center;
+    width: min(100%, 920px); padding: 22px clamp(18px, 4vw, 42px);
+    background: var(--bg); box-shadow: 0 0 0 24px var(--bg);
+  }
   .d-badge {
     display: inline-block; padding: 6px 16px; margin-bottom: 24px;
     font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
@@ -89,6 +96,7 @@
   .d-title {
     font-size: clamp(44px, 8vw, 100px); font-weight: var(--title-weight); line-height: 1.02;
     text-transform: var(--title-transform); letter-spacing: -0.02em; max-width: 900px; position: relative; z-index: 1;
+    overflow-wrap: anywhere; text-wrap: balance;
   }
   .d-subtitle {
     max-width: 540px; margin-top: 20px; font-size: 16px; line-height: 1.7;
@@ -209,7 +217,7 @@
   .master-brockmann .d-stats, .master-brockmann .d-footer { border-color: var(--fg); }
 
   /* ── Hofmann: high contrast, bold form ── */
-  .master-hofmann .d-hero::before { right: -8%; bottom: -10%; top: auto; width: 400px; height: 400px; background: var(--fg); filter: none; opacity: 0.85; }
+  .master-hofmann .d-hero::before { right: -12%; bottom: -16%; top: auto; width: min(34vw, 340px); height: min(34vw, 340px); background: var(--fg); filter: none; opacity: 0.85; }
   .master-hofmann .d-hero::after { left: 12%; bottom: 20%; width: 180px; height: 6px; border-radius: 0; background: var(--accent-color); filter: none; }
   .master-hofmann .d-nav { border-bottom: 3px solid var(--fg); }
   .master-hofmann .d-card { border: none; border-radius: 0; background: transparent; border-bottom: 3px solid var(--fg); }
@@ -296,8 +304,8 @@
   .master-tanaka .d-gal-item { border-radius: 0; }
 
   /* ── Fukuda: visual wit, positive/negative ── */
-  .master-fukuda .d-hero::before { left: 50%; top: 45%; right: auto; transform: translate(-50%, -50%); width: 250px; height: 250px; background: radial-gradient(circle at 64% 36%, var(--bg) 0 44px, var(--fg) 45px); filter: none; }
-  .master-fukuda .d-hero::after { left: 50%; top: 45%; right: auto; bottom: auto; transform: translate(-50%, -50%); width: 100px; height: 100px; background: color-mix(in srgb, var(--accent-color), transparent 60%); filter: none; mix-blend-mode: screen; }
+  .master-fukuda .d-hero::before { left: 72%; top: 38%; right: auto; transform: translate(-50%, -50%); width: min(24vw, 220px); height: min(24vw, 220px); background: radial-gradient(circle at 64% 36%, var(--bg) 0 38px, var(--fg) 39px); filter: none; }
+  .master-fukuda .d-hero::after { left: 72%; top: 38%; right: auto; bottom: auto; transform: translate(-50%, -50%); width: min(10vw, 86px); height: min(10vw, 86px); background: color-mix(in srgb, var(--accent-color), transparent 60%); filter: none; mix-blend-mode: screen; }
   .master-fukuda .d-card { border: 2px solid var(--fg); border-radius: 0; background: transparent; }
   .master-fukuda .d-card-icon { border-radius: 50%; background: var(--fg); }
   .master-fukuda .d-badge { border-radius: 0; border: 2px solid var(--fg); color: var(--fg); }
@@ -438,10 +446,12 @@
       </nav>
 
       <section class="d-hero">
-        <div class="d-badge">${m.method}</div>
-        <h1 class="d-title">${m.sample}</h1>
-        <p class="d-subtitle">${m.desc}</p>
-        <div class="d-btn">Explore More →</div>
+        <div class="d-hero-copy">
+          <div class="d-badge">${m.method}</div>
+          <h1 class="d-title">${m.sample}</h1>
+          <p class="d-subtitle">${m.desc}</p>
+          <div class="d-btn">Explore More →</div>
+        </div>
       </section>
 
       <section class="d-features">

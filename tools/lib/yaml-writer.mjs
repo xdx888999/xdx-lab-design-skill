@@ -33,9 +33,9 @@ export function generateYamlFrontMatter({ name, semanticColors, allColors, typog
       // Determine font family from role
       const isDisplay = /display|hero|system|tournament|chapter/i.test(entry.role);
       const isMono = /code|terminal|mono/i.test(entry.role);
-      const family = isMono ? (familyMap.monospace || familyMap.code || familyMap.terminal)
+      const family = entry.fontFamily || (isMono ? (familyMap.monospace || familyMap.code || familyMap.terminal)
         : isDisplay ? (familyMap.display || familyMap.primary)
-        : (familyMap.body || familyMap.primary);
+        : (familyMap.body || familyMap.primary));
       if (family) lines.push(`    fontFamily: "${family}"`);
       lines.push(`    fontSize: ${entry.fontSize}`);
       lines.push(`    fontWeight: ${entry.fontWeight}`);
@@ -87,6 +87,13 @@ export function generateYamlFrontMatter({ name, semanticColors, allColors, typog
 }
 
 function slugifyToken(name) {
+  const normalized = name.trim().toLowerCase().replace(/\s+/g, ' ');
+  const aliases = {
+    'body l': 'body-large',
+    'body s': 'body-small',
+  };
+  if (aliases[normalized]) return aliases[normalized];
+
   return name
     .replace(/[^\w\s-/]/g, '')
     .trim()

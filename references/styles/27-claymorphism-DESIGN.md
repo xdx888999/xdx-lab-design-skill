@@ -3,11 +3,12 @@ version: alpha
 name: "Claymorphism / Clay UI"
 colors:
   surface: "#F7F5FF"
-  on-surface: "#8B5CF6"
+  on-surface: "#1A1A2E"
   primary: "#3D8EFF"
   on-primary: "#111111"
   accent: "#FF4D8F"
   success: "#2DCA72"
+  clay-purple: "#8B5CF6"
   clay-orange: "#FF7A3D"
   clay-yellow: "#FFD600"
   clay-teal: "#00C9B8"
@@ -24,7 +25,7 @@ rounded:
 components:
   clay-button:
     backgroundColor: "linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 50%), {colors.primary};"
-    textColor: "#FFFFFF;"
+    textColor: "{colors.on-primary};"
     padding: "14px 28px;"
     rounded: "16px;"
     border: "3px solid #1A6FE0; /* darker outline */"
@@ -55,7 +56,7 @@ components:
     shadow: "inset 0 4px 8px rgba(0,0,0,0.06); /* recessed — not raised */"
     padding: "14px 16px;"
     typography: "Nunito 15px weight 500;"
-    focus: "border-color {colors.on-surface}; box-shadow: inset 0 4px 8px rgba(0,0,0,0.06), 0 0 0 4px rgba(139,92,246,0.15);"
+    focus: "border-color {colors.clay-purple}; box-shadow: inset 0 4px 8px rgba(0,0,0,0.06), 0 0 0 4px rgba(139,92,246,0.15);"
 ---
 
 # Design System: Claymorphism / Clay UI
@@ -110,7 +111,7 @@ Each clay element uses a shadow derived from its own color:
 
 | Text Token | Hex | Background | Ratio | Level |
 |------------|-----|------------|-------|-------|
-| Clay Pink | `#FF4D8F` | `#F7F5FF` | 2.9:1 | FAIL |
+| Primary Text | `#1A1A2E` | `#F7F5FF` | 15.8:1 | AAA |
 
 ## 3. Typography Rules
 
@@ -136,7 +137,7 @@ Each clay element uses a shadow derived from its own color:
 ### Clay Button (blue example)
 ```css
 background: #3D8EFF;
-color: #FFFFFF;
+color: #111111;
 padding: 14px 28px;
 border-radius: 16px;
 border: 3px solid #1A6FE0; /* darker outline */

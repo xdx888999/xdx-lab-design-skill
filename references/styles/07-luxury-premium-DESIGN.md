@@ -16,38 +16,49 @@ colors:
   muted-rose: "#C4917A"
   platinum: "#C8C8C8"
 typography:
-  09:
-    fontSize: 5px
+  brand-display:
+    fontFamily: "Playfair Display"
+    fontSize: 96px
+    fontWeight: 300
+  display:
+    fontFamily: "Playfair Display"
+    fontSize: 64px
     fontWeight: 400
-  10:
-    fontSize: 3px
+  h1:
+    fontFamily: "Playfair Display"
+    fontSize: 48px
     fontWeight: 400
-  11:
-    fontSize: 5px
+  h2:
+    fontFamily: "Cormorant Garamond"
+    fontSize: 32px
+    fontWeight: 300
+  h3:
+    fontFamily: "Jost"
+    fontSize: 18px
     fontWeight: 400
-  12:
-    fontSize: 5px
+  body-large:
+    fontFamily: "Jost"
+    fontSize: 18px
+    fontWeight: 300
+  body:
+    fontFamily: "Jost"
+    fontSize: 15px
+    fontWeight: 300
+  body-small:
+    fontFamily: "Jost"
+    fontSize: 13px
     fontWeight: 400
-  13:
-    fontSize: 2px
+  eyebrow:
+    fontFamily: "Jost"
+    fontSize: 11px
     fontWeight: 400
-  18:
-    fontSize: 5px
+  price:
+    fontFamily: "Jost"
+    fontSize: 20px
     fontWeight: 400
-  17:
-    fontSize: 5px
-    fontWeight: 400
-  15:
-    fontSize: 8px
-    fontWeight: 400
-  1:
-    fontSize: 4px
-    fontWeight: 400
-  1:
-    fontSize: 1px
-    fontWeight: 400
-  1:
-    fontSize: 3px
+  nav-link:
+    fontFamily: "Jost"
+    fontSize: 12px
     fontWeight: 400
 rounded:
   none: 0px

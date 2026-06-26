@@ -781,6 +781,7 @@
     border-bottom: 1px solid rgba(23, 22, 21, 0.1);
     background: var(--bg);
     color: var(--fg);
+    isolation: isolate;
   }
 
   .work-preview::before,
@@ -794,16 +795,23 @@
 
   .piece-core {
     position: relative;
-    z-index: 3;
-    width: min(78%, 260px);
+    z-index: 4;
+    width: min(72%, 240px);
+    padding: 18px 20px;
+    background: var(--bg);
+    box-shadow:
+      0 0 0 10px var(--bg),
+      0 16px 34px color-mix(in srgb, var(--fg), transparent 90%);
   }
 
   .piece-title {
     color: var(--fg);
     font-family: var(--display-font);
-    font-size: clamp(26px, 7vw, 42px);
+    font-size: 34px;
     font-weight: var(--master-title-weight);
-    line-height: 0.95;
+    line-height: 1;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   .piece-subtitle {
@@ -818,6 +826,17 @@
   .piece-mark {
     position: absolute;
     inset: 0;
+    z-index: 1;
+  }
+
+  .work-preview::before,
+  .work-preview::after {
+    z-index: 0;
+  }
+
+  .piece-mark::before,
+  .piece-mark::after,
+  .piece-mark span {
     z-index: 1;
   }
 
@@ -871,7 +890,7 @@
       linear-gradient(24deg, transparent 0 58%, var(--secondary) 59% 70%, transparent 71%);
   }
 
-  .master-bass .piece-mark span:nth-child(1) { left: 44px; top: 42px; width: 108px; height: 132px; background: var(--fg); clip-path: polygon(0 0, 100% 20%, 78% 100%, 18% 80%); }
+  .master-bass .piece-mark span:nth-child(1) { left: 28px; top: 34px; width: 92px; height: 112px; background: var(--fg); clip-path: polygon(0 0, 100% 20%, 78% 100%, 18% 80%); }
   .master-bass .piece-core { transform: rotate(-4deg); }
 
   .master-brockmann .piece-mark::before {
@@ -893,10 +912,10 @@
   }
 
   .master-hofmann .piece-mark::before {
-    right: -50px;
-    bottom: -70px;
-    width: 240px;
-    height: 240px;
+    right: -82px;
+    bottom: -86px;
+    width: 220px;
+    height: 220px;
     border-radius: 50%;
     background: var(--fg);
   }
@@ -1022,8 +1041,8 @@
   .master-fukuda .piece-mark::before {
     left: 50%;
     top: 50%;
-    width: 160px;
-    height: 160px;
+    width: 138px;
+    height: 138px;
     border-radius: 50%;
     background:
       radial-gradient(circle at 64% 36%, var(--bg) 0 28px, transparent 29px),
@@ -1034,8 +1053,8 @@
   .master-fukuda .piece-mark::after {
     left: 50%;
     top: 50%;
-    width: 74px;
-    height: 74px;
+    width: 58px;
+    height: 58px;
     border-radius: 50%;
     background: var(--accent-color);
     transform: translate(-50%, -50%);
@@ -1058,8 +1077,8 @@
   }
 
   .master-scher .piece-title {
-    font-size: clamp(42px, 12vw, 78px);
-    line-height: 0.78;
+    font-size: 48px;
+    line-height: 0.86;
   }
 
   .master-scher .work-preview {
@@ -1083,7 +1102,7 @@
 
   .master-brody .piece-title {
     color: var(--fg);
-    font-size: clamp(38px, 10vw, 68px);
+    font-size: 44px;
     letter-spacing: -0.02em;
   }
 
@@ -1372,6 +1391,19 @@
       </div>
     </section>
     <section class="master-grid" id="master-grid" aria-label="20 位设计大师方法论"></section>
+  </section>
+
+  <section class="toolbar" aria-labelledby="cases-title">
+    <div>
+      <h2 class="toolbar-title" id="cases-title">真实案例页</h2>
+      <p class="toolbar-copy">这些页面把 DESIGN.md 从规范转成可浏览成品，覆盖海报、PPT、网站和 App UI 四种常见交付场景。</p>
+    </div>
+    <div class="category-strip" aria-label="真实案例链接">
+      <a class="category-chip" href="cases/poster-tang.html">唐代华彩海报</a>
+      <a class="category-chip" href="cases/ppt-artdeco.html">Art Deco PPT</a>
+      <a class="category-chip" href="cases/web-editorial.html">编辑风网站</a>
+      <a class="category-chip" href="cases/app-luxury.html">奢华 App UI</a>
+    </div>
   </section>
 
   <footer class="footer">

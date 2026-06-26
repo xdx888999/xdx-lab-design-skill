@@ -98,6 +98,13 @@ https://github.com/xdx888999/xdx-lab-design-skill
 
 ![Paula Scher 方法论详情](docs/assets/master-detail-scher.png)
 
+### 真实案例页
+
+- [唐代华彩海报](https://xdx888999.github.io/xdx-lab-design-skill/cases/poster-tang.html)
+- [Art Deco PPT](https://xdx888999.github.io/xdx-lab-design-skill/cases/ppt-artdeco.html)
+- [编辑风网站](https://xdx888999.github.io/xdx-lab-design-skill/cases/web-editorial.html)
+- [奢华 App UI](https://xdx888999.github.io/xdx-lab-design-skill/cases/app-luxury.html)
+
 ---
 
 ## 风格覆盖
@@ -207,6 +214,7 @@ design-style-skill/
 │   ├── masters.html                  # 20 位设计大师方法论画廊
 │   ├── master.html                   # 通用大师详情页
 │   ├── master-data.js                # 20 位大师展示数据
+│   ├── cases/                        # 海报、PPT、网站、App UI 真实案例页
 │   └── assets/                       # README 截图资源
 └── references/
     ├── style-index.md                # 50 种风格目录索引（轻量，先读此文件）

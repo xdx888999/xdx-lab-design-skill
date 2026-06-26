@@ -3,183 +3,384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>田中一光 — 现代艺术展海报</title>
+<title>盛唐华彩 — 原研哉方法海报</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { margin: 0; background: #E8E4DF; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+  :root {
+    --paper: #FBFAF5;
+    --paper-fiber: #E8E1D2;
+    --ink: #2F2A24;
+    --muted: #7A7166;
+    --gold: #C9A84C;
+    --bright-gold: #E8C456;
+    --cinnabar: #C43B2A;
+    --lapis: #2B5BA8;
+    --malachite: #2D7A5A;
+    --jade-white: #E8EDE5;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 20% 8%, rgba(201, 168, 76, 0.12), transparent 30%),
+      linear-gradient(180deg, #EEE7D8, #DDD2BE);
+    font-family: "Noto Sans SC", sans-serif;
+  }
 
   .poster {
-    position: relative; width: 680px; min-height: 960px; overflow: hidden;
-    background: #FAFAF8;
-    color: #1A1A1A;
-    font-family: "Noto Sans SC", "Inter", sans-serif;
+    position: relative;
+    width: min(680px, calc(100vw - 28px));
+    min-height: 960px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 52% 35%, rgba(201, 168, 76, 0.055), transparent 34%),
+      linear-gradient(90deg, rgba(47, 42, 36, 0.018) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(47, 42, 36, 0.014) 1px, transparent 1px),
+      var(--paper);
+    background-size: auto, 64px 64px, 64px 64px, auto;
+    color: var(--ink);
+    box-shadow: 0 30px 90px rgba(47, 42, 36, 0.2);
+    isolation: isolate;
   }
 
-  .content { position: relative; z-index: 2; padding: 48px; height: 100%; }
-
-  /* ── 几何装饰 ── */
-  .geo-circle-red {
-    position: absolute; top: 80px; right: -60px; z-index: 1;
-    width: 320px; height: 320px; border-radius: 50%;
-    background: #D93025;
-  }
-  .geo-circle-blue {
-    position: absolute; bottom: 160px; left: -40px; z-index: 1;
-    width: 200px; height: 200px; border-radius: 50%;
-    background: #1A73E8;
-  }
-  .geo-rect-yellow {
-    position: absolute; top: 380px; left: 50px; z-index: 1;
-    width: 120px; height: 120px;
-    background: #F9AB00;
-  }
-  .geo-triangle {
-    position: absolute; bottom: 80px; right: 80px; z-index: 1;
-    width: 0; height: 0;
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
-    border-bottom: 100px solid #1A1A1A;
-  }
-  .geo-line-h {
-    position: absolute; top: 520px; left: 0; right: 0; z-index: 1;
-    height: 3px; background: #1A1A1A;
-  }
-  .geo-line-v {
-    position: absolute; top: 0; bottom: 0; left: 280px; z-index: 1;
-    width: 2px; background: rgba(26,26,26,0.1);
-  }
-  .geo-half-circle {
-    position: absolute; top: 540px; right: 0; z-index: 1;
-    width: 140px; height: 70px;
-    background: #34A853;
-    border-radius: 0 0 140px 140px;
+  .poster::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    content: "";
+    background:
+      radial-gradient(circle at 18% 22%, rgba(122, 113, 102, 0.06) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 72% 42%, rgba(122, 113, 102, 0.05) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 40% 80%, rgba(122, 113, 102, 0.045) 0 1px, transparent 1.5px);
+    background-size: 22px 26px, 31px 29px, 27px 33px;
+    opacity: 0.48;
+    pointer-events: none;
   }
 
-  /* ── 排版 ── */
-  .top-label {
-    font-size: 10px; font-weight: 900; letter-spacing: 0.3em; text-transform: uppercase;
-    color: #D93025; position: relative; z-index: 3; margin-bottom: 6px;
-  }
-  .top-venue {
-    font-size: 12px; font-weight: 400; letter-spacing: 0.08em; color: #666;
-    position: relative; z-index: 3;
-  }
-
-  .title-block {
-    position: relative; z-index: 3;
-    margin-top: 120px;
-  }
-  .title-jp {
-    font-size: 88px; font-weight: 900; line-height: 1.05; letter-spacing: -0.02em;
-    color: #1A1A1A;
-  }
-  .title-en {
-    font-family: "Inter", sans-serif;
-    font-size: 14px; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;
-    color: #666; margin-top: 16px;
-  }
-  .title-sub {
-    font-size: 16px; font-weight: 400; color: #999; margin-top: 8px; letter-spacing: 0.06em;
+  .poster::after {
+    position: absolute;
+    inset: 34px;
+    z-index: 1;
+    content: "";
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    pointer-events: none;
   }
 
-  .mid-block {
-    position: relative; z-index: 3;
-    margin-top: 180px;
-  }
-  .artists {
-    display: flex; flex-direction: column; gap: 6px;
-  }
-  .artist-name {
-    font-size: 18px; font-weight: 700; letter-spacing: 0.04em;
-  }
-  .artist-name span { font-size: 12px; font-weight: 400; color: #999; margin-left: 8px; }
-
-  .bottom-block {
-    position: absolute; bottom: 48px; left: 48px; right: 48px; z-index: 3;
-    display: flex; justify-content: space-between; align-items: flex-end;
-  }
-  .date-block {}
-  .date-big {
-    font-family: "Inter", sans-serif;
-    font-size: 48px; font-weight: 900; line-height: 1; letter-spacing: -0.02em;
-  }
-  .date-range {
-    font-size: 12px; color: #666; letter-spacing: 0.08em; margin-top: 6px;
-  }
-  .venue-info {
-    text-align: right; font-size: 11px; color: #999; line-height: 1.8; letter-spacing: 0.04em;
+  .back,
+  .tag {
+    position: fixed;
+    z-index: 20;
+    border: 1px solid rgba(47, 42, 36, 0.12);
+    background: rgba(251, 250, 245, 0.82);
+    color: var(--ink);
+    backdrop-filter: blur(10px);
+    text-decoration: none;
   }
 
-  /* 色块标记 */
-  .color-bar {
-    position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
-    display: flex; height: 8px;
+  .back {
+    top: 20px;
+    left: 20px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
   }
-  .color-bar div { flex: 1; }
-  .cb-1 { background: #D93025; }
-  .cb-2 { background: #F9AB00; }
-  .cb-3 { background: #1A73E8; }
-  .cb-4 { background: #34A853; }
-  .cb-5 { background: #1A1A1A; }
 
-  /* 浮动按钮 */
-  .back { position: fixed; top: 20px; left: 20px; z-index: 100; padding: 8px 18px; font-size: 12px; font-weight: 700; font-family: "Inter", sans-serif; color: #1A1A1A; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.1); border-radius: 30px; text-decoration: none; }
-  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 900; font-family: "Inter", sans-serif; color: #D93025; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); border: 1px solid rgba(217,48,37,0.2); border-radius: 30px; letter-spacing: 0.1em; }
+  .tag {
+    top: 20px;
+    right: 20px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+  }
+
+  .content {
+    position: relative;
+    z-index: 3;
+    min-height: 960px;
+    padding: 58px 58px 54px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  /* 用压印感替代强装饰：唐代宝相花只作为被纸吸收的记忆。 */
+  .embossed-lotus {
+    position: absolute;
+    left: 50%;
+    top: 208px;
+    z-index: 1;
+    width: 360px;
+    height: 360px;
+    transform: translateX(-50%);
+    opacity: 0.24;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, transparent 0 20%, rgba(201, 168, 76, 0.32) 21% 23%, transparent 24%),
+      conic-gradient(from 22deg,
+        transparent 0 10deg,
+        rgba(201, 168, 76, 0.32) 10deg 18deg,
+        transparent 18deg 30deg);
+    clip-path: polygon(
+      50% 0%, 57% 24%, 76% 10%, 70% 34%, 96% 28%, 78% 46%,
+      100% 50%, 78% 54%, 96% 72%, 70% 66%, 76% 90%, 57% 76%,
+      50% 100%, 43% 76%, 24% 90%, 30% 66%, 4% 72%, 22% 54%,
+      0% 50%, 22% 46%, 4% 28%, 30% 34%, 24% 10%, 43% 24%
+    );
+    filter: drop-shadow(0 1px 0 rgba(255,255,255,0.82)) drop-shadow(0 -1px 0 rgba(47,42,36,0.08));
+    pointer-events: none;
+  }
+
+  .quiet-axis {
+    position: absolute;
+    left: 96px;
+    top: 58px;
+    bottom: 54px;
+    z-index: 2;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(201, 168, 76, 0.42) 16%, rgba(201, 168, 76, 0.18) 78%, transparent);
+  }
+
+  .top-meta {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 36px;
+  }
+
+  .method-note {
+    max-width: 260px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.9;
+    letter-spacing: 0.06em;
+  }
+
+  .seal {
+    width: 54px;
+    height: 54px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--cinnabar);
+    color: var(--cinnabar);
+    font-family: "Noto Serif SC", serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.08em;
+  }
+
+  .main-field {
+    position: relative;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 90px 0 124px;
+  }
+
+  .period {
+    margin-left: 70px;
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.34em;
+  }
+
+  .title {
+    margin-top: 26px;
+    margin-left: 68px;
+    color: var(--ink);
+    font-family: "Noto Serif SC", serif;
+    font-size: 74px;
+    font-weight: 600;
+    line-height: 1.06;
+    letter-spacing: 0.12em;
+  }
+
+  .title span {
+    display: block;
+  }
+
+  .subtitle {
+    width: min(360px, 78%);
+    margin-top: 34px;
+    margin-left: 72px;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 2.1;
+    letter-spacing: 0.12em;
+  }
+
+  .color-breath {
+    position: absolute;
+    right: 72px;
+    top: 52%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: translateY(-50%);
+  }
+
+  .color-breath span {
+    width: 7px;
+    height: 38px;
+  }
+
+  .gold { background: var(--gold); }
+  .red { background: var(--cinnabar); }
+  .blue { background: var(--lapis); }
+  .green { background: var(--malachite); }
+
+  .bottom-meta {
+    position: relative;
+    z-index: 4;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 36px;
+    align-items: end;
+  }
+
+  .date {
+    border-top: 1px solid rgba(201, 168, 76, 0.48);
+    padding-top: 18px;
+  }
+
+  .year {
+    color: var(--ink);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 0.96;
+    letter-spacing: 0.02em;
+  }
+
+  .range {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+  }
+
+  .venue {
+    padding: 20px 0 0 26px;
+    border-left: 1px solid rgba(201, 168, 76, 0.48);
+  }
+
+  .venue-title {
+    color: var(--ink);
+    font-family: "Noto Serif SC", serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+  }
+
+  .venue-copy {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 2;
+    letter-spacing: 0.08em;
+  }
+
+  .caption-line {
+    position: absolute;
+    right: 58px;
+    bottom: 180px;
+    z-index: 4;
+    color: rgba(122, 113, 102, 0.76);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    writing-mode: vertical-rl;
+  }
+
+  .tiny-gold {
+    position: absolute;
+    left: 91px;
+    top: 514px;
+    z-index: 5;
+    width: 11px;
+    height: 11px;
+    transform: rotate(45deg);
+    background: var(--bright-gold);
+  }
+
+  @media (max-width: 720px) {
+    body { align-items: flex-start; padding: 14px 0; }
+    .poster { min-height: 900px; }
+    .content { min-height: 900px; padding: 48px 36px 44px; }
+    .quiet-axis { left: 64px; }
+    .period, .title, .subtitle { margin-left: 48px; }
+    .title { font-size: clamp(52px, 15vw, 72px); }
+    .subtitle { width: min(340px, calc(100% - 70px)); }
+    .bottom-meta { grid-template-columns: 1fr; gap: 24px; }
+    .venue { padding-left: 0; border-left: 0; border-top: 1px solid rgba(201, 168, 76, 0.42); }
+    .color-breath { right: 42px; }
+    .embossed-lotus { width: 300px; height: 300px; top: 220px; }
+    .caption-line { right: 36px; bottom: 290px; }
+  }
 </style>
 </head>
 <body>
 <a class="back" href="../index.html">← 画廊</a>
-<span class="tag">POSTER · 田中一光</span>
+<span class="tag">原研哉方法 · 唐代色</span>
 
-<div class="poster">
-  <!-- 几何元素 -->
-  <div class="geo-circle-red"></div>
-  <div class="geo-circle-blue"></div>
-  <div class="geo-rect-yellow"></div>
-  <div class="geo-triangle"></div>
-  <div class="geo-line-h"></div>
-  <div class="geo-line-v"></div>
-  <div class="geo-half-circle"></div>
+<main class="poster" aria-label="盛唐华彩原研哉方法海报">
+  <div class="quiet-axis" aria-hidden="true"></div>
+  <div class="embossed-lotus" aria-hidden="true"></div>
+  <div class="tiny-gold" aria-hidden="true"></div>
+  <div class="caption-line">金 · 朱砂 · 青金石 · 孔雀绿</div>
 
-  <div class="content">
-    <div class="top-label">Exhibition</div>
-    <div class="top-venue">东京都现代美术馆 Museum of Contemporary Art Tokyo</div>
+  <section class="content">
+    <header class="top-meta">
+      <p class="method-note">以空白承载盛唐的颜色。纹样不喧哗，只在纸面上留下很轻的触感。</p>
+      <div class="seal">唐<br>色</div>
+    </header>
 
-    <div class="title-block">
-      <div class="title-jp">形と<br>色の<br>対話</div>
-      <div class="title-en">Dialogue of Form and Color</div>
-      <div class="title-sub">日本现代平面设计的几何探索</div>
-    </div>
-
-    <div class="mid-block">
-      <div class="artists">
-        <div class="artist-name">田中一光 <span>Ikko Tanaka</span></div>
-        <div class="artist-name">福田繁雄 <span>Shigeo Fukuda</span></div>
-        <div class="artist-name">永井一正 <span>Kazumasa Nagai</span></div>
-        <div class="artist-name">横尾忠則 <span>Tadanori Yokoo</span></div>
+    <section class="main-field" aria-labelledby="poster-title">
+      <div class="period">六一八 至 九〇七</div>
+      <h1 class="title" id="poster-title"><span>盛唐</span><span>华彩</span></h1>
+      <p class="subtitle">长安丝路乐舞与敦煌色彩展。把金、朱砂、青金石与孔雀绿，放回一张安静的纸上。</p>
+      <div class="color-breath" aria-hidden="true">
+        <span class="gold"></span>
+        <span class="red"></span>
+        <span class="blue"></span>
+        <span class="green"></span>
       </div>
-    </div>
+    </section>
 
-    <div class="bottom-block">
-      <div class="date-block">
-        <div class="date-big">2025</div>
-        <div class="date-range">10.01 — 2026.01.15</div>
+    <footer class="bottom-meta">
+      <div class="date">
+        <div class="year">2026</div>
+        <div class="range">03.18 — 06.30</div>
       </div>
-      <div class="venue-info">
-        MOT 东京都现代美术馆<br>
-        东京都江东区三好 4-1-1<br>
-        10:00 – 18:00 · 周一休馆<br>
-        一般 ¥1,500 / 学生 ¥800
+      <div class="venue">
+        <div class="venue-title">大明宫遗址博物馆</div>
+        <div class="venue-copy">
+          含元殿东侧展厅<br>
+          壁画摹本 · 唐三彩 · 胡旋乐舞 · 丝路器物<br>
+          每日 09:00 至 18:00 · 周一闭馆
+        </div>
       </div>
-    </div>
-  </div>
-
-  <div class="color-bar">
-    <div class="cb-1"></div><div class="cb-2"></div><div class="cb-3"></div><div class="cb-4"></div><div class="cb-5"></div>
-  </div>
-</div>
+    </footer>
+  </section>
+</main>
 </body>
 </html>
