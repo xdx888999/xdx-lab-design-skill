@@ -1,0 +1,1950 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>制造行业控制面板｜SaaS Dashboard Light + Dieter Rams</title>
+  <meta name="description" content="适用于制造行业的 MES 生产控制面板网页，包含产线状态、OEE、设备健康、质量异常、排程和维护信息。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-page: #f9fafb;
+      --color-surface: #ffffff;
+      --color-surface-raised: #f3f4f6;
+      --color-heading: #111827;
+      --color-body: #374151;
+      --color-secondary: #6b7280;
+      --color-muted: #9ca3af;
+      --color-border-subtle: #e5e7eb;
+      --color-border-default: #d1d5db;
+      --color-indigo: #4f46e5;
+      --color-indigo-hover: #4338ca;
+      --color-blue: #2563eb;
+      --color-teal: #0d9488;
+      --color-success: #16a34a;
+      --color-success-bg: #f0fdf4;
+      --color-warning: #d97706;
+      --color-warning-bg: #fffbeb;
+      --color-error: #dc2626;
+      --color-error-bg: #fef2f2;
+      --color-rams-bg: #f5f3ee;
+      --color-rams-text: #111111;
+      --color-rams-muted: #6f6f68;
+      --color-rams-line: #d8d6cf;
+      --color-rams-red: #e53935;
+      --sidebar-width: 240px;
+      --topbar-height: 56px;
+      --card-radius: 6px;
+      --control-radius: 2px;
+      --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --hover-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--color-page);
+      color: var(--color-heading);
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .app-frame {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      min-height: 100vh;
+      background: var(--color-page);
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      align-self: start;
+      width: var(--sidebar-width);
+      height: 100vh;
+      overflow-y: auto;
+      border-right: 1px solid var(--color-border-subtle);
+      background: var(--color-surface);
+      padding: 16px 12px;
+    }
+
+    .brand {
+      display: grid;
+      align-content: center;
+      min-height: 56px;
+      padding: 0 8px 14px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .brand__mark {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand__symbol {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--control-radius);
+      background: var(--color-rams-bg);
+    }
+
+    .brand__symbol::before,
+    .brand__symbol::after {
+      position: absolute;
+      content: "";
+    }
+
+    .brand__symbol::before {
+      width: 16px;
+      height: 2px;
+      background: var(--color-rams-text);
+    }
+
+    .brand__symbol::after {
+      width: 6px;
+      height: 6px;
+      right: 6px;
+      top: 6px;
+      border-radius: 50%;
+      background: var(--color-rams-red);
+    }
+
+    .brand__name {
+      color: var(--color-heading);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    .brand__sub {
+      color: var(--color-secondary);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .nav-group {
+      margin-top: 20px;
+    }
+
+    .nav-label {
+      margin: 0 12px 4px;
+      color: var(--color-muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 38px;
+      margin: 2px 0;
+      padding: 8px 12px;
+      border-radius: var(--card-radius);
+      color: var(--color-body);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 160ms ease, color 160ms ease;
+    }
+
+    .nav-link:hover {
+      background: var(--color-surface-raised);
+    }
+
+    .nav-link--active {
+      position: relative;
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--color-indigo);
+      font-weight: 600;
+    }
+
+    .nav-link--active::before {
+      position: absolute;
+      left: 0;
+      width: 2px;
+      height: 20px;
+      border-radius: 100px;
+      background: var(--color-indigo);
+      content: "";
+    }
+
+    .nav-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      color: currentColor;
+      flex: 0 0 auto;
+    }
+
+    .system-card {
+      margin-top: 24px;
+      padding: 14px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--card-radius);
+      background: var(--color-rams-bg);
+    }
+
+    .system-card__label {
+      margin-bottom: 10px;
+      color: var(--color-rams-muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .system-meter {
+      display: grid;
+      gap: 8px;
+    }
+
+    .system-meter__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--color-rams-text);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .system-meter__track {
+      height: 6px;
+      overflow: hidden;
+      border: 1px solid var(--color-rams-line);
+      border-radius: 100px;
+      background: var(--color-surface);
+    }
+
+    .system-meter__fill {
+      display: block;
+      height: 100%;
+      width: 72%;
+      background: var(--color-rams-text);
+    }
+
+    .workspace {
+      min-width: 0;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: var(--topbar-height);
+      padding: 0 24px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(16px);
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-secondary);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .breadcrumb strong {
+      color: var(--color-heading);
+      font-weight: 600;
+    }
+
+    .topbar__actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .search-box {
+      width: min(280px, 28vw);
+      height: 36px;
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--card-radius);
+      background: var(--color-surface);
+      color: var(--color-body);
+      padding: 8px 12px;
+      outline: none;
+    }
+
+    .search-box:focus,
+    .select-control:focus,
+    .action-button:focus-visible {
+      border-color: var(--color-indigo);
+      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+      outline: none;
+    }
+
+    .select-control {
+      height: 36px;
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--card-radius);
+      background: var(--color-surface);
+      color: var(--color-body);
+      padding: 7px 30px 7px 12px;
+      outline: none;
+    }
+
+    .action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 8px 16px;
+      border-radius: var(--card-radius);
+      border: 1px solid transparent;
+      background: var(--color-indigo);
+      color: var(--color-surface);
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
+    }
+
+    .action-button:hover {
+      background: var(--color-indigo-hover);
+    }
+
+    .action-button--secondary {
+      border-color: var(--color-border-default);
+      background: var(--color-surface);
+      color: var(--color-body);
+    }
+
+    .action-button--secondary:hover {
+      background: var(--color-surface-raised);
+    }
+
+    .dashboard {
+      max-width: 1680px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .command-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+
+    .command-header h1 {
+      margin: 0 0 8px;
+      color: var(--color-heading);
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .command-header p {
+      max-width: 920px;
+      margin: 0;
+      color: var(--color-secondary);
+      font-size: 14px;
+    }
+
+    .header-control {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(96px, 1fr));
+      gap: 10px;
+      min-width: 330px;
+      padding: 12px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--card-radius);
+      background: var(--color-rams-bg);
+    }
+
+    .header-control__item {
+      display: grid;
+      gap: 4px;
+      padding: 8px 10px;
+      border-left: 2px solid var(--color-rams-text);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .header-control__item strong {
+      color: var(--color-rams-text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 15px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .header-control__item span {
+      color: var(--color-rams-muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-card,
+    .panel {
+      border: 1px solid var(--color-border-subtle);
+      border-radius: 8px;
+      background: var(--color-surface);
+      box-shadow: var(--card-shadow);
+    }
+
+    .kpi-card {
+      display: grid;
+      gap: 12px;
+      min-height: 154px;
+      padding: 20px 24px;
+      transition: box-shadow 160ms ease, transform 160ms ease;
+    }
+
+    .kpi-card:hover {
+      box-shadow: var(--hover-shadow);
+      transform: translateY(-1px);
+    }
+
+    .kpi-card__label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--color-secondary);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success);
+      box-shadow: 0 0 0 4px var(--color-success-bg);
+      flex: 0 0 auto;
+    }
+
+    .status-dot--warning {
+      background: var(--color-warning);
+      box-shadow: 0 0 0 4px var(--color-warning-bg);
+    }
+
+    .status-dot--error {
+      background: var(--color-rams-red);
+      box-shadow: 0 0 0 4px var(--color-error-bg);
+    }
+
+    .kpi-card__value {
+      color: var(--color-heading);
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .kpi-card__value span {
+      color: var(--color-secondary);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .kpi-card__change {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--color-muted);
+      font-size: 12px;
+    }
+
+    .change {
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .change--positive {
+      color: var(--color-success);
+    }
+
+    .change--negative {
+      color: var(--color-error);
+    }
+
+    .change--neutral {
+      color: var(--color-secondary);
+    }
+
+    .operations-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(360px, 0.58fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .panel {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .panel__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 58px;
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .panel__title {
+      margin: 0;
+      color: var(--color-heading);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .panel__meta {
+      margin: 4px 0 0;
+      color: var(--color-secondary);
+      font-size: 13px;
+    }
+
+    .panel__body {
+      padding: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .badge--success {
+      border: 1px solid #bbf7d0;
+      background: var(--color-success-bg);
+      color: var(--color-success);
+    }
+
+    .badge--warning {
+      border: 1px solid #fde68a;
+      background: var(--color-warning-bg);
+      color: var(--color-warning);
+    }
+
+    .badge--error {
+      border: 1px solid #fecaca;
+      background: var(--color-error-bg);
+      color: var(--color-error);
+    }
+
+    .badge--info {
+      border: 1px solid rgba(79, 70, 229, 0.2);
+      background: rgba(79, 70, 229, 0.08);
+      color: var(--color-indigo);
+    }
+
+    .factory-map {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 18px;
+      min-height: 428px;
+    }
+
+    .line-diagram {
+      position: relative;
+      overflow: hidden;
+      min-height: 396px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--card-radius);
+      background:
+        linear-gradient(90deg, rgba(216, 214, 207, 0.6) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(216, 214, 207, 0.6) 1px, transparent 1px),
+        var(--color-rams-bg);
+      background-size: 28px 28px;
+    }
+
+    .line-path {
+      position: absolute;
+      left: 7%;
+      right: 8%;
+      height: 8px;
+      border: 1px solid var(--color-rams-line);
+      background: var(--color-surface);
+    }
+
+    .line-path--top {
+      top: 25%;
+    }
+
+    .line-path--middle {
+      top: 51%;
+    }
+
+    .line-path--bottom {
+      top: 77%;
+    }
+
+    .machine-node {
+      position: absolute;
+      display: grid;
+      align-content: center;
+      gap: 4px;
+      width: 112px;
+      min-height: 72px;
+      padding: 10px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--control-radius);
+      background: var(--color-surface);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .machine-node::before {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-success);
+      content: "";
+    }
+
+    .machine-node--warning::before {
+      background: var(--color-warning);
+    }
+
+    .machine-node--error::before {
+      background: var(--color-rams-red);
+    }
+
+    .machine-node strong {
+      color: var(--color-rams-text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .machine-node span {
+      color: var(--color-rams-muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .machine-node--a1 {
+      left: 10%;
+      top: 16%;
+    }
+
+    .machine-node--a2 {
+      left: 39%;
+      top: 16%;
+    }
+
+    .machine-node--a3 {
+      right: 11%;
+      top: 16%;
+    }
+
+    .machine-node--b1 {
+      left: 17%;
+      top: 42%;
+    }
+
+    .machine-node--b2 {
+      left: 50%;
+      top: 42%;
+    }
+
+    .machine-node--c1 {
+      left: 9%;
+      top: 68%;
+    }
+
+    .machine-node--c2 {
+      left: 42%;
+      top: 68%;
+    }
+
+    .machine-node--c3 {
+      right: 9%;
+      top: 68%;
+    }
+
+    .floor-legend {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .control-module {
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--card-radius);
+      background: var(--color-rams-bg);
+      padding: 14px;
+    }
+
+    .control-module h3 {
+      margin: 0 0 12px;
+      color: var(--color-rams-text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .control-readout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      padding: 10px 0;
+      border-top: 1px solid var(--color-rams-line);
+      color: var(--color-rams-muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .control-readout:first-of-type {
+      border-top: 0;
+    }
+
+    .control-readout strong {
+      color: var(--color-rams-text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .rotary-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .rotary {
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      color: var(--color-rams-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .rotary__dial {
+      position: relative;
+      width: 58px;
+      aspect-ratio: 1;
+      border: 1px solid var(--color-rams-line);
+      border-radius: 50%;
+      background:
+        conic-gradient(var(--color-rams-text) 0 246deg, var(--color-rams-line) 246deg 360deg);
+    }
+
+    .rotary__dial::before {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      background: var(--color-rams-bg);
+      content: "";
+    }
+
+    .rotary__dial::after {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      border-radius: 100px;
+      background: var(--color-rams-red);
+      transform: translateX(-50%) rotate(38deg);
+      transform-origin: bottom center;
+      content: "";
+    }
+
+    .stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .alert-list,
+    .maintenance-list,
+    .handoff-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .alert-row,
+    .maintenance-row,
+    .handoff-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .alert-row:last-child,
+    .maintenance-row:last-child,
+    .handoff-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .alert-index {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--control-radius);
+      background: var(--color-rams-bg);
+      color: var(--color-rams-text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .row-title {
+      margin: 0 0 3px;
+      color: var(--color-heading);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .row-copy {
+      margin: 0;
+      color: var(--color-secondary);
+      font-size: 13px;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.68fr) minmax(360px, 0.32fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .chart-area {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 170px;
+      gap: 18px;
+      min-height: 294px;
+    }
+
+    .trend-chart {
+      position: relative;
+      min-height: 250px;
+      border-left: 1px solid var(--color-border-subtle);
+      border-bottom: 1px solid var(--color-border-subtle);
+      background:
+        linear-gradient(0deg, rgba(229, 231, 235, 0.8) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(229, 231, 235, 0.75) 1px, transparent 1px);
+      background-size: 100% 50px, 76px 100%;
+    }
+
+    .trend-chart svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .chart-axis {
+      position: absolute;
+      color: var(--color-muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .chart-axis--top {
+      top: -4px;
+      left: 8px;
+    }
+
+    .chart-axis--bottom {
+      right: 8px;
+      bottom: 8px;
+    }
+
+    .chart-legend {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .legend-item {
+      display: grid;
+      gap: 5px;
+      padding: 12px;
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--card-radius);
+      background: var(--color-surface);
+    }
+
+    .legend-item strong {
+      color: var(--color-heading);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 18px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .legend-item span {
+      color: var(--color-secondary);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .quality-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .quality-meter {
+      display: grid;
+      gap: 8px;
+    }
+
+    .quality-meter__label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--color-secondary);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .quality-meter__bar {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 100px;
+      background: var(--color-surface-raised);
+    }
+
+    .quality-meter__bar span {
+      display: block;
+      height: 100%;
+      border-radius: 100px;
+      background: var(--color-indigo);
+    }
+
+    .quality-meter__bar--success span {
+      background: var(--color-success);
+    }
+
+    .quality-meter__bar--warning span {
+      background: var(--color-warning);
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.62fr) minmax(360px, 0.38fr);
+      gap: 16px;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+    }
+
+    th {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      color: var(--color-secondary);
+      font-size: 12px;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    td {
+      height: 52px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--color-surface-raised);
+      color: var(--color-body);
+      font-size: 14px;
+    }
+
+    tr:hover td {
+      background: var(--color-page);
+    }
+
+    .numeric {
+      color: var(--color-heading);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 500;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .order-id {
+      color: var(--color-heading);
+      font-family: "IBM Plex Mono", monospace;
+      font-weight: 600;
+    }
+
+    .parameter-board {
+      display: grid;
+      gap: 14px;
+      padding: 20px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: var(--card-radius);
+      background: var(--color-rams-bg);
+    }
+
+    .parameter-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--color-rams-line);
+    }
+
+    .parameter-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .parameter-row label {
+      display: grid;
+      gap: 2px;
+      color: var(--color-rams-text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .parameter-row label span {
+      color: var(--color-rams-muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .parameter-value {
+      color: var(--color-rams-text);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 18px;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .range-control {
+      grid-column: 1 / -1;
+      width: 100%;
+      accent-color: var(--color-rams-red);
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 46px;
+      height: 24px;
+      border: 1px solid var(--color-rams-line);
+      border-radius: 100px;
+      background: var(--color-surface);
+    }
+
+    .toggle-switch::after {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--color-rams-text);
+      content: "";
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    .toggle-switch[aria-pressed="true"]::after {
+      transform: translateX(22px);
+      background: var(--color-rams-red);
+    }
+
+      .mobile-tabs {
+        display: none;
+      }
+
+    @media (max-width: 1280px) {
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .operations-grid,
+      .analytics-grid,
+      .control-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .factory-map {
+        grid-template-columns: 1fr;
+      }
+
+      .floor-legend {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1024px) {
+      :root {
+        --sidebar-width: 72px;
+      }
+
+      .brand__name,
+      .brand__sub,
+      .nav-label,
+      .nav-link span,
+      .system-card {
+        display: none;
+      }
+
+      .brand {
+        justify-items: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .nav-link {
+        justify-content: center;
+        padding: 8px;
+      }
+
+      .command-header {
+        grid-template-columns: 1fr;
+      }
+
+      .header-control {
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .app-frame {
+        display: block;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .topbar {
+        padding: 0 14px;
+      }
+
+      .breadcrumb {
+        display: none;
+      }
+
+      .topbar__actions {
+        width: 100%;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .select-control,
+      .topbar .action-button--secondary {
+        display: none;
+      }
+
+      .dashboard {
+        padding: 16px 14px 84px;
+      }
+
+      .command-header h1 {
+        font-size: 22px;
+      }
+
+      .header-control,
+      .kpi-grid,
+      .floor-legend,
+      .chart-area,
+      .rotary-row {
+        grid-template-columns: 1fr;
+      }
+
+      .kpi-card {
+        min-height: 136px;
+      }
+
+      .panel__header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .line-diagram {
+        min-height: 520px;
+      }
+
+      .line-path {
+        left: 14%;
+        right: 14%;
+      }
+
+      .machine-node {
+        width: 104px;
+      }
+
+      .machine-node--a1 {
+        left: 9%;
+        top: 10%;
+      }
+
+      .machine-node--a2 {
+        left: 9%;
+        top: 26%;
+      }
+
+      .machine-node--a3 {
+        right: 9%;
+        top: 18%;
+      }
+
+      .machine-node--b1 {
+        left: 9%;
+        top: 44%;
+      }
+
+      .machine-node--b2 {
+        right: 9%;
+        top: 44%;
+      }
+
+      .machine-node--c1 {
+        left: 9%;
+        top: 66%;
+      }
+
+      .machine-node--c2 {
+        right: 9%;
+        top: 66%;
+      }
+
+      .machine-node--c3 {
+        left: 36%;
+        top: 82%;
+      }
+
+      .mobile-tabs {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        z-index: 20;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4px;
+        padding: 8px;
+        border: 1px solid var(--color-border-subtle);
+        border-radius: var(--card-radius);
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        backdrop-filter: blur(16px);
+      }
+
+      .mobile-tabs a {
+        display: grid;
+        place-items: center;
+        min-height: 38px;
+        border-radius: var(--card-radius);
+        color: var(--color-secondary);
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .mobile-tabs a:first-child {
+        background: rgba(79, 70, 229, 0.08);
+        color: var(--color-indigo);
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      table {
+        min-width: 0;
+      }
+
+      thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      tbody {
+        display: grid;
+        gap: 12px;
+        padding: 14px;
+      }
+
+      tr {
+        border: 1px solid var(--color-border-subtle);
+        border-radius: var(--card-radius);
+        background: var(--color-surface);
+      }
+
+      td {
+        display: grid;
+        grid-template-columns: 96px minmax(0, 1fr);
+        align-items: center;
+        min-height: 42px;
+        height: auto;
+        padding: 10px 12px;
+      }
+
+      td::before {
+        color: var(--color-secondary);
+        font-size: 12px;
+        font-weight: 500;
+        content: attr(data-label);
+      }
+
+      .numeric {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-frame">
+    <aside class="sidebar" aria-label="制造控制面板导航">
+      <a class="brand" href="#overview" aria-label="返回制造控制面板总览">
+        <span class="brand__mark">
+          <span class="brand__symbol" aria-hidden="true"></span>
+          <span>
+            <span class="brand__name">NordWerk MES</span>
+            <span class="brand__sub">Manufacturing OS</span>
+          </span>
+        </span>
+      </a>
+
+      <nav>
+        <div class="nav-group">
+          <p class="nav-label">生产运行</p>
+          <a class="nav-link nav-link--active" href="#overview">
+            <span class="nav-icon" aria-hidden="true">▦</span>
+            <span>总览控制台</span>
+          </a>
+          <a class="nav-link" href="#lines">
+            <span class="nav-icon" aria-hidden="true">┤</span>
+            <span>产线状态</span>
+          </a>
+          <a class="nav-link" href="#orders">
+            <span class="nav-icon" aria-hidden="true">▤</span>
+            <span>工单队列</span>
+          </a>
+          <a class="nav-link" href="#quality">
+            <span class="nav-icon" aria-hidden="true">◎</span>
+            <span>质量追踪</span>
+          </a>
+        </div>
+        <div class="nav-group">
+          <p class="nav-label">设备资产</p>
+          <a class="nav-link" href="#equipment">
+            <span class="nav-icon" aria-hidden="true">◫</span>
+            <span>设备健康</span>
+          </a>
+          <a class="nav-link" href="#maintenance">
+            <span class="nav-icon" aria-hidden="true">□</span>
+            <span>维护计划</span>
+          </a>
+          <a class="nav-link" href="#parameters">
+            <span class="nav-icon" aria-hidden="true">◌</span>
+            <span>参数控制</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="system-card" aria-label="边缘网关状态">
+        <div class="system-card__label">边缘网关负载</div>
+        <div class="system-meter">
+          <div class="system-meter__row">
+            <span>EDGE-03</span>
+            <strong>72%</strong>
+          </div>
+          <div class="system-meter__track"><span class="system-meter__fill"></span></div>
+          <div class="system-meter__row">
+            <span>OPC UA 延迟</span>
+            <strong>28ms</strong>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <div class="breadcrumb" aria-label="页面路径">
+          <span>制造执行系统</span>
+          <span>/</span>
+          <strong>上海一厂 · 总装车间</strong>
+        </div>
+        <div class="topbar__actions">
+          <input class="search-box" type="search" placeholder="搜索设备、工单、批次" aria-label="搜索设备、工单、批次">
+          <select class="select-control" aria-label="选择班次">
+            <option>白班 · 08:00-20:00</option>
+            <option>夜班 · 20:00-08:00</option>
+          </select>
+          <button class="action-button action-button--secondary" type="button">导出日报</button>
+          <button class="action-button" type="button" data-refresh-button>刷新状态</button>
+        </div>
+      </header>
+
+      <main class="dashboard" id="overview">
+        <section class="command-header" aria-labelledby="page-title">
+          <div>
+            <h1 id="page-title">制造行业实时控制面板</h1>
+            <p>面向总装、检测、包装三条产线的班中指挥界面。优先呈现 OEE、瓶颈设备、质量异常、维护风险和工单达成率，帮助班组长在 30 秒内判断是否需要介入。</p>
+          </div>
+          <div class="header-control" aria-label="班次关键控制参数">
+            <div class="header-control__item">
+              <strong>142s</strong>
+              <span>目标节拍</span>
+            </div>
+            <div class="header-control__item">
+              <strong>18:42</strong>
+              <span>下次换型</span>
+            </div>
+            <div class="header-control__item">
+              <strong>6.2k</strong>
+              <span>剩余件数</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="kpi-grid" aria-label="核心生产指标">
+          <article class="kpi-card">
+            <div class="kpi-card__label">
+              <span>综合设备效率 OEE</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="kpi-card__value">87.4<span>%</span></div>
+            <div class="kpi-card__change">
+              <span class="change change--positive">↑ 3.2%</span>
+              <span>较昨日同班次</span>
+            </div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-card__label">
+              <span>今日累计产量</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="kpi-card__value">18,420</div>
+            <div class="kpi-card__change">
+              <span class="change change--positive">↑ 1,128</span>
+              <span>目标完成 76%</span>
+            </div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-card__label">
+              <span>一次良品率</span>
+              <span class="status-dot status-dot--warning"></span>
+            </div>
+            <div class="kpi-card__value">98.72<span>%</span></div>
+            <div class="kpi-card__change">
+              <span class="change change--negative">↓ 0.18%</span>
+              <span>视觉检测偏差上升</span>
+            </div>
+          </article>
+          <article class="kpi-card">
+            <div class="kpi-card__label">
+              <span>单位能耗</span>
+              <span class="status-dot"></span>
+            </div>
+            <div class="kpi-card__value">6.8<span>kWh</span></div>
+            <div class="kpi-card__change">
+              <span class="change change--neutral">持平</span>
+              <span>压缩空气占比 31%</span>
+            </div>
+          </article>
+        </section>
+
+        <section class="operations-grid" id="lines">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">产线运行图</h2>
+                <p class="panel__meta">总装 A、检测 B、包装 C · 数据刷新间隔 30 秒</p>
+              </div>
+              <span class="badge badge--info">实时采集</span>
+            </div>
+            <div class="panel__body factory-map">
+              <div class="line-diagram" role="img" aria-label="产线运行示意图">
+                <span class="line-path line-path--top"></span>
+                <span class="line-path line-path--middle"></span>
+                <span class="line-path line-path--bottom"></span>
+                <div class="machine-node machine-node--a1">
+                  <strong>A1-切入</strong>
+                  <span>利用率 91%</span>
+                </div>
+                <div class="machine-node machine-node--a2 machine-node--warning">
+                  <strong>A2-锁付</strong>
+                  <span>节拍 +9s</span>
+                </div>
+                <div class="machine-node machine-node--a3">
+                  <strong>A3-压装</strong>
+                  <span>温度 41°C</span>
+                </div>
+                <div class="machine-node machine-node--b1">
+                  <strong>B1-视觉</strong>
+                  <span>检出 128</span>
+                </div>
+                <div class="machine-node machine-node--b2 machine-node--error">
+                  <strong>B2-气密</strong>
+                  <span>待复核 7</span>
+                </div>
+                <div class="machine-node machine-node--c1">
+                  <strong>C1-贴标</strong>
+                  <span>在线 100%</span>
+                </div>
+                <div class="machine-node machine-node--c2">
+                  <strong>C2-装箱</strong>
+                  <span>缓冲 64</span>
+                </div>
+                <div class="machine-node machine-node--c3">
+                  <strong>C3-码垛</strong>
+                  <span>节拍 146s</span>
+                </div>
+              </div>
+
+              <aside class="floor-legend" aria-label="产线参数侧栏">
+                <div class="control-module">
+                  <h3>总装线 A · 控制读数</h3>
+                  <div class="control-readout">
+                    <span>平均节拍</span>
+                    <strong>148s</strong>
+                  </div>
+                  <div class="control-readout">
+                    <span>在制品 WIP</span>
+                    <strong>482</strong>
+                  </div>
+                  <div class="control-readout">
+                    <span>瓶颈工位</span>
+                    <strong>A2</strong>
+                  </div>
+                </div>
+
+                <div class="control-module">
+                  <h3>设备面板</h3>
+                  <div class="rotary-row">
+                    <div class="rotary">
+                      <span class="rotary__dial"></span>
+                      <span>压力</span>
+                    </div>
+                    <div class="rotary">
+                      <span class="rotary__dial"></span>
+                      <span>温度</span>
+                    </div>
+                    <div class="rotary">
+                      <span class="rotary__dial"></span>
+                      <span>扭矩</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="control-module">
+                  <h3>状态图例</h3>
+                  <div class="control-readout">
+                    <span>正常运行</span>
+                    <strong>6 台</strong>
+                  </div>
+                  <div class="control-readout">
+                    <span>节拍预警</span>
+                    <strong>1 台</strong>
+                  </div>
+                  <div class="control-readout">
+                    <span>质量复核</span>
+                    <strong>1 台</strong>
+                  </div>
+                </div>
+              </aside>
+            </div>
+          </article>
+
+          <div class="stack">
+            <article class="panel" aria-labelledby="alert-title">
+              <div class="panel__header">
+                <div>
+                  <h2 class="panel__title" id="alert-title">异常优先级</h2>
+                  <p class="panel__meta">按影响产量和质量排序</p>
+                </div>
+                <span class="badge badge--error">3 项待处理</span>
+              </div>
+              <div class="panel__body alert-list">
+                <div class="alert-row">
+                  <span class="alert-index">01</span>
+                  <div>
+                    <p class="row-title">B2 气密测试复核堆积</p>
+                    <p class="row-copy">7 件待复核，预计 18 分钟后影响包装线缓冲。</p>
+                  </div>
+                  <span class="badge badge--error">高</span>
+                </div>
+                <div class="alert-row">
+                  <span class="alert-index">02</span>
+                  <div>
+                    <p class="row-title">A2 锁付节拍持续偏慢</p>
+                    <p class="row-copy">近 20 分钟平均节拍高于目标 9 秒。</p>
+                  </div>
+                  <span class="badge badge--warning">中</span>
+                </div>
+                <div class="alert-row">
+                  <span class="alert-index">03</span>
+                  <div>
+                    <p class="row-title">视觉检测误报率抬升</p>
+                    <p class="row-copy">批次 NX-2406 的误报率较均值高 0.8%。</p>
+                  </div>
+                  <span class="badge badge--warning">中</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel" id="maintenance" aria-labelledby="maintenance-title">
+              <div class="panel__header">
+                <div>
+                  <h2 class="panel__title" id="maintenance-title">维护窗口</h2>
+                  <p class="panel__meta">预测性维护建议</p>
+                </div>
+                <span class="badge badge--success">可排程</span>
+              </div>
+              <div class="panel__body maintenance-list">
+                <div class="maintenance-row">
+                  <span class="alert-index">M1</span>
+                  <div>
+                    <p class="row-title">A2 扭矩枪校准</p>
+                    <p class="row-copy">建议在下一次换型窗口执行，预计 12 分钟。</p>
+                  </div>
+                  <span class="badge badge--info">18:42</span>
+                </div>
+                <div class="maintenance-row">
+                  <span class="alert-index">M2</span>
+                  <div>
+                    <p class="row-title">C3 码垛夹具检查</p>
+                    <p class="row-copy">振动趋势升高，但未触发停机阈值。</p>
+                  </div>
+                  <span class="badge badge--warning">夜班</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="analytics-grid" id="equipment">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">设备健康趋势</h2>
+                <p class="panel__meta">过去 8 小时 · 温度、振动、节拍偏差综合评分</p>
+              </div>
+              <span class="badge badge--success">健康度 91%</span>
+            </div>
+            <div class="panel__body chart-area">
+              <div class="trend-chart" role="img" aria-label="设备健康趋势折线图">
+                <span class="chart-axis chart-axis--top">100</span>
+                <span class="chart-axis chart-axis--bottom">08:00 → 16:00</span>
+                <svg viewBox="0 0 760 250" preserveAspectRatio="none" aria-hidden="true">
+                  <path d="M0,176 C80,164 120,92 190,106 C268,122 296,168 362,142 C430,116 454,72 520,88 C590,106 632,64 760,72" fill="none" stroke="#4F46E5" stroke-width="4" stroke-linecap="round"></path>
+                  <path d="M0,206 C78,198 148,168 212,174 C294,182 336,202 410,184 C494,166 568,162 642,136 C690,120 728,118 760,104" fill="none" stroke="#0D9488" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 8"></path>
+                  <path d="M0,220 C84,214 150,208 216,210 C288,212 354,220 430,210 C500,201 582,190 652,184 C700,180 734,182 760,176" fill="none" stroke="#E53935" stroke-width="3" stroke-linecap="round"></path>
+                </svg>
+              </div>
+              <div class="chart-legend">
+                <div class="legend-item">
+                  <strong>91.0</strong>
+                  <span>综合健康指数</span>
+                </div>
+                <div class="legend-item">
+                  <strong>2.8mm/s</strong>
+                  <span>平均振动速度</span>
+                </div>
+                <div class="legend-item">
+                  <strong>41°C</strong>
+                  <span>压装站最高温</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel" id="quality">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">质量漏斗</h2>
+                <p class="panel__meta">批次 NX-2406 · 当前班次</p>
+              </div>
+              <span class="badge badge--warning">需复核</span>
+            </div>
+            <div class="panel__body quality-grid">
+              <div class="quality-meter">
+                <div class="quality-meter__label">
+                  <span>视觉检测通过</span>
+                  <strong>99.12%</strong>
+                </div>
+                <div class="quality-meter__bar quality-meter__bar--success"><span style="width: 99.12%"></span></div>
+              </div>
+              <div class="quality-meter">
+                <div class="quality-meter__label">
+                  <span>气密测试通过</span>
+                  <strong>98.46%</strong>
+                </div>
+                <div class="quality-meter__bar quality-meter__bar--warning"><span style="width: 98.46%"></span></div>
+              </div>
+              <div class="quality-meter">
+                <div class="quality-meter__label">
+                  <span>终检放行</span>
+                  <strong>97.88%</strong>
+                </div>
+                <div class="quality-meter__bar"><span style="width: 97.88%"></span></div>
+              </div>
+              <div class="handoff-list">
+                <div class="handoff-row">
+                  <span class="alert-index">Q1</span>
+                  <div>
+                    <p class="row-title">批次抽检建议</p>
+                    <p class="row-copy">对 B2 复核件执行 5 件加严抽检。</p>
+                  </div>
+                </div>
+                <div class="handoff-row">
+                  <span class="alert-index">Q2</span>
+                  <div>
+                    <p class="row-title">参数关联</p>
+                    <p class="row-copy">误报率与 A2 扭矩波动存在弱相关。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="control-grid">
+          <article class="panel" id="orders">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">工单队列</h2>
+                <p class="panel__meta">只显示本班次会影响产线切换和物料配送的工单</p>
+              </div>
+              <span class="badge badge--info">6 个活动工单</span>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>工单</th>
+                    <th>产品</th>
+                    <th>产线</th>
+                    <th>状态</th>
+                    <th class="numeric">计划数量</th>
+                    <th class="numeric">已完成</th>
+                    <th>预计完成</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="order-id" data-label="工单">MO-248190</td>
+                    <td data-label="产品">控制器外壳总成</td>
+                    <td data-label="产线">A / B / C</td>
+                    <td data-label="状态"><span class="badge badge--success">生产中</span></td>
+                    <td class="numeric" data-label="计划数量">24,000</td>
+                    <td class="numeric" data-label="已完成">18,420</td>
+                    <td data-label="预计完成">19:18</td>
+                  </tr>
+                  <tr>
+                    <td class="order-id" data-label="工单">MO-248191</td>
+                    <td data-label="产品">高温密封组件</td>
+                    <td data-label="产线">B / C</td>
+                    <td data-label="状态"><span class="badge badge--warning">待换型</span></td>
+                    <td class="numeric" data-label="计划数量">8,500</td>
+                    <td class="numeric" data-label="已完成">0</td>
+                    <td data-label="预计完成">20:06</td>
+                  </tr>
+                  <tr>
+                    <td class="order-id" data-label="工单">MO-248177</td>
+                    <td data-label="产品">传感器支架</td>
+                    <td data-label="产线">A2</td>
+                    <td data-label="状态"><span class="badge badge--error">质量复核</span></td>
+                    <td class="numeric" data-label="计划数量">3,200</td>
+                    <td class="numeric" data-label="已完成">2,974</td>
+                    <td data-label="预计完成">暂停</td>
+                  </tr>
+                  <tr>
+                    <td class="order-id" data-label="工单">MO-248201</td>
+                    <td data-label="产品">工业电源底座</td>
+                    <td data-label="产线">C</td>
+                    <td data-label="状态"><span class="badge badge--info">备料中</span></td>
+                    <td class="numeric" data-label="计划数量">12,000</td>
+                    <td class="numeric" data-label="已完成">0</td>
+                    <td data-label="预计完成">夜班</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
+          <aside class="panel" id="parameters" aria-labelledby="parameter-title">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title" id="parameter-title">参数控制</h2>
+                <p class="panel__meta">模拟控制，不连接真实 PLC</p>
+              </div>
+              <span class="badge badge--warning">需授权</span>
+            </div>
+            <div class="panel__body">
+              <div class="parameter-board">
+                <div class="parameter-row">
+                  <label for="cycle-target">目标节拍 <span>影响 A2 锁付与 C3 码垛节奏</span></label>
+                  <strong class="parameter-value" data-cycle-output>142s</strong>
+                  <input class="range-control" id="cycle-target" type="range" min="120" max="180" value="142" data-cycle-input>
+                </div>
+                <div class="parameter-row">
+                  <label>异常自动升级 <span>超过阈值后通知班组长和设备工程师</span></label>
+                  <button class="toggle-switch" type="button" aria-pressed="true" data-toggle-button aria-label="切换异常自动升级"></button>
+                </div>
+                <div class="parameter-row">
+                  <label>下一次换型窗口 <span>建议先处理 A2 校准和 B2 复核件</span></label>
+                  <strong class="parameter-value">18:42</strong>
+                </div>
+                <div class="parameter-row">
+                  <label>操作提示 <span data-control-message>目标节拍处于稳定区间，可以继续观察。</span></label>
+                  <strong class="parameter-value">OK</strong>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <nav class="mobile-tabs" aria-label="移动端快捷导航">
+    <a href="#overview">总览</a>
+    <a href="#lines">产线</a>
+    <a href="#quality">质量</a>
+    <a href="#orders">工单</a>
+  </nav>
+
+  <script>
+    const stableCycleLimit = 150;
+    const warningCycleLimit = 166;
+    const cycleInput = document.querySelector("[data-cycle-input]");
+    const cycleOutput = document.querySelector("[data-cycle-output]");
+    const controlMessage = document.querySelector("[data-control-message]");
+    const toggleButton = document.querySelector("[data-toggle-button]");
+    const refreshButton = document.querySelector("[data-refresh-button]");
+
+    function getCycleState(cycleSeconds) {
+      if (cycleSeconds <= stableCycleLimit) {
+        return "目标节拍处于稳定区间，可以继续观察。";
+      }
+
+      if (cycleSeconds <= warningCycleLimit) {
+        return "目标节拍接近瓶颈阈值，建议检查 A2 锁付工位。";
+      }
+
+      return "目标节拍已进入高风险区间，应立即复核设备参数。";
+    }
+
+    function updateCycleReadout() {
+      try {
+        const cycleSeconds = Number(cycleInput.value);
+
+        if (Number.isNaN(cycleSeconds)) {
+          throw new Error("节拍输入不是有效数字");
+        }
+
+        cycleOutput.textContent = `${cycleSeconds}s`;
+        controlMessage.textContent = getCycleState(cycleSeconds);
+      } catch (error) {
+        // 控制台示例不连接真实设备，异常时只给出页面内提示，避免误导用户继续操作。
+        console.error(error);
+        controlMessage.textContent = "参数读取失败，请重新刷新状态。";
+      }
+    }
+
+    if (cycleInput && cycleOutput && controlMessage) {
+      cycleInput.addEventListener("input", updateCycleReadout);
+      updateCycleReadout();
+    }
+
+    if (toggleButton) {
+      toggleButton.addEventListener("click", () => {
+        const isPressed = toggleButton.getAttribute("aria-pressed") === "true";
+        toggleButton.setAttribute("aria-pressed", String(!isPressed));
+      });
+    }
+
+    if (refreshButton) {
+      refreshButton.addEventListener("click", () => {
+        const originalText = refreshButton.textContent;
+        refreshButton.textContent = "正在刷新";
+        refreshButton.disabled = true;
+
+        window.setTimeout(() => {
+          refreshButton.textContent = originalText;
+          refreshButton.disabled = false;
+        }, 700);
+      });
+    }
+
+    window.__manufacturingDashboardTestExamples = {
+      // 单元测试示例：getCycleState(142) 应返回稳定提示。
+      stable: getCycleState(142),
+      // 单元测试示例：getCycleState(158) 应返回瓶颈预警提示。
+      warning: getCycleState(158),
+      // 单元测试示例：getCycleState(170) 应返回高风险提示。
+      critical: getCycleState(170),
+    };
+  </script>
+</body>
+</html>

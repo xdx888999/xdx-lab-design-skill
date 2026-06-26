@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XDX DevKit 1.0｜开发者工具发布页</title>
+  <meta name="description" content="XDX DevKit 1.0 开发者工具发布页，展示 CLI 安装命令、终端演示、发布特性、性能指标和更新日志。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --base: #0D1117;
+      --surface: #161B22;
+      --overlay: #1C2333;
+      --subtle-bg: #21262D;
+      --inset: #010409;
+      --text: #E6EDF3;
+      --muted: #8B949E;
+      --subtle-text: #6E7681;
+      --border: #30363D;
+      --border-muted: #21262D;
+      --blue: #58A6FF;
+      --blue-cta: #1F6FEB;
+      --blue-hover: #388BFD;
+      --green: #3FB950;
+      --green-cta: #238636;
+      --green-hover: #2EA043;
+      --purple: #D2A8FF;
+      --orange: #FFA657;
+      --red: #FF7B72;
+      --yellow: #E3B341;
+      --cyan: #A5D6FF;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --content-width: 1200px;
+      --shadow-popover: 0 8px 24px rgba(1, 4, 9, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--base);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(48, 54, 61, 0.35) 1px, transparent 1px) 0 0 / 72px 72px,
+        linear-gradient(0deg, rgba(48, 54, 61, 0.22) 1px, transparent 1px) 0 0 / 72px 72px,
+        var(--base);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 16px 24px;
+      background: rgba(13, 17, 23, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 184px;
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--green);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 14px;
+      box-shadow: inset 0 0 0 1px rgba(63, 185, 80, 0.12);
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      color: var(--text);
+      outline: none;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 8px 16px;
+      border: 1px solid rgba(240, 246, 252, 0.1);
+      border-radius: var(--radius-sm);
+      background: var(--green-cta);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      background: var(--green-hover);
+      outline: none;
+    }
+
+    .button--blue {
+      background: var(--blue-cta);
+    }
+
+    .button--blue:hover,
+    .button--blue:focus-visible {
+      background: var(--blue-hover);
+    }
+
+    .button--ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .button--ghost:hover,
+    .button--ghost:focus-visible {
+      background: var(--subtle-bg);
+    }
+
+    .hero {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      padding: 88px 24px 70px;
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(460px, 1.05fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero > *,
+    .demo-layout > *,
+    .release-layout > *,
+    .section-inner > * {
+      min-width: 0;
+    }
+
+    .release-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 26px;
+      padding: 2px 10px;
+      border: 1px solid rgba(240, 246, 252, 0.1);
+      border-radius: 100px;
+      background: rgba(110, 118, 129, 0.4);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .badge--success {
+      border-color: rgba(63, 185, 80, 0.4);
+      background: rgba(63, 185, 80, 0.15);
+      color: var(--green);
+    }
+
+    .badge--blue {
+      border-color: rgba(88, 166, 255, 0.42);
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--blue);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 680px;
+      margin-bottom: 18px;
+      color: var(--text);
+      font-size: 58px;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin-bottom: 26px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .inline-code {
+      padding: 0.18em 0.42em;
+      border-radius: var(--radius-sm);
+      background: rgba(110, 118, 129, 0.4);
+      color: var(--text);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 0.85em;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 620px;
+    }
+
+    .stat-card {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: rgba(22, 27, 34, 0.8);
+    }
+
+    .stat-card strong {
+      display: block;
+      color: var(--text);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 28px;
+      line-height: 1;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-card span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .terminal-window,
+    .code-window {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--inset);
+      box-shadow: var(--shadow-popover);
+    }
+
+    .window-header {
+      min-height: 48px;
+      display: grid;
+      grid-template-columns: 82px 1fr auto;
+      align-items: center;
+      gap: 12px;
+      padding: 0 14px;
+      background: var(--subtle-bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--muted);
+    }
+
+    .dot--red {
+      background: #FF5F57;
+    }
+
+    .dot--yellow {
+      background: #FEBC2E;
+    }
+
+    .dot--green {
+      background: #28C840;
+    }
+
+    .window-title {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .copy-button {
+      min-height: 32px;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .copy-button:hover,
+    .copy-button:focus-visible {
+      color: var(--text);
+      border-color: var(--muted);
+      outline: none;
+    }
+
+    .terminal-body,
+    .code-body {
+      padding: 18px;
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.76;
+      overflow-x: auto;
+    }
+
+    .terminal-line {
+      white-space: pre;
+    }
+
+    .prompt {
+      color: var(--green);
+    }
+
+    .command {
+      color: var(--text);
+    }
+
+    .output {
+      color: var(--muted);
+    }
+
+    .success {
+      color: var(--green);
+    }
+
+    .warning {
+      color: var(--yellow);
+    }
+
+    .error {
+      color: var(--red);
+    }
+
+    .section {
+      padding: 70px 24px;
+      border-top: 1px solid var(--border-muted);
+    }
+
+    .section-inner {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+    }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .section-label {
+      margin-bottom: 10px;
+      color: var(--green);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      color: var(--text);
+      font-size: 34px;
+      line-height: 1.18;
+      font-weight: 700;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 20px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .feature-card:hover {
+      border-color: var(--muted);
+    }
+
+    .feature-icon {
+      margin-bottom: 16px;
+      color: var(--purple);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .feature-card:nth-child(2) .feature-icon,
+    .feature-card:nth-child(5) .feature-icon {
+      color: var(--blue);
+    }
+
+    .feature-card:nth-child(3) .feature-icon,
+    .feature-card:nth-child(6) .feature-icon {
+      color: var(--orange);
+    }
+
+    .feature-card h3,
+    .release-card h3,
+    .quote-card h3 {
+      margin-bottom: 10px;
+      color: var(--text);
+      font-size: 17px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .feature-card p,
+    .release-card p,
+    .quote-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .demo-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(500px, 1.18fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .command-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .command-card {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .command-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .code-body pre {
+      margin: 0;
+      color: var(--text);
+      white-space: pre;
+    }
+
+    .line-no {
+      display: inline-block;
+      width: 28px;
+      margin-right: 14px;
+      color: var(--muted);
+      text-align: right;
+      user-select: none;
+    }
+
+    .syntax-keyword {
+      color: var(--blue);
+    }
+
+    .syntax-function {
+      color: var(--purple);
+    }
+
+    .syntax-string {
+      color: var(--green);
+    }
+
+    .syntax-number {
+      color: var(--orange);
+    }
+
+    .syntax-comment {
+      color: var(--muted);
+    }
+
+    .release-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .release-card,
+    .quote-card,
+    .graph-card,
+    .subscribe-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .release-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .release-card {
+      padding: 18px;
+    }
+
+    .release-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .graph-card {
+      padding: 20px;
+    }
+
+    .graph-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .contribution-grid {
+      display: grid;
+      grid-template-columns: repeat(26, 12px);
+      grid-auto-rows: 12px;
+      gap: 4px;
+      align-items: center;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .contribution-cell {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      background: var(--surface);
+      border: 1px solid rgba(48, 54, 61, 0.8);
+    }
+
+    .level-1 {
+      background: #0E4429;
+    }
+
+    .level-2 {
+      background: #006D32;
+    }
+
+    .level-3 {
+      background: #26A641;
+    }
+
+    .level-4 {
+      background: #39D353;
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .quote-card {
+      padding: 18px;
+    }
+
+    .quote-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: var(--inset);
+      color: var(--blue);
+      font-family: "JetBrains Mono", SFMono-Regular, Consolas, monospace;
+      font-size: 13px;
+    }
+
+    .subscribe-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 22px;
+    }
+
+    .subscribe-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .email-form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .email-form input {
+      width: 250px;
+      min-height: 40px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--inset);
+      color: var(--text);
+      outline: none;
+    }
+
+    .email-form input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.16);
+    }
+
+    .form-status {
+      grid-column: 1 / -1;
+      min-height: 22px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .form-status.is-success {
+      color: var(--green);
+    }
+
+    .form-status.is-error {
+      color: var(--red);
+    }
+
+    .site-footer {
+      padding: 38px 24px;
+      border-top: 1px solid var(--border);
+      background: var(--inset);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      width: min(100%, var(--content-width));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      font-size: 13px;
+    }
+
+    .footer-inner a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 1024px) {
+      .site-nav {
+        display: none;
+      }
+
+      .hero,
+      .demo-layout,
+      .release-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-grid,
+      .quote-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .subscribe-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-inner {
+        align-items: flex-start;
+      }
+
+      .header-actions .button--ghost {
+        display: none;
+      }
+
+      .hero {
+        padding: 58px 18px 48px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      h2 {
+        font-size: 28px;
+      }
+
+      .stats,
+      .feature-grid,
+      .quote-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 54px 18px;
+      }
+
+      .window-header {
+        grid-template-columns: 72px 1fr;
+      }
+
+      .copy-button {
+        grid-column: 1 / -1;
+        justify-self: end;
+        margin-bottom: 10px;
+      }
+
+      .email-form {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .email-form input {
+        width: 100%;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="#top" aria-label="XDX DevKit 首页">
+          <span class="brand-mark">xdx</span>
+          <span>XDX DevKit<small>v1.0.0 稳定版</small></span>
+        </a>
+        <nav class="site-nav" aria-label="主导航">
+          <a href="#features">特性</a>
+          <a href="#demo">演示</a>
+          <a href="#release">发布说明</a>
+          <a href="#community">社区</a>
+        </nav>
+        <div class="header-actions">
+          <a class="button button--ghost" href="#demo">查看 CLI</a>
+          <a class="button" href="#install">开始安装</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="开发者工具发布首屏">
+        <div>
+          <div class="release-badges">
+            <span class="badge badge--success">稳定版</span>
+            <span class="badge">v1.0.0</span>
+            <span class="badge badge--blue">macOS / Linux / Windows</span>
+          </div>
+          <h1>把项目发布流程压缩成一条命令。</h1>
+          <p class="hero-copy">XDX DevKit 是面向前端和全栈团队的发布 CLI。它把构建、环境检查、变更摘要、预览链接和回滚计划合并成可复现的 <span class="inline-code">release pipeline</span>。</p>
+          <div class="hero-actions" id="install">
+            <button class="button" type="button" data-copy-target="install-command">复制安装命令</button>
+            <a class="button button--blue" href="#release">阅读发布说明</a>
+          </div>
+          <div class="stats" aria-label="版本指标">
+            <div class="stat-card"><strong>42s</strong><span>中位发布时间</span></div>
+            <div class="stat-card"><strong>18</strong><span>内置检查项</span></div>
+            <div class="stat-card"><strong>0cfg</strong><span>默认配置启动</span></div>
+          </div>
+        </div>
+
+        <div class="terminal-window" aria-label="终端安装演示">
+          <div class="window-header">
+            <div class="window-dots">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--green"></span>
+            </div>
+            <div class="window-title">~/projects/app — xdx release</div>
+            <button class="copy-button" type="button" data-copy-target="terminal-command">复制</button>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="prompt">$</span> <span class="command" id="install-command">npm create xdx-devkit@latest</span></div>
+            <div class="terminal-line output">Resolving package graph...</div>
+            <div class="terminal-line output">Detecting framework: Next.js + pnpm</div>
+            <div class="terminal-line"><span class="prompt">$</span> <span class="command" id="terminal-command">xdx release --env production --preview</span></div>
+            <div class="terminal-line success">✓ typecheck passed in 8.4s</div>
+            <div class="terminal-line success">✓ bundle budget within limit</div>
+            <div class="terminal-line success">✓ changelog generated from 14 commits</div>
+            <div class="terminal-line warning">! env var STRIPE_WEBHOOK_SECRET missing in preview</div>
+            <div class="terminal-line output">Preview URL: https://preview.xdx.dev/r/8f31</div>
+            <div class="terminal-line success">Release plan saved: .xdx/release-2026-06-26.json</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features" aria-labelledby="features-title">
+        <div class="section-inner">
+          <div class="section-header">
+            <p class="section-label">特性</p>
+            <h2 id="features-title">给开发者看的发布页，需要先展示内部结构。</h2>
+            <p>这个页面不藏技术细节：安装命令、配置文件、发布状态和回滚路径都直接放在第一屏之后。</p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-icon">fn()</div>
+              <h3>框架自动识别</h3>
+              <p>识别 Next.js、Vite、Astro、Remix 和 Node 服务，自动选择构建命令和产物目录。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">git</div>
+              <h3>变更摘要生成</h3>
+              <p>从 commit、diff 和标签生成发布说明，避免上线前临时补写 changelog。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">env</div>
+              <h3>环境变量扫描</h3>
+              <p>对比本地、预览和生产环境，标出缺失、疑似拼写错误和未使用变量。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">ci</div>
+              <h3>CI 前置检查</h3>
+              <p>类型检查、测试、bundle budget、路由探测和安全头在发布前统一执行。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">url</div>
+              <h3>预览链接归档</h3>
+              <p>每一次发布生成可追踪的预览记录，便于设计、产品和 QA 在同一链接验收。</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">rb</div>
+              <h3>回滚计划输出</h3>
+              <p>上线前生成回滚命令、影响范围和最近稳定版本，避免事故时现场推理。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="demo" aria-labelledby="demo-title">
+        <div class="section-inner demo-layout">
+          <div>
+            <p class="section-label">配置</p>
+            <h2 id="demo-title">默认能跑，也允许你精确控制。</h2>
+            <p class="hero-copy">配置文件只有发布相关的必要信息。复杂项目可以拆分多个 pipeline，普通项目可以直接使用默认值。</p>
+            <div class="command-list">
+              <div class="command-card">
+                <strong>xdx init</strong>
+                在项目根目录生成 `.xdx/release.config.ts`。
+              </div>
+              <div class="command-card">
+                <strong>xdx inspect env</strong>
+                对比不同环境变量并输出缺失项。
+              </div>
+              <div class="command-card">
+                <strong>xdx release --dry-run</strong>
+                只生成发布计划，不执行真实部署。
+              </div>
+            </div>
+          </div>
+
+          <div class="code-window" aria-label="配置文件代码示例">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="dot dot--red"></span>
+                <span class="dot dot--yellow"></span>
+                <span class="dot dot--green"></span>
+              </div>
+              <div class="window-title">release.config.ts</div>
+              <button class="copy-button" type="button" data-copy-target="config-code">复制</button>
+            </div>
+            <div class="code-body">
+<pre id="config-code"><span class="line-no">1</span><span class="syntax-keyword">import</span> { defineRelease } <span class="syntax-keyword">from</span> <span class="syntax-string">"xdx-devkit"</span>;
+<span class="line-no">2</span>
+<span class="line-no">3</span><span class="syntax-keyword">export default</span> <span class="syntax-function">defineRelease</span>({
+<span class="line-no">4</span>  app: <span class="syntax-string">"web-console"</span>,
+<span class="line-no">5</span>  framework: <span class="syntax-string">"next"</span>,
+<span class="line-no">6</span>  build: <span class="syntax-string">"pnpm build"</span>,
+<span class="line-no">7</span>  checks: [<span class="syntax-string">"typecheck"</span>, <span class="syntax-string">"test"</span>, <span class="syntax-string">"budget"</span>, <span class="syntax-string">"headers"</span>],
+<span class="line-no">8</span>  preview: { ttlHours: <span class="syntax-number">72</span> },
+<span class="line-no">9</span>  rollback: {
+<span class="line-no">10</span>    strategy: <span class="syntax-string">"last-stable"</span>,
+<span class="line-no">11</span>    requireOwnerApproval: <span class="syntax-keyword">true</span>
+<span class="line-no">12</span>  }
+<span class="line-no">13</span>});</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="release" aria-labelledby="release-title">
+        <div class="section-inner release-layout">
+          <div>
+            <div class="section-header">
+              <p class="section-label">发布说明</p>
+              <h2 id="release-title">v1.0.0 发布重点</h2>
+              <p>首个稳定版本聚焦三件事：可复现的发布计划、上线前检查、上线后回滚路径。</p>
+            </div>
+            <ul class="release-list">
+              <li class="release-card">
+                <h3>发布计划文件</h3>
+                <p>每次发布生成 JSON 计划，记录 commit、命令、产物、检查结果和预览链接。</p>
+                <div class="release-meta">
+                  <span class="badge">release-plan</span>
+                  <span class="badge badge--success">稳定</span>
+                </div>
+              </li>
+              <li class="release-card">
+                <h3>Bundle 预算门禁</h3>
+                <p>支持按路由和 chunk 设置预算。超过阈值时可阻断发布，也可以转为 warning。</p>
+                <div class="release-meta">
+                  <span class="badge">budget</span>
+                  <span class="badge badge--blue">web</span>
+                </div>
+              </li>
+              <li class="release-card">
+                <h3>自动回滚命令</h3>
+                <p>发布前输出最近稳定版本和回滚命令，事故处理不再依赖个人记忆。</p>
+                <div class="release-meta">
+                  <span class="badge">rollback</span>
+                  <span class="badge">ops</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <aside class="graph-card" aria-label="贡献图与发布节奏">
+            <div class="graph-header">
+              <span>26 周开发活跃度</span>
+              <span>312 commits / 48 releases</span>
+            </div>
+            <div class="contribution-grid" data-contribution-grid aria-label="贡献图"></div>
+            <div class="terminal-body" aria-label="发布摘要">
+              <div class="terminal-line output">last release: <span class="success">v1.0.0</span></div>
+              <div class="terminal-line output">package: <span class="command">@xdx-lab/devkit</span></div>
+              <div class="terminal-line output">license: <span class="command">MIT</span></div>
+              <div class="terminal-line output">runtime: <span class="command">node &gt;= 20</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="community" aria-labelledby="community-title">
+        <div class="section-inner">
+          <div class="section-header">
+            <p class="section-label">社区</p>
+            <h2 id="community-title">发布页应该像 README 一样可验证。</h2>
+            <p>下面的反馈使用 GitHub 风格头像和短引用，重点说明真实开发流程里的收益。</p>
+          </div>
+          <div class="quote-grid">
+            <article class="quote-card">
+              <h3>“上线前终于有一致的检查口径。”</h3>
+              <p>以前每个项目的发布步骤都散落在 Notion、CI 和个人脚本里，现在可以直接读 release plan。</p>
+              <div class="quote-author"><span class="avatar">FE</span><span>前端平台负责人</span></div>
+            </article>
+            <article class="quote-card">
+              <h3>“回滚命令不再临时找。”</h3>
+              <p>事故处理时最怕现场拼命令。XDX DevKit 在发布前就把回滚路径写清楚。</p>
+              <div class="quote-author"><span class="avatar">SRE</span><span>基础设施工程师</span></div>
+            </article>
+            <article class="quote-card">
+              <h3>“设计验收链接更稳定。”</h3>
+              <p>每次发布自动归档预览链接，产品和 QA 不再追问“这次到底测哪个版本”。</p>
+              <div class="quote-author"><span class="avatar">QA</span><span>质量工程师</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-label="发布订阅">
+        <div class="section-inner">
+          <div class="subscribe-card">
+            <div>
+              <h2>订阅下一个 patch 版本。</h2>
+              <p>留下邮箱，收到 v1.0.x 的安全修复、框架适配和 breaking change 说明。</p>
+            </div>
+            <form class="email-form" data-subscribe-form novalidate>
+              <input type="email" name="email" placeholder="developer@example.com" aria-label="邮箱地址" required>
+              <button class="button button--blue" type="submit">订阅更新</button>
+              <p class="form-status" data-form-status aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>XDX DevKit 1.0 / 暗色开发者发布页 / 2026</span>
+        <span><a href="#top">返回顶部</a> · 文档 · GitHub · Changelog</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const COPY_SUCCESS_LABEL = "已复制";
+    const COPY_DEFAULT_LABEL = "复制";
+    const COPY_RESET_DELAY_MS = 1200;
+    const CONTRIBUTION_LEVELS = [0, 1, 2, 3, 4, 1, 0, 2, 3, 4, 2, 1, 0, 3, 4, 4, 2, 1, 0, 2, 3, 1, 4, 2, 0, 3];
+    const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    const contributionGrid = document.querySelector("[data-contribution-grid]");
+    const subscribeForm = document.querySelector("[data-subscribe-form]");
+    const formStatus = document.querySelector("[data-form-status]");
+
+    function getPlainTextFromElement(element) {
+      if (!element) {
+        return "";
+      }
+
+      return element.innerText.replace(/^\s*\d+\s?/gm, "").trim();
+    }
+
+    async function writeClipboard(value) {
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        await navigator.clipboard.writeText(value);
+        return;
+      }
+
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.setAttribute("readonly", "true");
+      textarea.style.position = "fixed";
+      textarea.style.top = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
+
+    async function copyText(button) {
+      const targetId = button.dataset.copyTarget;
+      const target = document.getElementById(targetId);
+      const value = getPlainTextFromElement(target);
+
+      if (!value) {
+        return;
+      }
+
+      try {
+        window.__lastCopiedText = value;
+        button.textContent = COPY_SUCCESS_LABEL;
+        await writeClipboard(value);
+        setTimeout(() => {
+          button.textContent = button.dataset.defaultLabel || COPY_DEFAULT_LABEL;
+        }, COPY_RESET_DELAY_MS);
+      } catch (error) {
+        console.error(error);
+        button.textContent = "复制失败";
+      }
+    }
+
+    document.querySelectorAll("[data-copy-target]").forEach((button) => {
+      button.dataset.defaultLabel = button.textContent;
+      button.addEventListener("click", () => copyText(button));
+    });
+
+    if (contributionGrid) {
+      // 生成 GitHub 风格贡献图，保持数据可控，避免依赖外部图像资源。
+      for (let columnIndex = 0; columnIndex < CONTRIBUTION_LEVELS.length; columnIndex += 1) {
+        for (let rowIndex = 0; rowIndex < 7; rowIndex += 1) {
+          const cell = document.createElement("span");
+          const level = (CONTRIBUTION_LEVELS[columnIndex] + rowIndex) % 5;
+          cell.className = `contribution-cell level-${level}`;
+          cell.setAttribute("aria-hidden", "true");
+          contributionGrid.appendChild(cell);
+        }
+      }
+    }
+
+    subscribeForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const email = String(new FormData(subscribeForm).get("email") || "").trim();
+
+      if (!EMAIL_PATTERN.test(email)) {
+        formStatus.textContent = "邮箱格式不正确。";
+        formStatus.className = "form-status is-error";
+        return;
+      }
+
+      formStatus.textContent = "已订阅。下一个 patch 版本发布时会收到通知。";
+      formStatus.className = "form-status is-success";
+      subscribeForm.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>硬光之后｜XDX-Lab 摄影作品展</title>
+  <meta name="description" content="XDX-Lab 摄影作品展览网站，展示展览信息、策展说明、作品墙、作品清单和观展信息。">
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --red: #ff0000;
+      --yellow: #ffff00;
+      --blue: #0000ee;
+      --green: #00ff00;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--white);
+      color: var(--black);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 18px;
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    body::selection {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: var(--blue);
+      font-weight: 900;
+      text-decoration: underline;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      overflow-x: hidden;
+      background: var(--white);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: grid;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.2fr) auto;
+      border-bottom: 3px solid var(--black);
+      background: var(--white);
+    }
+
+    .site-title,
+    .site-nav,
+    .ticket-link {
+      padding: 14px 18px;
+      border-right: 2px solid var(--black);
+    }
+
+    .site-title {
+      color: var(--black);
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 19px;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .site-title small {
+      display: block;
+      margin-top: 6px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .site-nav span {
+      font-weight: 900;
+    }
+
+    .ticket-link {
+      border-right: 0;
+      background: var(--yellow);
+      color: var(--black);
+      font-weight: 900;
+      text-decoration: underline;
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(420px, 1.12fr);
+      min-height: calc(100svh - 68px);
+      border-bottom: 3px solid var(--black);
+    }
+
+    .hero-copy {
+      display: grid;
+      align-content: space-between;
+      padding: 22px;
+      border-right: 3px solid var(--black);
+    }
+
+    .kicker {
+      margin: 0 0 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 112px;
+      font-weight: 900;
+      line-height: 0.84;
+    }
+
+    .hero h1 span {
+      display: inline-block;
+      background: var(--yellow);
+      padding: 0 8px 8px;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 48px;
+    }
+
+    .meta-box {
+      border: 3px solid var(--black);
+      padding: 14px;
+      font-weight: 900;
+    }
+
+    .meta-box strong {
+      display: block;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 32px;
+      line-height: 0.95;
+    }
+
+    .hero-image {
+      position: relative;
+      margin: 0;
+      min-height: 620px;
+      background: var(--black);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+      object-position: center 22%;
+      filter: grayscale(1) contrast(1.28);
+    }
+
+    .hero-image figcaption {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      max-width: 520px;
+      border-top: 3px solid var(--black);
+      border-left: 3px solid var(--black);
+      background: var(--white);
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .notice-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border-bottom: 3px solid var(--black);
+    }
+
+    .notice-cell {
+      min-height: 120px;
+      border-right: 3px solid var(--black);
+      padding: 16px;
+    }
+
+    .notice-cell:last-child {
+      border-right: 0;
+      background: var(--red);
+      color: var(--white);
+    }
+
+    .notice-cell strong {
+      display: block;
+      margin-bottom: 10px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 44px;
+      line-height: 0.9;
+    }
+
+    .section {
+      border-bottom: 3px solid var(--black);
+      padding: 28px 22px;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.68fr) minmax(300px, 0.32fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 22px;
+      border-bottom: 3px solid var(--black);
+      padding-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 58px;
+      line-height: 0.92;
+    }
+
+    .section-copy {
+      margin: 0;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .statement-grid {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.42fr) minmax(0, 0.58fr);
+      gap: 18px;
+    }
+
+    .statement-card {
+      border: 3px solid var(--black);
+      padding: 20px;
+      box-shadow: 8px 8px 0 var(--black);
+    }
+
+    .statement-card h3 {
+      margin: 0 0 20px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 44px;
+      line-height: 0.95;
+    }
+
+    .statement-card p {
+      margin: 0 0 14px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 24px;
+      line-height: 1.14;
+    }
+
+    .statement-card mark {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0 4px;
+    }
+
+    .manifesto {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border: 3px solid var(--black);
+    }
+
+    .manifesto div {
+      min-height: 190px;
+      border-right: 2px solid var(--black);
+      border-bottom: 2px solid var(--black);
+      padding: 18px;
+    }
+
+    .manifesto div:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .manifesto div:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    .manifesto strong {
+      display: block;
+      margin-bottom: 26px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 50px;
+      line-height: 0.85;
+    }
+
+    .work-wall {
+      display: grid;
+      grid-template-columns: 1.15fr 0.82fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .work-card {
+      border: 3px solid var(--black);
+      background: var(--white);
+      box-shadow: 6px 6px 0 var(--black);
+    }
+
+    .work-card:nth-child(2) {
+      margin-top: 86px;
+    }
+
+    .work-card:nth-child(4) {
+      grid-column: span 2;
+      margin-top: -28px;
+    }
+
+    .work-card:nth-child(6) {
+      margin-top: 58px;
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 410px;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.26);
+    }
+
+    .work-card:nth-child(4) img {
+      height: 520px;
+    }
+
+    .work-card h3 {
+      margin: 0;
+      border-top: 3px solid var(--black);
+      padding: 12px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 30px;
+      line-height: 0.95;
+    }
+
+    .work-card p {
+      margin: 0;
+      border-top: 2px solid var(--black);
+      padding: 12px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 20px;
+      line-height: 1.14;
+    }
+
+    .viewing-room {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.36fr);
+      gap: 18px;
+    }
+
+    .selected-work {
+      border: 3px solid var(--black);
+      background: var(--black);
+      box-shadow: 8px 8px 0 var(--black);
+    }
+
+    .selected-work img {
+      width: 100%;
+      height: 720px;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.26);
+    }
+
+    .selected-work figcaption {
+      border-top: 3px solid var(--black);
+      background: var(--white);
+      padding: 14px;
+      font-weight: 900;
+    }
+
+    .selected-work figcaption span {
+      display: block;
+      margin-top: 6px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .work-index {
+      display: grid;
+      align-content: start;
+      gap: 12px;
+    }
+
+    .work-button {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 12px;
+      width: 100%;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      background: var(--white);
+      color: var(--black);
+      padding: 10px;
+      text-align: left;
+    }
+
+    .work-button[aria-pressed="true"] {
+      background: var(--yellow);
+    }
+
+    .work-button img {
+      width: 76px;
+      height: 62px;
+      object-fit: cover;
+      filter: grayscale(1) contrast(1.25);
+    }
+
+    .work-button strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.05;
+    }
+
+    .work-button span {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .plan-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.62fr) minmax(320px, 0.38fr);
+      gap: 18px;
+    }
+
+    .floor-plan {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      min-height: 520px;
+      border: 3px solid var(--black);
+    }
+
+    .room {
+      display: grid;
+      align-content: space-between;
+      border-right: 3px solid var(--black);
+      border-bottom: 3px solid var(--black);
+      padding: 18px;
+    }
+
+    .room:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .room:nth-last-child(-n+2) {
+      border-bottom: 0;
+    }
+
+    .room--yellow {
+      background: var(--yellow);
+    }
+
+    .room--black {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .room strong {
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 40px;
+      line-height: 0.9;
+    }
+
+    .events {
+      border: 3px solid var(--black);
+      box-shadow: 7px 7px 0 var(--black);
+    }
+
+    .event-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      border-bottom: 2px solid var(--black);
+      padding: 14px;
+    }
+
+    .event-row:last-child {
+      border-bottom: 0;
+    }
+
+    .event-row strong {
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 26px;
+      line-height: 0.95;
+    }
+
+    .event-row p {
+      margin: 0;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 22px;
+      line-height: 1.08;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 2px solid var(--black);
+    }
+
+    table {
+      width: 100%;
+      min-width: 940px;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+
+    th,
+    td {
+      border: 1px solid var(--black);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--black);
+      color: var(--white);
+      font-weight: 900;
+    }
+
+    tr:nth-child(even) td {
+      background: #f0f0f0;
+    }
+
+    .visit {
+      display: grid;
+      grid-template-columns: minmax(0, 0.55fr) minmax(360px, 0.45fr);
+      gap: 18px;
+    }
+
+    .visit-panel {
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      padding: 22px;
+    }
+
+    .visit-panel h2 {
+      margin: 0 0 20px;
+      font-family: "Arial Black", Arial, Helvetica, sans-serif;
+      font-size: 74px;
+      line-height: 0.86;
+    }
+
+    .visit-panel p {
+      margin: 0 0 18px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .catalogue-form {
+      display: grid;
+      gap: 12px;
+      border: 3px solid var(--black);
+      padding: 18px;
+      background: var(--white);
+      box-shadow: 8px 8px 0 var(--black);
+    }
+
+    .catalogue-form label {
+      display: grid;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .catalogue-form input {
+      width: 100%;
+      border: 2px solid var(--black);
+      border-radius: 0;
+      background: var(--white);
+      color: var(--black);
+      padding: 10px;
+      outline: none;
+    }
+
+    .brutal-button {
+      border: 3px solid var(--black);
+      border-radius: 0;
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 20px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .brutal-button:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .catalogue-form input:focus,
+    .brutal-button:focus-visible,
+    .work-button:focus-visible {
+      outline: 4px solid var(--red);
+      outline-offset: 2px;
+    }
+
+    .status {
+      min-height: 24px;
+      margin: 0;
+      color: var(--red);
+      font-weight: 900;
+    }
+
+    .site-footer {
+      display: grid;
+      grid-template-columns: minmax(0, 0.42fr) minmax(0, 0.58fr);
+      gap: 18px;
+      padding: 18px 22px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 14px;
+    }
+
+    .site-footer a {
+      color: var(--yellow);
+    }
+
+    @media (max-width: 1080px) {
+      .site-header,
+      .hero,
+      .statement-grid,
+      .viewing-room,
+      .plan-grid,
+      .visit,
+      .site-footer {
+        grid-template-columns: 1fr;
+      }
+
+      .site-title,
+      .site-nav,
+      .ticket-link,
+      .hero-copy {
+        border-right: 0;
+        border-bottom: 2px solid var(--black);
+      }
+
+      .ticket-link,
+      .hero-copy {
+        border-bottom-width: 3px;
+      }
+
+      .hero h1 {
+        font-size: 86px;
+      }
+
+      .notice-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .notice-cell {
+        border-bottom: 3px solid var(--black);
+      }
+
+      .notice-cell:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .notice-cell:last-child {
+        grid-column: 1 / -1;
+        border-bottom: 0;
+      }
+
+      .section-header,
+      .work-wall {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card:nth-child(2),
+      .work-card:nth-child(4),
+      .work-card:nth-child(6) {
+        grid-column: auto;
+        margin-top: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      body {
+        font-size: 16px;
+      }
+
+      .site-title,
+      .site-nav,
+      .ticket-link {
+        padding: 12px 14px;
+      }
+
+      .hero-copy,
+      .section {
+        padding: 20px 14px;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+
+      .hero-meta,
+      .notice-strip,
+      .manifesto,
+      .floor-plan {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image,
+      .hero-image img {
+        min-height: 520px;
+      }
+
+      .notice-cell,
+      .notice-cell:nth-child(2n),
+      .room,
+      .room:nth-child(2n),
+      .room:nth-last-child(-n+2),
+      .manifesto div,
+      .manifesto div:nth-child(2n),
+      .manifesto div:nth-last-child(-n+2) {
+        border-right: 0;
+        border-bottom: 3px solid var(--black);
+      }
+
+      .notice-cell:last-child,
+      .room:last-child,
+      .manifesto div:last-child {
+        border-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 42px;
+      }
+
+      .section-copy,
+      .statement-card p,
+      .event-row p {
+        font-size: 21px;
+      }
+
+      .selected-work img {
+        height: 430px;
+      }
+
+      .work-card img,
+      .work-card:nth-child(4) img {
+        height: 320px;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      th,
+      td {
+        display: block;
+      }
+
+      table {
+        min-width: 0;
+      }
+
+      thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+
+      tbody {
+        display: grid;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      tr {
+        border: 2px solid var(--black);
+        background: var(--white);
+      }
+
+      td {
+        display: grid;
+        grid-template-columns: 86px minmax(0, 1fr);
+        gap: 10px;
+        border: 0;
+        border-bottom: 1px solid var(--black);
+        padding: 9px 10px;
+      }
+
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      td::before {
+        font-weight: 900;
+        content: attr(data-label);
+      }
+
+      .visit-panel h2 {
+        font-size: 48px;
+      }
+
+      .visit-panel p {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header" aria-label="展览导航">
+      <a class="site-title" href="#top">硬光之后<br><small>XDX-Lab 摄影作品展 / PHOTO EXHIBITION</small></a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#statement">策展说明</a><span>|</span>
+        <a href="#works">作品墙</a><span>|</span>
+        <a href="#viewing">单件查看</a><span>|</span>
+        <a href="#catalogue">作品清单</a><span>|</span>
+        <a href="#visit">观展信息</a>
+      </nav>
+      <a class="ticket-link" href="#visit">2026.07.12-08.30 / 上海 VOID ROOM</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="展览首屏">
+        <div class="hero-copy">
+          <div>
+            <p class="kicker">XDX-Lab / photography / viewing archive</p>
+            <h1>硬光<br><span>之后</span></h1>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-box"><strong>27</strong>件摄影作品</div>
+            <div class="meta-box"><strong>03</strong>个连续系列</div>
+            <div class="meta-box"><strong>50</strong>分钟建议观展</div>
+            <div class="meta-box"><strong>01</strong>份图录通知</div>
+          </div>
+        </div>
+        <figure class="hero-image">
+          <img src="assets/fashion-editorial-polo-campaign-web.jpg" alt="展览主视觉摄影作品，两位人物在户外硬光中站立" loading="eager">
+          <figcaption>主视觉：《南向日光》，喷墨艺术微喷，2026。网站只服务展览观看、作品阅读和观展信息。</figcaption>
+        </figure>
+      </section>
+
+      <section class="notice-strip" aria-label="展览基础信息">
+        <div class="notice-cell"><strong>展期</strong>2026.07.12-08.30</div>
+        <div class="notice-cell"><strong>地点</strong>上海 VOID ROOM 2F</div>
+        <div class="notice-cell"><strong>票价</strong>免费 / 需现场登记</div>
+        <div class="notice-cell"><strong>开放</strong>周三至周日 11:00-19:00</div>
+        <div class="notice-cell"><strong>闭馆</strong>周一、周二不开放</div>
+      </section>
+
+      <section class="section" id="statement" aria-labelledby="statement-title">
+        <div class="section-header">
+          <h2 class="section-title" id="statement-title">展览说明</h2>
+          <p class="section-copy">它是一个展览入口：观众先进入主题，再进入墙面、单件、作品清单和观展路径。</p>
+        </div>
+        <div class="statement-grid">
+          <article class="statement-card">
+            <h3>策展说明</h3>
+            <p>《硬光之后》收录 XDX-Lab 近两年整理的 27 件图像。它们不是按客户、价格或服务类型排列，而是按光线、距离和被观看者的位置排列。</p>
+            <p>展览把照片当作证据，也把网页当作临时展厅。<mark>粗边框、表格、编号和警示色</mark>不是装饰，是让观众意识到这些图像正在被归档、搬运、观看。</p>
+          </article>
+          <div class="manifesto" aria-label="展览关键词">
+            <div><strong>01</strong>硬光不是风格，是现场条件。</div>
+            <div><strong>02</strong>人物不是模特，是图像中的阻力。</div>
+            <div><strong>03</strong>空间不提供背景，只提供证据。</div>
+            <div><strong>04</strong>静物不是产品，是残留的触感。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="works" aria-labelledby="works-title">
+        <div class="section-header">
+          <h2 class="section-title" id="works-title">作品墙</h2>
+          <p class="section-copy">不做整齐画廊模板。每件作品保留编号、题名、尺寸和系列位置。</p>
+        </div>
+        <div class="work-wall">
+          <article class="work-card">
+            <img src="assets/fashion-editorial-polo-campaign-web.jpg" alt="作品《南向日光》">
+            <h3>01 / 南向日光</h3>
+            <p>人物与服装，艺术微喷，80 × 120 cm，Edition 1/5。</p>
+          </article>
+          <article class="work-card">
+            <img src="assets/hotel-lobby-brian-kairuz.jpg" alt="作品《大厅结构》">
+            <h3>02 / 大厅结构</h3>
+            <p>空间与植物，艺术微喷，70 × 100 cm，Edition 2/5。</p>
+          </article>
+          <article class="work-card">
+            <img src="assets/hotel-breakfast-cory-bjork.jpg" alt="作品《床面早餐》">
+            <h3>03 / 床面早餐</h3>
+            <p>餐盘与布料，艺术微喷，60 × 90 cm，Edition 1/3。</p>
+          </article>
+          <article class="work-card">
+            <img src="assets/fashion-editorial-studio-shoot-vitaly-gariev.jpg" alt="作品《现场进入作品》">
+            <h3>04 / 现场进入作品</h3>
+            <p>灯架、人物、衣架与拍摄现场，艺术微喷，110 × 160 cm，Edition 1/5。</p>
+          </article>
+          <article class="work-card">
+            <img src="assets/fashion-editorial-designer-vitaly-gariev.jpg" alt="作品《手与尺度》">
+            <h3>05 / 手与尺度</h3>
+            <p>工作台、量尺、纸样，艺术微喷，70 × 110 cm，Edition 3/5。</p>
+          </article>
+          <article class="work-card">
+            <img src="assets/fashion-editorial-boutique-caroline-badran.jpg" alt="作品《白色货架》">
+            <h3>06 / 白色货架</h3>
+            <p>衣架与店铺结构，艺术微喷，90 × 120 cm，Edition 2/5。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="viewing" aria-labelledby="viewing-title">
+        <div class="section-header">
+          <h2 class="section-title" id="viewing-title">单件查看</h2>
+          <p class="section-copy">点击编号切换作品。这里是线上 viewing room，不是拍摄服务菜单。</p>
+        </div>
+        <div class="viewing-room">
+          <figure class="selected-work">
+            <img src="assets/fashion-editorial-polo-campaign-web.jpg" alt="当前选中展览作品" data-featured-image>
+            <figcaption data-featured-title>01 / 南向日光 / 80 × 120 cm<span data-featured-copy>硬光下的人物并不柔和。展览从这张图开始，因为它直接暴露了身体、服装和观看者之间的紧张。</span></figcaption>
+          </figure>
+          <div class="work-index" aria-label="作品切换">
+            <button class="work-button" type="button" aria-pressed="true" data-work-button data-image="assets/fashion-editorial-polo-campaign-web.jpg" data-title="01 / 南向日光 / 80 × 120 cm" data-copy="硬光下的人物并不柔和。展览从这张图开始，因为它直接暴露了身体、服装和观看者之间的紧张。">
+              <img src="assets/fashion-editorial-polo-campaign-web.jpg" alt="">
+              <span><strong>01 南向日光</strong><span>人物 / 2026</span></span>
+            </button>
+            <button class="work-button" type="button" aria-pressed="false" data-work-button data-image="assets/hotel-lobby-brian-kairuz.jpg" data-title="02 / 大厅结构 / 70 × 100 cm" data-copy="空间里的植物、椅子和入口不是陈设，而是人在离开后留下的排列。">
+              <img src="assets/hotel-lobby-brian-kairuz.jpg" alt="">
+              <span><strong>02 大厅结构</strong><span>空间 / 2026</span></span>
+            </button>
+            <button class="work-button" type="button" aria-pressed="false" data-work-button data-image="assets/hotel-breakfast-cory-bjork.jpg" data-title="03 / 床面早餐 / 60 × 90 cm" data-copy="食物、床单和清晨的光被放在同一平面上，像一次临时发生的静物。">
+              <img src="assets/hotel-breakfast-cory-bjork.jpg" alt="">
+              <span><strong>03 床面早餐</strong><span>静物 / 2026</span></span>
+            </button>
+            <button class="work-button" type="button" aria-pressed="false" data-work-button data-image="assets/fashion-editorial-studio-shoot-vitaly-gariev.jpg" data-title="04 / 现场进入作品 / 110 × 160 cm" data-copy="拍摄现场没有被隐藏。灯、衣架、摄影师和被摄者同时进入作品。">
+              <img src="assets/fashion-editorial-studio-shoot-vitaly-gariev.jpg" alt="">
+              <span><strong>04 现场进入作品</strong><span>现场 / 2026</span></span>
+            </button>
+            <button class="work-button" type="button" aria-pressed="false" data-work-button data-image="assets/fashion-editorial-designer-vitaly-gariev.jpg" data-title="05 / 手与尺度 / 70 × 110 cm" data-copy="手、纸样和量尺把身体尺度变成可被观看的档案。">
+              <img src="assets/fashion-editorial-designer-vitaly-gariev.jpg" alt="">
+              <span><strong>05 手与尺度</strong><span>档案 / 2026</span></span>
+            </button>
+            <button class="work-button" type="button" aria-pressed="false" data-work-button data-image="assets/fashion-editorial-boutique-caroline-badran.jpg" data-title="06 / 白色货架 / 90 × 120 cm" data-copy="货架不是商业背景，而是物品等待被观看时的临时秩序。">
+              <img src="assets/fashion-editorial-boutique-caroline-badran.jpg" alt="">
+              <span><strong>06 白色货架</strong><span>空间 / 2026</span></span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="plan-title">
+        <div class="section-header">
+          <h2 class="section-title" id="plan-title">展览动线</h2>
+          <p class="section-copy">页面提供的是展厅动线，不是服务流程。观众从硬光进入，再穿过空间与静物，最后回到现场。</p>
+        </div>
+        <div class="plan-grid">
+          <div class="floor-plan" role="img" aria-label="展览平面示意">
+            <div class="room room--yellow"><strong>A 室</strong><span>硬光中的人物 / 9 件</span></div>
+            <div class="room"><strong>B 室</strong><span>空间作为证据 / 7 件</span></div>
+            <div class="room"><strong>C 室</strong><span>静物与残留 / 6 件</span></div>
+            <div class="room room--black"><strong>D 室</strong><span>拍摄现场 / 5 件</span></div>
+          </div>
+          <div class="events" aria-label="展览活动">
+            <div class="event-row"><strong>07.12</strong><p>开幕日，15:00-19:00。现场排队入场，人数限流。</p></div>
+            <div class="event-row"><strong>07.26</strong><p>艺术家导览：为什么把工作现场放进作品。</p></div>
+            <div class="event-row"><strong>08.09</strong><p>图像阅读会：从作品清单读回展览结构。</p></div>
+            <div class="event-row"><strong>08.30</strong><p>闭幕日，展出至 19:00。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="catalogue" aria-labelledby="catalogue-title">
+        <div class="section-header">
+          <h2 class="section-title" id="catalogue-title">作品清单</h2>
+          <p class="section-copy">展览网站应该能让观众查到作品编号、尺寸、媒介和展厅位置。</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>编号</th>
+                <th>作品</th>
+                <th>年份</th>
+                <th>媒介</th>
+                <th>尺寸</th>
+                <th>展厅</th>
+                <th>版数</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="编号">01</td>
+                <td data-label="作品">南向日光</td>
+                <td data-label="年份">2026</td>
+                <td data-label="媒介">艺术微喷</td>
+                <td data-label="尺寸">80 × 120 cm</td>
+                <td data-label="展厅">A 室</td>
+                <td data-label="版数">1/5</td>
+              </tr>
+              <tr>
+                <td data-label="编号">02</td>
+                <td data-label="作品">大厅结构</td>
+                <td data-label="年份">2026</td>
+                <td data-label="媒介">艺术微喷</td>
+                <td data-label="尺寸">70 × 100 cm</td>
+                <td data-label="展厅">B 室</td>
+                <td data-label="版数">2/5</td>
+              </tr>
+              <tr>
+                <td data-label="编号">03</td>
+                <td data-label="作品">床面早餐</td>
+                <td data-label="年份">2026</td>
+                <td data-label="媒介">艺术微喷</td>
+                <td data-label="尺寸">60 × 90 cm</td>
+                <td data-label="展厅">C 室</td>
+                <td data-label="版数">1/3</td>
+              </tr>
+              <tr>
+                <td data-label="编号">04</td>
+                <td data-label="作品">现场进入作品</td>
+                <td data-label="年份">2026</td>
+                <td data-label="媒介">艺术微喷</td>
+                <td data-label="尺寸">110 × 160 cm</td>
+                <td data-label="展厅">D 室</td>
+                <td data-label="版数">1/5</td>
+              </tr>
+              <tr>
+                <td data-label="编号">05</td>
+                <td data-label="作品">手与尺度</td>
+                <td data-label="年份">2026</td>
+                <td data-label="媒介">艺术微喷</td>
+                <td data-label="尺寸">70 × 110 cm</td>
+                <td data-label="展厅">D 室</td>
+                <td data-label="版数">3/5</td>
+              </tr>
+              <tr>
+                <td data-label="编号">06</td>
+                <td data-label="作品">白色货架</td>
+                <td data-label="年份">2026</td>
+                <td data-label="媒介">艺术微喷</td>
+                <td data-label="尺寸">90 × 120 cm</td>
+                <td data-label="展厅">B 室</td>
+                <td data-label="版数">2/5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section" id="visit" aria-labelledby="visit-title">
+        <div class="visit">
+          <div class="visit-panel">
+            <h2 id="visit-title">观展信息</h2>
+            <p>上海 VOID ROOM 2F<br>虚构地址：龙漕路 88 号二层<br>周三至周日 11:00-19:00<br>免费入场，现场登记。</p>
+            <a class="brutal-button" href="#catalogue">查看作品清单</a>
+          </div>
+          <form class="catalogue-form" data-catalogue-form novalidate>
+            <label for="email">获取展览图录通知
+              <input id="email" name="email" type="email" placeholder="name@example.com" required>
+            </label>
+            <button class="brutal-button" type="submit">登记图录提醒</button>
+            <p class="status" data-form-status aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>《硬光之后》/ XDX-Lab 摄影作品展 / Brutalist Web Exhibition Site / 2026</div>
+      <div>
+        示例图片包含本地用户素材，以及来自
+        <a href="https://unsplash.com/photos/a-large-hall-with-potted-plants-and-chairs-B4TxOg8AYfw">Brian Kairuz</a>、
+        <a href="https://unsplash.com/photos/a-table-topped-with-plates-of-food-and-cups-of-coffee-NJ2nDgMvZfM">Cory Bjork</a>、
+        <a href="https://unsplash.com/photos/a-photographer-taking-a-picture-of-a-model-in-a-studio-evY8nZHXkDk">Vitaly Gariev</a>、
+        <a href="https://unsplash.com/photos/a-woman-working-on-a-dress-form-in-a-room-wqFt5zLCP7I">Vitaly Gariev</a>、
+        <a href="https://unsplash.com/photos/a-room-filled-with-lots-of-clothes-hanging-on-racks-4x-5gvhmhtQ">Caroline Badran</a>。
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const workButtons = document.querySelectorAll("[data-work-button]");
+    const featuredImage = document.querySelector("[data-featured-image]");
+    const featuredTitle = document.querySelector("[data-featured-title]");
+    const featuredCopy = document.querySelector("[data-featured-copy]");
+    const catalogueForm = document.querySelector("[data-catalogue-form]");
+    const formStatus = document.querySelector("[data-form-status]");
+
+    workButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        try {
+          const imageSource = button.dataset.image;
+          const title = button.dataset.title;
+          const copy = button.dataset.copy;
+
+          if (!imageSource || !title || !copy) {
+            throw new Error("作品切换数据不完整");
+          }
+
+          workButtons.forEach((item) => item.setAttribute("aria-pressed", "false"));
+          button.setAttribute("aria-pressed", "true");
+          featuredImage.src = imageSource;
+          featuredTitle.firstChild.textContent = title;
+          featuredCopy.textContent = copy;
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    });
+
+    catalogueForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const email = String(new FormData(catalogueForm).get("email") || "").trim();
+
+      if (!email.includes("@")) {
+        formStatus.textContent = "邮箱格式不对。";
+        return;
+      }
+
+      formStatus.textContent = "已登记。图录开放后发送提醒。";
+      catalogueForm.reset();
+    });
+  </script>
+</body>
+</html>

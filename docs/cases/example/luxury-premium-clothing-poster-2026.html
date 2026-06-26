@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>服装海报 · 奢华极简风格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* 色彩遵循奢华风格规范：象牙白、深黑、低饱和灰与克制金色。 */
+      --color-ivory: #FAFAF8;
+      --color-white: #FFFFFF;
+      --color-black: #111111;
+      --color-charcoal: #1A1A1A;
+      --color-body: #6B6B6B;
+      --color-muted: #ABABAB;
+      --color-border: #E8E8E4;
+      --color-gold: #C9A96E;
+
+      --poster-width: 1080px;
+      --poster-height: 1350px;
+      --content-width: 420px;
+      --visual-width: 660px;
+      --content-padding-left: 72px;
+      --content-padding-top: 78px;
+      --content-padding-bottom: 72px;
+      --body-copy-width: 250px;
+      --divider-width: 1px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px 0;
+      background: var(--color-border);
+      color: var(--color-black);
+      font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .poster-shell {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+    }
+
+    .poster {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+      overflow: hidden;
+      background: var(--color-ivory);
+      transform-origin: top left;
+      isolation: isolate;
+    }
+
+    .content-panel {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--content-width);
+      padding: var(--content-padding-top) 58px var(--content-padding-bottom) var(--content-padding-left);
+      display: flex;
+      flex-direction: column;
+      background: var(--color-ivory);
+      z-index: 2;
+    }
+
+    .visual-panel {
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: var(--visual-width);
+      overflow: hidden;
+      background: var(--color-white);
+    }
+
+    .visual-panel img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 49% 50%;
+      filter: saturate(0.9) contrast(1.02) brightness(1.02);
+    }
+
+    .panel-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--content-width);
+      width: var(--divider-width);
+      background: var(--color-border);
+      z-index: 3;
+    }
+
+    .season-label {
+      margin: 0;
+      color: var(--color-muted);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    .thin-rule {
+      width: 52px;
+      height: 1px;
+      margin: 30px 0 0;
+      background: var(--color-gold);
+    }
+
+    .headline {
+      margin: 188px 0 0;
+      color: var(--color-charcoal);
+      font-family: "Noto Serif SC", "Songti SC", "STSong", serif;
+      font-size: 104px;
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .headline span {
+      display: block;
+    }
+
+    .description {
+      width: var(--body-copy-width);
+      margin: 38px 0 0;
+      color: var(--color-body);
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.85;
+      letter-spacing: 0;
+    }
+
+    .meta-list {
+      margin: auto 0 0;
+      padding: 0;
+      display: grid;
+      gap: 18px;
+      list-style: none;
+      color: var(--color-body);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.55;
+      letter-spacing: 0;
+    }
+
+    .meta-list li {
+      display: grid;
+      gap: 4px;
+      border-top: 1px solid var(--color-border);
+      padding-top: 15px;
+    }
+
+    .meta-label {
+      color: var(--color-muted);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.4;
+      letter-spacing: 0;
+    }
+
+    .serial-mark {
+      position: absolute;
+      right: 44px;
+      bottom: 40px;
+      z-index: 4;
+      color: rgba(250, 250, 248, 0.86);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 18px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-shell" id="posterShell">
+    <main class="poster" aria-label="服装系列海报">
+      <section class="content-panel" aria-label="海报文字信息">
+        <p class="season-label">二零二六春夏<br>新季成衣</p>
+        <div class="thin-rule" aria-hidden="true"></div>
+
+        <h1 class="headline">
+          <span>轻装</span>
+          <span>入夏</span>
+        </h1>
+
+        <p class="description">棉麻白衣与植物印花，在晴空下保留自然的体面。</p>
+
+        <ul class="meta-list" aria-label="系列信息">
+          <li>
+            <span class="meta-label">廓形</span>
+            <span>舒展、清爽、日常</span>
+          </li>
+          <li>
+            <span class="meta-label">材质</span>
+            <span>棉麻、府绸、轻质外套</span>
+          </li>
+        </ul>
+      </section>
+
+      <figure class="visual-panel" aria-label="服装主视觉">
+        <img src="assets/fashion-editorial-polo-campaign.jpg" alt="两位模特身穿夏季服装站在晴空草地前">
+      </figure>
+
+      <div class="panel-divider" aria-hidden="true"></div>
+      <div class="serial-mark" aria-hidden="true">01</div>
+    </main>
+  </div>
+
+  <script>
+    const posterShell = document.getElementById("posterShell");
+    const posterCanvas = document.querySelector(".poster");
+    const basePosterWidth = 1080;
+    const basePosterHeight = 1350;
+    const viewportPadding = 32;
+
+    function resizePoster() {
+      try {
+        const availableWidth = Math.max(320, window.innerWidth - viewportPadding);
+        const scale = Math.min(1, availableWidth / basePosterWidth);
+        posterShell.style.width = `${basePosterWidth * scale}px`;
+        posterShell.style.height = `${basePosterHeight * scale}px`;
+        posterCanvas.style.transform = `scale(${scale})`;
+      } catch (error) {
+        /* 缩放失败时保留原始画布，避免脚本异常导致海报不可见。 */
+        console.warn("海报缩放失败，已保留原始画布。", error);
+      }
+    }
+
+    window.addEventListener("resize", resizePoster);
+    resizePoster();
+  </script>
+</body>
+</html>

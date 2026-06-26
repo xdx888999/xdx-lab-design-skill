@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>川藏旅游海报 · 自然有机风格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Jost:wght@400;500;600&family=Lora:wght@500;600;700&family=Source+Serif+4:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* 颜色取自 25-nature-organic-DESIGN.md，用变量避免魔法色值。 */
+      --color-cream: #FAF6F0;
+      --color-sand: #E2D5C0;
+      --color-text: #2A2218;
+      --color-leaf: #4A8B3A;
+      --color-linen: #F0E8D8;
+      --color-border-warm: #CBBFA8;
+      --color-forest: #2D5A27;
+      --color-sage: #8FAE8A;
+      --color-mint: #C8DFC4;
+      --color-ochre: #C4832A;
+      --color-clay: #9C5A3C;
+      --color-terracotta: #C4614A;
+      --color-bark: #6B4226;
+      --color-body: #4A3B2A;
+      --color-muted: #7A6B55;
+      --color-white: #FFFFFF;
+
+      --poster-width: 1080px;
+      --poster-height: 1350px;
+      --poster-padding: 58px;
+      --radius-organic: 42px;
+      --radius-card: 16px;
+      --radius-pill: 100px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px 0;
+      background: var(--color-sand);
+      color: var(--color-text);
+      font-family: "Source Serif 4", "Noto Serif SC", "Songti SC", serif;
+    }
+
+    .poster-shell {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+    }
+
+    .poster {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 16%, rgba(200, 223, 196, 0.58), transparent 28%),
+        radial-gradient(circle at 78% 70%, rgba(196, 131, 42, 0.12), transparent 24%),
+        repeating-linear-gradient(0deg, rgba(107, 66, 38, 0.025) 0 1px, transparent 1px 7px),
+        repeating-linear-gradient(90deg, rgba(107, 66, 38, 0.018) 0 1px, transparent 1px 9px),
+        var(--color-cream);
+      transform-origin: top left;
+      isolation: isolate;
+    }
+
+    .poster::before {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 12% 82%, rgba(143, 174, 138, 0.18), transparent 22%),
+        radial-gradient(circle at 92% 8%, rgba(224, 213, 192, 0.52), transparent 30%);
+      content: "";
+      mix-blend-mode: multiply;
+    }
+
+    .top-meta {
+      position: absolute;
+      top: 50px;
+      left: var(--poster-padding);
+      right: var(--poster-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--color-muted);
+      font-family: "Jost", "PingFang SC", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .photo-wrap {
+      position: absolute;
+      top: 98px;
+      left: 54px;
+      width: 716px;
+      height: 518px;
+      overflow: hidden;
+      border: 1px solid var(--color-border-warm);
+      border-radius: 52px 180px 72px 132px;
+      background: var(--color-linen);
+      box-shadow: 0 14px 36px rgba(74, 59, 42, 0.12);
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 46%;
+      filter: sepia(0.14) saturate(0.88) brightness(1.04) contrast(0.96);
+      transform: scale(1.06);
+    }
+
+    .photo-wrap::after {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(250, 246, 240, 0.08), rgba(74, 59, 42, 0.18)),
+        radial-gradient(circle at 30% 20%, rgba(250, 246, 240, 0.32), transparent 36%);
+      content: "";
+      mix-blend-mode: screen;
+    }
+
+    .route-badge {
+      position: absolute;
+      top: 150px;
+      right: 52px;
+      width: 236px;
+      min-height: 236px;
+      padding: 30px 34px;
+      display: grid;
+      align-content: center;
+      border-radius: 56% 44% 48% 52% / 48% 46% 54% 52%;
+      background: var(--color-forest);
+      color: var(--color-white);
+      box-shadow: 0 8px 24px rgba(74, 59, 42, 0.12);
+    }
+
+    .route-badge small {
+      font-family: "Jost", "PingFang SC", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .route-badge strong {
+      margin-top: 6px;
+      font-family: "Lora", "Noto Serif SC", serif;
+      font-size: 54px;
+      line-height: 1;
+    }
+
+    .route-badge span {
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+
+    .handwritten {
+      position: absolute;
+      top: 632px;
+      left: 86px;
+      color: var(--color-leaf);
+      font-family: "Caveat", cursive;
+      font-size: 38px;
+      font-weight: 600;
+      transform: rotate(-3deg);
+    }
+
+    .title-block {
+      position: absolute;
+      top: 664px;
+      left: var(--poster-padding);
+      width: 612px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--color-text);
+      font-family: "Lora", "Noto Serif SC", "Songti SC", serif;
+      font-size: 84px;
+      font-weight: 700;
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .subtitle {
+      width: 500px;
+      margin: 24px 0 0;
+      color: var(--color-body);
+      font-size: 23px;
+      font-weight: 400;
+      line-height: 1.72;
+    }
+
+    .map-card {
+      position: absolute;
+      right: 58px;
+      bottom: 238px;
+      width: 418px;
+      height: 360px;
+      padding: 26px 28px;
+      border: 1px solid var(--color-border-warm);
+      border-radius: 28px;
+      background: rgba(240, 232, 216, 0.88);
+      box-shadow: 0 4px 16px rgba(74, 59, 42, 0.08);
+    }
+
+    .map-title {
+      margin: 0 0 12px;
+      color: var(--color-forest);
+      font-family: "Jost", "PingFang SC", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .route-svg {
+      width: 100%;
+      height: 176px;
+      overflow: visible;
+    }
+
+    .route-line {
+      fill: none;
+      stroke: var(--color-leaf);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 5;
+    }
+
+    .route-shadow {
+      fill: none;
+      stroke: rgba(107, 66, 38, 0.12);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 13;
+    }
+
+    .route-dot {
+      fill: var(--color-cream);
+      stroke: var(--color-forest);
+      stroke-width: 4;
+    }
+
+    .route-end {
+      fill: var(--color-ochre);
+      stroke: var(--color-bark);
+      stroke-width: 3;
+    }
+
+    .route-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 7px 13px;
+      border-radius: var(--radius-pill);
+      background: var(--color-mint);
+      color: var(--color-forest);
+      font-family: "Jost", "PingFang SC", sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .info-strip {
+      position: absolute;
+      left: var(--poster-padding);
+      right: var(--poster-padding);
+      bottom: 104px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 1fr;
+      gap: 20px;
+    }
+
+    .info-card {
+      min-height: 132px;
+      padding: 22px 24px;
+      border: 1px solid var(--color-border-warm);
+      border-radius: var(--radius-card);
+      background: rgba(250, 246, 240, 0.84);
+    }
+
+    .info-label {
+      color: var(--color-muted);
+      font-family: "Jost", "PingFang SC", sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .info-value {
+      margin: 10px 0 0;
+      color: var(--color-body);
+      font-family: "Source Serif 4", "Noto Serif SC", serif;
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .photo-credit {
+      position: absolute;
+      right: 70px;
+      bottom: 56px;
+      color: var(--color-muted);
+      font-family: "Jost", "PingFang SC", sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .leaf {
+      position: absolute;
+      width: 106px;
+      height: 74px;
+      border-radius: 70% 0 70% 0;
+      background: rgba(143, 174, 138, 0.24);
+      transform: rotate(-18deg);
+    }
+
+    .leaf-one {
+      top: 596px;
+      right: 136px;
+    }
+
+    .leaf-two {
+      left: 322px;
+      bottom: 326px;
+      width: 88px;
+      height: 62px;
+      background: rgba(196, 131, 42, 0.16);
+      transform: rotate(28deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-shell" id="posterShell">
+    <main class="poster" aria-label="川藏旅游海报，自然有机风格">
+      <header class="top-meta">
+        <span>自然慢行计划</span>
+        <span>Chengdu to Lhasa</span>
+      </header>
+
+      <figure class="photo-wrap" aria-label="四川雪山主视觉">
+        <img src="assets/sichuan-snow-capped-mountain.jpg" alt="四川雪山群，川藏旅行主视觉配图">
+      </figure>
+
+      <section class="route-badge" aria-label="路线标识">
+        <small>Route</small>
+        <strong>318</strong>
+        <span>从成都出发，穿过森林、垭口与雪线。</span>
+      </section>
+
+      <div class="leaf leaf-one" aria-hidden="true"></div>
+      <div class="leaf leaf-two" aria-hidden="true"></div>
+
+      <div class="handwritten">follow the mountains</div>
+
+      <section class="title-block">
+        <h1>川藏线<br>自然慢行</h1>
+        <p class="subtitle">把海拔、风、草甸和雪山留给路上。一次从川西森林走向拉萨日光的高原旅程。</p>
+      </section>
+
+      <section class="map-card" aria-label="川藏路线图">
+        <p class="map-title">路线 / 高原与河谷</p>
+        <svg class="route-svg" viewBox="0 0 360 176" role="img" aria-labelledby="routeTitle routeDesc">
+          <title id="routeTitle">川藏线手绘路线</title>
+          <desc id="routeDesc">从成都经康定、理塘、巴塘、林芝到拉萨的有机曲线路线图。</desc>
+          <path class="route-shadow" d="M28 132 C84 70 128 118 168 72 C212 20 248 62 292 44 C322 32 336 48 342 68"></path>
+          <path class="route-line" d="M28 132 C84 70 128 118 168 72 C212 20 248 62 292 44 C322 32 336 48 342 68"></path>
+          <circle class="route-dot" cx="28" cy="132" r="10"></circle>
+          <circle class="route-dot" cx="106" cy="94" r="8"></circle>
+          <circle class="route-dot" cx="168" cy="72" r="8"></circle>
+          <circle class="route-dot" cx="238" cy="50" r="8"></circle>
+          <circle class="route-dot" cx="292" cy="44" r="8"></circle>
+          <circle class="route-end" cx="342" cy="68" r="11"></circle>
+        </svg>
+        <div class="route-list" aria-label="途经地点">
+          <span class="tag">成都</span>
+          <span class="tag">康定</span>
+          <span class="tag">理塘</span>
+          <span class="tag">巴塘</span>
+          <span class="tag">林芝</span>
+          <span class="tag">拉萨</span>
+        </div>
+      </section>
+
+      <section class="info-strip" aria-label="旅行信息">
+        <article class="info-card">
+          <div class="info-label">季节</div>
+          <p class="info-value">5 月至 10 月<br>草甸、湖泊与雪山同框</p>
+        </article>
+        <article class="info-card">
+          <div class="info-label">建议</div>
+          <p class="info-value">9 天 8 晚<br>保留高原适应时间</p>
+        </article>
+        <article class="info-card">
+          <div class="info-label">方式</div>
+          <p class="info-value">小团 / 自驾 / 摄影<br>慢节奏进入藏地</p>
+        </article>
+      </section>
+
+      <div class="photo-credit">图片：ming1967 / Wikimedia Commons / CC BY 2.0，已做暖色裁切处理</div>
+    </main>
+  </div>
+
+  <script>
+    const posterShell = document.getElementById("posterShell");
+    const posterCanvas = document.querySelector(".poster");
+    const basePosterWidth = 1080;
+    const basePosterHeight = 1350;
+    const viewportPadding = 32;
+
+    function resizePoster() {
+      try {
+        const availableWidth = Math.max(320, window.innerWidth - viewportPadding);
+        const scale = Math.min(1, availableWidth / basePosterWidth);
+        posterShell.style.width = `${basePosterWidth * scale}px`;
+        posterShell.style.height = `${basePosterHeight * scale}px`;
+        posterCanvas.style.transform = `scale(${scale})`;
+      } catch (error) {
+        /* 缩放失败时保留原始画布，避免脚本异常导致海报不可见。 */
+        console.warn("海报缩放失败，已保留原始画布。", error);
+      }
+    }
+
+    window.addEventListener("resize", resizePoster);
+    resizePoster();
+  </script>
+</body>
+</html>

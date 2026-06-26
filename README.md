@@ -98,18 +98,15 @@ https://github.com/xdx888999/xdx-lab-design-skill
 
 ![Paula Scher 方法论详情](docs/assets/master-detail-scher.png)
 
-### 8 个高质量真实案例
+### 14 个真实示例作品
 
-[案例总览](https://xdx888999.github.io/xdx-lab-design-skill/cases/index.html) 覆盖海报、Dashboard、医疗报告、酒店预订页、Fintech App、融资路演、电商发布页和开发者工具发布页。每个案例详情页都先展示真实成品样张，再说明业务简报、使用的 `DESIGN.md`、交付物、关键 token 和可复用 prompt。
+[真实示例作品集](https://xdx888999.github.io/xdx-lab-design-skill/cases/index.html) 直接展示本次制作完成的 6 个海报、6 个网页、1 个 PPT 和 1 个 App UI。封面全部来自真实成品截图，点击卡片即可打开对应 HTML 文件或下载 PPTX。
 
-- [盛唐器物展主视觉海报](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=tang-museum-poster)
-- [碳排运营监控驾驶舱](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=climate-ops-dashboard)
-- [远程心脏康复报告](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=medical-report)
-- [山谷精品酒店预订页](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=boutique-hotel-booking)
-- [跨境收款 App 开户流程](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=fintech-onboarding-app)
-- [AI 研发协作平台融资路演](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=ai-startup-pitch)
-- [独立设计师胶囊系列电商页](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=fashion-drop-commerce)
-- [开源开发者工具发布页](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=opensource-devtool-launch)
+![真实示例作品集](docs/assets/example-showcase-overview.png)
+
+- 海报：[宋瓷文物](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/song-kenya-hara-cultural-relics-poster-2026.html)、[瑞士艺术展](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/swiss-vignelli-art-exhibition-poster-2026.html)、高端成衣、高端宠物店、川藏旅行、披萨餐厅。
+- 网页：[精品酒店](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/travel-hospitality-hotel-homepage-2026.html)、[独立设计师电商](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/fashion-editorial-independent-designer-commerce-2026.html)、开发者工具、清洁公司、制造业控制面板、摄影展。
+- PPT/UI：[Codex 白皮书 PPT](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/academic-codex-whitepaper-2026.pptx)、[健身 App 白板 UI](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/claymorphism-fitness-app-whiteboard-2026.html)。
 
 ---
 
@@ -220,7 +217,7 @@ design-style-skill/
 │   ├── masters.html                  # 20 位设计大师方法论画廊
 │   ├── master.html                   # 通用大师详情页
 │   ├── master-data.js                # 20 位大师展示数据
-│   ├── cases/                        # 8 个高质量真实案例页
+│   ├── cases/                        # 14 个真实示例作品页
 │   └── assets/                       # README 截图资源
 └── references/
     ├── style-index.md                # 50 种风格目录索引（轻量，先读此文件）

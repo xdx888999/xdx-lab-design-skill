@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>盛唐文物展海报 · 宋代水墨与原研哉方法</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=EB+Garamond:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* 宋代水墨规范色：保持暖宣纸、水墨层级、单点天青与唯一朱印。 */
+      --color-paper: #F7F3EC;
+      --color-paper-hara: #FBFAF5;
+      --color-aged-paper: #EEE8DB;
+      --color-ink-wash-tint: #E8E2D6;
+      --color-ink-black: #1C1C1C;
+      --color-medium-ink: #4A4A46;
+      --color-light-ink: #8A8A84;
+      --color-ghost-ink: #BCBAB4;
+      --color-ink-wash: #D8D5CF;
+      --color-ru-celadon: #8BB5B0;
+      --color-celadon-pale: #C8DEDD;
+      --color-seal-vermillion: #C43B2A;
+      --color-ochre: #9A6B4B;
+      --color-hara-ink: #2F2A24;
+      --color-hara-muted: #7A7166;
+      --color-hara-paper: #E8E1D2;
+      --color-hara-warm-gray: #C7B299;
+
+      /* 固定画幅保证导出稳定，页面端用脚本整体缩放。 */
+      --poster-width: 1080px;
+      --poster-height: 1350px;
+      --poster-margin: 92px;
+      --hairline: 1px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px 0;
+      background: var(--color-aged-paper);
+      color: var(--color-ink-black);
+      font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", serif;
+    }
+
+    .poster-shell {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+    }
+
+    .poster {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+      overflow: hidden;
+      background:
+        repeating-linear-gradient(0deg, rgba(74, 74, 70, 0.018) 0 1px, transparent 1px 7px),
+        repeating-linear-gradient(90deg, rgba(74, 74, 70, 0.014) 0 1px, transparent 1px 9px),
+        var(--color-paper);
+      transform-origin: top left;
+      isolation: isolate;
+    }
+
+    /* 纸张纹理只提供触感，不制造戏剧化光效。 */
+    .poster::before,
+    .poster::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      content: "";
+    }
+
+    .poster::before {
+      opacity: 0.42;
+      background:
+        radial-gradient(circle at 18% 28%, rgba(188, 186, 180, 0.16), transparent 24%),
+        radial-gradient(circle at 78% 66%, rgba(232, 225, 210, 0.42), transparent 32%);
+      mix-blend-mode: multiply;
+    }
+
+    .poster::after {
+      border: 28px solid rgba(232, 225, 210, 0.42);
+      mix-blend-mode: multiply;
+    }
+
+    .landscape {
+      position: absolute;
+      top: 250px;
+      right: 82px;
+      width: 620px;
+      height: auto;
+      opacity: 0.74;
+    }
+
+    .mountain-wash {
+      fill: none;
+      stroke: var(--color-ghost-ink);
+      stroke-width: 18;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.42;
+    }
+
+    .mountain-line {
+      fill: none;
+      stroke: var(--color-medium-ink);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0.58;
+    }
+
+    .mist-line {
+      fill: none;
+      stroke: var(--color-ink-wash);
+      stroke-width: 2;
+      stroke-linecap: round;
+      opacity: 0.72;
+    }
+
+    .vessel {
+      position: absolute;
+      left: 106px;
+      bottom: 214px;
+      width: 310px;
+      height: auto;
+    }
+
+    .vessel-fill {
+      fill: rgba(139, 181, 176, 0.22);
+      stroke: var(--color-ru-celadon);
+      stroke-width: 2;
+    }
+
+    .vessel-line {
+      fill: none;
+      stroke: var(--color-medium-ink);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      opacity: 0.76;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 226px;
+      left: 94px;
+      color: var(--color-ghost-ink);
+      font-size: 118px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      opacity: 0.07;
+      writing-mode: vertical-rl;
+      user-select: none;
+    }
+
+    .main-title {
+      position: absolute;
+      top: 318px;
+      left: 170px;
+      margin: 0;
+      color: var(--color-ink-black);
+      font-size: 66px;
+      font-weight: 500;
+      line-height: 1.42;
+      letter-spacing: 0.14em;
+      writing-mode: vertical-rl;
+      font-feature-settings: "palt";
+    }
+
+    .main-title span {
+      display: block;
+    }
+
+    .english-title {
+      position: absolute;
+      top: 330px;
+      left: 94px;
+      color: var(--color-light-ink);
+      font-family: "EB Garamond", Garamond, serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .quiet-note {
+      position: absolute;
+      top: 206px;
+      right: 138px;
+      width: 262px;
+      margin: 0;
+      color: var(--color-medium-ink);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 2.25;
+      letter-spacing: 0.08em;
+    }
+
+    .quiet-note::before {
+      display: block;
+      width: 42px;
+      margin-bottom: 26px;
+      border-top: var(--hairline) solid var(--color-ink-wash);
+      content: "";
+    }
+
+    .seal {
+      position: absolute;
+      top: 622px;
+      left: 320px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--color-seal-vermillion);
+      color: var(--color-seal-vermillion);
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: 0.16em;
+      text-align: center;
+    }
+
+    .meta-block {
+      position: absolute;
+      right: 112px;
+      bottom: 126px;
+      width: 438px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      padding-left: 28px;
+      border-left: 2px solid var(--color-ru-celadon);
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      column-gap: 28px;
+      align-items: baseline;
+    }
+
+    .meta-label {
+      color: var(--color-light-ink);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+    }
+
+    .meta-value {
+      margin: 0;
+      color: var(--color-medium-ink);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 2;
+      letter-spacing: 0.04em;
+    }
+
+    .small-caption {
+      position: absolute;
+      left: 112px;
+      bottom: 112px;
+      width: 270px;
+      margin: 0;
+      color: var(--color-hara-muted);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 2.05;
+      letter-spacing: 0.04em;
+    }
+
+    .axis-line {
+      position: absolute;
+      left: 92px;
+      right: 92px;
+      bottom: 92px;
+      border-top: var(--hairline) solid var(--color-ink-wash);
+    }
+
+    .top-label {
+      position: absolute;
+      top: 94px;
+      left: 94px;
+      color: var(--color-light-ink);
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+    }
+
+    .archive-number {
+      position: absolute;
+      top: 94px;
+      right: 94px;
+      color: var(--color-light-ink);
+      font-family: "EB Garamond", Garamond, serif;
+      font-size: 14px;
+      letter-spacing: 0.16em;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-shell" id="posterShell">
+    <main class="poster" aria-label="盛唐文物展海报，宋代水墨与原研哉方法组合">
+      <div class="top-label">一件文物 · 一段空白</div>
+      <div class="archive-number">EXHIBITION 2026</div>
+      <div class="watermark" aria-hidden="true">观物</div>
+
+      <svg class="landscape" viewBox="0 0 680 520" role="img" aria-labelledby="landscapeTitle landscapeDesc">
+        <title id="landscapeTitle">淡墨山形</title>
+        <desc id="landscapeDesc">以宋代山水的远山与留白为灵感绘制的极简墨线。</desc>
+        <path class="mountain-wash" d="M28 314 C118 238 174 218 248 246 C318 272 360 168 436 188 C504 206 546 260 652 212"></path>
+        <path class="mountain-line" d="M42 318 C126 252 174 238 242 262 C326 292 360 196 438 214 C504 228 546 282 642 232"></path>
+        <path class="mountain-line" d="M170 282 C200 250 222 236 246 262"></path>
+        <path class="mountain-line" d="M390 232 C414 210 438 206 466 226"></path>
+        <path class="mist-line" d="M82 366 C178 352 252 358 326 374"></path>
+        <path class="mist-line" d="M344 342 C422 330 508 332 604 352"></path>
+        <path class="mist-line" d="M198 416 C288 402 406 406 512 424"></path>
+      </svg>
+
+      <p class="quiet-note">
+        器物不以喧哗证明年代。釉色、胎骨、磨痕与空白，共同留下观看的速度。
+      </p>
+
+      <div class="english-title">Tang Relics / Song Quietness</div>
+      <h1 class="main-title">
+        <span>盛唐</span>
+        <span>文物展</span>
+      </h1>
+      <div class="seal" aria-label="唯一朱印">观<br>物</div>
+
+      <svg class="vessel" viewBox="0 0 360 220" role="img" aria-labelledby="vesselTitle vesselDesc">
+        <title id="vesselTitle">汝瓷天青器影</title>
+        <desc id="vesselDesc">以天青色单点描绘文物器影，作为全幅唯一冷色视觉锚点。</desc>
+        <path class="vessel-fill" d="M48 82 C84 58 276 58 312 82 C292 132 258 160 180 160 C102 160 68 132 48 82 Z"></path>
+        <path class="vessel-line" d="M52 82 C98 102 262 102 308 82"></path>
+        <path class="vessel-line" d="M96 120 C124 142 154 150 180 150 C206 150 236 142 264 120"></path>
+        <path class="vessel-line" d="M132 164 C154 174 206 174 228 164"></path>
+        <path class="vessel-line" d="M106 184 C142 200 218 200 254 184"></path>
+      </svg>
+
+      <section class="meta-block" aria-label="展览信息">
+        <div class="meta-row">
+          <div class="meta-label">展期</div>
+          <p class="meta-value">2026.07.18 至 10.12<br>09:30 至 17:30，周一闭馆</p>
+        </div>
+        <div class="meta-row">
+          <div class="meta-label">单元</div>
+          <p class="meta-value">器用之美 / 丝路之光 / 书写与供养</p>
+        </div>
+        <div class="meta-row">
+          <div class="meta-label">地点</div>
+          <p class="meta-value">东馆三层 · 特展厅</p>
+        </div>
+      </section>
+
+      <p class="small-caption">
+        本海报为展览视觉样稿。主视觉采用自绘水墨山形与器物线稿，不使用真实馆藏照片。
+      </p>
+      <div class="axis-line" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script>
+    const posterShell = document.getElementById("posterShell");
+    const posterCanvas = document.querySelector(".poster");
+    const basePosterWidth = 1080;
+    const basePosterHeight = 1350;
+    const viewportPadding = 32;
+
+    function resizePoster() {
+      try {
+        const availableWidth = Math.max(320, window.innerWidth - viewportPadding);
+        const scale = Math.min(1, availableWidth / basePosterWidth);
+        posterShell.style.width = `${basePosterWidth * scale}px`;
+        posterShell.style.height = `${basePosterHeight * scale}px`;
+        posterCanvas.style.transform = `scale(${scale})`;
+      } catch (error) {
+        /* 缩放失败时保留完整画布，避免内容被脚本错误裁掉。 */
+        console.warn("海报缩放失败，已保留原始画布。", error);
+      }
+    }
+
+    window.addEventListener("resize", resizePoster);
+    resizePoster();
+  </script>
+</body>
+</html>

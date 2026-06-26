@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ATELIER IVY｜独立设计师电商首页</title>
+  <meta name="description" content="独立设计师品牌 ATELIER IVY 的时尚编辑风格电商首页，包含精选系列、设计师工作室、预约定制和购物车交互。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700;6..96,900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-white: #ffffff;
+      --color-off-black: #0a0a0a;
+      --color-light-gray: #f5f5f5;
+      --color-medium-gray: #9b9b9b;
+      --color-dark-gray: #3a3a3a;
+      --color-editorial-red: #c41e3a;
+      --color-powder-blue: #a8c8d8;
+      --content-width: 1400px;
+      --nav-height: 66px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--color-white);
+      color: var(--color-off-black);
+      font-family: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+
+    body.is-cart-open {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      overflow-x: hidden;
+      background: var(--color-white);
+    }
+
+    .masthead {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      display: grid;
+      grid-template-columns: minmax(180px, 0.7fr) minmax(0, 1fr) minmax(160px, 0.7fr);
+      align-items: center;
+      min-height: var(--nav-height);
+      border-bottom: 1px solid var(--color-off-black);
+      background: rgba(255, 255, 255, 0.94);
+      padding: 0 28px;
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 27px;
+      font-weight: 900;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      color: var(--color-off-black);
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-links a {
+      border-bottom: 1px solid transparent;
+      transition: border-color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      border-color: var(--color-off-black);
+    }
+
+    .nav-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 18px;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .nav-button {
+      border: 0;
+      background: transparent;
+      color: var(--color-off-black);
+      padding: 0;
+      text-transform: uppercase;
+    }
+
+    .nav-button:focus-visible,
+    .editorial-button:focus-visible,
+    .filter-button:focus-visible,
+    .cart-panel button:focus-visible,
+    .newsletter-form input:focus {
+      outline: 2px solid var(--color-editorial-red);
+      outline-offset: 3px;
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100svh - var(--nav-height));
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--color-off-black);
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image: url("assets/fashion-editorial-polo-campaign-web.jpg");
+      background-position: center 26%;
+      background-size: cover;
+      content: "";
+    }
+
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(10, 10, 10, 0.28);
+      content: "";
+    }
+
+    .hero__issue {
+      position: absolute;
+      top: 34px;
+      right: 28px;
+      color: var(--color-white);
+      font-size: 12px;
+      font-weight: 400;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .hero__title {
+      position: absolute;
+      left: 28px;
+      bottom: 72px;
+      max-width: 980px;
+      margin: 0;
+      color: var(--color-white);
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 112px;
+      font-weight: 900;
+      line-height: 0.88;
+    }
+
+    .hero__copy {
+      position: absolute;
+      right: 28px;
+      bottom: 74px;
+      width: min(360px, calc(100% - 56px));
+      color: var(--color-white);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .hero__copy p {
+      margin: 0 0 22px;
+    }
+
+    .hero__caption {
+      position: absolute;
+      right: 28px;
+      bottom: 24px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 11px;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .editorial-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      border: 1px solid var(--color-off-black);
+      border-radius: 0;
+      background: var(--color-off-black);
+      color: var(--color-white);
+      padding: 12px 32px;
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      transition: opacity 180ms ease, background 180ms ease, color 180ms ease;
+    }
+
+    .editorial-button:hover {
+      opacity: 0.8;
+    }
+
+    .editorial-button--ghost {
+      background: transparent;
+      color: var(--color-off-black);
+    }
+
+    .editorial-button--ghost:hover {
+      background: var(--color-off-black);
+      color: var(--color-white);
+      opacity: 1;
+    }
+
+    .hero .editorial-button {
+      border-color: var(--color-white);
+      background: var(--color-white);
+      color: var(--color-off-black);
+    }
+
+    .section {
+      padding: 112px 28px;
+    }
+
+    .section--tight {
+      padding-top: 76px;
+    }
+
+    .section--black {
+      background: var(--color-off-black);
+      color: var(--color-white);
+    }
+
+    .section__inner {
+      max-width: var(--content-width);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      display: grid;
+      grid-template-columns: minmax(0, 0.78fr) minmax(260px, 0.42fr);
+      gap: 56px;
+      align-items: end;
+      margin-bottom: 48px;
+    }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--color-medium-gray);
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 0.98;
+    }
+
+    .section-copy {
+      margin: 0;
+      color: var(--color-dark-gray);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .section--black .section-copy {
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 36px;
+      border-top: 1px solid var(--color-off-black);
+      border-bottom: 1px solid var(--color-off-black);
+      padding: 12px 0;
+    }
+
+    .filter-button {
+      border: 0;
+      background: transparent;
+      color: var(--color-off-black);
+      padding: 8px 14px 8px 0;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .filter-button[aria-pressed="true"] {
+      color: var(--color-editorial-red);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .product-card {
+      display: grid;
+      gap: 14px;
+      background: var(--color-white);
+    }
+
+    .product-card:nth-child(2) {
+      margin-top: 84px;
+    }
+
+    .product-card:nth-child(4) {
+      grid-column: span 2;
+      grid-template-columns: minmax(0, 0.72fr) minmax(260px, 0.28fr);
+      gap: 22px;
+      align-items: end;
+      margin-top: 42px;
+    }
+
+    .product-card__media {
+      position: relative;
+      overflow: hidden;
+      background: var(--color-light-gray);
+      aspect-ratio: 4 / 5;
+    }
+
+    .product-card:nth-child(1) .product-card__media {
+      aspect-ratio: 4 / 5.6;
+    }
+
+    .product-card:nth-child(3) .product-card__media {
+      aspect-ratio: 1 / 1.25;
+    }
+
+    .product-card:nth-child(4) .product-card__media {
+      aspect-ratio: 16 / 10;
+    }
+
+    .product-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.18) contrast(1.05);
+      transition: transform 600ms ease;
+    }
+
+    .product-card:hover .product-card__media img {
+      transform: scale(1.03);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--color-white);
+      color: var(--color-off-black);
+      padding: 7px 10px;
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .product-card__info {
+      display: grid;
+      gap: 8px;
+    }
+
+    .product-card__line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid var(--color-off-black);
+      padding-top: 12px;
+    }
+
+    .product-name {
+      color: var(--color-off-black);
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .product-price {
+      color: var(--color-medium-gray);
+      font-size: 13px;
+      font-weight: 300;
+      white-space: nowrap;
+    }
+
+    .product-meta {
+      margin: 0;
+      color: var(--color-dark-gray);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .add-button {
+      width: max-content;
+      border: 0;
+      border-bottom: 1px solid var(--color-off-black);
+      background: transparent;
+      color: var(--color-off-black);
+      padding: 0 0 4px;
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+
+    .editorial-split {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.48fr);
+      gap: 70px;
+      align-items: center;
+    }
+
+    .atelier-image {
+      position: relative;
+      min-height: 620px;
+      overflow: hidden;
+      background: var(--color-light-gray);
+    }
+
+    .atelier-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      object-fit: cover;
+      filter: grayscale(0.1) contrast(1.08);
+    }
+
+    .atelier-image figcaption {
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      color: var(--color-white);
+      font-size: 11px;
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    .pull-quote {
+      margin: 0 0 42px;
+      border-top: 1px solid var(--color-off-black);
+      padding-top: 26px;
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 38px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.18;
+    }
+
+    .atelier-copy {
+      margin: 0 0 30px;
+      color: var(--color-dark-gray);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .studio-list {
+      display: grid;
+      gap: 14px;
+      margin: 34px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .studio-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      border-top: 1px solid var(--color-off-black);
+      padding-top: 12px;
+      color: var(--color-dark-gray);
+      font-size: 13px;
+    }
+
+    .studio-list strong {
+      color: var(--color-off-black);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .lookbook {
+      position: relative;
+      min-height: 86vh;
+      overflow: hidden;
+      background: var(--color-off-black);
+      isolation: isolate;
+    }
+
+    .lookbook img {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.42) contrast(1.1);
+    }
+
+    .lookbook::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(10, 10, 10, 0.36);
+      content: "";
+    }
+
+    .lookbook__title {
+      position: absolute;
+      left: 28px;
+      top: 70px;
+      max-width: 960px;
+      margin: 0;
+      color: var(--color-white);
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 96px;
+      font-weight: 700;
+      line-height: 0.95;
+    }
+
+    .lookbook__copy {
+      position: absolute;
+      right: 28px;
+      bottom: 50px;
+      width: min(460px, calc(100% - 56px));
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      border-top: 1px solid var(--color-off-black);
+      border-bottom: 1px solid var(--color-off-black);
+      background: var(--color-off-black);
+    }
+
+    .service-item {
+      min-height: 280px;
+      background: var(--color-white);
+      padding: 30px;
+    }
+
+    .service-item strong {
+      display: block;
+      margin-bottom: 58px;
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 48px;
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .service-item h3 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .service-item p {
+      margin: 0;
+      color: var(--color-dark-gray);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .journal-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.54fr) minmax(0, 0.46fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .journal-main {
+      min-height: 620px;
+      overflow: hidden;
+      background: var(--color-light-gray);
+    }
+
+    .journal-main img,
+    .journal-secondary img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.16) contrast(1.08);
+    }
+
+    .journal-stack {
+      display: grid;
+      gap: 28px;
+    }
+
+    .journal-secondary {
+      min-height: 296px;
+      overflow: hidden;
+      background: var(--color-light-gray);
+    }
+
+    .journal-text {
+      border-top: 1px solid var(--color-off-black);
+      padding-top: 24px;
+    }
+
+    .journal-text h3 {
+      margin: 0 0 18px;
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .journal-text p {
+      margin: 0 0 24px;
+      color: var(--color-dark-gray);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .newsletter {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.5fr);
+      gap: 80px;
+      align-items: end;
+      border-top: 1px solid var(--color-off-black);
+      padding-top: 54px;
+    }
+
+    .newsletter h2 {
+      margin: 0;
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 0.98;
+    }
+
+    .newsletter-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .newsletter-form label {
+      color: var(--color-dark-gray);
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    .newsletter-form input {
+      width: 100%;
+      height: 48px;
+      border: 0;
+      border-bottom: 1px solid var(--color-off-black);
+      background: transparent;
+      color: var(--color-off-black);
+      padding: 0;
+      outline: none;
+    }
+
+    .form-status {
+      min-height: 22px;
+      margin: 0;
+      color: var(--color-editorial-red);
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    .site-footer {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+      border-top: 1px solid var(--color-off-black);
+      padding: 32px 28px 46px;
+      color: var(--color-dark-gray);
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .site-footer strong {
+      display: block;
+      color: var(--color-off-black);
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .site-footer a {
+      border-bottom: 1px solid currentColor;
+    }
+
+    .cart-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 80;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      width: min(420px, 100vw);
+      height: 100vh;
+      border-left: 1px solid var(--color-off-black);
+      background: var(--color-white);
+      transform: translateX(100%);
+      transition: transform 220ms ease;
+    }
+
+    body.is-cart-open .cart-panel {
+      transform: translateX(0);
+    }
+
+    .cart-panel__header,
+    .cart-panel__footer {
+      padding: 22px;
+      border-bottom: 1px solid var(--color-off-black);
+    }
+
+    .cart-panel__footer {
+      border-top: 1px solid var(--color-off-black);
+      border-bottom: 0;
+    }
+
+    .cart-panel__header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .cart-panel h2 {
+      margin: 0;
+      font-family: "Bodoni Moda", Didot, "Times New Roman", serif;
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .cart-panel__close {
+      border: 0;
+      background: transparent;
+      color: var(--color-off-black);
+      padding: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .cart-items {
+      overflow-y: auto;
+      padding: 4px 22px 22px;
+    }
+
+    .cart-empty {
+      margin: 28px 0 0;
+      color: var(--color-dark-gray);
+      font-size: 14px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 14px;
+      border-bottom: 1px solid var(--color-light-gray);
+      padding: 18px 0;
+    }
+
+    .cart-item img {
+      width: 74px;
+      height: 92px;
+      object-fit: cover;
+      filter: grayscale(0.2);
+    }
+
+    .cart-item strong {
+      display: block;
+      color: var(--color-off-black);
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .cart-item span {
+      display: block;
+      color: var(--color-medium-gray);
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      margin: 0 0 18px;
+      color: var(--color-off-black);
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .cart-total strong {
+      font-family: "Inter", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .cart-panel .editorial-button {
+      width: 100%;
+    }
+
+    .cart-feedback {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 90;
+      max-width: 360px;
+      border: 1px solid var(--color-off-black);
+      background: var(--color-white);
+      color: var(--color-off-black);
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 400;
+      transform: translateY(120px);
+      opacity: 0;
+      transition: transform 180ms ease, opacity 180ms ease;
+    }
+
+    .cart-feedback.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 1100px) {
+      .masthead {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero__title {
+        font-size: 88px;
+      }
+
+      .hero__copy {
+        left: 28px;
+        right: auto;
+        bottom: 28px;
+      }
+
+      .hero__caption {
+        display: none;
+      }
+
+      .section-header,
+      .editorial-split,
+      .journal-grid,
+      .newsletter {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .product-card:nth-child(2),
+      .product-card:nth-child(4) {
+        margin-top: 0;
+      }
+
+      .product-card:nth-child(4) {
+        grid-column: 1 / -1;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --nav-height: 58px;
+      }
+
+      .masthead {
+        padding: 0 16px;
+      }
+
+      .brand {
+        font-size: 21px;
+      }
+
+      .nav-actions {
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .hero {
+        min-height: 820px;
+      }
+
+      .hero::before {
+        background-position: center top;
+      }
+
+      .hero__issue {
+        top: 22px;
+        right: 16px;
+      }
+
+      .hero__title {
+        left: 16px;
+        right: 16px;
+        bottom: 260px;
+        font-size: 50px;
+        line-height: 0.94;
+      }
+
+      .hero__copy {
+        left: 16px;
+        bottom: 26px;
+        width: calc(100% - 32px);
+      }
+
+      .section {
+        padding: 78px 16px;
+      }
+
+      .section-title,
+      .newsletter h2 {
+        font-size: 46px;
+      }
+
+      .product-grid,
+      .product-card:nth-child(4) {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .product-card:nth-child(4) {
+        gap: 14px;
+      }
+
+      .product-card__line {
+        display: grid;
+        gap: 4px;
+      }
+
+      .atelier-image,
+      .atelier-image img,
+      .journal-main {
+        min-height: 460px;
+      }
+
+      .pull-quote {
+        font-size: 30px;
+      }
+
+      .lookbook {
+        min-height: 720px;
+      }
+
+      .lookbook__title {
+        left: 16px;
+        right: 16px;
+        top: 42px;
+        font-size: 52px;
+      }
+
+      .lookbook__copy {
+        left: 16px;
+        right: 16px;
+        bottom: 28px;
+        width: auto;
+      }
+
+      .service-item {
+        min-height: 240px;
+        padding: 24px;
+      }
+
+      .service-item strong {
+        margin-bottom: 40px;
+      }
+
+      .site-footer {
+        grid-template-columns: 1fr;
+        padding: 28px 16px 40px;
+      }
+
+      .cart-feedback {
+        right: 14px;
+        bottom: 14px;
+        left: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead" aria-label="品牌导航">
+      <a class="brand" href="#top">ATELIER IVY</a>
+      <nav class="nav-links" aria-label="主导航">
+        <a href="#shop">Shop</a>
+        <a href="#atelier">Atelier</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#made">Made to order</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#journal">Journal</a>
+        <button class="nav-button" type="button" data-open-cart>Bag <span data-cart-count>0</span></button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="品牌首屏">
+        <div class="hero__issue">Edition 04<br>Resort System</div>
+        <h1 class="hero__title">Independent<br>Cut</h1>
+        <div class="hero__copy">
+          <p>ATELIER IVY 是一个小批量独立设计师品牌。每件衣服先进入版房，再进入衣橱；我们只做有结构、有呼吸、有明确穿着场景的衣物。</p>
+          <a class="editorial-button" href="#shop">Shop the drop</a>
+        </div>
+        <div class="hero__caption">Campaign image from client archive</div>
+      </section>
+
+      <section class="section section--tight" id="shop" aria-labelledby="shop-title">
+        <div class="section__inner">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Drop 04 / limited pieces</span>
+              <h2 class="section-title" id="shop-title">Four objects, one quiet uniform.</h2>
+            </div>
+            <p class="section-copy">不是一页塞满商品的电商货架。这个系列只保留四件核心款：外套、半裙、饰品和托特包。每件都标注材料、批量和可补货状态。</p>
+          </div>
+
+          <div class="filter-row" aria-label="商品筛选">
+            <button class="filter-button" type="button" aria-pressed="true">All</button>
+            <button class="filter-button" type="button" aria-pressed="false">Outerwear</button>
+            <button class="filter-button" type="button" aria-pressed="false">Accessories</button>
+            <button class="filter-button" type="button" aria-pressed="false">Made to order</button>
+          </div>
+
+          <div class="product-grid">
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="assets/fashion-editorial-polo-campaign-web.jpg" alt="两位模特穿着白色外套与花卉半裙的设计师系列形象" loading="eager">
+                <span class="product-tag">Limited 36</span>
+              </figure>
+              <div class="product-card__info">
+                <div class="product-card__line">
+                  <span class="product-name">White field jacket</span>
+                  <span class="product-price">¥2,680</span>
+                </div>
+                <p class="product-meta">轻量棉混纺外套，短身比例，保留工装口袋和利落肩线。现货 14 件。</p>
+                <button class="add-button" type="button" data-add-product data-name="White field jacket" data-price="2680" data-image="assets/fashion-editorial-polo-campaign-web.jpg">Add to bag</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="assets/fashion-editorial-accessory-kate-laine.jpg" alt="白色雕塑头像上的项链饰品" loading="eager">
+                <span class="product-tag">Object 02</span>
+              </figure>
+              <div class="product-card__info">
+                <div class="product-card__line">
+                  <span class="product-name">Bone chain collar</span>
+                  <span class="product-price">¥980</span>
+                </div>
+                <p class="product-meta">雕塑感项链，适合低领背心、白衬衫和无领外套。</p>
+                <button class="add-button" type="button" data-add-product data-name="Bone chain collar" data-price="980" data-image="assets/fashion-editorial-accessory-kate-laine.jpg">Add to bag</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="assets/fashion-editorial-still-life-branislav-rodman.jpg" alt="白色雕塑静物与室内空间" loading="eager">
+                <span class="product-tag">Studio edition</span>
+              </figure>
+              <div class="product-card__info">
+                <div class="product-card__line">
+                  <span class="product-name">Plaster white scarf</span>
+                  <span class="product-price">¥760</span>
+                </div>
+                <p class="product-meta">轻薄长巾，灰白色调，作为外套和连衣裙之间的柔性结构。</p>
+                <button class="add-button" type="button" data-add-product data-name="Plaster white scarf" data-price="760" data-image="assets/fashion-editorial-still-life-branislav-rodman.jpg">Add to bag</button>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <figure class="product-card__media">
+                <img src="assets/fashion-editorial-atelier-patterns-collab-media.jpg" alt="工作室墙面上悬挂的纸样与面料版型" loading="eager">
+                <span class="product-tag">Made to order</span>
+              </figure>
+              <div class="product-card__info">
+                <div class="product-card__line">
+                  <span class="product-name">Paper pattern tote</span>
+                  <span class="product-price">¥1,180</span>
+                </div>
+                <p class="product-meta">由版房余料和棉帆布制作，每只托特保留不同版型压痕。下单后 7 天内完成。</p>
+                <button class="add-button" type="button" data-add-product data-name="Paper pattern tote" data-price="1180" data-image="assets/fashion-editorial-atelier-patterns-collab-media.jpg">Add to bag</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="atelier" aria-labelledby="atelier-title">
+        <div class="section__inner editorial-split">
+          <figure class="atelier-image">
+            <img src="assets/fashion-editorial-designer-vitaly-gariev.jpg" alt="独立设计师在工作室内测量面料和调整人台" loading="eager">
+            <figcaption>Pattern table, 10:40 AM</figcaption>
+          </figure>
+          <div>
+            <span class="eyebrow">Atelier note</span>
+            <h2 class="section-title" id="atelier-title">Work before image.</h2>
+            <p class="pull-quote">Cut only when the body is known.</p>
+            <p class="atelier-copy">我们把“独立设计师电商”做成一本可购买的作品集：先展示衣物怎么被决定，再展示它如何被购买。每一季只发布少量核心款，减少库存，也减少不必要的视觉噪声。</p>
+            <a class="editorial-button editorial-button--ghost" href="#made">Book a fitting</a>
+            <ul class="studio-list">
+              <li><strong>Batch</strong><span>每款 24–48 件</span></li>
+              <li><strong>Material</strong><span>棉、亚麻、再生聚酯与余料重组</span></li>
+              <li><strong>Fulfillment</strong><span>现货 48 小时发出，定制 7–14 天</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="lookbook" id="lookbook" aria-label="系列 Lookbook">
+        <img src="assets/fashion-editorial-studio-shoot-vitaly-gariev.jpg" alt="摄影棚中拍摄模特造型的场景" loading="eager">
+        <h2 class="lookbook__title">The photograph is not decoration. It is the shop floor.</h2>
+        <p class="lookbook__copy">页面只在必要位置出现购买按钮，留出大片摄影和空白，让品牌保持独立设计师该有的距离感。商业动作存在，但不把版面变成促销页。</p>
+      </section>
+
+      <section class="section" id="made" aria-labelledby="made-title">
+        <div class="section__inner">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Made to order</span>
+              <h2 class="section-title" id="made-title">A slower cart is still a cart.</h2>
+            </div>
+            <p class="section-copy">预约定制不是高门槛，而是让衣服更少出错。用户可以先购买现货，也可以预约试衣、调整袖长、腰围或面料。</p>
+          </div>
+          <div class="service-grid">
+            <article class="service-item">
+              <strong>01</strong>
+              <h3>预约试衣</h3>
+              <p>选择线上视频或线下工作室，确认肩宽、袖长、腰围和穿着场景。</p>
+            </article>
+            <article class="service-item">
+              <strong>02</strong>
+              <h3>小批量生产</h3>
+              <p>每个批次记录面料来源、版型调整和剩余数量，避免无限补货。</p>
+            </article>
+            <article class="service-item">
+              <strong>03</strong>
+              <h3>售后调整</h3>
+              <p>收到后 14 天内可申请一次基础调整，包含裤长、裙长和局部收放。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--black" id="journal">
+        <div class="section__inner">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Journal</span>
+              <h2 class="section-title">Commerce as editorial rhythm.</h2>
+            </div>
+            <p class="section-copy">工作室、试衣间、版房和店铺都不是背景，它们是品牌可信度的一部分。</p>
+          </div>
+          <div class="journal-grid">
+            <figure class="journal-main">
+              <img src="assets/fashion-editorial-boutique-caroline-badran.jpg" alt="精品店内悬挂的服装与衣架" loading="eager">
+            </figure>
+            <div class="journal-stack">
+              <figure class="journal-secondary">
+                <img src="assets/fashion-editorial-atelier-patterns-collab-media.jpg" alt="服装纸样与工作室版型细节" loading="eager">
+              </figure>
+              <div class="journal-text">
+                <h3>From rack to receipt.</h3>
+                <p>这个页面把“买”放在编辑叙事之后：先建立设计师的手感、版型和材料逻辑，再让用户进入购物车。适合小批量、高单价、强审美的独立设计师品牌。</p>
+                <a class="editorial-button" href="#shop">Return to shop</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="newsletter-title">
+        <div class="section__inner newsletter">
+          <h2 id="newsletter-title">First access, no noise.</h2>
+          <form class="newsletter-form" data-newsletter-form>
+            <label for="email">留下邮箱，收到下一次小批量上新和试衣预约开放提醒。</label>
+            <input id="email" name="email" type="email" placeholder="name@example.com" required>
+            <button class="editorial-button" type="submit">Join the list</button>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>ATELIER IVY</strong>
+        <span>Independent designer commerce prototype · 2026</span>
+      </div>
+      <div>
+        图片来源：主视觉为用户素材；其他图片来自
+        <a href="https://unsplash.com/photos/a-bunch-of-clothes-hanging-on-a-clothes-line-BzZ6hnqtsbo">Collab Media</a>、
+        <a href="https://unsplash.com/photos/a-white-marble-bust-with-a-necklace-around-its-neck-S0iDOkiHFRE">Kate Laine</a>、
+        <a href="https://unsplash.com/photos/a-woman-working-on-a-dress-form-in-a-room-wqFt5zLCP7I">Vitaly Gariev</a>、
+        <a href="https://unsplash.com/photos/a-room-filled-with-lots-of-clothes-hanging-on-racks-4x-5gvhmhtQ">Caroline Badran</a>、
+        <a href="https://unsplash.com/photos/a-photographer-taking-a-picture-of-a-model-in-a-studio-evY8nZHXkDk">Vitaly Gariev</a>、
+        <a href="https://unsplash.com/photos/a-bird-statue-on-a-pedestal-in-a-room-uLXc5oGk28Y">Branislav Rodman</a>。
+      </div>
+    </footer>
+  </div>
+
+  <aside class="cart-panel" aria-label="购物袋" aria-hidden="true" data-cart-panel>
+    <div class="cart-panel__header">
+      <h2>Bag</h2>
+      <button class="cart-panel__close" type="button" data-close-cart>Close</button>
+    </div>
+    <div class="cart-items" data-cart-items>
+      <p class="cart-empty">购物袋还是空的。选择一件核心款开始。</p>
+    </div>
+    <div class="cart-panel__footer">
+      <p class="cart-total"><span>Subtotal</span><strong data-cart-total>¥0</strong></p>
+      <button class="editorial-button" type="button">Request checkout link</button>
+    </div>
+  </aside>
+
+  <div class="cart-feedback" data-cart-feedback aria-live="polite"></div>
+
+  <script>
+    const cartItems = [];
+    const currencyFormatter = new Intl.NumberFormat("zh-CN", {
+      style: "currency",
+      currency: "CNY",
+      maximumFractionDigits: 0,
+    });
+    const addButtons = document.querySelectorAll("[data-add-product]");
+    const cartCount = document.querySelector("[data-cart-count]");
+    const cartPanel = document.querySelector("[data-cart-panel]");
+    const cartItemsContainer = document.querySelector("[data-cart-items]");
+    const cartTotal = document.querySelector("[data-cart-total]");
+    const feedback = document.querySelector("[data-cart-feedback]");
+    const openCartButton = document.querySelector("[data-open-cart]");
+    const closeCartButton = document.querySelector("[data-close-cart]");
+    const newsletterForm = document.querySelector("[data-newsletter-form]");
+    const formStatus = document.querySelector("[data-form-status]");
+    const filterButtons = document.querySelectorAll(".filter-button");
+
+    function formatPrice(value) {
+      return currencyFormatter.format(value).replace("CN¥", "¥");
+    }
+
+    function renderCart() {
+      const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+      cartCount.textContent = String(cartItems.length);
+      cartTotal.textContent = formatPrice(total);
+
+      if (cartItems.length === 0) {
+        cartItemsContainer.innerHTML = '<p class="cart-empty">购物袋还是空的。选择一件核心款开始。</p>';
+        return;
+      }
+
+      cartItemsContainer.innerHTML = cartItems.map((item) => `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <strong>${item.name}</strong>
+            <span>${formatPrice(item.price)}</span>
+            <span>Size / discussed after order</span>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function showCart() {
+      document.body.classList.add("is-cart-open");
+      cartPanel.setAttribute("aria-hidden", "false");
+    }
+
+    function hideCart() {
+      document.body.classList.remove("is-cart-open");
+      cartPanel.setAttribute("aria-hidden", "true");
+    }
+
+    function showFeedback(message) {
+      feedback.textContent = message;
+      feedback.classList.add("is-visible");
+      window.setTimeout(() => {
+        feedback.classList.remove("is-visible");
+      }, 1800);
+    }
+
+    addButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        try {
+          const price = Number(button.dataset.price);
+          if (Number.isNaN(price)) {
+            throw new Error("商品价格不是有效数字");
+          }
+
+          cartItems.push({
+            name: button.dataset.name,
+            price,
+            image: button.dataset.image,
+          });
+          renderCart();
+          showFeedback(`${button.dataset.name} 已加入购物袋。`);
+        } catch (error) {
+          // 静态电商示例没有真实结账接口，异常时只提示本地状态错误。
+          console.error(error);
+          showFeedback("无法加入购物袋，请刷新页面后重试。");
+        }
+      });
+    });
+
+    openCartButton.addEventListener("click", showCart);
+    closeCartButton.addEventListener("click", hideCart);
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        hideCart();
+      }
+    });
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach((item) => item.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+      });
+    });
+
+    newsletterForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(newsletterForm);
+      const email = String(formData.get("email") || "").trim();
+      if (!email.includes("@")) {
+        formStatus.textContent = "请输入有效邮箱。";
+        return;
+      }
+
+      formStatus.textContent = "已记录。下一次上新前会收到提醒。";
+      newsletterForm.reset();
+    });
+
+    renderCart();
+  </script>
+</body>
+</html>

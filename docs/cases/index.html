@@ -3,66 +3,427 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>8 个高质量真实案例 — xdx-lab Design Style Skill</title>
+<title>真实示例作品集 — xdx-lab Design Style Skill</title>
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="cases.css">
+<style>
+  :root {
+    --paper: #F4EEE4;
+    --panel: #FFFDF7;
+    --ink: #171513;
+    --muted: #6F6860;
+    --line: #D7CDBC;
+    --accent: #C43B2A;
+    --max-width: 1480px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      linear-gradient(90deg, rgba(23, 21, 19, 0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #FFFDF7 0%, var(--paper) 58%, #E6DCCF 100%);
+    background-size: 72px 72px, auto;
+    color: var(--ink);
+    font-family: "Noto Sans SC", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  a { color: inherit; }
+
+  .top-link {
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 20;
+    min-height: 36px;
+    border: 1px solid rgba(23, 21, 19, 0.22);
+    padding: 9px 14px;
+    background: rgba(255, 253, 247, 0.86);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    backdrop-filter: blur(12px);
+  }
+
+  .hero {
+    border-bottom: 2px solid var(--ink);
+    background:
+      radial-gradient(circle at 86% 12%, rgba(196, 59, 42, 0.12), transparent 28%),
+      linear-gradient(180deg, #FFFDF7, #F5EEE4);
+  }
+  .hero-inner {
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: 0 auto;
+    padding: 88px 0 54px;
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .eyebrow::before {
+    width: 38px;
+    height: 2px;
+    background: var(--accent);
+    content: "";
+  }
+  .hero h1 {
+    max-width: 1080px;
+    margin: 20px 0 0;
+    font-family: "Noto Serif SC", "Playfair Display", serif;
+    font-size: clamp(46px, 7vw, 108px);
+    line-height: 1.02;
+  }
+  .hero p {
+    max-width: 820px;
+    margin: 24px 0 0;
+    color: #4F4942;
+    font-size: 17px;
+    line-height: 1.85;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 2px solid var(--ink);
+  }
+  .stat {
+    border-right: 1px solid var(--line);
+    padding: 20px clamp(16px, 3vw, 34px);
+    background: rgba(255, 253, 247, 0.76);
+  }
+  .stat:last-child { border-right: 0; }
+  .stat strong {
+    display: block;
+    font-size: 30px;
+    line-height: 1;
+  }
+  .stat span {
+    display: block;
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .wrap {
+    width: min(var(--max-width), calc(100% - 40px));
+    margin: 0 auto;
+    padding: 46px 0 80px;
+  }
+  .section-head {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 38px 0 18px;
+  }
+  .section-head h2 {
+    margin: 0;
+    font-family: "Noto Serif SC", "Playfair Display", serif;
+    font-size: clamp(30px, 4vw, 56px);
+    line-height: 1.1;
+  }
+  .section-head p {
+    max-width: 560px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border: 2px solid var(--ink);
+    background: var(--ink);
+    gap: 1px;
+  }
+  .showcase-card {
+    min-height: 470px;
+    background: var(--panel);
+    color: var(--ink);
+    text-decoration: none;
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .showcase-card:hover {
+    z-index: 2;
+    transform: translateY(-4px);
+    box-shadow: 0 22px 54px rgba(23, 21, 19, 0.2);
+  }
+  .thumb {
+    position: relative;
+    min-height: 300px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(23, 21, 19, 0.12);
+    background: #EAE1D4;
+  }
+  .thumb img {
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    object-fit: cover;
+    display: block;
+  }
+  .showcase-card[data-kind="Poster"] .thumb img { object-position: top center; }
+  .showcase-card[data-kind="PPT"] .thumb img { object-position: center; }
+  .kind {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    border: 1px solid currentColor;
+    padding: 7px 9px;
+    background: rgba(255, 253, 247, 0.88);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .card-body {
+    padding: 22px;
+  }
+  .card-body h3 {
+    margin: 0;
+    font-family: "Noto Serif SC", "Playfair Display", serif;
+    font-size: 26px;
+    line-height: 1.2;
+  }
+  .card-body p {
+    margin: 12px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .chip {
+    border: 1px solid var(--line);
+    padding: 7px 9px;
+    font-size: 11px;
+    font-weight: 900;
+    color: #55504A;
+  }
+
+  @media (max-width: 1080px) {
+    .showcase-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 720px) {
+    .stats,
+    .showcase-grid { grid-template-columns: 1fr; }
+    .section-head { display: block; }
+    .section-head p { margin-top: 10px; }
+    .hero-inner { padding-top: 74px; }
+  }
+</style>
 </head>
 <body>
 <a class="top-link" href="../index.html">← 返回画廊</a>
 
 <header class="hero">
   <div class="hero-inner">
-    <div class="eyebrow">Real Production Cases</div>
-    <h1 class="hero-title">8 个高质量真实案例</h1>
-    <p class="hero-copy">
-      这些案例不再是普通 PPT 产物，而是按真实业务场景规划的可交付样张：每个案例都明确使用哪个 DESIGN.md、服务什么用户、输出什么物料、关键 token 如何落地。
-    </p>
-    <div class="hero-actions">
-      <a class="action-link" href="#case-grid">浏览案例</a>
-      <a class="action-link secondary" href="https://github.com/xdx888999/xdx-lab-design-skill#readme">查看 README</a>
-    </div>
+    <div class="eyebrow">Real Examples Gallery</div>
+    <h1>真实示例作品集</h1>
+    <p>这里展示的是已经制作完成的真实文件：6 个海报、6 个网页、1 个 PPT 和 1 个 App UI。卡片封面使用成品截图，点击即可打开对应 HTML 或下载 PPT。</p>
   </div>
-  <div class="stat-strip" aria-label="案例统计">
-    <div class="stat"><strong>8</strong><span>真实业务场景</span></div>
-    <div class="stat"><strong>8</strong><span>交付物类型</span></div>
-    <div class="stat"><strong>12</strong><span>风格与大师组合</span></div>
-    <div class="stat"><strong>0</strong><span>低质量 PPTX 示例</span></div>
+  <div class="stats" aria-label="示例统计">
+    <div class="stat"><strong>6</strong><span>Poster</span></div>
+    <div class="stat"><strong>6</strong><span>Website</span></div>
+    <div class="stat"><strong>1</strong><span>PPT</span></div>
+    <div class="stat"><strong>1</strong><span>App UI</span></div>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="section-head" aria-labelledby="case-title">
-    <div>
-      <h2 id="case-title">案例清单</h2>
-    </div>
-    <p>覆盖海报、网站、App、Dashboard、报告、路演、电商和开发者工具。每个案例都可以作为 Agent 使用本 Skill 时的参考输入与质量标尺。</p>
+  <section class="section-head" aria-labelledby="poster-title">
+    <h2 id="poster-title">海报案例</h2>
+    <p>文化、餐饮、旅行、宠物与时尚主题，全部使用成品截图展示，不再用抽象占位图。</p>
   </section>
+  <section class="showcase-grid" id="poster-grid" aria-label="6 个海报案例"></section>
 
-  <section class="case-grid" id="case-grid" aria-label="8 个真实案例"></section>
+  <section class="section-head" aria-labelledby="web-title">
+    <h2 id="web-title">网页案例</h2>
+    <p>包含酒店、电商、开发者工具、清洁服务、制造业控制台和摄影展页面。</p>
+  </section>
+  <section class="showcase-grid" id="web-grid" aria-label="6 个网页案例"></section>
+
+  <section class="section-head" aria-labelledby="product-title">
+    <h2 id="product-title">PPT 与 UI</h2>
+    <p>保留可下载 PPTX 文件，并展示 App UI 的真实白板式界面截图。</p>
+  </section>
+  <section class="showcase-grid" id="product-grid" aria-label="PPT 与 UI 示例"></section>
 </main>
 
-<script src="case-data.js"></script>
 <script>
-  const grid = document.querySelector("#case-grid");
-  grid.innerHTML = window.designCases.map(item => `
-    <a class="case-card" data-case="${item.id}" href="${item.href}" style="--case-accent:${item.accent};--case-surface:${item.surface};--case-ink:${item.ink}">
-      <div class="case-art">
-        <span class="case-type">${item.type}</span>
-      </div>
-      <div class="case-body">
-        <h3 class="case-title">${item.title}</h3>
-        <div class="case-subtitle">${item.subtitle}</div>
-        <p class="case-summary">${item.summary}</p>
-        <div class="case-meta">
-          <span class="pill">${item.style}</span>
-          <span class="pill">${item.master}</span>
+  const examples = [
+    {
+      group: "poster",
+      kind: "Poster",
+      title: "宋瓷文物海报",
+      desc: "宋代水墨与原研哉留白结合的文化文物海报。",
+      style: "Song · Kenya Hara",
+      href: "example/song-kenya-hara-cultural-relics-poster-2026.html",
+      thumb: "example/song-kenya-hara-cultural-relics-poster-2026.png"
+    },
+    {
+      group: "poster",
+      kind: "Poster",
+      title: "瑞士艺术展海报",
+      desc: "Swiss Grid 与 Vignelli 方法的艺术展主视觉。",
+      style: "Swiss · Vignelli",
+      href: "example/swiss-vignelli-art-exhibition-poster-2026.html",
+      thumb: "example/swiss-vignelli-art-exhibition-poster-2026.png"
+    },
+    {
+      group: "poster",
+      kind: "Poster",
+      title: "高端成衣海报",
+      desc: "Luxury Premium 服装品牌海报，强调材质、比例和留白。",
+      style: "Luxury Premium",
+      href: "example/luxury-premium-clothing-poster-2026.html",
+      thumb: "example/luxury-premium-clothing-poster-2026.png"
+    },
+    {
+      group: "poster",
+      kind: "Poster",
+      title: "高端宠物店海报",
+      desc: "奢华宠物精品店主题，黑金与摄影素材结合。",
+      style: "Luxury Premium",
+      href: "example/luxury-premium-pet-shop-poster-2026.html",
+      thumb: "example/luxury-premium-pet-shop-poster-2026.png"
+    },
+    {
+      group: "poster",
+      kind: "Poster",
+      title: "川藏旅行海报",
+      desc: "自然有机风格的高原旅行主题视觉。",
+      style: "Nature Organic",
+      href: "example/nature-organic-chuanzang-travel-poster-2026.html",
+      thumb: "example/nature-organic-chuanzang-travel-poster-2026.png"
+    },
+    {
+      group: "poster",
+      kind: "Poster",
+      title: "披萨餐厅海报",
+      desc: "Fine Dining 餐饮质感与产品摄影结合。",
+      style: "Restaurant Fine Dining",
+      href: "example/restaurant-fine-dining-pizza-poster-2026.html",
+      thumb: "example/restaurant-fine-dining-pizza-poster-2026.png"
+    },
+    {
+      group: "web",
+      kind: "Website",
+      title: "精品酒店首页",
+      desc: "酒店预订首页，包含房型、场景图片和移动端首屏。",
+      style: "Travel Hospitality",
+      href: "example/travel-hospitality-hotel-homepage-2026.html",
+      thumb: "example/travel-hospitality-hotel-homepage-2026.png"
+    },
+    {
+      group: "web",
+      kind: "Website",
+      title: "独立设计师电商",
+      desc: "Fashion Editorial 购物页，含真实商品与 Lookbook 场景。",
+      style: "Fashion Editorial",
+      href: "example/fashion-editorial-independent-designer-commerce-2026.html",
+      thumb: "example/fashion-editorial-independent-designer-commerce-2026.png"
+    },
+    {
+      group: "web",
+      kind: "Website",
+      title: "开发者工具发布页",
+      desc: "Dark Developer 风格，面向 CLI 工具发布与文档入口。",
+      style: "Dark Developer",
+      href: "example/dark-developer-tool-launch-2026.html",
+      thumb: "example/dark-developer-tool-launch-2026.png"
+    },
+    {
+      group: "web",
+      kind: "Website",
+      title: "清洁公司官网",
+      desc: "医疗健康式清洁服务首页，突出可信任和服务流程。",
+      style: "Medical Healthcare",
+      href: "example/medical-healthcare-cleaning-company-homepage-2026.html",
+      thumb: "example/medical-healthcare-cleaning-company-homepage-2026.png"
+    },
+    {
+      group: "web",
+      kind: "Website",
+      title: "制造业控制面板",
+      desc: "SaaS Dashboard Light 风格的制造运营控制台。",
+      style: "SaaS Dashboard",
+      href: "example/saas-dashboard-light-manufacturing-control-panel-2026.html",
+      thumb: "example/saas-dashboard-light-manufacturing-control-panel-2026.png"
+    },
+    {
+      group: "web",
+      kind: "Website",
+      title: "摄影展网站",
+      desc: "Brutalist Web 风格摄影展页面，强调原始结构与作品张力。",
+      style: "Brutalist Web",
+      href: "example/brutalist-web-photographer-exhibition-2026.html",
+      thumb: "example/brutalist-web-photographer-exhibition-2026.png"
+    },
+    {
+      group: "product",
+      kind: "PPT",
+      title: "Codex 白皮书 PPT",
+      desc: "Academic 风格白皮书演示文稿，保留 PPTX 下载。",
+      style: "Academic",
+      href: "example/academic-codex-whitepaper-2026.pptx",
+      thumb: "example/academic-codex-whitepaper-2026.png"
+    },
+    {
+      group: "product",
+      kind: "App UI",
+      title: "健身 App 白板 UI",
+      desc: "Claymorphism 风格健身 App 界面与移动端截图。",
+      style: "Claymorphism",
+      href: "example/claymorphism-fitness-app-whiteboard-2026.html",
+      thumb: "example/claymorphism-fitness-app-whiteboard-2026.png"
+    }
+  ];
+
+  function renderCard(item) {
+    return `
+      <a class="showcase-card" data-kind="${item.kind}" href="${item.href}">
+        <div class="thumb">
+          <img src="${item.thumb}" alt="${item.title}截图" loading="lazy">
+          <span class="kind">${item.kind}</span>
         </div>
-      </div>
-    </a>
-  `).join("");
+        <div class="card-body">
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <div class="chips"><span class="chip">${item.style}</span></div>
+        </div>
+      </a>
+    `;
+  }
+
+  const groupGridSelectors = {
+    poster: "#poster-grid",
+    web: "#web-grid",
+    product: "#product-grid"
+  };
+
+  for (const [group, selector] of Object.entries(groupGridSelectors)) {
+    const grid = document.querySelector(selector);
+    if (!grid) continue;
+    grid.innerHTML = examples.filter(item => item.group === group).map(renderCard).join("");
+  }
 </script>
 </body>
 </html>

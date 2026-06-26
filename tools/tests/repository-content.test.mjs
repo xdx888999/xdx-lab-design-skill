@@ -1,17 +1,48 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawnSync } from 'node:child_process';
-import vm from 'node:vm';
 
 const repoRoot = fileURLToPath(new URL('../..', import.meta.url));
 const mastersDir = join(repoRoot, 'references', 'masters');
 const casesDir = join(repoRoot, 'docs', 'cases');
+const showcaseExampleDir = join(casesDir, 'example');
 const expectedMasterCount = 20;
-const expectedCaseCount = 8;
+const expectedShowcaseExampleCount = 14;
+const expectedShowcaseHtmlCount = 13;
+const expectedShowcasePptxCount = 1;
 const minimumMasterTypographyEntries = 4;
+const removedCaseFiles = [
+  'app-luxury.html',
+  'case-data.js',
+  'case.html',
+  'cases.css',
+  'poster-tang.html',
+  'ppt-artdeco.html',
+  'web-editorial.html',
+];
+const requiredShowcaseFiles = [
+  'song-kenya-hara-cultural-relics-poster-2026.html',
+  'swiss-vignelli-art-exhibition-poster-2026.html',
+  'luxury-premium-clothing-poster-2026.html',
+  'luxury-premium-pet-shop-poster-2026.html',
+  'nature-organic-chuanzang-travel-poster-2026.html',
+  'restaurant-fine-dining-pizza-poster-2026.html',
+  'travel-hospitality-hotel-homepage-2026.html',
+  'fashion-editorial-independent-designer-commerce-2026.html',
+  'dark-developer-tool-launch-2026.html',
+  'medical-healthcare-cleaning-company-homepage-2026.html',
+  'saas-dashboard-light-manufacturing-control-panel-2026.html',
+  'brutalist-web-photographer-exhibition-2026.html',
+  'academic-codex-whitepaper-2026.pptx',
+  'claymorphism-fitness-app-whiteboard-2026.html',
+];
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 
 test('全量 DESIGN lint 保持 0 warning', () => {
   const result = spawnSync(process.execPath, ['tools/lint.mjs'], {
@@ -74,62 +105,54 @@ test('20 个大师 DESIGN 文件都有完整 typography token', async () => {
   }
 });
 
-test('案例库保留 8 个高质量真实案例并清理旧 examples PPT', async () => {
+test('案例库使用 14 个真实示例并清理旧案例页', async () => {
   await assert.rejects(
     readdir(join(repoRoot, 'examples')),
     error => error && error.code === 'ENOENT',
   );
+  await assert.rejects(
+    readdir(join(repoRoot, 'example')),
+    error => error && error.code === 'ENOENT',
+  );
 
-  const pptxScan = spawnSync('find', ['.', '-path', './.git', '-prune', '-o', '-name', '*.pptx', '-print'], {
-    cwd: repoRoot,
-    encoding: 'utf8',
-  });
-  assert.equal(pptxScan.status, 0, pptxScan.stderr || pptxScan.stdout);
-  assert.equal(pptxScan.stdout.trim(), '');
-
-  const caseData = await readFile(join(casesDir, 'case-data.js'), 'utf8');
-  const sandbox = { window: {} };
-  vm.runInNewContext(caseData, sandbox);
-
-  const cases = sandbox.window.designCases;
-  assert.equal(Array.isArray(cases), true);
-  assert.equal(cases.length, expectedCaseCount);
-  assert.equal(new Set(cases.map(item => item.id)).size, expectedCaseCount);
-
-  for (const item of cases) {
-    assert.ok(item.title, `${item.id} 缺少标题`);
-    assert.ok(item.brief, `${item.id} 缺少真实业务简报`);
-    assert.ok(item.style, `${item.id} 缺少风格引用`);
-    assert.ok(item.master, `${item.id} 缺少大师方法引用`);
-    assert.ok(item.prompt, `${item.id} 缺少可复用 prompt`);
-    assert.ok(item.deliverables.length >= 4, `${item.id} 交付物不足`);
-    assert.ok(item.tokens.length >= 4, `${item.id} token 不足`);
-    assert.ok(item.quality.length >= 4, `${item.id} 质量标准不足`);
+  const caseEntries = await readdir(casesDir);
+  for (const file of removedCaseFiles) {
+    assert.equal(caseEntries.includes(file), false, `旧案例文件仍然存在：${file}`);
   }
+
+  const exampleEntries = await readdir(showcaseExampleDir);
+  const htmlFiles = exampleEntries.filter(file => file.endsWith('.html')).sort();
+  const pptxFiles = exampleEntries.filter(file => file.endsWith('.pptx')).sort();
+
+  assert.equal(htmlFiles.length, expectedShowcaseHtmlCount);
+  assert.equal(pptxFiles.length, expectedShowcasePptxCount);
+  assert.equal(htmlFiles.length + pptxFiles.length, expectedShowcaseExampleCount);
+
+  for (const file of requiredShowcaseFiles) {
+    assert.equal(exampleEntries.includes(file), true, `缺少真实示例文件：${file}`);
+  }
+
+  for (const file of requiredShowcaseFiles) {
+    const baseName = file.replace(/\.(html|pptx)$/, '');
+    assert.equal(exampleEntries.includes(`${baseName}.png`), true, `${file} 缺少封面截图`);
+  }
+
+  await access(join(repoRoot, 'docs', 'assets', 'example-showcase-overview.png'));
+
+  const caseIndex = await readFile(join(casesDir, 'index.html'), 'utf8');
+  for (const file of requiredShowcaseFiles) {
+    const baseName = file.replace(/\.(html|pptx)$/, '');
+    assert.match(caseIndex, new RegExp(`href:\\s*"example/${escapeRegExp(file)}"`));
+    assert.match(caseIndex, new RegExp(`thumb:\\s*"example/${escapeRegExp(baseName)}\\.png"`));
+  }
+  assert.doesNotMatch(caseIndex, /case\.html\?id=/);
+  assert.doesNotMatch(caseIndex, /case-data\.js/);
 });
 
 test('本地画廊案例总览链接显式指向 index.html', async () => {
   const indexHtml = await readFile(join(repoRoot, 'docs', 'index.html'), 'utf8');
 
-  assert.match(indexHtml, /href="cases\/index\.html">案例总览/);
-  assert.doesNotMatch(indexHtml, /href="cases\/">案例总览/);
-});
-
-test('每个真实案例详情页包含实际成品样张模板', async () => {
-  const caseHtml = await readFile(join(casesDir, 'case.html'), 'utf8');
-  const requiredArtifactSelectors = [
-    'poster-sheet',
-    'dash-kpis',
-    'report-page',
-    'booking-bar',
-    'phone-screen',
-    'pitch-slide',
-    'commerce-hero',
-    'terminal',
-  ];
-
-  assert.match(caseHtml, /id="artifact"/);
-  for (const selector of requiredArtifactSelectors) {
-    assert.match(caseHtml, new RegExp(selector), `缺少成品样张模板：${selector}`);
-  }
+  assert.match(indexHtml, /href="cases\/index\.html">作品集总览/);
+  assert.doesNotMatch(indexHtml, /href="cases\/"/);
+  assert.doesNotMatch(indexHtml, /case\.html\?id=/);
 });

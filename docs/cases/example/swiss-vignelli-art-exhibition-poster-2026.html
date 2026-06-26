@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>艺术展览海报 · 瑞士风格与马西莫·维涅利方法</title>
+  <style>
+    :root {
+      /* 色彩来自 Swiss International 与 Massimo Vignelli 规范，限制为黑白灰加一个红色信号。 */
+      --color-white: #FFFFFF;
+      --color-black: #000000;
+      --color-vignelli-black: #0A0A0A;
+      --color-swiss-red: #E3001B;
+      --color-mid-gray: #777777;
+      --color-light-gray: #CCCCCC;
+      --color-vignelli-rule: #CFCFCB;
+      --color-very-light: #F5F5F5;
+
+      /* 固定 4:5 海报画幅，导出 PNG 时保持 1080 × 1350。 */
+      --poster-width: 1080px;
+      --poster-height: 1350px;
+      --outer-margin: 72px;
+      --grid-column: 62px;
+      --grid-gutter: 22px;
+      --baseline: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px 0;
+      background: var(--color-very-light);
+      color: var(--color-vignelli-black);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .poster-shell {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+    }
+
+    .poster {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+      overflow: hidden;
+      background: var(--color-white);
+      transform-origin: top left;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    /* 网格作为版式依据轻微可见，体现瑞士国际主义的系统性。 */
+    .grid {
+      position: absolute;
+      inset: var(--outer-margin);
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter);
+      pointer-events: none;
+    }
+
+    .grid span {
+      border-left: 1px solid rgba(204, 204, 204, 0.38);
+    }
+
+    .top-rule {
+      position: absolute;
+      top: var(--outer-margin);
+      left: var(--outer-margin);
+      right: var(--outer-margin);
+      height: 2px;
+      background: var(--color-black);
+    }
+
+    .system-label {
+      position: absolute;
+      top: 98px;
+      left: var(--outer-margin);
+      width: 198px;
+      color: var(--color-mid-gray);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .issue-number {
+      position: absolute;
+      top: 96px;
+      left: 324px;
+      color: var(--color-swiss-red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .institution {
+      position: absolute;
+      top: 98px;
+      right: var(--outer-margin);
+      width: 232px;
+      color: var(--color-vignelli-black);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.02em;
+      text-align: left;
+    }
+
+    .red-block {
+      position: absolute;
+      top: 168px;
+      left: 576px;
+      width: 168px;
+      height: 520px;
+      background: var(--color-swiss-red);
+    }
+
+    .black-block {
+      position: absolute;
+      top: 448px;
+      left: 744px;
+      width: 264px;
+      height: 168px;
+      background: var(--color-black);
+    }
+
+    .title {
+      position: absolute;
+      top: 214px;
+      left: var(--outer-margin);
+      width: 664px;
+      margin: 0;
+      color: var(--color-black);
+      font-size: 128px;
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -3px;
+    }
+
+    .title .line {
+      display: block;
+    }
+
+    .title .indent {
+      padding-left: 168px;
+    }
+
+    .secondary-title {
+      position: absolute;
+      top: 630px;
+      left: var(--outer-margin);
+      width: 500px;
+      margin: 0;
+      color: var(--color-vignelli-black);
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.4px;
+    }
+
+    .description {
+      position: absolute;
+      top: 744px;
+      left: 324px;
+      width: 336px;
+      margin: 0;
+      color: var(--color-vignelli-black);
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.42;
+    }
+
+    .caption-block {
+      position: absolute;
+      top: 744px;
+      left: var(--outer-margin);
+      width: 198px;
+      color: var(--color-mid-gray);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.36;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .caption-block strong {
+      color: var(--color-black);
+      font-weight: 700;
+    }
+
+    .schedule {
+      position: absolute;
+      right: var(--outer-margin);
+      bottom: 198px;
+      width: 432px;
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      row-gap: 22px;
+      column-gap: 34px;
+      border-top: 2px solid var(--color-black);
+      padding-top: 24px;
+      color: var(--color-vignelli-black);
+    }
+
+    .schedule dt {
+      margin: 0;
+      color: var(--color-mid-gray);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .schedule dd {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.32;
+    }
+
+    .bottom-rule {
+      position: absolute;
+      left: var(--outer-margin);
+      right: var(--outer-margin);
+      bottom: var(--outer-margin);
+      height: 2px;
+      background: var(--color-black);
+    }
+
+    .footer-meta {
+      position: absolute;
+      left: var(--outer-margin);
+      bottom: 102px;
+      width: 420px;
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      column-gap: 34px;
+      color: var(--color-mid-gray);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .footer-meta strong {
+      color: var(--color-black);
+      font-weight: 700;
+    }
+
+    .vertical-index {
+      position: absolute;
+      right: 48px;
+      bottom: 418px;
+      color: var(--color-mid-gray);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-shell" id="posterShell">
+    <main class="poster" aria-label="艺术展览海报，瑞士风格与马西莫·维涅利方法组合">
+      <div class="grid" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+
+      <div class="top-rule" aria-hidden="true"></div>
+      <div class="system-label">艺术展览<br>版式系统<br>第 01 号</div>
+      <div class="issue-number">2026 / 04</div>
+      <div class="institution">现代艺术研究馆<br>海报与空间展览部</div>
+
+      <div class="red-block" aria-hidden="true"></div>
+      <div class="black-block" aria-hidden="true"></div>
+
+      <h1 class="title">
+        <span class="line">形式</span>
+        <span class="line indent">即</span>
+        <span class="line">秩序</span>
+      </h1>
+
+      <p class="secondary-title">现代艺术展览：网格、材料与视觉判断</p>
+
+      <div class="caption-block">
+        <strong>展览主题</strong><br>
+        版面结构、抽象绘画、公共信息与现代艺术中的系统语言。
+      </div>
+
+      <p class="description">
+        本展以绘画、海报、装置与文献为线索，观察现代艺术如何通过比例、重复、尺度和限制形成清晰的视觉秩序。
+      </p>
+
+      <dl class="schedule" aria-label="展览信息">
+        <dt>展期</dt>
+        <dd>2026.08.15 至 11.08</dd>
+        <dt>地点</dt>
+        <dd>二层主展厅<br>现代艺术研究馆</dd>
+        <dt>开放</dt>
+        <dd>10:00 至 18:00<br>周一闭馆</dd>
+      </dl>
+
+      <div class="footer-meta">
+        <span><strong>票务</strong></span>
+        <span>现场购票 / 预约入场 / 团体需提前登记</span>
+      </div>
+
+      <div class="vertical-index">十二列网格 / Helvetica / 红色信号</div>
+      <div class="bottom-rule" aria-hidden="true"></div>
+    </main>
+  </div>
+
+  <script>
+    const posterShell = document.getElementById("posterShell");
+    const posterCanvas = document.querySelector(".poster");
+    const basePosterWidth = 1080;
+    const basePosterHeight = 1350;
+    const viewportPadding = 32;
+
+    function resizePoster() {
+      try {
+        const availableWidth = Math.max(320, window.innerWidth - viewportPadding);
+        const scale = Math.min(1, availableWidth / basePosterWidth);
+        posterShell.style.width = `${basePosterWidth * scale}px`;
+        posterShell.style.height = `${basePosterHeight * scale}px`;
+        posterCanvas.style.transform = `scale(${scale})`;
+      } catch (error) {
+        /* 缩放失败时保留原始画布，避免脚本异常导致海报不可见。 */
+        console.warn("海报缩放失败，已保留原始画布。", error);
+      }
+    }
+
+    window.addEventListener("resize", resizePoster);
+    resizePoster();
+  </script>
+</body>
+</html>

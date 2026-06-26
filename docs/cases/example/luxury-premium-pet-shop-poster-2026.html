@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>宠物店海报 · 高端奢华风格</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* 色彩严格使用 07-luxury-premium-DESIGN.md 的高端色板。 */
+      --color-ivory: #FAFAF8;
+      --color-white: #FFFFFF;
+      --color-black: #111111;
+      --color-charcoal: #1A1A1A;
+      --color-body: #6B6B6B;
+      --color-muted: #ABABAB;
+      --color-border: #E8E8E4;
+      --color-gold: #C9A96E;
+      --color-antique-gold: #B8973A;
+      --color-warm-nude: #D4B896;
+      --color-platinum: #C8C8C8;
+
+      --poster-width: 1080px;
+      --poster-height: 1350px;
+      --left-panel: 610px;
+      --right-panel: 470px;
+      --edge: 64px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 28px 0;
+      background: var(--color-border);
+      color: var(--color-black);
+      font-family: Jost, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .poster-shell {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+    }
+
+    .poster {
+      position: relative;
+      width: var(--poster-width);
+      height: var(--poster-height);
+      overflow: hidden;
+      background: var(--color-ivory);
+      transform-origin: top left;
+      isolation: isolate;
+    }
+
+    .image-panel {
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--left-panel);
+      margin: 0;
+      overflow: hidden;
+      background: var(--color-white);
+    }
+
+    .image-panel img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 51% 40%;
+      filter: saturate(0.72) contrast(1.06) brightness(1.04);
+      transform: scale(1.03);
+    }
+
+    .image-panel::after {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0%, transparent 72%, rgba(250, 250, 248, 0.2) 100%),
+        linear-gradient(180deg, rgba(17, 17, 17, 0.08), transparent 26%, rgba(17, 17, 17, 0.12));
+      content: "";
+      pointer-events: none;
+    }
+
+    .content-panel {
+      position: absolute;
+      inset: 0 0 0 auto;
+      width: var(--right-panel);
+      padding: 70px 64px 62px 62px;
+      display: flex;
+      flex-direction: column;
+      background: var(--color-ivory);
+    }
+
+    .content-panel::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background: var(--color-border);
+      content: "";
+    }
+
+    .brand-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      color: var(--color-muted);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .brand-row span:last-child {
+      text-align: right;
+    }
+
+    .gold-rule {
+      width: 58px;
+      height: 1px;
+      margin: 74px 0 0;
+      background: var(--color-gold);
+    }
+
+    .poster-title {
+      margin: 118px 0 0;
+      color: var(--color-black);
+      font-family: "Noto Serif SC", "Songti SC", serif;
+      font-size: 62px;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .english-title {
+      display: block;
+      margin: 28px 0 0;
+      color: var(--color-charcoal);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 58px;
+      font-weight: 300;
+      line-height: 0.94;
+      letter-spacing: -1.5px;
+    }
+
+    .description {
+      width: 288px;
+      margin: 46px 0 0;
+      color: var(--color-body);
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.5px;
+    }
+
+    .service-list {
+      margin: auto 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .service-list li {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 24px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-black);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.55;
+      letter-spacing: 0.5px;
+    }
+
+    .service-list span:first-child {
+      color: var(--color-gold);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .cta-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      padding: 14px 40px;
+      border: 0;
+      border-radius: 0;
+      background: var(--color-black);
+      color: var(--color-ivory);
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 3px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .address {
+      color: var(--color-body);
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.7;
+      letter-spacing: 0.8px;
+    }
+
+    .vertical-caption {
+      position: absolute;
+      left: 34px;
+      bottom: 54px;
+      z-index: 3;
+      color: rgba(250, 250, 248, 0.86);
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+    }
+
+    .credit {
+      position: absolute;
+      left: 28px;
+      bottom: 22px;
+      z-index: 3;
+      color: rgba(250, 250, 248, 0.56);
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.8px;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 18px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poster-shell" id="posterShell">
+    <main class="poster" aria-label="高端宠物生活馆海报">
+      <figure class="image-panel" aria-label="宠物主视觉">
+        <img src="assets/y2k-carson-pet-cat-blue-eyes.jpg" alt="蓝眼睛虎斑猫近景肖像">
+      </figure>
+
+      <section class="content-panel" aria-label="宠物店信息">
+        <div class="brand-row" aria-hidden="true">
+          <span>maison pet</span>
+          <span>care<br>goods<br>grooming</span>
+        </div>
+        <div class="gold-rule" aria-hidden="true"></div>
+
+        <h1 class="poster-title">
+          宠物生活馆
+          <span class="english-title">Quiet<br>Care</span>
+        </h1>
+
+        <p class="description">为猫与犬准备的高端洗护、营养用品和日常陪伴服务。让每一次到店都安静、干净、被认真对待。</p>
+
+        <ul class="service-list" aria-label="核心服务">
+          <li><span>01</span><span>预约制洗护与毛发护理</span></li>
+          <li><span>02</span><span>精品主粮、零食与营养顾问</span></li>
+          <li><span>03</span><span>进口用品与生活方式选品</span></li>
+        </ul>
+
+        <div class="cta-row">
+          <a class="primary-button" href="#" aria-label="预约到店">reserve visit</a>
+          <div class="address">幸福路 26 号 · 每日 10:00 - 21:30<br>预约优先 · 可带宠进店</div>
+        </div>
+      </section>
+
+      <div class="vertical-caption" aria-hidden="true">premium pet boutique</div>
+      <span class="credit">Photo: AdinaVoicu / Wikimedia Commons CC0</span>
+    </main>
+  </div>
+
+  <script>
+    const posterShell = document.getElementById("posterShell");
+    const posterCanvas = document.querySelector(".poster");
+    const basePosterWidth = 1080;
+    const basePosterHeight = 1350;
+    const viewportPadding = 32;
+
+    function resizePoster() {
+      try {
+        const availableWidth = Math.max(320, window.innerWidth - viewportPadding);
+        const scale = Math.min(1, availableWidth / basePosterWidth);
+        posterShell.style.width = `${basePosterWidth * scale}px`;
+        posterShell.style.height = `${basePosterHeight * scale}px`;
+        posterCanvas.style.transform = `scale(${scale})`;
+      } catch (error) {
+        /* 缩放失败时保留原始画布，避免脚本异常导致海报不可见。 */
+        console.warn("海报缩放失败，已保留原始画布。", error);
+      }
+    }
+
+    window.addEventListener("resize", resizePoster);
+    resizePoster();
+  </script>
+</body>
+</html>

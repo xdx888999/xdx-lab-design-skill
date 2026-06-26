@@ -1,0 +1,1757 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>澜屿酒店｜海岸度假酒店首页</title>
+  <meta name="description" content="澜屿酒店单页官网示例，包含客房预订、餐饮、在地体验、住客评价与交通信息。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-warm-white: #fafaf8;
+      --color-sand: #f5efe6;
+      --color-coral: #e8724a;
+      --color-coral-dark: #c85a35;
+      --color-coral-tint: #fef0eb;
+      --color-ocean: #0891b2;
+      --color-ocean-light: #e0f7f7;
+      --color-gold: #f5a623;
+      --color-text-primary: #1a1614;
+      --color-text-body: #374151;
+      --color-text-muted: #6b7280;
+      --color-border: #e5e0d8;
+      --color-white: #ffffff;
+      --layout-max-width: 1280px;
+      --header-height: 76px;
+      --radius-small: 8px;
+      --radius-panel: 12px;
+      --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.12);
+      --shadow-card: 0 18px 48px rgba(26, 22, 20, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--color-warm-white);
+      color: var(--color-text-primary);
+      font-family: "DM Sans", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+
+    body::selection {
+      background: var(--color-coral);
+      color: var(--color-white);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    .page-shell {
+      overflow-x: hidden;
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      width: 100%;
+      background: rgba(250, 250, 248, 0.9);
+      border-bottom: 1px solid rgba(229, 224, 216, 0.75);
+      backdrop-filter: blur(18px);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: var(--layout-max-width);
+      height: var(--header-height);
+      margin: 0 auto;
+      padding: 0 32px;
+      gap: 28px;
+    }
+
+    .brand {
+      display: grid;
+      gap: 2px;
+      min-width: 146px;
+    }
+
+    .brand__name {
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.05;
+    }
+
+    .brand__meta {
+      color: var(--color-text-muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      color: var(--color-text-body);
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .main-nav a {
+      padding: 10px 0;
+      border-bottom: 2px solid transparent;
+      transition: color 180ms ease, border-color 180ms ease;
+    }
+
+    .main-nav a:hover {
+      color: var(--color-coral-dark);
+      border-color: var(--color-coral);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;
+    }
+
+    .header-phone {
+      color: var(--color-text-muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: var(--radius-small);
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button--primary {
+      background: var(--color-coral);
+      color: var(--color-white);
+    }
+
+    .button--primary:hover {
+      background: var(--color-coral-dark);
+    }
+
+    .button--secondary {
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--color-white);
+      backdrop-filter: blur(10px);
+    }
+
+    .button--secondary:hover {
+      border-color: var(--color-white);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      align-items: end;
+      min-height: calc(100svh - 44px);
+      padding: calc(var(--header-height) + 88px) 32px 92px;
+      color: var(--color-white);
+      isolation: isolate;
+    }
+
+    .hero::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background-image: url("assets/hotel-resort-pool-jonathan-ikemura.jpg");
+      background-position: center 42%;
+      background-size: cover;
+      content: "";
+    }
+
+    .hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(26, 22, 20, 0.58) 0%, rgba(26, 22, 20, 0.38) 48%, rgba(26, 22, 20, 0.12) 100%),
+        linear-gradient(0deg, rgba(26, 22, 20, 0.44) 0%, rgba(26, 22, 20, 0.08) 52%);
+      content: "";
+    }
+
+    .hero__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      max-width: var(--layout-max-width);
+      width: 100%;
+      margin: 0 auto;
+      gap: 38px;
+    }
+
+    .hero__content {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 18px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      width: 34px;
+      height: 2px;
+      background: var(--color-coral);
+      content: "";
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    .hero h1 {
+      max-width: 720px;
+      margin-bottom: 22px;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 68px;
+      font-weight: 700;
+      line-height: 1.05;
+    }
+
+    .hero__lead {
+      max-width: 640px;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 20px;
+      line-height: 1.75;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 34px;
+    }
+
+    .trust-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .trust-strip__item {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: var(--radius-small);
+      background: rgba(255, 255, 255, 0.12);
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+    }
+
+    .trust-strip__star {
+      color: var(--color-gold);
+      margin-right: 6px;
+    }
+
+    .booking-panel {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr 1fr 0.9fr auto;
+      align-items: end;
+      gap: 14px;
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: var(--radius-panel);
+      background: var(--color-white);
+      color: var(--color-text-primary);
+      box-shadow: var(--shadow-panel);
+    }
+
+    .booking-field {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .booking-field label {
+      color: var(--color-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .booking-field input,
+    .booking-field select {
+      width: 100%;
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-warm-white);
+      color: var(--color-text-primary);
+      outline: none;
+    }
+
+    .booking-field input:focus,
+    .booking-field select:focus {
+      border-color: var(--color-ocean);
+      box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.15);
+    }
+
+    .booking-status {
+      grid-column: 1 / -1;
+      min-height: 22px;
+      margin: -4px 0 0;
+      color: var(--color-text-body);
+      font-size: 14px;
+    }
+
+    .section {
+      padding: 86px 32px;
+    }
+
+    .section--sand {
+      background: var(--color-sand);
+    }
+
+    .section--white {
+      background: var(--color-white);
+    }
+
+    .section--ocean {
+      background: var(--color-ocean-light);
+    }
+
+    .section__inner {
+      max-width: var(--layout-max-width);
+      margin: 0 auto;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(280px, 0.55fr);
+      align-items: end;
+      gap: 42px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      margin-bottom: 12px;
+      color: var(--color-coral-dark);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section-title {
+      margin-bottom: 0;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 46px;
+      line-height: 1.16;
+    }
+
+    .section-copy {
+      margin-bottom: 0;
+      color: var(--color-text-body);
+      font-size: 17px;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.62fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .intro-copy {
+      display: grid;
+      align-content: center;
+      gap: 24px;
+      padding-right: 22px;
+    }
+
+    .intro-copy h2 {
+      margin-bottom: 0;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 46px;
+      line-height: 1.16;
+    }
+
+    .intro-copy p {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: var(--color-text-body);
+      font-size: 18px;
+    }
+
+    .intro-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .fact-card {
+      padding: 24px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+      box-shadow: 0 10px 28px rgba(26, 22, 20, 0.05);
+    }
+
+    .fact-card strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--color-ocean);
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .fact-card span {
+      color: var(--color-text-muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .room-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .room-card {
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+      box-shadow: var(--shadow-card);
+    }
+
+    .room-card__media {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--color-sand);
+    }
+
+    .room-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 320ms ease;
+    }
+
+    .room-card:hover .room-card__media img {
+      transform: scale(1.04);
+    }
+
+    .room-pill {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--color-coral-tint);
+      color: var(--color-coral-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .room-pill--teal {
+      background: var(--color-ocean-light);
+      color: var(--color-ocean);
+    }
+
+    .room-card__body {
+      padding: 22px;
+    }
+
+    .room-card__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+
+    .room-card h3 {
+      margin-bottom: 0;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 24px;
+      line-height: 1.22;
+    }
+
+    .rating {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--color-text-primary);
+      font-size: 14px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .rating span {
+      color: var(--color-gold);
+    }
+
+    .room-card p {
+      margin-bottom: 18px;
+      color: var(--color-text-body);
+      font-size: 15px;
+    }
+
+    .room-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .room-features li {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: var(--color-sand);
+      color: var(--color-text-body);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .room-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .price {
+      display: grid;
+      color: var(--color-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .price strong {
+      color: var(--color-text-primary);
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .text-link {
+      color: var(--color-coral-dark);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .experience-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(340px, 0.58fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .feature-card {
+      padding: 26px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+    }
+
+    .feature-card__marker {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: var(--color-coral);
+      box-shadow: 0 0 0 8px var(--color-coral-tint);
+    }
+
+    .feature-card:nth-child(2) .feature-card__marker,
+    .feature-card:nth-child(4) .feature-card__marker {
+      background: var(--color-ocean);
+      box-shadow: 0 0 0 8px var(--color-ocean-light);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .feature-card p {
+      margin-bottom: 0;
+      color: var(--color-text-body);
+      font-size: 15px;
+    }
+
+    .image-panel {
+      position: relative;
+      min-height: 520px;
+      overflow: hidden;
+      border-radius: var(--radius-small);
+      background: var(--color-sand);
+    }
+
+    .image-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .image-panel__caption {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      left: 20px;
+      padding: 18px;
+      border-radius: var(--radius-small);
+      background: rgba(255, 255, 255, 0.88);
+      color: var(--color-text-primary);
+      backdrop-filter: blur(14px);
+    }
+
+    .image-panel__caption strong {
+      display: block;
+      margin-bottom: 4px;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .image-panel__caption span {
+      color: var(--color-text-body);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .dining-band {
+      display: grid;
+      grid-template-columns: minmax(0, 0.56fr) minmax(0, 0.44fr);
+      min-height: 620px;
+      background: var(--color-text-primary);
+      color: var(--color-white);
+    }
+
+    .dining-band__media {
+      min-height: 420px;
+      overflow: hidden;
+    }
+
+    .dining-band__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dining-band__content {
+      display: grid;
+      align-content: center;
+      padding: 76px 56px;
+    }
+
+    .dining-band h2 {
+      margin-bottom: 18px;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 46px;
+      line-height: 1.15;
+    }
+
+    .dining-band p {
+      margin-bottom: 28px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 17px;
+    }
+
+    .menu-list {
+      display: grid;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .menu-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .menu-list strong {
+      font-size: 16px;
+    }
+
+    .menu-list span {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 14px;
+      text-align: right;
+    }
+
+    .package-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .package-card {
+      padding: 28px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+    }
+
+    .package-card__tag {
+      display: inline-flex;
+      margin-bottom: 18px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--color-coral-tint);
+      color: var(--color-coral-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .package-card h3 {
+      margin-bottom: 12px;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 25px;
+      line-height: 1.24;
+    }
+
+    .package-card p {
+      margin-bottom: 20px;
+      color: var(--color-text-body);
+      font-size: 15px;
+    }
+
+    .package-card ul {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      color: var(--color-text-body);
+      font-size: 14px;
+      list-style: none;
+    }
+
+    .package-card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .package-card li::before {
+      position: absolute;
+      top: 0.7em;
+      left: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-ocean);
+      content: "";
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      padding: 28px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+    }
+
+    .review-card__stars {
+      margin-bottom: 16px;
+      color: var(--color-gold);
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .review-card blockquote {
+      margin: 0 0 22px;
+      color: var(--color-text-primary);
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    .review-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--color-text-muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .verified-badge {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--color-ocean-light);
+      color: var(--color-ocean);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .location-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.58fr) minmax(0, 0.42fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .location-map {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background:
+        linear-gradient(90deg, rgba(8, 145, 178, 0.08) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(8, 145, 178, 0.08) 1px, transparent 1px),
+        var(--color-sand);
+      background-size: 44px 44px;
+    }
+
+    .map-line {
+      position: absolute;
+      left: 9%;
+      top: 53%;
+      width: 82%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(8, 145, 178, 0.18);
+      transform: rotate(-8deg);
+    }
+
+    .map-marker {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 112px;
+      min-height: 70px;
+      padding: 12px;
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+      color: var(--color-text-primary);
+      box-shadow: var(--shadow-card);
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .map-marker::before {
+      width: 12px;
+      height: 12px;
+      margin-bottom: 6px;
+      border-radius: 50%;
+      background: var(--color-coral);
+      content: "";
+    }
+
+    .map-marker--hotel {
+      left: 44%;
+      top: 40%;
+      background: var(--color-coral);
+      color: var(--color-white);
+    }
+
+    .map-marker--hotel::before {
+      background: var(--color-white);
+    }
+
+    .map-marker--beach {
+      left: 13%;
+      top: 23%;
+    }
+
+    .map-marker--town {
+      right: 12%;
+      top: 24%;
+    }
+
+    .map-marker--station {
+      right: 16%;
+      bottom: 16%;
+    }
+
+    .location-details {
+      display: grid;
+      align-content: center;
+      gap: 22px;
+    }
+
+    .location-details h2 {
+      margin-bottom: 0;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 44px;
+      line-height: 1.18;
+    }
+
+    .location-details p {
+      margin-bottom: 0;
+      color: var(--color-text-body);
+      font-size: 17px;
+    }
+
+    .distance-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .distance-list li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text-body);
+      font-weight: 700;
+    }
+
+    .distance-list strong {
+      color: var(--color-text-primary);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .faq-item {
+      padding: 24px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: var(--color-white);
+    }
+
+    .faq-item h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+      line-height: 1.35;
+    }
+
+    .faq-item p {
+      margin-bottom: 0;
+      color: var(--color-text-body);
+      font-size: 15px;
+    }
+
+    .cta-band {
+      padding: 88px 32px;
+      background: var(--color-text-primary);
+      color: var(--color-white);
+    }
+
+    .cta-band__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) auto;
+      align-items: center;
+      gap: 32px;
+      max-width: var(--layout-max-width);
+      margin: 0 auto;
+    }
+
+    .cta-band h2 {
+      margin-bottom: 12px;
+      font-family: "Lora", "Songti SC", serif;
+      font-size: 46px;
+      line-height: 1.16;
+    }
+
+    .cta-band p {
+      max-width: 720px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 17px;
+    }
+
+    .site-footer {
+      padding: 34px 32px;
+      background: var(--color-warm-white);
+      color: var(--color-text-muted);
+      font-size: 13px;
+    }
+
+    .site-footer__inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      max-width: var(--layout-max-width);
+      margin: 0 auto;
+      gap: 24px;
+    }
+
+    .site-footer a {
+      color: var(--color-text-body);
+      font-weight: 700;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .mobile-booking-bar {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      left: 14px;
+      z-index: 30;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-small);
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow-panel);
+      backdrop-filter: blur(16px);
+    }
+
+    .mobile-booking-bar span {
+      display: grid;
+      color: var(--color-text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .mobile-booking-bar strong {
+      color: var(--color-text-primary);
+      font-size: 14px;
+    }
+
+    .mobile-booking-bar .button {
+      min-height: 42px;
+      padding: 0 16px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1120px) {
+      .site-header__inner {
+        padding: 0 24px;
+      }
+
+      .main-nav {
+        gap: 18px;
+      }
+
+      .header-phone {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 56px;
+      }
+
+      .booking-panel {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .booking-panel .button {
+        grid-column: 1 / -1;
+      }
+
+      .room-grid,
+      .package-grid,
+      .review-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .dining-band {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      :root {
+        --header-height: 66px;
+      }
+
+      .site-header__inner {
+        padding: 0 18px;
+      }
+
+      .brand__name {
+        font-size: 19px;
+      }
+
+      .brand__meta,
+      .main-nav {
+        display: none;
+      }
+
+      .header-actions .button {
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: calc(var(--header-height) + 56px) 18px 44px;
+      }
+
+      .hero::before {
+        background-position: 53% 48%;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(0deg, rgba(26, 22, 20, 0.6) 0%, rgba(26, 22, 20, 0.18) 65%),
+          linear-gradient(90deg, rgba(26, 22, 20, 0.58) 0%, rgba(26, 22, 20, 0.22) 100%);
+      }
+
+      .hero h1 {
+        font-size: 42px;
+        line-height: 1.1;
+      }
+
+      .hero__lead {
+        font-size: 17px;
+      }
+
+      .booking-panel,
+      .section-heading,
+      .intro-grid,
+      .experience-layout,
+      .location-layout,
+      .cta-band__inner {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-panel {
+        padding: 14px;
+      }
+
+      .section {
+        padding: 64px 18px;
+      }
+
+      .section-title,
+      .intro-copy h2,
+      .dining-band h2,
+      .location-details h2,
+      .cta-band h2 {
+        font-size: 34px;
+      }
+
+      .intro-copy {
+        padding-right: 0;
+      }
+
+      .room-grid,
+      .feature-list,
+      .package-grid,
+      .review-grid,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-panel {
+        min-height: 420px;
+      }
+
+      .dining-band__content {
+        padding: 56px 24px;
+      }
+
+      .location-map {
+        min-height: 390px;
+      }
+
+      .map-marker {
+        width: 92px;
+        min-height: 62px;
+        padding: 10px;
+        font-size: 12px;
+      }
+
+      .cta-band {
+        padding: 66px 18px 96px;
+      }
+
+      .site-footer {
+        padding: 28px 18px 92px;
+      }
+
+      .site-footer__inner {
+        display: grid;
+      }
+
+      .mobile-booking-bar {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero__actions,
+      .trust-strip {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .hero__actions .button,
+      .trust-strip__item {
+        width: 100%;
+      }
+
+      .intro-facts {
+        grid-template-columns: 1fr;
+      }
+
+      .room-card__top,
+      .room-card__footer,
+      .review-author,
+      .distance-list li {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .menu-list li {
+        display: grid;
+      }
+
+      .menu-list span {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header" aria-label="主导航">
+      <div class="site-header__inner">
+        <a class="brand" href="#top" aria-label="返回澜屿酒店首页">
+          <span class="brand__name">澜屿酒店</span>
+          <span class="brand__meta">海岸慢住目的地</span>
+        </a>
+        <nav class="main-nav" aria-label="页面导航">
+          <a href="#rooms">客房</a>
+          <a href="#experiences">体验</a>
+          <a href="#dining">餐饮</a>
+          <a href="#reviews">评价</a>
+          <a href="#location">位置</a>
+        </nav>
+        <div class="header-actions">
+          <span class="header-phone">预订热线 400 812 6608</span>
+          <a class="button button--primary" href="#booking">立即预订</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-label="澜屿酒店首屏">
+        <div class="hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow">海岸线上的精品度假酒店</p>
+            <h1>在海风和日落之间醒来</h1>
+            <p class="hero__lead">澜屿酒店坐落于南湾缓坡，面向开放海面与花园泳池。我们把客房、早餐、在地路线和安静服务整合成适合短假、纪念日与家庭出行的一站式海岸假期。</p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#booking">查询可订房型</a>
+              <a class="button button--secondary" href="#experiences">查看体验</a>
+            </div>
+            <div class="trust-strip" aria-label="酒店亮点">
+              <span class="trust-strip__item"><span class="trust-strip__star">★</span>4.9 住客评分</span>
+              <span class="trust-strip__item">2,847 位真实住客</span>
+              <span class="trust-strip__item">步行 3 分钟到海岸步道</span>
+            </div>
+          </div>
+
+          <form class="booking-panel" id="booking" data-booking-form>
+            <div class="booking-field">
+              <label for="destination">目的地</label>
+              <input id="destination" name="destination" value="南湾海岸" autocomplete="address-level2" required>
+            </div>
+            <div class="booking-field">
+              <label for="checkin">入住日期</label>
+              <input id="checkin" name="checkin" type="date" required>
+            </div>
+            <div class="booking-field">
+              <label for="checkout">退房日期</label>
+              <input id="checkout" name="checkout" type="date" required>
+            </div>
+            <div class="booking-field">
+              <label for="guests">住客</label>
+              <select id="guests" name="guests" required>
+                <option value="2">2 位住客</option>
+                <option value="1">1 位住客</option>
+                <option value="3">3 位住客</option>
+                <option value="4">4 位住客</option>
+              </select>
+            </div>
+            <button class="button button--primary" type="submit">搜索房型</button>
+            <p class="booking-status" data-booking-status aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section section--white" aria-labelledby="intro-title">
+        <div class="section__inner intro-grid">
+          <div class="intro-copy">
+            <p class="section-kicker">为什么选择澜屿</p>
+            <h2 id="intro-title">不是打卡式旅行，而是一段被照顾好的停留。</h2>
+            <p>酒店将 86 间客房围绕海风、庭院和泳池展开，所有公共空间都保留自然采光。前台不只办理入住，也会根据潮汐、天气和同行成员，为你安排早餐时段、海岸路线、餐厅座位与回程用车。</p>
+          </div>
+          <div class="intro-facts" aria-label="酒店数据">
+            <div class="fact-card">
+              <strong>86</strong>
+              <span>间海景与花园客房</span>
+            </div>
+            <div class="fact-card">
+              <strong>24h</strong>
+              <span>礼宾与行李服务</span>
+            </div>
+            <div class="fact-card">
+              <strong>3min</strong>
+              <span>步行抵达海岸步道</span>
+            </div>
+            <div class="fact-card">
+              <strong>4.9</strong>
+              <span>近一年平均评分</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--sand" id="rooms" aria-labelledby="rooms-title">
+        <div class="section__inner">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">精选房型</p>
+              <h2 class="section-title" id="rooms-title">把清晨、海面和庭院都留给房间。</h2>
+            </div>
+            <p class="section-copy">房型按动线、采光和旅行动机设计。无论是两人短假、带孩子入住，还是一个人需要安静工作，都能快速找到合适选择。</p>
+          </div>
+
+          <div class="room-grid">
+            <article class="room-card">
+              <div class="room-card__media">
+                <img src="assets/hotel-suite-antonio-araujo.jpg" alt="带有自然采光和客厅区域的海景套房" loading="eager">
+                <span class="room-pill">最受欢迎</span>
+              </div>
+              <div class="room-card__body">
+                <div class="room-card__top">
+                  <h3>海景露台大床房</h3>
+                  <span class="rating"><span>★</span>4.9</span>
+                </div>
+                <p>面向泳池与海岸线，配备独立露台、深泡浴缸和早餐送房服务，适合纪念日和周末短住。</p>
+                <ul class="room-features">
+                  <li>48 平方米</li>
+                  <li>独立露台</li>
+                  <li>双人早餐</li>
+                </ul>
+                <div class="room-card__footer">
+                  <span class="price">每晚起 <strong>¥1,280</strong></span>
+                  <a class="text-link" href="#booking">选择日期</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="room-card">
+              <div class="room-card__media">
+                <img src="assets/hotel-lobby-brian-kairuz.jpg" alt="采光充足并带有自然植物的酒店公共空间" loading="eager">
+                <span class="room-pill room-pill--teal">家庭友好</span>
+              </div>
+              <div class="room-card__body">
+                <div class="room-card__top">
+                  <h3>花园亲子套房</h3>
+                  <span class="rating"><span>★</span>4.8</span>
+                </div>
+                <p>一室一厅布局，靠近花园与儿童浅水池。房内提供儿童洗护、睡前牛奶和可加床方案。</p>
+                <ul class="room-features">
+                  <li>62 平方米</li>
+                  <li>亲子备品</li>
+                  <li>可加床</li>
+                </ul>
+                <div class="room-card__footer">
+                  <span class="price">每晚起 <strong>¥1,560</strong></span>
+                  <a class="text-link" href="#booking">选择日期</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="room-card">
+              <div class="room-card__media">
+                <img src="assets/hotel-resort-pool-jonathan-ikemura.jpg" alt="阳光下带泳池和躺椅的度假酒店区域" loading="eager">
+                <span class="room-pill">长住礼遇</span>
+              </div>
+              <div class="room-card__body">
+                <div class="room-card__top">
+                  <h3>静谧庭院双床房</h3>
+                  <span class="rating"><span>★</span>4.7</span>
+                </div>
+                <p>靠近内庭院，适合朋友同行和商务短住。书桌、遮光帘与高速无线网络让工作和休息互不打扰。</p>
+                <ul class="room-features">
+                  <li>42 平方米</li>
+                  <li>双床布局</li>
+                  <li>安静楼层</li>
+                </ul>
+                <div class="room-card__footer">
+                  <span class="price">每晚起 <strong>¥980</strong></span>
+                  <a class="text-link" href="#booking">选择日期</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white" id="experiences" aria-labelledby="experiences-title">
+        <div class="section__inner">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">住店体验</p>
+              <h2 class="section-title" id="experiences-title">把假期安排得轻一点，把细节交给酒店。</h2>
+            </div>
+            <p class="section-copy">从抵达前一天开始，礼宾团队会确认天气、偏好和同行成员。你可以只提出想要的节奏，我们负责把路线、餐位和服务串起来。</p>
+          </div>
+
+          <div class="experience-layout">
+            <div class="feature-list">
+              <article class="feature-card">
+                <span class="feature-card__marker" aria-hidden="true"></span>
+                <h3>日落泳池</h3>
+                <p>无边泳池面向西侧海面，下午四点后光线最柔和。住客可提前预约池畔躺椅与气泡水。</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-card__marker" aria-hidden="true"></span>
+                <h3>海岸早餐</h3>
+                <p>早餐提供本地果蔬、现烤面包、手冲咖啡和热食档口，也支持安静送房。</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-card__marker" aria-hidden="true"></span>
+                <h3>芳疗与瑜伽</h3>
+                <p>使用柑橘、海盐和草本香调，提供 45 分钟舒缓护理与清晨露台瑜伽。</p>
+              </article>
+              <article class="feature-card">
+                <span class="feature-card__marker" aria-hidden="true"></span>
+                <h3>在地路线管家</h3>
+                <p>可安排灯塔徒步、海鲜市集、陶艺工坊和老街咖啡路线，避开拥挤时段。</p>
+              </article>
+            </div>
+
+            <figure class="image-panel">
+              <img src="assets/hotel-lobby-brian-kairuz.jpg" alt="带有绿植和自然采光的酒店大厅休息区" loading="eager">
+              <figcaption class="image-panel__caption">
+                <strong>抵达即进入度假状态</strong>
+                <span>欢迎饮品、行李寄存、提前入住提醒和本地路线建议都在同一个流程里完成。</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="dining-band" id="dining" aria-labelledby="dining-title">
+        <div class="dining-band__media">
+          <img src="assets/hotel-breakfast-cory-bjork.jpg" alt="酒店早餐桌上的咖啡、面包和热食" loading="eager">
+        </div>
+        <div class="dining-band__content">
+          <p class="section-kicker">餐饮</p>
+          <h2 id="dining-title">从早餐开始，把一天的节奏放慢。</h2>
+          <p>澜屿厨房把海岸食材做得清爽直接。早餐不追求复杂摆盘，而是稳定、热乎、选择足够多。晚餐则保留少量餐位，给想在酒店内完成完整夜晚的住客。</p>
+          <ul class="menu-list" aria-label="餐饮亮点">
+            <li>
+              <strong>海岸早餐</strong>
+              <span>07:00 至 11:00，支持送房</span>
+            </li>
+            <li>
+              <strong>日落轻食</strong>
+              <span>露台沙拉、烤海鱼、低酒精饮品</span>
+            </li>
+            <li>
+              <strong>纪念日晚餐</strong>
+              <span>需提前 24 小时预约靠窗座位</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section section--sand" aria-labelledby="packages-title">
+        <div class="section__inner">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">度假套餐</p>
+              <h2 class="section-title" id="packages-title">为不同出行理由准备的入住方案。</h2>
+            </div>
+            <p class="section-copy">套餐不是简单捆绑，而是把最容易遗漏的细节提前安排好，减少抵达后反复沟通。</p>
+          </div>
+
+          <div class="package-grid">
+            <article class="package-card">
+              <span class="package-card__tag">两晚慢住</span>
+              <h3>海风周末礼遇</h3>
+              <p>适合周五抵达、周日离店的短假，保留足够空白时间给泳池和海岸散步。</p>
+              <ul>
+                <li>双人早餐与欢迎饮品</li>
+                <li>延迟退房至 14:00</li>
+                <li>一次海岸路线规划</li>
+              </ul>
+            </article>
+            <article class="package-card">
+              <span class="package-card__tag">家庭出行</span>
+              <h3>亲子花园假期</h3>
+              <p>减少带娃旅行里的重复沟通，提前准备床围、儿童洗护和浅水池预约。</p>
+              <ul>
+                <li>儿童备品与睡前牛奶</li>
+                <li>花园房型优先安排</li>
+                <li>亲子手作活动名额</li>
+              </ul>
+            </article>
+            <article class="package-card">
+              <span class="package-card__tag">纪念日</span>
+              <h3>日落庆祝套装</h3>
+              <p>为生日、周年和求婚前后的小型庆祝准备，克制但有仪式感。</p>
+              <ul>
+                <li>露台布置与甜品</li>
+                <li>靠窗晚餐座位</li>
+                <li>次日早餐送房</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white" id="reviews" aria-labelledby="reviews-title">
+        <div class="section__inner">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">住客评价</p>
+              <h2 class="section-title" id="reviews-title">真正让人记住的，通常是服务细节。</h2>
+            </div>
+            <p class="section-copy">近一年，澜屿酒店在清洁、早餐、礼宾响应和睡眠舒适度上保持稳定高分。</p>
+          </div>
+
+          <div class="review-grid">
+            <article class="review-card">
+              <div class="review-card__stars" aria-label="五星评价">★★★★★</div>
+              <blockquote>“前台提前帮我们避开了涨潮时间，傍晚走到灯塔刚好赶上日落，整个周末都很顺。”</blockquote>
+              <div class="review-author">
+                <span>陈女士，上海</span>
+                <span class="verified-badge">已验证入住</span>
+              </div>
+            </article>
+            <article class="review-card">
+              <div class="review-card__stars" aria-label="五星评价">★★★★★</div>
+              <blockquote>“房间没有多余装饰，但床品、遮光和洗浴都很稳。早餐送到房间时还是热的。”</blockquote>
+              <div class="review-author">
+                <span>林先生，杭州</span>
+                <span class="verified-badge">已验证入住</span>
+              </div>
+            </article>
+            <article class="review-card">
+              <div class="review-card__stars" aria-label="五星评价">★★★★★</div>
+              <blockquote>“带孩子住两晚没有手忙脚乱，酒店提前准备了床围和儿童拖鞋，浅水池也很干净。”</blockquote>
+              <div class="review-author">
+                <span>王女士，南京</span>
+                <span class="verified-badge">已验证入住</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--ocean" id="location" aria-labelledby="location-title">
+        <div class="section__inner location-layout">
+          <div class="location-map" role="img" aria-label="澜屿酒店周边位置示意图">
+            <span class="map-line" aria-hidden="true"></span>
+            <span class="map-marker map-marker--beach">海岸步道<br>步行 3 分钟</span>
+            <span class="map-marker map-marker--hotel">澜屿酒店</span>
+            <span class="map-marker map-marker--town">老街餐厅<br>车程 12 分钟</span>
+            <span class="map-marker map-marker--station">高铁站<br>车程 28 分钟</span>
+          </div>
+          <div class="location-details">
+            <p class="section-kicker">位置与交通</p>
+            <h2 id="location-title">靠近海，也靠近你真正会去的地方。</h2>
+            <p>酒店位于南湾慢行区边缘，离海岸足够近，夜晚又不会被商业街打扰。自驾住客可提前登记车牌，公共交通住客可预约接驳车。</p>
+            <ul class="distance-list">
+              <li><strong>南湾海岸步道</strong><span>步行 3 分钟</span></li>
+              <li><strong>灯塔观景台</strong><span>车程 9 分钟</span></li>
+              <li><strong>老街餐厅区</strong><span>车程 12 分钟</span></li>
+              <li><strong>高铁南湾站</strong><span>车程 28 分钟</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--white" aria-labelledby="faq-title">
+        <div class="section__inner">
+          <div class="section-heading">
+            <div>
+              <p class="section-kicker">入住须知</p>
+              <h2 class="section-title" id="faq-title">预订前最常问的几个问题。</h2>
+            </div>
+            <p class="section-copy">以下信息覆盖大多数入住场景。如有婴儿床、宠物同行或特殊饮食需求，可在预订备注中说明。</p>
+          </div>
+
+          <div class="faq-grid">
+            <article class="faq-item">
+              <h3>最早几点可以入住？</h3>
+              <p>标准入住时间为 15:00。若当天房态允许，前台会在房间完成清洁后短信通知提前入住。</p>
+            </article>
+            <article class="faq-item">
+              <h3>是否提供接驳车？</h3>
+              <p>提供高铁站与机场付费接驳服务，建议至少提前 24 小时预约并提供抵达班次。</p>
+            </article>
+            <article class="faq-item">
+              <h3>早餐是否适合儿童？</h3>
+              <p>早餐有低糖酸奶、蒸蛋、粥品、水果和热牛奶。儿童椅数量有限，可在入住前备注。</p>
+            </article>
+            <article class="faq-item">
+              <h3>取消政策如何计算？</h3>
+              <p>多数房价可在入住前 48 小时免费取消。节假日与套餐价以预订确认页显示为准。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="cta-title">
+        <div class="cta-band__inner">
+          <div>
+            <h2 id="cta-title">把下一次海岸假期订下来。</h2>
+            <p>选择日期后，系统会显示实时房态、套餐礼遇和取消政策。礼宾团队会在入住前一天确认到店时间与偏好。</p>
+          </div>
+          <a class="button button--primary" href="#booking">回到预订</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <div>
+          <strong>澜屿酒店</strong><br>
+          南湾海岸慢行区 18 号 · 预订热线 400 812 6608
+        </div>
+        <div>
+          图片来源：
+          <a href="https://unsplash.com/photos/resort-pool-with-lounge-chairs-and-umbrellas-on-sunny-day-GidX127WUXE">Jonathan Ikemura</a>，
+          <a href="https://unsplash.com/photos/a-living-room-filled-with-furniture-and-a-large-window-rFXGNVF6NTk">Antonio Araujo</a>，
+          <a href="https://unsplash.com/photos/a-table-topped-with-plates-of-food-and-cups-of-coffee-NJ2nDgMvZfM">Cory Bjork</a>，
+          <a href="https://unsplash.com/photos/a-large-hall-with-potted-plants-and-chairs-B4TxOg8AYfw">Brian Kairuz</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="mobile-booking-bar" aria-label="移动端快速预订">
+      <span>
+        <strong>澜屿酒店</strong>
+        每晚 ¥980 起
+      </span>
+      <a class="button button--primary" href="#booking">预订</a>
+    </div>
+  </div>
+
+  <script>
+    const bookingForm = document.querySelector("[data-booking-form]");
+    const bookingStatus = document.querySelector("[data-booking-status]");
+    const invalidDateMessage = "请确认退房日期晚于入住日期。";
+    const successMessage = "已为你整理可订房型。实际价格会根据日期和套餐实时更新。";
+    const fallbackErrorMessage = "查询暂时不可用，请稍后重试或拨打预订热线。";
+
+    if (bookingForm && bookingStatus) {
+      bookingForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        try {
+          const formData = new FormData(bookingForm);
+          const checkinDate = new Date(formData.get("checkin"));
+          const checkoutDate = new Date(formData.get("checkout"));
+
+          // 日期校验放在前端，避免明显错误进入真实预订链路。
+          if (Number.isNaN(checkinDate.getTime()) || Number.isNaN(checkoutDate.getTime()) || checkoutDate <= checkinDate) {
+            bookingStatus.textContent = invalidDateMessage;
+            bookingStatus.style.color = "var(--color-coral-dark)";
+            return;
+          }
+
+          bookingStatus.textContent = successMessage;
+          bookingStatus.style.color = "var(--color-ocean)";
+        } catch (error) {
+          // 静态示例无法接入真实接口，因此这里只做友好的兜底提示。
+          console.error(error);
+          bookingStatus.textContent = fallbackErrorMessage;
+          bookingStatus.style.color = "var(--color-coral-dark)";
+        }
+      });
+    }
+  </script>
+</body>
+</html>

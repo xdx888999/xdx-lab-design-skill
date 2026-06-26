@@ -1,0 +1,1939 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>运动健身 App 白板 UI｜Claymorphism</title>
+  <meta name="description" content="类似 Figma 白板绘制 UI 的运动健身类 App 多屏设计稿，使用 Claymorphism 黏土形态主义风格。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --surface: #f7f5ff;
+      --surface-alt: #f0edff;
+      --mint-surface: #f0fff4;
+      --ink: #1a1a2e;
+      --body: #4a4a6a;
+      --muted: #77779a;
+      --white: #ffffff;
+      --line: #e0e0f0;
+      --line-deep: #d0d0e8;
+      --blue: #3d8eff;
+      --blue-dark: #1a6fe0;
+      --green: #2dca72;
+      --green-dark: #1aa558;
+      --purple: #8b5cf6;
+      --purple-dark: #6d28d9;
+      --orange: #ff7a3d;
+      --orange-dark: #e05a20;
+      --pink: #ff4d8f;
+      --pink-dark: #d93472;
+      --yellow: #ffd600;
+      --yellow-dark: #d9ac00;
+      --teal: #00c9b8;
+      --teal-dark: #00a89a;
+      --topbar-height: 56px;
+      --panel-width: 256px;
+      --toolbar-width: 64px;
+      --phone-width: 270px;
+      --phone-height: 584px;
+      --radius-card: 28px;
+      --radius-control: 16px;
+      --grid-dot: rgba(139, 92, 246, 0.2);
+      --clay-card-shadow: 0 8px 0 var(--line-deep), 0 12px 32px rgba(26, 26, 46, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: "Nunito", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      font-weight: 500;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: var(--toolbar-width) var(--panel-width) minmax(0, 1fr);
+      grid-template-rows: var(--topbar-height) minmax(0, 1fr);
+      min-height: 100vh;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr) 340px;
+      align-items: center;
+      height: var(--topbar-height);
+      border-bottom: 3px solid #d4d0ff;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(255, 255, 255, 0.58) 100%),
+        var(--surface);
+      box-shadow: 0 5px 0 #d4d0ff;
+      padding: 0 14px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      position: relative;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      border: 3px solid var(--blue-dark);
+      border-radius: 15px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 52%), var(--blue);
+      box-shadow: 0 5px 0 var(--blue-dark), 0 7px 16px rgba(61, 142, 255, 0.35);
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      position: absolute;
+      content: "";
+      border-radius: 999px;
+      background: var(--white);
+    }
+
+    .brand-mark::before {
+      left: 10px;
+      top: 18px;
+      width: 18px;
+      height: 5px;
+      transform: rotate(-24deg);
+    }
+
+    .brand-mark::after {
+      right: 8px;
+      top: 9px;
+      width: 8px;
+      height: 8px;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.05;
+      white-space: nowrap;
+    }
+
+    .brand-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .file-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .file-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      border: 3px solid #d4d0ff;
+      border-radius: 16px;
+      background: var(--white);
+      color: var(--body);
+      padding: 0 14px;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 4px 0 #d4d0ff;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    }
+
+    .file-tab.is-active {
+      border-color: var(--purple-dark);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 52%), var(--purple);
+      color: var(--white);
+      box-shadow: 0 4px 0 var(--purple-dark), 0 8px 16px rgba(139, 92, 246, 0.28);
+    }
+
+    .file-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 0 #d4d0ff, 0 10px 18px rgba(139, 92, 246, 0.18);
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .zoom-control {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      border: 3px solid #d4d0ff;
+      border-radius: 18px;
+      background: var(--white);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+    }
+
+    .zoom-button {
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 34px;
+      border: 0;
+      background: transparent;
+      color: var(--body);
+    }
+
+    .zoom-value {
+      min-width: 54px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .clay-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 38px;
+      border: 3px solid var(--blue-dark);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%), var(--blue);
+      color: #111111;
+      padding: 0 16px;
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 6px 0 var(--blue-dark), 0 10px 18px rgba(61, 142, 255, 0.35);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .clay-button:hover,
+    .tool-button:hover,
+    .layer-item:hover,
+    .asset-chip:hover,
+    .mini-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .clay-button:active,
+    .tool-button:active,
+    .mini-button:active {
+      transform: translateY(3px);
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.7;
+    }
+
+    .toolbar {
+      z-index: 20;
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      border-right: 3px solid #d4d0ff;
+      background: rgba(255, 255, 255, 0.66);
+      padding: 18px 10px;
+      box-shadow: 5px 0 0 rgba(212, 208, 255, 0.68);
+    }
+
+    .tool-button {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 3px solid #d4d0ff;
+      border-radius: 16px;
+      background: var(--white);
+      color: var(--body);
+      box-shadow: 0 4px 0 #d4d0ff, 0 8px 16px rgba(26, 26, 46, 0.08);
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .tool-button.is-active {
+      border-color: var(--pink-dark);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 52%), var(--pink);
+      color: var(--white);
+      box-shadow: 0 4px 0 var(--pink-dark), 0 8px 16px rgba(255, 77, 143, 0.32);
+    }
+
+    .tool-button::after {
+      position: absolute;
+      left: 54px;
+      top: 50%;
+      z-index: 50;
+      width: max-content;
+      max-width: 180px;
+      border: 3px solid #d4d0ff;
+      border-radius: 14px;
+      background: var(--white);
+      color: var(--ink);
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 4px 0 #d4d0ff;
+      content: attr(aria-label);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-50%) scale(0.94);
+      transition: opacity 140ms ease, transform 140ms ease;
+    }
+
+    .tool-button:hover::after {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+
+    .side-panel {
+      grid-column: 2;
+      grid-row: 2;
+      overflow-y: auto;
+      border-right: 3px solid #d4d0ff;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.74) 0%, rgba(255, 255, 255, 0.46) 100%),
+        var(--surface-alt);
+      padding: 18px;
+      box-shadow: 5px 0 0 rgba(212, 208, 255, 0.5);
+    }
+
+    .panel-card {
+      border: 3px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0) 22%), var(--white);
+      box-shadow: var(--clay-card-shadow);
+      padding: 18px;
+    }
+
+    .panel-card + .panel-card {
+      margin-top: 18px;
+    }
+
+    .panel-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .panel-title span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .search-input {
+      width: 100%;
+      min-height: 42px;
+      border: 3px solid #d4d0ff;
+      border-radius: 16px;
+      background: var(--surface);
+      color: var(--ink);
+      padding: 10px 12px;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.06);
+      outline: 0;
+    }
+
+    .search-input:focus {
+      border-color: var(--purple);
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.06), 0 0 0 4px rgba(139, 92, 246, 0.15);
+    }
+
+    .layer-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .layer-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      border: 3px solid #e8e5ff;
+      border-radius: 18px;
+      background: var(--surface);
+      color: var(--body);
+      padding: 8px 10px;
+      box-shadow: 0 4px 0 #d4d0ff;
+      transition: transform 160ms ease;
+    }
+
+    .layer-icon {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--teal-dark);
+      border-radius: 13px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, transparent 52%), var(--teal);
+      color: var(--white);
+      box-shadow: 0 4px 0 var(--teal-dark);
+    }
+
+    .layer-name {
+      overflow: hidden;
+      margin: 0;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .layer-meta {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .asset-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .asset-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 3px solid #d4d0ff;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--body);
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 900;
+      box-shadow: 0 4px 0 #d4d0ff;
+      transition: transform 160ms ease;
+    }
+
+    .color-dot {
+      width: 14px;
+      height: 14px;
+      border: 2px solid rgba(26, 26, 46, 0.18);
+      border-radius: 999px;
+    }
+
+    .inspector-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-bottom: 2px solid #ece9ff;
+      padding: 10px 0;
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .inspector-row:last-child {
+      border-bottom: 0;
+    }
+
+    .canvas-wrap {
+      position: relative;
+      grid-column: 3;
+      grid-row: 2;
+      overflow: auto;
+      background:
+        radial-gradient(circle at 1px 1px, var(--grid-dot) 1.3px, transparent 1.4px) 0 0 / 24px 24px,
+        linear-gradient(135deg, #fbfaff 0%, var(--surface) 45%, #effff8 100%);
+    }
+
+    .canvas {
+      position: relative;
+      width: 1820px;
+      height: 1640px;
+      transform-origin: left top;
+      transition: transform 180ms ease;
+    }
+
+    .board-title {
+      position: absolute;
+      left: 88px;
+      top: 60px;
+      width: 630px;
+      border: 3px solid #d4d0ff;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.86) 0%, rgba(255, 255, 255, 0.22) 100%), var(--white);
+      box-shadow: 0 8px 0 #d4d0ff, 0 18px 36px rgba(139, 92, 246, 0.16);
+      padding: 26px 30px;
+    }
+
+    .board-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .board-title h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900;
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .board-title p {
+      max-width: 520px;
+      margin: 14px 0 0;
+      color: var(--body);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .board-note {
+      position: absolute;
+      width: 250px;
+      border: 3px solid var(--yellow-dark);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.36) 0%, transparent 54%), var(--yellow);
+      box-shadow: 0 8px 0 var(--yellow-dark), 0 14px 24px rgba(255, 214, 0, 0.28);
+      padding: 18px;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 900;
+      transform: rotate(-2deg);
+    }
+
+    .board-note strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 17px;
+    }
+
+    .board-note.note-one {
+      left: 760px;
+      top: 84px;
+    }
+
+    .board-note.note-two {
+      left: 1328px;
+      top: 656px;
+      width: 270px;
+      transform: rotate(2deg);
+    }
+
+    .frame-group {
+      position: absolute;
+      width: calc(var(--phone-width) + 34px);
+    }
+
+    .frame-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 36px;
+      margin: 0 0 14px 8px;
+      border: 3px solid #d4d0ff;
+      border-radius: 18px;
+      background: var(--white);
+      color: var(--ink);
+      padding: 0 13px;
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 4px 0 #d4d0ff;
+    }
+
+    .frame-index {
+      display: inline-grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+      border: 2px solid var(--purple-dark);
+      border-radius: 10px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 11px;
+    }
+
+    .phone {
+      position: relative;
+      width: var(--phone-width);
+      height: var(--phone-height);
+      overflow: hidden;
+      border: 5px solid var(--ink);
+      border-radius: 40px;
+      background: var(--surface);
+      box-shadow: 0 14px 0 rgba(26, 26, 46, 0.34), 0 24px 52px rgba(26, 26, 46, 0.18);
+    }
+
+    .phone::before {
+      position: absolute;
+      left: 50%;
+      top: 12px;
+      z-index: 5;
+      width: 76px;
+      height: 22px;
+      border-radius: 0 0 18px 18px;
+      background: var(--ink);
+      content: "";
+      transform: translateX(-50%);
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 44px 18px 18px;
+    }
+
+    .statusbar {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      top: 18px;
+      z-index: 6;
+      display: flex;
+      justify-content: space-between;
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 3px solid var(--orange-dark);
+      border-radius: 17px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 54%), var(--orange);
+      color: var(--white);
+      font-size: 17px;
+      font-weight: 900;
+      box-shadow: 0 5px 0 var(--orange-dark), 0 8px 16px rgba(255, 122, 61, 0.28);
+    }
+
+    .icon-button {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 3px solid var(--blue-dark);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.26) 0%, transparent 54%), var(--blue);
+      color: var(--white);
+      box-shadow: 0 5px 0 var(--blue-dark), 0 8px 16px rgba(61, 142, 255, 0.28);
+    }
+
+    .screen-title {
+      margin: 0;
+      color: var(--ink);
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.02;
+    }
+
+    .screen-subtitle {
+      margin: 5px 0 0;
+      color: var(--body);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .hero-figure {
+      position: relative;
+      height: 204px;
+      margin: 8px 0 18px;
+      border: 3px solid var(--purple-dark);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 28% 30%, rgba(255, 214, 0, 0.95) 0 24px, transparent 25px),
+        linear-gradient(160deg, #8b5cf6 0%, #3d8eff 52%, #00c9b8 100%);
+      box-shadow: 0 8px 0 var(--purple-dark), 0 14px 24px rgba(139, 92, 246, 0.32);
+      overflow: hidden;
+    }
+
+    .hero-figure::before {
+      position: absolute;
+      right: -30px;
+      bottom: -38px;
+      width: 170px;
+      height: 170px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.22);
+      content: "";
+    }
+
+    .runner {
+      position: absolute;
+      left: 74px;
+      top: 58px;
+      width: 94px;
+      height: 112px;
+    }
+
+    .runner span {
+      position: absolute;
+      display: block;
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: 0 5px 0 rgba(26, 26, 46, 0.18);
+    }
+
+    .runner .head {
+      left: 37px;
+      top: 0;
+      width: 25px;
+      height: 25px;
+    }
+
+    .runner .body {
+      left: 44px;
+      top: 25px;
+      width: 18px;
+      height: 54px;
+      transform: rotate(-18deg);
+    }
+
+    .runner .arm-one {
+      left: 21px;
+      top: 39px;
+      width: 47px;
+      height: 13px;
+      transform: rotate(-24deg);
+    }
+
+    .runner .arm-two {
+      left: 50px;
+      top: 46px;
+      width: 48px;
+      height: 13px;
+      transform: rotate(34deg);
+    }
+
+    .runner .leg-one {
+      left: 17px;
+      top: 76px;
+      width: 56px;
+      height: 14px;
+      transform: rotate(-38deg);
+    }
+
+    .runner .leg-two {
+      left: 55px;
+      top: 75px;
+      width: 58px;
+      height: 14px;
+      transform: rotate(44deg);
+    }
+
+    .clay-card {
+      border: 3px solid var(--line);
+      border-radius: var(--radius-card);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0) 20%), var(--white);
+      box-shadow: 0 7px 0 var(--line-deep), 0 12px 22px rgba(26, 26, 46, 0.1);
+      padding: 15px;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+      border: 3px solid var(--blue-dark);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%), var(--blue);
+      color: #111111;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: 0 7px 0 var(--blue-dark), 0 12px 20px rgba(61, 142, 255, 0.34);
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .metric-card {
+      min-height: 78px;
+      border: 3px solid var(--line);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: 0 5px 0 var(--line-deep);
+      padding: 10px;
+    }
+
+    .metric-card strong {
+      display: block;
+      color: var(--ink);
+      font-size: 18px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .metric-card span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .progress-ring {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 134px;
+      height: 134px;
+      margin: 0 auto;
+      border: 4px solid var(--teal-dark);
+      border-radius: 999px;
+      background:
+        conic-gradient(var(--teal) 0 76%, #e4e0ff 76% 100%);
+      box-shadow: 0 8px 0 var(--teal-dark), 0 12px 22px rgba(0, 201, 184, 0.26);
+    }
+
+    .progress-ring::before {
+      position: absolute;
+      inset: 18px;
+      border: 3px solid #d4d0ff;
+      border-radius: inherit;
+      background: var(--white);
+      content: "";
+    }
+
+    .progress-ring-text {
+      position: relative;
+      text-align: center;
+    }
+
+    .progress-ring-text strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .progress-ring-text span {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .pill-row,
+    .nav-pills {
+      display: flex;
+      gap: 8px;
+      overflow: hidden;
+    }
+
+    .pill {
+      flex: 0 0 auto;
+      border: 3px solid #d4d0ff;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--body);
+      padding: 7px 10px;
+      font-size: 11px;
+      font-weight: 900;
+      box-shadow: 0 4px 0 #d4d0ff;
+      white-space: nowrap;
+    }
+
+    .pill.is-active {
+      border-color: var(--green-dark);
+      background: var(--green);
+      color: var(--white);
+      box-shadow: 0 4px 0 var(--green-dark);
+    }
+
+    .workout-card {
+      display: grid;
+      grid-template-columns: 62px minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      margin-top: 12px;
+    }
+
+    .workout-blob {
+      position: relative;
+      width: 62px;
+      height: 62px;
+      border: 3px solid var(--orange-dark);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 54%), var(--orange);
+      box-shadow: 0 6px 0 var(--orange-dark), 0 10px 16px rgba(255, 122, 61, 0.24);
+    }
+
+    .workout-blob::before {
+      position: absolute;
+      left: 17px;
+      top: 12px;
+      width: 25px;
+      height: 35px;
+      border: 5px solid var(--white);
+      border-top: 0;
+      border-radius: 8px 8px 16px 16px;
+      content: "";
+      transform: rotate(-16deg);
+    }
+
+    .workout-card h3,
+    .meal-card h3,
+    .profile-card h3 {
+      margin: 0;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .workout-card p,
+    .meal-card p,
+    .profile-card p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .timer {
+      display: grid;
+      place-items: center;
+      width: 186px;
+      height: 186px;
+      margin: 20px auto 16px;
+      border: 5px solid var(--pink-dark);
+      border-radius: 58px;
+      background:
+        radial-gradient(circle at 34% 26%, rgba(255, 255, 255, 0.9) 0 12px, transparent 13px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.25) 0%, transparent 50%),
+        var(--pink);
+      box-shadow: 0 12px 0 var(--pink-dark), 0 18px 34px rgba(255, 77, 143, 0.3);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .timer strong {
+      display: block;
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .timer span {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .exercise-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .exercise-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 3px solid #e8e5ff;
+      border-radius: 18px;
+      background: var(--white);
+      padding: 9px 11px;
+      box-shadow: 0 4px 0 #d4d0ff;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .exercise-row span {
+      color: var(--muted);
+    }
+
+    .meal-ring {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .macro {
+      flex: 1;
+      min-height: 92px;
+      border: 3px solid var(--line);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: 0 5px 0 var(--line-deep);
+      padding: 12px 8px;
+      text-align: center;
+    }
+
+    .macro-circle {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 8px;
+      border: 3px solid currentColor;
+      border-radius: 999px;
+      background: var(--surface);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .macro span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 900;
+    }
+
+    .meal-card {
+      margin-top: 12px;
+    }
+
+    .meal-cover {
+      height: 86px;
+      margin-bottom: 12px;
+      border: 3px solid var(--green-dark);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 28% 56%, #ffd600 0 12px, transparent 13px),
+        radial-gradient(circle at 58% 46%, #ff4d8f 0 10px, transparent 11px),
+        radial-gradient(circle at 76% 62%, #2dca72 0 14px, transparent 15px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, transparent 50%),
+        var(--teal);
+      box-shadow: 0 6px 0 var(--green-dark);
+    }
+
+    .profile-card {
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    .badge-wall {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .badge {
+      display: grid;
+      place-items: center;
+      height: 58px;
+      border: 3px solid var(--yellow-dark);
+      border-radius: 21px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.32) 0%, transparent 52%), var(--yellow);
+      box-shadow: 0 5px 0 var(--yellow-dark);
+      color: var(--ink);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .state-stack {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .state-card {
+      border: 3px solid #e8e5ff;
+      border-radius: 20px;
+      background: var(--white);
+      padding: 12px;
+      box-shadow: 0 4px 0 #d4d0ff;
+    }
+
+    .state-card strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .state-card span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .loading-bar {
+      height: 12px;
+      margin-top: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8e5ff;
+    }
+
+    .loading-bar::before {
+      display: block;
+      width: 42%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--purple);
+      content: "";
+      animation: loadingPulse 1.6s ease-in-out infinite alternate;
+    }
+
+    .bottom-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-top: auto;
+      border: 3px solid #d4d0ff;
+      border-radius: 24px;
+      background: var(--white);
+      padding: 8px;
+      box-shadow: 0 6px 0 #d4d0ff;
+    }
+
+    .nav-item {
+      display: grid;
+      place-items: center;
+      min-height: 38px;
+      border: 0;
+      border-radius: 16px;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .nav-item.is-active {
+      border: 3px solid var(--blue-dark);
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 4px 0 var(--blue-dark);
+    }
+
+    .connector {
+      position: absolute;
+      height: 0;
+      border-top: 4px dashed rgba(139, 92, 246, 0.48);
+      transform-origin: left center;
+    }
+
+    .connector::after {
+      position: absolute;
+      right: -8px;
+      top: -10px;
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 14px solid rgba(139, 92, 246, 0.62);
+      content: "";
+    }
+
+    .component-board {
+      position: absolute;
+      left: 1168px;
+      top: 1040px;
+      width: 430px;
+      border: 3px solid #d4d0ff;
+      border-radius: 32px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.84) 0%, rgba(255, 255, 255, 0.2) 100%), var(--white);
+      box-shadow: 0 8px 0 #d4d0ff, 0 16px 34px rgba(26, 26, 46, 0.12);
+      padding: 22px;
+    }
+
+    .component-board h2 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .component-board p {
+      margin: 0 0 16px;
+      color: var(--body);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .mini-components {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+    }
+
+    .mini-button {
+      min-height: 54px;
+      border: 3px solid var(--green-dark);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, transparent 52%), var(--green);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 6px 0 var(--green-dark), 0 10px 18px rgba(45, 202, 114, 0.28);
+      transition: transform 160ms ease;
+    }
+
+    .mini-input {
+      min-height: 54px;
+      border: 3px solid #d4d0ff;
+      border-radius: 18px;
+      background: var(--surface);
+      color: var(--muted);
+      padding: 0 14px;
+      box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.06);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .mini-toggle {
+      position: relative;
+      height: 54px;
+      border: 3px solid var(--green-dark);
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.3), 0 5px 0 var(--green-dark);
+    }
+
+    .mini-toggle::after {
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      width: 36px;
+      height: 36px;
+      border: 3px solid #e6e6f6;
+      border-radius: 999px;
+      background: var(--white);
+      box-shadow: 0 3px 0 #d0d0e8;
+      content: "";
+    }
+
+    .mini-alert {
+      min-height: 54px;
+      border: 3px solid var(--pink-dark);
+      border-radius: 18px;
+      background: #fff0f7;
+      color: var(--pink-dark);
+      padding: 9px 12px;
+      box-shadow: 0 5px 0 rgba(217, 52, 114, 0.3);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    [data-x="one"] { left: 90px; top: 318px; }
+    [data-x="two"] { left: 442px; top: 318px; }
+    [data-x="three"] { left: 794px; top: 318px; }
+    [data-x="four"] { left: 1146px; top: 318px; }
+    [data-x="five"] { left: 270px; top: 1020px; }
+    [data-x="six"] { left: 622px; top: 1020px; }
+
+    [data-c="one"] {
+      left: 382px;
+      top: 630px;
+      width: 78px;
+    }
+
+    [data-c="two"] {
+      left: 734px;
+      top: 630px;
+      width: 78px;
+    }
+
+    [data-c="three"] {
+      left: 1086px;
+      top: 630px;
+      width: 78px;
+    }
+
+    [data-c="four"] {
+      left: 720px;
+      top: 968px;
+      width: 320px;
+      transform: rotate(102deg);
+    }
+
+    .selection-outline {
+      display: none;
+    }
+
+    .frame-group.is-selected .phone {
+      outline: 4px dashed rgba(139, 92, 246, 0.58);
+      outline-offset: 10px;
+    }
+
+    .comment-pin {
+      position: absolute;
+      z-index: 24;
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 3px solid var(--pink-dark);
+      border-radius: 14px;
+      background: var(--pink);
+      color: var(--white);
+      box-shadow: 0 5px 0 var(--pink-dark), 0 10px 18px rgba(255, 77, 143, 0.26);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .comment-pin.pin-one {
+      left: 244px;
+      top: 104px;
+    }
+
+    .comment-pin.pin-two {
+      left: 204px;
+      top: 362px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 80;
+      max-width: 360px;
+      border: 3px solid var(--green-dark);
+      border-radius: 22px;
+      background: var(--white);
+      box-shadow: 0 7px 0 var(--green-dark), 0 16px 30px rgba(45, 202, 114, 0.22);
+      padding: 14px 16px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 900;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    .phone:focus-visible {
+      outline: 4px solid rgba(139, 92, 246, 0.32);
+      outline-offset: 4px;
+    }
+
+    @keyframes loadingPulse {
+      from {
+        transform: translateX(-12px);
+      }
+      to {
+        transform: translateX(96px);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .workspace {
+        grid-template-columns: var(--toolbar-width) minmax(0, 1fr);
+      }
+
+      .topbar {
+        grid-template-columns: minmax(180px, 1fr) auto;
+      }
+
+      .file-tabs {
+        display: none;
+      }
+
+      .top-actions {
+        grid-column: 2;
+      }
+
+      .side-panel {
+        display: none;
+      }
+
+      .canvas-wrap {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 720px) {
+      :root {
+        --toolbar-width: 54px;
+        --topbar-height: 62px;
+      }
+
+      .workspace {
+        overflow: auto;
+      }
+
+      .topbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 0 10px;
+      }
+
+      .brand-title {
+        font-size: 14px;
+      }
+
+      .brand-subtitle,
+      .zoom-control {
+        display: none;
+      }
+
+      .clay-button {
+        width: 40px;
+        padding: 0;
+      }
+
+      .clay-button span {
+        display: none;
+      }
+
+      .toolbar {
+        position: fixed;
+        top: var(--topbar-height);
+        bottom: 0;
+        left: 0;
+      }
+
+      .canvas-wrap {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        margin-left: var(--toolbar-width);
+      }
+
+      .canvas {
+        width: 1560px;
+        height: 1560px;
+        transform: scale(0.9);
+      }
+
+      .board-title {
+        left: 24px;
+        top: 42px;
+        width: 300px;
+        padding: 22px;
+      }
+
+      .board-title h1 {
+        font-size: 30px;
+      }
+
+      .board-title p {
+        font-size: 14px;
+      }
+
+      .board-note.note-one {
+        left: 368px;
+        top: 70px;
+      }
+
+      [data-x="one"] { left: 24px; top: 318px; }
+      [data-x="two"] { left: 342px; top: 318px; }
+      [data-x="three"] { left: 660px; top: 318px; }
+      [data-x="four"] { left: 978px; top: 318px; }
+      [data-x="five"] { left: 184px; top: 1010px; }
+      [data-x="six"] { left: 502px; top: 1010px; }
+      .component-board { left: 886px; top: 1036px; }
+      .board-note.note-two { left: 1188px; top: 726px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="workspace">
+    <header class="topbar" aria-label="白板顶部工具栏">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-copy">
+          <p class="brand-title">动练 App UI 白板</p>
+          <p class="brand-subtitle">黏土风格健身系统</p>
+        </div>
+      </div>
+
+      <nav class="file-tabs" aria-label="文件页签">
+        <button class="file-tab is-active" type="button"><i class="icon" data-lucide="layout-template"></i>核心流程</button>
+        <button class="file-tab" type="button"><i class="icon" data-lucide="palette"></i>组件样式</button>
+        <button class="file-tab" type="button"><i class="icon" data-lucide="message-square"></i>评备注释</button>
+      </nav>
+
+      <div class="top-actions">
+        <div class="zoom-control" aria-label="缩放控制">
+          <button class="zoom-button" type="button" data-zoom="out" aria-label="缩小"><i class="icon" data-lucide="minus"></i></button>
+          <span class="zoom-value" id="zoomValue">100%</span>
+          <button class="zoom-button" type="button" data-zoom="in" aria-label="放大"><i class="icon" data-lucide="plus"></i></button>
+        </div>
+        <button class="clay-button" type="button" id="presentButton"><i class="icon" data-lucide="play"></i><span>演示流程</span></button>
+      </div>
+    </header>
+
+    <aside class="toolbar" aria-label="绘制工具栏">
+      <button class="tool-button is-active" type="button" aria-label="选择工具"><i class="icon" data-lucide="mouse-pointer-2"></i></button>
+      <button class="tool-button" type="button" aria-label="移动画布"><i class="icon" data-lucide="hand"></i></button>
+      <button class="tool-button" type="button" aria-label="手机画框"><i class="icon" data-lucide="smartphone"></i></button>
+      <button class="tool-button" type="button" aria-label="钢笔路径"><i class="icon" data-lucide="pen-line"></i></button>
+      <button class="tool-button" type="button" aria-label="评论标注"><i class="icon" data-lucide="message-circle"></i></button>
+      <button class="tool-button" type="button" aria-label="组件资源"><i class="icon" data-lucide="boxes"></i></button>
+    </aside>
+
+    <aside class="side-panel" aria-label="图层和属性面板">
+      <section class="panel-card">
+        <h2 class="panel-title">图层 <span>6 个画框</span></h2>
+        <input class="search-input" type="search" value="运动健身 App" aria-label="搜索图层">
+        <div class="layer-list">
+          <button class="layer-item" type="button" data-target="one">
+            <span class="layer-icon"><i class="icon" data-lucide="sparkles"></i></span>
+            <span>
+              <p class="layer-name">01 启动引导</p>
+              <p class="layer-meta">欢迎、目标设定、CTA</p>
+            </span>
+          </button>
+          <button class="layer-item" type="button" data-target="two">
+            <span class="layer-icon"><i class="icon" data-lucide="activity"></i></span>
+            <span>
+              <p class="layer-name">02 今日概览</p>
+              <p class="layer-meta">卡路里、步数、心率</p>
+            </span>
+          </button>
+          <button class="layer-item" type="button" data-target="three">
+            <span class="layer-icon"><i class="icon" data-lucide="dumbbell"></i></span>
+            <span>
+              <p class="layer-name">03 训练库</p>
+              <p class="layer-meta">筛选、课程卡片</p>
+            </span>
+          </button>
+          <button class="layer-item" type="button" data-target="four">
+            <span class="layer-icon"><i class="icon" data-lucide="timer"></i></span>
+            <span>
+              <p class="layer-name">04 训练中</p>
+              <p class="layer-meta">倒计时、动作列表</p>
+            </span>
+          </button>
+          <button class="layer-item" type="button" data-target="five">
+            <span class="layer-icon"><i class="icon" data-lucide="salad"></i></span>
+            <span>
+              <p class="layer-name">05 营养记录</p>
+              <p class="layer-meta">宏量营养、餐食</p>
+            </span>
+          </button>
+          <button class="layer-item" type="button" data-target="six">
+            <span class="layer-icon"><i class="icon" data-lucide="trophy"></i></span>
+            <span>
+              <p class="layer-name">06 成就与状态</p>
+              <p class="layer-meta">徽章、加载、异常</p>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <h2 class="panel-title">色彩令牌 <span>风格 27</span></h2>
+        <div class="asset-grid" aria-label="Claymorphism 色彩">
+          <span class="asset-chip"><span class="color-dot" style="background:#3d8eff"></span>蓝</span>
+          <span class="asset-chip"><span class="color-dot" style="background:#2dca72"></span>绿</span>
+          <span class="asset-chip"><span class="color-dot" style="background:#8b5cf6"></span>紫</span>
+          <span class="asset-chip"><span class="color-dot" style="background:#ff7a3d"></span>橙</span>
+          <span class="asset-chip"><span class="color-dot" style="background:#ff4d8f"></span>粉</span>
+          <span class="asset-chip"><span class="color-dot" style="background:#ffd600"></span>黄</span>
+        </div>
+      </section>
+
+      <section class="panel-card">
+        <h2 class="panel-title">检查器 <span id="selectedLayer">01 启动引导</span></h2>
+        <div class="inspector-row"><span>画框尺寸</span><strong>270 × 584</strong></div>
+        <div class="inspector-row"><span>圆角</span><strong>40px</strong></div>
+        <div class="inspector-row"><span>边框</span><strong>5px #1A1A2E</strong></div>
+        <div class="inspector-row"><span>卡片阴影</span><strong>8px 厚底</strong></div>
+        <div class="inspector-row"><span>字体</span><strong>Nunito 700/900</strong></div>
+      </section>
+    </aside>
+
+    <section class="canvas-wrap" aria-label="设计白板画布">
+      <div class="canvas" id="canvas">
+        <section class="board-title">
+          <p class="board-kicker"><i class="icon" data-lucide="figma"></i> 白板式 App UI 探索</p>
+          <h1>动练：运动健身 App 多屏界面</h1>
+          <p>以“软触感训练计划”为视觉隐喻，将健身目标、训练过程、营养记录和成就反馈做成一组可触摸的黏土组件。</p>
+        </section>
+
+        <aside class="board-note note-one">
+          <strong>设计重点</strong>
+          所有核心按钮、卡片、进度环都使用 3px 粗边和同色厚底阴影，保持 Style 27 的膨胀质感。
+        </aside>
+
+        <aside class="board-note note-two">
+          <strong>状态覆盖</strong>
+          末屏包含成功徽章、加载条和异常提示，用于验证 App UI 的关键状态反馈。
+        </aside>
+
+        <div class="connector" data-c="one" aria-hidden="true"></div>
+        <div class="connector" data-c="two" aria-hidden="true"></div>
+        <div class="connector" data-c="three" aria-hidden="true"></div>
+        <div class="connector" data-c="four" aria-hidden="true"></div>
+
+        <article class="frame-group is-selected" data-x="one" id="frame-one">
+          <div class="frame-label"><span class="frame-index">01</span>启动引导</div>
+          <div class="phone" tabindex="0">
+            <span class="selection-outline"></span>
+            <span class="comment-pin pin-one">A</span>
+            <div class="statusbar"><span>9:41</span><span>100%</span></div>
+            <div class="screen">
+              <h2 class="screen-title">把训练变成一块柔软的奖励</h2>
+              <p class="screen-subtitle">每天 18 分钟，逐步建立可持续的运动节奏。</p>
+              <div class="hero-figure" aria-label="跑步人物插画">
+                <div class="runner">
+                  <span class="head"></span>
+                  <span class="body"></span>
+                  <span class="arm-one"></span>
+                  <span class="arm-two"></span>
+                  <span class="leg-one"></span>
+                  <span class="leg-two"></span>
+                </div>
+              </div>
+              <div class="clay-card">
+                <div class="pill-row">
+                  <span class="pill is-active">减脂</span>
+                  <span class="pill">塑形</span>
+                  <span class="pill">恢复</span>
+                </div>
+              </div>
+              <div style="height:14px"></div>
+              <button class="cta-button" type="button">开始制定计划</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="frame-group" data-x="two" id="frame-two">
+          <div class="frame-label"><span class="frame-index">02</span>今日概览</div>
+          <div class="phone" tabindex="0">
+            <span class="selection-outline"></span>
+            <span class="comment-pin pin-two">B</span>
+            <div class="statusbar"><span>9:41</span><span>92%</span></div>
+            <div class="screen">
+              <div class="app-header">
+                <div>
+                  <h2 class="screen-title">早安，林夏</h2>
+                  <p class="screen-subtitle">今天适合做低冲击燃脂。</p>
+                </div>
+                <div class="avatar">林</div>
+              </div>
+              <div class="progress-ring">
+                <div class="progress-ring-text">
+                  <strong>76%</strong>
+                  <span>今日目标</span>
+                </div>
+              </div>
+              <div class="metric-grid">
+                <div class="metric-card"><strong>482</strong><span>千卡</span></div>
+                <div class="metric-card"><strong>8.6k</strong><span>步数</span></div>
+                <div class="metric-card"><strong>128</strong><span>心率</span></div>
+              </div>
+              <div class="clay-card">
+                <h3 style="margin:0;font-size:15px;font-weight:900">下一节训练</h3>
+                <p style="margin:4px 0 12px;color:var(--muted);font-size:11px;font-weight:800">全身唤醒 · 18 分钟</p>
+                <button class="cta-button" type="button">继续训练</button>
+              </div>
+              <nav class="bottom-nav" aria-label="底部导航">
+                <button class="nav-item is-active" type="button"><i class="icon" data-lucide="home"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="dumbbell"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="salad"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="user"></i></button>
+              </nav>
+            </div>
+          </div>
+        </article>
+
+        <article class="frame-group" data-x="three" id="frame-three">
+          <div class="frame-label"><span class="frame-index">03</span>训练库</div>
+          <div class="phone" tabindex="0">
+            <span class="selection-outline"></span>
+            <div class="statusbar"><span>9:41</span><span>88%</span></div>
+            <div class="screen">
+              <div class="app-header">
+                <div>
+                  <h2 class="screen-title">训练库</h2>
+                  <p class="screen-subtitle">按体能和时间筛选。</p>
+                </div>
+                <button class="icon-button" type="button" aria-label="筛选"><i class="icon" data-lucide="sliders-horizontal"></i></button>
+              </div>
+              <div class="nav-pills" aria-label="训练筛选">
+                <span class="pill is-active">全部</span>
+                <span class="pill">HIIT</span>
+                <span class="pill">瑜伽</span>
+                <span class="pill">拉伸</span>
+              </div>
+              <div class="clay-card workout-card">
+                <div class="workout-blob"></div>
+                <div>
+                  <h3>低冲击燃脂</h3>
+                  <p>18 分钟 · 新手友好</p>
+                </div>
+              </div>
+              <div class="clay-card workout-card">
+                <div class="workout-blob" style="background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,transparent 54%),var(--purple);border-color:var(--purple-dark);box-shadow:0 6px 0 var(--purple-dark),0 10px 16px rgba(139,92,246,.24)"></div>
+                <div>
+                  <h3>核心稳定</h3>
+                  <p>22 分钟 · 中等强度</p>
+                </div>
+              </div>
+              <div class="clay-card workout-card">
+                <div class="workout-blob" style="background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,transparent 54%),var(--teal);border-color:var(--teal-dark);box-shadow:0 6px 0 var(--teal-dark),0 10px 16px rgba(0,201,184,.24)"></div>
+                <div>
+                  <h3>睡前拉伸</h3>
+                  <p>12 分钟 · 恢复模式</p>
+                </div>
+              </div>
+              <nav class="bottom-nav" aria-label="底部导航">
+                <button class="nav-item" type="button"><i class="icon" data-lucide="home"></i></button>
+                <button class="nav-item is-active" type="button"><i class="icon" data-lucide="dumbbell"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="salad"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="user"></i></button>
+              </nav>
+            </div>
+          </div>
+        </article>
+
+        <article class="frame-group" data-x="four" id="frame-four">
+          <div class="frame-label"><span class="frame-index">04</span>训练中</div>
+          <div class="phone" tabindex="0">
+            <span class="selection-outline"></span>
+            <div class="statusbar"><span>9:41</span><span>86%</span></div>
+            <div class="screen">
+              <div class="app-header">
+                <button class="icon-button" type="button" aria-label="返回"><i class="icon" data-lucide="chevron-left"></i></button>
+                <button class="icon-button" type="button" aria-label="暂停"><i class="icon" data-lucide="pause"></i></button>
+              </div>
+              <h2 class="screen-title">深蹲跳</h2>
+              <p class="screen-subtitle">第 3 组 / 共 8 组 · 保持呼吸</p>
+              <div class="timer">
+                <div>
+                  <strong>00:42</strong>
+                  <span>本组剩余</span>
+                </div>
+              </div>
+              <div class="exercise-list">
+                <div class="exercise-row">开合跳 <span>已完成</span></div>
+                <div class="exercise-row">深蹲跳 <span>进行中</span></div>
+                <div class="exercise-row">平板支撑 <span>下一项</span></div>
+              </div>
+              <div style="height:14px"></div>
+              <button class="cta-button" type="button" style="background:linear-gradient(180deg,rgba(255,255,255,.2) 0%,transparent 50%),var(--pink);border-color:var(--pink-dark);box-shadow:0 7px 0 var(--pink-dark),0 12px 20px rgba(255,77,143,.3);color:var(--white)">结束训练</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="frame-group" data-x="five" id="frame-five">
+          <div class="frame-label"><span class="frame-index">05</span>营养记录</div>
+          <div class="phone" tabindex="0">
+            <span class="selection-outline"></span>
+            <div class="statusbar"><span>9:41</span><span>80%</span></div>
+            <div class="screen">
+              <div class="app-header">
+                <div>
+                  <h2 class="screen-title">营养记录</h2>
+                  <p class="screen-subtitle">训练后补充 25g 蛋白质。</p>
+                </div>
+                <button class="icon-button" type="button" aria-label="扫码记录"><i class="icon" data-lucide="scan-line"></i></button>
+              </div>
+              <div class="meal-ring">
+                <div class="macro" style="color:var(--orange)"><div class="macro-circle">42%</div><span>蛋白质</span></div>
+                <div class="macro" style="color:var(--green)"><div class="macro-circle">61%</div><span>碳水</span></div>
+                <div class="macro" style="color:var(--pink)"><div class="macro-circle">28%</div><span>脂肪</span></div>
+              </div>
+              <div class="clay-card meal-card">
+                <div class="meal-cover"></div>
+                <h3>训练后餐盘</h3>
+                <p>鸡胸肉 · 牛油果 · 糙米 · 540 千卡</p>
+              </div>
+              <div class="clay-card meal-card">
+                <h3>饮水提醒</h3>
+                <p>还差 650ml 达成今日目标。</p>
+                <div class="loading-bar"></div>
+              </div>
+              <nav class="bottom-nav" aria-label="底部导航">
+                <button class="nav-item" type="button"><i class="icon" data-lucide="home"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="dumbbell"></i></button>
+                <button class="nav-item is-active" type="button"><i class="icon" data-lucide="salad"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="user"></i></button>
+              </nav>
+            </div>
+          </div>
+        </article>
+
+        <article class="frame-group" data-x="six" id="frame-six">
+          <div class="frame-label"><span class="frame-index">06</span>成就与状态</div>
+          <div class="phone" tabindex="0">
+            <span class="selection-outline"></span>
+            <div class="statusbar"><span>9:41</span><span>78%</span></div>
+            <div class="screen">
+              <div class="app-header">
+                <div>
+                  <h2 class="screen-title">成就墙</h2>
+                  <p class="screen-subtitle">连续训练 12 天。</p>
+                </div>
+                <div class="avatar" style="background:linear-gradient(180deg,rgba(255,255,255,.28) 0%,transparent 54%),var(--purple);border-color:var(--purple-dark);box-shadow:0 5px 0 var(--purple-dark),0 8px 16px rgba(139,92,246,.28)">12</div>
+              </div>
+              <div class="badge-wall">
+                <div class="badge">燃</div>
+                <div class="badge" style="background:var(--green);border-color:var(--green-dark);box-shadow:0 5px 0 var(--green-dark);color:var(--white)">稳</div>
+                <div class="badge" style="background:var(--pink);border-color:var(--pink-dark);box-shadow:0 5px 0 var(--pink-dark);color:var(--white)">快</div>
+              </div>
+              <div class="clay-card profile-card">
+                <h3>本周目标已达成</h3>
+                <p>已完成 4 次训练，平均心率更稳定。</p>
+              </div>
+              <div class="state-stack">
+                <div class="state-card">
+                  <strong>加载状态</strong>
+                  <span>同步 Apple Health 数据中</span>
+                  <div class="loading-bar"></div>
+                </div>
+                <div class="state-card" style="border-color:var(--pink-dark);box-shadow:0 4px 0 rgba(217,52,114,.34)">
+                  <strong style="color:var(--pink-dark)">异常状态</strong>
+                  <span>心率设备断开，点击重新连接。</span>
+                </div>
+              </div>
+              <nav class="bottom-nav" aria-label="底部导航">
+                <button class="nav-item" type="button"><i class="icon" data-lucide="home"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="dumbbell"></i></button>
+                <button class="nav-item" type="button"><i class="icon" data-lucide="salad"></i></button>
+                <button class="nav-item is-active" type="button"><i class="icon" data-lucide="user"></i></button>
+              </nav>
+            </div>
+          </div>
+        </article>
+
+        <section class="component-board" aria-label="组件状态板">
+          <h2>组件状态板</h2>
+          <p>用于复用到 App 其他页面：按钮、输入、开关、错误提示都保留黏土厚底。</p>
+          <div class="mini-components">
+            <button class="mini-button" type="button">保存训练</button>
+            <input class="mini-input" value="输入目标体重" aria-label="输入目标体重">
+            <div class="mini-toggle" role="switch" aria-checked="true" aria-label="提醒开关"></div>
+            <div class="mini-alert">设备未连接，请检查蓝牙</div>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">已进入演示：从引导、今日概览、训练库到训练中，再到营养与成就状态。</div>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const zoomValue = document.getElementById("zoomValue");
+    const toast = document.getElementById("toast");
+    const selectedLayer = document.getElementById("selectedLayer");
+    const frameGroups = [...document.querySelectorAll(".frame-group")];
+    const layerButtons = [...document.querySelectorAll(".layer-item")];
+    const frameNames = {
+      one: "01 启动引导",
+      two: "02 今日概览",
+      three: "03 训练库",
+      four: "04 训练中",
+      five: "05 营养记录",
+      six: "06 成就与状态",
+    };
+
+    let currentZoom = 1;
+
+    function setSelectedFrame(key) {
+      frameGroups.forEach((frame) => {
+        frame.classList.toggle("is-selected", frame.dataset.x === key);
+      });
+      selectedLayer.textContent = frameNames[key] || "01 启动引导";
+    }
+
+    function setZoom(nextZoom) {
+      currentZoom = Math.min(1.2, Math.max(0.72, nextZoom));
+      canvas.style.transform = `scale(${currentZoom})`;
+      zoomValue.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+
+    layerButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.dataset.target;
+        const frame = document.querySelector(`[data-x="${key}"]`);
+        setSelectedFrame(key);
+        frame?.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+      });
+    });
+
+    frameGroups.forEach((frame) => {
+      frame.addEventListener("click", () => setSelectedFrame(frame.dataset.x));
+    });
+
+    document.querySelectorAll("[data-zoom]").forEach((button) => {
+      button.addEventListener("click", () => {
+        setZoom(currentZoom + (button.dataset.zoom === "in" ? 0.08 : -0.08));
+      });
+    });
+
+    document.getElementById("presentButton").addEventListener("click", () => {
+      toast.classList.add("is-visible");
+      setSelectedFrame("one");
+      setTimeout(() => setSelectedFrame("two"), 600);
+      setTimeout(() => setSelectedFrame("three"), 1200);
+      setTimeout(() => setSelectedFrame("four"), 1800);
+      setTimeout(() => setSelectedFrame("five"), 2400);
+      setTimeout(() => setSelectedFrame("six"), 3000);
+      setTimeout(() => toast.classList.remove("is-visible"), 4600);
+    });
+
+    if (window.lucide) {
+      window.lucide.createIcons();
+    }
+  </script>
+</body>
+</html>
