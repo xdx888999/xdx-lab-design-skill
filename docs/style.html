@@ -8,1178 +8,459 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --paper: #F7F3EC;
-    --ink: #171615;
-    --muted: #6E6A63;
-    --line: #D7D0C4;
-    --panel: #FFFCF5;
-    --max-width: 1360px;
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
 
-  *, *::before, *::after {
-    box-sizing: border-box;
+  /* ═══ Floating Controls ═══ */
+  .fab-bar {
+    position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;
+    display: flex; gap: 6px; padding: 5px;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(14px);
+    border-radius: 40px; border: 1px solid rgba(255,255,255,0.1);
   }
-
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  .fab-bar a, .fab-bar button {
+    padding: 8px 18px; font-size: 12px; font-weight: 700;
+    font-family: "Inter", sans-serif; color: #fff; background: 0; border: 0;
+    border-radius: 30px; cursor: pointer; letter-spacing: 0.03em; transition: background 0.2s;
   }
+  .fab-bar a:hover, .fab-bar button:hover { background: rgba(255,255,255,0.15); }
 
-  a {
-    color: inherit;
+  /* ═══ Info Panel ═══ */
+  .info-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.45); backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
   }
-
-  .shell {
-    min-height: 100vh;
+  .info-overlay.open { opacity: 1; pointer-events: auto; }
+  .info-panel {
+    position: fixed; top: 0; right: 0; bottom: 0; width: min(420px, 90vw); z-index: 2001;
+    background: #fff; color: #111; padding: 40px 28px; overflow-y: auto;
+    transform: translateX(100%); transition: transform 0.3s ease;
+    font-family: "Inter", sans-serif;
   }
+  .info-panel.open { transform: translateX(0); }
+  .info-close { position: absolute; top: 14px; right: 14px; background: 0; border: 0; font-size: 26px; cursor: pointer; color: #999; }
+  .info-panel h2 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .info-cat { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #999; margin-bottom: 16px; }
+  .info-desc { font-size: 14px; line-height: 1.7; color: #555; margin-bottom: 20px; }
+  .info-swatches { display: flex; gap: 6px; margin-bottom: 20px; }
+  .info-sw { flex: 1; aspect-ratio: 1; border-radius: 8px; border: 1px solid rgba(0,0,0,0.06); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 5px; }
+  .info-sw span { font-size: 8px; font-weight: 700; font-family: "Inter", sans-serif; }
+  .info-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+  .info-tag { padding: 4px 10px; font-size: 10px; font-weight: 700; border: 1px solid #ddd; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .info-link { display: block; padding: 12px; background: #111; color: #fff; text-align: center; font-size: 13px; font-weight: 700; border-radius: 8px; margin-top: 10px; }
 
-  .topbar {
-    border-bottom: 2px solid var(--ink);
-    background: var(--panel);
-  }
+  /* ═══ Demo Page Base ═══ */
+  .demo { min-height: 100vh; background: var(--bg); color: var(--fg); font-family: var(--display-font); }
 
-  .topbar-inner {
-    width: min(var(--max-width), calc(100% - 48px));
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    padding: 18px 0;
-  }
-
-  .brand {
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .nav-link {
-    min-height: 36px;
-    border: 1px solid var(--ink);
-    padding: 9px 14px;
-    background: transparent;
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background 200ms ease, color 200ms ease;
-  }
-
-  .nav-link:hover {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .detail {
-    width: min(var(--max-width), calc(100% - 48px));
-    margin: 0 auto;
-    padding: 46px 0 70px;
-  }
-
-  .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1fr);
-    border: 2px solid var(--ink);
-    background: var(--panel);
-  }
-
-  .summary {
-    padding: clamp(28px, 5vw, 58px);
-    border-right: 1px solid var(--line);
-  }
-
-  .kicker {
-    margin-bottom: 18px;
-    color: var(--muted);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .title {
-    margin: 0;
-    font-family: "Playfair Display", "Noto Serif SC", serif;
-    font-size: clamp(42px, 6vw, 76px);
-    line-height: 0.98;
-  }
-
-  .subtitle {
-    margin-top: 18px;
-    color: var(--accent-color);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-  }
-
-  .description {
-    max-width: 620px;
-    margin: 26px 0 0;
-    color: #4F4B45;
-    font-size: 16px;
-    line-height: 1.8;
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    margin-top: 34px;
-  }
-
-  .action {
-    min-height: 42px;
-    padding: 12px 18px;
-    border: 1px solid var(--ink);
-    margin-right: -1px;
-    color: var(--ink);
-    font-size: 12px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: background 200ms ease, color 200ms ease;
-  }
-
-  .action:hover {
-    background: var(--ink);
-    color: var(--paper);
-  }
-
-  .visual {
-    position: relative;
-    min-height: 520px;
-    overflow: hidden;
-    display: grid;
-    place-items: center;
-    background:
-      radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--accent-color), transparent 18%) 0 14%, transparent 34%),
-      radial-gradient(circle at 86% 28%, color-mix(in srgb, var(--secondary), transparent 24%) 0 12%, transparent 34%),
-      radial-gradient(circle at 50% 92%, color-mix(in srgb, var(--tertiary), transparent 20%) 0 16%, transparent 36%),
-      var(--bg);
-    color: var(--fg);
-  }
-
-  .visual::before {
-    content: "";
-    position: absolute;
-    inset: 28px;
-    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 52%);
-    pointer-events: none;
-  }
-
-  .visual::after {
-    content: "";
-    position: absolute;
-    right: 34px;
-    bottom: 34px;
-    width: 118px;
-    height: 118px;
-    border-radius: 50%;
-    background: color-mix(in srgb, var(--accent-color), transparent 8%);
-    box-shadow:
-      -74px -62px 0 color-mix(in srgb, var(--secondary), transparent 18%),
-      -152px 28px 0 color-mix(in srgb, var(--tertiary), transparent 18%);
-    opacity: 0.82;
-  }
-
-  .visual-card {
-    position: relative;
-    z-index: 2;
-    width: min(72%, 520px);
-    padding: clamp(28px, 5vw, 54px);
-    border: 1px solid color-mix(in srgb, var(--fg), transparent 76%);
-    background: color-mix(in srgb, var(--bg), transparent 12%);
-    text-align: center;
-  }
-
-  .visual-title {
-    color: var(--fg);
-    font-family: var(--display-font);
-    font-size: clamp(38px, 6vw, 70px);
-    font-weight: var(--title-weight);
-    line-height: 1;
-    text-transform: var(--title-transform);
-  }
-
-  .visual-subtitle {
-    margin-top: 18px;
-    color: var(--accent-color);
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-
-  .meta-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    border: 2px solid var(--ink);
-    border-top: 0;
-    background: var(--line);
-    gap: 1px;
-  }
-
-  .meta-card {
-    min-height: 180px;
-    padding: 24px;
-    background: var(--panel);
-  }
-
-  .meta-label {
-    color: #969086;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .meta-value {
-    margin-top: 12px;
-    font-size: 20px;
-    font-weight: 850;
-    line-height: 1.35;
-  }
-
-  .palette {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    border: 2px solid var(--ink);
-    border-top: 0;
-  }
-
-  .swatch {
-    min-height: 132px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    border-right: 1px solid rgba(23, 22, 21, 0.18);
-    background: var(--color);
-    color: var(--label-color);
-  }
-
-  .swatch:last-child {
-    border-right: 0;
-  }
-
-  .swatch-name {
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .swatch-code {
-    margin-top: 6px;
-    font-size: 13px;
-    font-weight: 800;
-  }
-
-  .tag-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 26px;
-  }
-
-  .tag {
-    border: 1px solid var(--line);
-    padding: 7px 10px;
-    background: var(--panel);
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .error {
-    border: 2px solid var(--ink);
-    padding: 40px;
-    background: var(--panel);
-  }
-
-  /* ── Showcase Section ── */
-  .showcase {
-    margin-top: 46px;
-  }
-
-  .showcase-header {
-    margin-bottom: 28px;
-  }
-
-  .showcase-title {
-    margin: 0;
-    font-family: "Playfair Display", "Noto Serif SC", serif;
-    font-size: clamp(28px, 3vw, 42px);
-    line-height: 1.1;
-  }
-
-  .showcase-desc {
-    max-width: 680px;
-    margin: 10px 0 0;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
-  }
-
-  .showcase-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-  }
-
-  .mockup-frame {
-    border: 2px solid var(--ink);
-    background: var(--panel);
-    overflow: hidden;
-  }
-
-  .mockup-label {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--line);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .mockup-label-dot {
-    display: flex;
-    gap: 5px;
-  }
-
-  .mockup-label-dot span {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--line);
-  }
-
-  .mockup-viewport {
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* ── Website Mockup ── */
-  .web-mock {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: var(--display-font);
-    padding: 0;
-    min-height: 480px;
-  }
-
-  .web-nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 14px 20px;
+  /* ═══ Nav ═══ */
+  .d-nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px clamp(24px, 5vw, 80px);
     border-bottom: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
   }
+  .d-logo { font-size: 18px; font-weight: 800; letter-spacing: 0.04em; }
+  .d-links { display: flex; gap: 28px; font-size: 13px; font-weight: 600; color: color-mix(in srgb, var(--fg), transparent 30%); }
+  .d-nav-btn { padding: 8px 20px; font-size: 12px; font-weight: 700; background: var(--accent-color); color: var(--bg); border-radius: 6px; }
 
-  .web-nav-logo {
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
+  /* ═══ Hero ═══ */
+  .d-hero {
+    position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; min-height: 80vh; padding: 120px clamp(24px, 5vw, 80px) 80px; overflow: hidden;
+  }
+  .d-hero::before, .d-hero::after { content: ""; position: absolute; pointer-events: none; border-radius: 50%; }
+  .d-hero::before { width: 320px; height: 320px; right: 8%; top: 12%; background: color-mix(in srgb, var(--accent-color), transparent 88%); filter: blur(60px); }
+  .d-hero::after { width: 220px; height: 220px; left: 10%; bottom: 12%; background: color-mix(in srgb, var(--secondary), transparent 88%); filter: blur(50px); }
+  .d-badge {
+    display: inline-block; padding: 6px 16px; margin-bottom: 24px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent-color); border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%); border-radius: 30px;
+  }
+  .d-title {
+    font-size: clamp(44px, 8vw, 100px); font-weight: var(--title-weight); line-height: 1.02;
+    text-transform: var(--title-transform); letter-spacing: -0.02em; max-width: 900px; position: relative; z-index: 1;
+  }
+  .d-subtitle {
+    max-width: 540px; margin-top: 20px; font-size: 16px; line-height: 1.7;
+    color: color-mix(in srgb, var(--fg), transparent 30%); font-family: "Inter", sans-serif; font-weight: 400; position: relative; z-index: 1;
+  }
+  .d-btn {
+    display: inline-block; margin-top: 36px; padding: 14px 36px;
+    font-size: 14px; font-weight: 800; letter-spacing: 0.04em;
+    background: var(--accent-color); color: var(--bg); border-radius: 8px; position: relative; z-index: 1;
   }
 
-  .web-nav-links {
-    display: flex;
-    gap: 16px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    color: color-mix(in srgb, var(--fg), transparent 36%);
+  /* ═══ Features ═══ */
+  .d-features { padding: 80px clamp(24px, 5vw, 80px); }
+  .d-section-title { text-align: center; margin-bottom: 48px; font-size: clamp(24px, 3vw, 36px); font-weight: var(--title-weight); text-transform: var(--title-transform); }
+  .d-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto; }
+  .d-card {
+    padding: 36px 28px; background: color-mix(in srgb, var(--fg), transparent 96%);
+    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%); border-radius: 12px;
   }
+  .d-card-icon { width: 48px; height: 48px; margin-bottom: 20px; background: color-mix(in srgb, var(--accent-color), transparent 20%); border-radius: 12px; }
+  .d-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+  .d-card p { font-size: 14px; line-height: 1.6; color: color-mix(in srgb, var(--fg), transparent 35%); font-family: "Inter", sans-serif; font-weight: 400; }
 
-  .web-hero {
-    padding: 48px 20px 36px;
-    text-align: center;
-  }
+  /* ═══ Gallery ═══ */
+  .d-gallery { padding: 20px clamp(24px, 5vw, 80px) 80px; max-width: 1200px; margin: 0 auto; }
+  .d-gallery-grid { display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 260px 260px; gap: 20px; }
+  .d-gal-item { border-radius: 12px; overflow: hidden; position: relative; }
+  .d-gal-item:first-child { grid-row: 1 / 3; }
+  .d-gal-label { position: absolute; bottom: 16px; left: 16px; font-size: 13px; font-weight: 700; color: #fff; background: rgba(0,0,0,0.5); padding: 6px 14px; border-radius: 6px; backdrop-filter: blur(4px); }
 
-  .web-hero-tag {
-    display: inline-block;
-    padding: 4px 10px;
-    margin-bottom: 14px;
-    font-size: 9px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent-color);
-    border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%);
-    background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  }
-
-  .web-hero-title {
-    font-size: clamp(22px, 3vw, 32px);
-    font-weight: var(--title-weight);
-    line-height: 1.1;
-    text-transform: var(--title-transform);
-    max-width: 320px;
-    margin: 0 auto;
-  }
-
-  .web-hero-sub {
-    margin-top: 10px;
-    font-size: 11px;
-    color: color-mix(in srgb, var(--fg), transparent 40%);
-    font-weight: 400;
-    font-family: "Inter", sans-serif;
-    line-height: 1.6;
-  }
-
-  .web-hero-cta {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 10px 24px;
-    background: var(--accent-color);
-    color: var(--bg);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    border: none;
-  }
-
-  .web-cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    padding: 0 20px 24px;
-  }
-
-  .web-card {
-    padding: 16px 14px;
-    background: color-mix(in srgb, var(--secondary), transparent 40%);
-    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
-  }
-
-  .web-card-icon {
-    width: 28px;
-    height: 28px;
-    margin-bottom: 10px;
-    background: var(--accent-color);
-    opacity: 0.8;
-  }
-
-  .web-card-icon.circle { border-radius: 50%; }
-  .web-card-icon.diamond { transform: rotate(45deg); width: 22px; height: 22px; margin: 3px 0 13px 3px; }
-  .web-card-icon.triangle { background: transparent; width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-bottom: 24px solid var(--accent-color); opacity: 0.8; }
-
-  .web-card-title {
-    font-size: 11px;
-    font-weight: 800;
-    margin-bottom: 5px;
-  }
-
-  .web-card-text {
-    font-size: 9px;
-    line-height: 1.5;
-    color: color-mix(in srgb, var(--fg), transparent 40%);
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-  }
-
-  .web-footer {
-    padding: 14px 20px;
+  /* ═══ Stats ═══ */
+  .d-stats {
+    padding: 60px clamp(24px, 5vw, 80px);
     border-top: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
-    font-size: 9px;
-    color: color-mix(in srgb, var(--fg), transparent 50%);
-    font-family: "Inter", sans-serif;
-    display: flex;
-    justify-content: space-between;
+    border-bottom: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
+  }
+  .d-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto; text-align: center; }
+  .d-stat-val { font-size: clamp(32px, 4vw, 48px); font-weight: 900; line-height: 1; color: var(--accent-color); }
+  .d-stat-lbl { margin-top: 8px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: color-mix(in srgb, var(--fg), transparent 40%); font-family: "Inter", sans-serif; }
+
+  /* ═══ CTA ═══ */
+  .d-cta { padding: 100px clamp(24px, 5vw, 80px); text-align: center; }
+  .d-cta h2 { font-size: clamp(28px, 4vw, 48px); font-weight: var(--title-weight); text-transform: var(--title-transform); max-width: 700px; margin: 0 auto; }
+  .d-cta-btn {
+    display: inline-block; margin-top: 32px; padding: 16px 40px;
+    font-size: 15px; font-weight: 800; letter-spacing: 0.04em;
+    background: var(--accent-color); color: var(--bg); border-radius: 8px;
   }
 
-  /* ── Mobile App Mockup ── */
-  .app-mock-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 20px;
-    min-height: 480px;
-    background:
-      linear-gradient(135deg, color-mix(in srgb, var(--bg), var(--panel) 70%) 0%, var(--panel) 100%);
-  }
-
-  .app-phone {
-    width: 220px;
-    background: var(--bg);
-    color: var(--fg);
-    border-radius: 24px;
-    border: 2px solid color-mix(in srgb, var(--fg), transparent 70%);
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.18);
-    font-family: var(--display-font);
-  }
-
-  .app-status-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 18px 4px;
-    font-size: 9px;
-    font-weight: 700;
-    font-family: "Inter", sans-serif;
-  }
-
-  .app-notch {
-    width: 80px;
-    height: 20px;
-    background: color-mix(in srgb, var(--fg), transparent 90%);
-    border-radius: 0 0 12px 12px;
-    margin: 0 auto 4px;
-  }
-
-  .app-header {
-    padding: 12px 18px 8px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .app-header-title {
-    font-size: 16px;
-    font-weight: 800;
-  }
-
-  .app-header-avatar {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: var(--accent-color);
-  }
-
-  .app-search {
-    margin: 6px 18px 12px;
-    padding: 8px 12px;
-    background: color-mix(in srgb, var(--fg), transparent 92%);
-    border-radius: 8px;
-    font-size: 9px;
-    color: color-mix(in srgb, var(--fg), transparent 50%);
-    font-family: "Inter", sans-serif;
-  }
-
-  .app-card {
-    margin: 0 18px 10px;
-    padding: 14px;
-    background: color-mix(in srgb, var(--secondary), transparent 50%);
-    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
-    border-radius: 10px;
-  }
-
-  .app-card-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .app-card-thumb {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    flex-shrink: 0;
-  }
-
-  .app-card-info {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .app-card-name {
-    font-size: 11px;
-    font-weight: 800;
-  }
-
-  .app-card-sub {
-    font-size: 8px;
-    color: color-mix(in srgb, var(--fg), transparent 40%);
-    margin-top: 2px;
-    font-family: "Inter", sans-serif;
-    font-weight: 400;
-  }
-
-  .app-card-badge {
-    padding: 3px 8px;
-    background: var(--accent-color);
-    color: var(--bg);
-    font-size: 8px;
-    font-weight: 800;
-    border-radius: 6px;
-    flex-shrink: 0;
-  }
-
-  .app-card-bar {
-    margin-top: 10px;
-    height: 4px;
-    background: color-mix(in srgb, var(--fg), transparent 88%);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .app-card-bar-fill {
-    height: 100%;
-    border-radius: 2px;
-  }
-
-  .app-tab-bar {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0 14px;
+  /* ═══ Footer ═══ */
+  .d-footer {
+    padding: 36px clamp(24px, 5vw, 80px);
     border-top: 1px solid color-mix(in srgb, var(--fg), transparent 88%);
-    margin-top: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: color-mix(in srgb, var(--fg), transparent 50%); font-family: "Inter", sans-serif;
   }
+  .d-footer-links { display: flex; gap: 24px; }
 
-  .app-tab {
-    text-align: center;
-    font-size: 7px;
-    font-weight: 700;
-    font-family: "Inter", sans-serif;
-    color: color-mix(in srgb, var(--fg), transparent 50%);
-  }
+  /* ═══════════════════════════════════════════════
+     MODE-SPECIFIC VISUAL LANGUAGE
+     ═══════════════════════════════════════════════ */
 
-  .app-tab.active {
-    color: var(--accent-color);
-  }
+  /* ── Glass ── */
+  .m-glass .d-hero::before { inset: -60px; width: auto; height: auto; right: auto; top: auto; border-radius: 0; background: radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--accent-color), transparent 25%), transparent 40%), radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--secondary), transparent 25%), transparent 40%), radial-gradient(circle at 50% 90%, color-mix(in srgb, var(--tertiary), transparent 35%), transparent 30%); filter: blur(60px); }
+  .m-glass .d-hero::after { width: 200px; height: 200px; right: 15%; top: 20%; left: auto; bottom: auto; background: color-mix(in srgb, var(--accent-color), transparent 75%); filter: blur(50px); }
+  .m-glass .d-nav { background: color-mix(in srgb, var(--bg), transparent 40%); backdrop-filter: blur(16px); border-color: rgba(255,255,255,0.08); }
+  .m-glass .d-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(12px); border-radius: 20px; }
+  .m-glass .d-badge { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); backdrop-filter: blur(8px); }
+  .m-glass .d-btn, .m-glass .d-cta-btn, .m-glass .d-nav-btn { border-radius: 30px; }
+  .m-glass .d-gal-item { border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
 
-  .app-tab-icon {
-    width: 18px;
-    height: 18px;
-    margin: 0 auto 3px;
-    border-radius: 4px;
-    background: color-mix(in srgb, var(--fg), transparent 82%);
-  }
+  /* ── Aurora ── */
+  .m-aurora .d-hero::before { inset: -80px; width: auto; height: auto; right: auto; top: auto; border-radius: 0; background: radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--accent-color), transparent 15%), transparent 30%), radial-gradient(circle at 85% 20%, color-mix(in srgb, var(--secondary), transparent 20%), transparent 35%), radial-gradient(circle at 50% 85%, color-mix(in srgb, var(--tertiary), transparent 20%), transparent 40%); filter: blur(50px); }
+  .m-aurora .d-hero::after { display: none; }
+  .m-aurora .d-title { background: linear-gradient(135deg, var(--fg), var(--accent-color), var(--secondary)); background-clip: text; -webkit-background-clip: text; color: transparent; }
+  .m-aurora .d-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; }
+  .m-aurora .d-nav { border-color: rgba(255,255,255,0.06); }
+  .m-aurora .d-btn, .m-aurora .d-cta-btn, .m-aurora .d-nav-btn { border-radius: 30px; }
+  .m-aurora .d-gal-item { border-radius: 20px; }
 
-  .app-tab.active .app-tab-icon {
-    background: var(--accent-color);
-  }
+  /* ── AI ── */
+  .m-ai .d-hero::before { width: 380px; height: 380px; left: 50%; top: 50%; right: auto; transform: translate(-50%, -50%); background: none; filter: none; border: 1px solid color-mix(in srgb, var(--accent-color), transparent 65%); box-shadow: 0 0 0 50px color-mix(in srgb, var(--secondary), transparent 92%), 0 0 0 110px color-mix(in srgb, var(--accent-color), transparent 95%); }
+  .m-ai .d-hero::after { display: none; }
+  .m-ai .d-card { background: color-mix(in srgb, var(--tertiary), transparent 40%); border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%); border-radius: 20px; }
+  .m-ai .d-btn, .m-ai .d-cta-btn, .m-ai .d-nav-btn { border-radius: 30px; }
+  .m-ai .d-gal-item { border-radius: 20px; }
 
-  /* ── Dashboard Mockup ── */
-  .dash-mock {
-    background: var(--bg);
-    color: var(--fg);
-    font-family: "Inter", sans-serif;
-    min-height: 480px;
-    display: grid;
-    grid-template-columns: 48px 1fr;
-  }
+  /* ── Brutal ── */
+  .m-brutal .d-hero::before, .m-brutal .d-hero::after { display: none; }
+  .m-brutal .d-nav { border-bottom: 4px solid var(--fg); }
+  .m-brutal .d-card { border: 3px solid var(--fg); border-radius: 0; box-shadow: 6px 6px 0 var(--fg); background: color-mix(in srgb, var(--accent-color), transparent 65%); }
+  .m-brutal .d-card-icon { border-radius: 0; border: 2px solid var(--fg); }
+  .m-brutal .d-badge { border: 2px solid var(--fg); border-radius: 0; background: var(--accent-color); color: var(--fg); box-shadow: 3px 3px 0 var(--fg); }
+  .m-brutal .d-btn, .m-brutal .d-cta-btn { border: 3px solid var(--fg); border-radius: 0; box-shadow: 5px 5px 0 var(--fg); background: var(--accent-color); color: var(--fg); }
+  .m-brutal .d-nav-btn { border: 2px solid var(--fg); border-radius: 0; box-shadow: 3px 3px 0 var(--fg); background: var(--accent-color); color: var(--fg); }
+  .m-brutal .d-gal-item { border-radius: 0; border: 3px solid var(--fg); }
+  .m-brutal .d-stats, .m-brutal .d-footer { border-color: var(--fg); border-width: 3px; }
+  .m-brutal .d-stat-val { color: var(--fg); }
 
-  .dash-sidebar {
-    background: color-mix(in srgb, var(--fg), transparent 92%);
-    border-right: 1px solid color-mix(in srgb, var(--fg), transparent 85%);
-    padding: 14px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
+  /* ── Minimal ── */
+  .m-minimal .d-hero::before, .m-minimal .d-hero::after { opacity: 0.4; }
+  .m-minimal .d-nav { border-color: color-mix(in srgb, var(--fg), transparent 92%); }
+  .m-minimal .d-card { background: transparent; border: 1px solid color-mix(in srgb, var(--fg), transparent 92%); border-radius: 8px; }
+  .m-minimal .d-card-icon { opacity: 0.4; border-radius: 50%; }
+  .m-minimal .d-badge { border-color: color-mix(in srgb, var(--fg), transparent 80%); color: color-mix(in srgb, var(--fg), transparent 30%); }
+  .m-minimal .d-btn, .m-minimal .d-cta-btn { background: transparent; color: var(--fg); border: 1px solid var(--fg); }
+  .m-minimal .d-nav-btn { background: transparent; color: var(--fg); border: 1px solid color-mix(in srgb, var(--fg), transparent 60%); }
+  .m-minimal .d-stats, .m-minimal .d-footer { border-color: color-mix(in srgb, var(--fg), transparent 92%); }
+  .m-minimal .d-stat-val { color: var(--fg); }
+  .m-minimal .d-gal-item { border-radius: 4px; }
 
-  .dash-sidebar-logo {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    background: var(--accent-color);
-    margin-bottom: 8px;
-  }
+  /* ── Luxury / Photo ── */
+  .m-luxury .d-hero::before, .m-luxury .d-hero::after, .m-photo .d-hero::before, .m-photo .d-hero::after { opacity: 0.3; }
+  .m-luxury .d-nav, .m-photo .d-nav { border-bottom: none; letter-spacing: 0.12em; text-transform: uppercase; font-size: 11px; }
+  .m-luxury .d-badge, .m-photo .d-badge { border-radius: 0; border-color: color-mix(in srgb, var(--accent-color), transparent 40%); color: var(--accent-color); letter-spacing: 0.2em; }
+  .m-luxury .d-title, .m-photo .d-title { letter-spacing: 0.06em; }
+  .m-luxury .d-btn, .m-luxury .d-cta-btn, .m-photo .d-btn, .m-photo .d-cta-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); border-radius: 0; letter-spacing: 0.14em; text-transform: uppercase; font-size: 12px; }
+  .m-luxury .d-nav-btn, .m-photo .d-nav-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); border-radius: 0; letter-spacing: 0.1em; text-transform: uppercase; }
+  .m-luxury .d-card, .m-photo .d-card { background: transparent; border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%); border-radius: 0; }
+  .m-luxury .d-card-icon, .m-photo .d-card-icon { border-radius: 50%; background: color-mix(in srgb, var(--accent-color), transparent 70%); }
+  .m-luxury .d-gal-item, .m-photo .d-gal-item { border-radius: 0; }
+  .m-luxury .d-stats, .m-luxury .d-footer, .m-photo .d-stats, .m-photo .d-footer { border-color: color-mix(in srgb, var(--accent-color), transparent 70%); }
 
-  .dash-sidebar-item {
-    width: 24px;
-    height: 24px;
-    border-radius: 6px;
-    background: color-mix(in srgb, var(--fg), transparent 82%);
-  }
+  /* ── Art Deco ── */
+  .m-artdeco .d-hero::before { inset: 24px; width: auto; height: auto; right: auto; top: auto; border-radius: 0; background: none; filter: none; border: 1px solid color-mix(in srgb, var(--accent-color), transparent 50%); }
+  .m-artdeco .d-hero::after { inset: 34px; width: auto; height: auto; left: auto; bottom: auto; border-radius: 0; background: none; filter: none; border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%); }
+  .m-artdeco .d-nav { border-color: color-mix(in srgb, var(--accent-color), transparent 60%); letter-spacing: 0.1em; text-transform: uppercase; }
+  .m-artdeco .d-card { border: 1px solid color-mix(in srgb, var(--accent-color), transparent 50%); border-radius: 0; background: transparent; box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--accent-color), transparent 85%); }
+  .m-artdeco .d-badge { border-radius: 0; border-color: var(--accent-color); letter-spacing: 0.2em; }
+  .m-artdeco .d-btn, .m-artdeco .d-cta-btn { border-radius: 0; letter-spacing: 0.16em; text-transform: uppercase; }
+  .m-artdeco .d-nav-btn { border-radius: 0; letter-spacing: 0.1em; }
+  .m-artdeco .d-gal-item { border-radius: 0; }
+  .m-artdeco .d-card-icon { border-radius: 0; }
+  .m-artdeco .d-stats, .m-artdeco .d-footer { border-color: color-mix(in srgb, var(--accent-color), transparent 60%); }
 
-  .dash-sidebar-item.active {
-    background: var(--accent-color);
-  }
+  /* ── Retro ── */
+  .m-retro .d-hero::before { inset: 0; width: auto; height: auto; right: auto; top: auto; border-radius: 0; background: linear-gradient(transparent 49.5%, color-mix(in srgb, var(--fg), transparent 94%) 49.5%, color-mix(in srgb, var(--fg), transparent 94%) 50.5%, transparent 50.5%); background-size: 100% 4px; filter: none; }
+  .m-retro .d-hero::after { display: none; }
+  .m-retro .d-title { text-shadow: 0 0 40px color-mix(in srgb, var(--accent-color), transparent 30%), 0 0 80px color-mix(in srgb, var(--accent-color), transparent 55%); }
+  .m-retro .d-card { border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%); border-radius: 4px; background: color-mix(in srgb, var(--bg), var(--fg) 5%); box-shadow: 0 0 15px color-mix(in srgb, var(--accent-color), transparent 80%); }
+  .m-retro .d-btn, .m-retro .d-cta-btn { border-radius: 4px; box-shadow: 0 0 20px color-mix(in srgb, var(--accent-color), transparent 45%); }
+  .m-retro .d-stat-val { text-shadow: 0 0 20px color-mix(in srgb, var(--accent-color), transparent 40%); }
+  .m-retro .d-gal-item { border-radius: 4px; border: 1px solid color-mix(in srgb, var(--accent-color), transparent 70%); }
 
-  .dash-main {
-    padding: 18px;
-  }
+  /* ── Pixel ── */
+  .m-pixel .d-hero::before, .m-pixel .d-hero::after { display: none; }
+  .m-pixel .d-title { text-shadow: 3px 3px 0 var(--accent-color); }
+  .m-pixel .d-card { border: 2px solid var(--accent-color); border-radius: 0; background: color-mix(in srgb, var(--bg), var(--fg) 5%); }
+  .m-pixel .d-card-icon { border-radius: 0; }
+  .m-pixel .d-badge, .m-pixel .d-btn, .m-pixel .d-cta-btn, .m-pixel .d-nav-btn { border-radius: 0; border: 2px solid var(--accent-color); }
+  .m-pixel .d-gal-item { border-radius: 0; border: 2px solid var(--accent-color); }
 
-  .dash-topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
+  /* ── Culture ── */
+  .m-culture .d-hero::after { width: 80px; height: 80px; right: 10%; bottom: 15%; left: auto; border: 2px solid color-mix(in srgb, var(--secondary), transparent 40%); border-radius: 50%; background: none; filter: none; box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--secondary), transparent 50%); }
+  .m-culture .d-card { border: 1px solid color-mix(in srgb, var(--fg), transparent 80%); border-radius: 2px; background: transparent; }
+  .m-culture .d-badge { border-radius: 2px; border-color: color-mix(in srgb, var(--accent-color), transparent 40%); }
+  .m-culture .d-btn, .m-culture .d-cta-btn { border-radius: 2px; }
+  .m-culture .d-gal-item { border-radius: 4px; }
+  .m-culture .d-card-icon { border-radius: 50%; }
 
-  .dash-topbar-title {
-    font-size: 14px;
-    font-weight: 800;
-    font-family: var(--display-font);
-  }
+  /* ── Editorial ── */
+  .m-editorial .d-hero::before, .m-editorial .d-hero::after { display: none; }
+  .m-editorial .d-nav { border-bottom: 3px double var(--fg); }
+  .m-editorial .d-hero { text-align: left; align-items: flex-start; padding-left: clamp(40px, 8vw, 120px); }
+  .m-editorial .d-subtitle { text-align: left; }
+  .m-editorial .d-badge { border: none; border-radius: 0; padding: 4px 12px; background: var(--accent-color); color: var(--bg); }
+  .m-editorial .d-btn, .m-editorial .d-cta-btn { border-radius: 0; background: var(--fg); color: var(--bg); }
+  .m-editorial .d-nav-btn { border-radius: 0; background: var(--fg); color: var(--bg); }
+  .m-editorial .d-card { border: none; border-top: 3px solid var(--accent-color); border-radius: 0; background: transparent; padding-left: 0; padding-right: 0; }
+  .m-editorial .d-card-icon { display: none; }
+  .m-editorial .d-gal-item { border-radius: 0; }
 
-  .dash-topbar-btn {
-    padding: 5px 12px;
-    background: var(--accent-color);
-    color: var(--bg);
-    font-size: 9px;
-    font-weight: 700;
-    border-radius: 4px;
-  }
+  /* ── Geometric ── */
+  .m-geometric .d-hero::before, .m-geometric .d-hero::after { display: none; }
+  .m-geometric .d-nav { border-bottom: 3px solid var(--fg); }
+  .m-geometric .d-card { border: 2px solid var(--fg); border-radius: 0; background: transparent; }
+  .m-geometric .d-card:nth-child(1) .d-card-icon { border-radius: 50%; background: var(--accent-color); }
+  .m-geometric .d-card:nth-child(2) .d-card-icon { border-radius: 0; background: var(--secondary); }
+  .m-geometric .d-card:nth-child(3) .d-card-icon { border-radius: 0; background: var(--tertiary); clip-path: polygon(50% 0%, 0% 100%, 100% 100%); }
+  .m-geometric .d-badge, .m-geometric .d-btn, .m-geometric .d-cta-btn, .m-geometric .d-nav-btn { border-radius: 0; }
+  .m-geometric .d-gal-item { border-radius: 0; }
+  .m-geometric .d-stats, .m-geometric .d-footer { border-width: 2px; border-color: var(--fg); }
 
-  .dash-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+  /* ── Playful ── */
+  .m-playful .d-card { border: none; border-radius: 24px; background: color-mix(in srgb, var(--secondary), transparent 60%); box-shadow: 0 8px 30px color-mix(in srgb, var(--accent-color), transparent 85%); }
+  .m-playful .d-card-icon { border-radius: 16px; }
+  .m-playful .d-badge { border-radius: 30px; background: color-mix(in srgb, var(--accent-color), transparent 85%); border-color: transparent; }
+  .m-playful .d-btn, .m-playful .d-cta-btn { border-radius: 30px; box-shadow: 0 6px 20px color-mix(in srgb, var(--accent-color), transparent 60%); }
+  .m-playful .d-nav-btn { border-radius: 30px; }
+  .m-playful .d-gal-item { border-radius: 24px; }
+  .m-playful .d-nav { border-bottom: none; }
 
-  .dash-stat {
-    padding: 12px;
-    background: color-mix(in srgb, var(--secondary), transparent 50%);
-    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
-    border-radius: 8px;
-  }
+  /* ── Terminal ── */
+  .m-terminal .d-nav, .m-terminal .d-card, .m-terminal .d-badge, .m-terminal .d-btn, .m-terminal .d-cta-btn, .m-terminal .d-nav-btn, .m-terminal .d-stat-val { font-family: "Space Grotesk", monospace; }
+  .m-terminal .d-card { border: 1px solid color-mix(in srgb, var(--accent-color), transparent 60%); border-radius: 4px; background: color-mix(in srgb, var(--bg), var(--fg) 4%); }
+  .m-terminal .d-badge { border-radius: 2px; border-color: var(--accent-color); }
+  .m-terminal .d-btn, .m-terminal .d-cta-btn, .m-terminal .d-nav-btn { border-radius: 4px; }
+  .m-terminal .d-gal-item { border-radius: 4px; }
+  .m-terminal .d-card-icon { border-radius: 4px; }
 
-  .dash-stat-value {
-    font-size: 18px;
-    font-weight: 900;
-    line-height: 1;
-  }
+  /* ── Analytics ── */
+  .m-analytics .d-card { border: 1px solid color-mix(in srgb, var(--fg), transparent 80%); border-radius: 8px; background: color-mix(in srgb, var(--fg), transparent 94%); }
+  .m-analytics .d-btn, .m-analytics .d-cta-btn, .m-analytics .d-nav-btn { border-radius: 6px; }
+  .m-analytics .d-gal-item { border-radius: 8px; }
 
-  .dash-stat-label {
-    font-size: 8px;
-    color: color-mix(in srgb, var(--fg), transparent 40%);
-    margin-top: 4px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
+  /* ── Pitch ── */
+  .m-pitch .d-hero { min-height: 90vh; }
+  .m-pitch .d-card { border: 1px solid color-mix(in srgb, var(--fg), transparent 80%); border-radius: 12px; background: color-mix(in srgb, var(--fg), transparent 94%); }
+  .m-pitch .d-stat-val { font-size: clamp(40px, 5vw, 64px); }
+  .m-pitch .d-gal-item { border-radius: 12px; }
 
-  .dash-chart {
-    padding: 14px;
-    background: color-mix(in srgb, var(--secondary), transparent 60%);
-    border: 1px solid color-mix(in srgb, var(--fg), transparent 90%);
-    border-radius: 8px;
-    margin-bottom: 14px;
-  }
+  /* ── SaaS / Corporate / Fintech ── */
+  .m-saas .d-card, .m-corporate .d-card, .m-fintech .d-card { border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .m-saas .d-btn, .m-saas .d-cta-btn, .m-corporate .d-btn, .m-corporate .d-cta-btn, .m-fintech .d-btn, .m-fintech .d-cta-btn { border-radius: 8px; }
+  .m-saas .d-nav-btn, .m-corporate .d-nav-btn, .m-fintech .d-nav-btn { border-radius: 8px; }
+  .m-saas .d-gal-item, .m-corporate .d-gal-item, .m-fintech .d-gal-item { border-radius: 12px; }
 
-  .dash-chart-title {
-    font-size: 10px;
-    font-weight: 800;
-    margin-bottom: 12px;
-  }
+  /* ── Medical / Education / Nonprofit ── */
+  .m-medical .d-card, .m-education .d-card, .m-nonprofit .d-card { border-radius: 16px; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.06); background: color-mix(in srgb, var(--tertiary), transparent 30%); }
+  .m-medical .d-btn, .m-medical .d-cta-btn, .m-education .d-btn, .m-education .d-cta-btn, .m-nonprofit .d-btn, .m-nonprofit .d-cta-btn { border-radius: 12px; }
+  .m-medical .d-nav-btn, .m-education .d-nav-btn, .m-nonprofit .d-nav-btn { border-radius: 12px; }
+  .m-medical .d-card-icon, .m-education .d-card-icon, .m-nonprofit .d-card-icon { border-radius: 50%; }
+  .m-medical .d-gal-item, .m-education .d-gal-item, .m-nonprofit .d-gal-item { border-radius: 16px; }
 
-  .dash-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 6px;
-    height: 80px;
-  }
+  /* ── Material ── */
+  .m-material .d-card { border: none; border-radius: 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04); background: color-mix(in srgb, var(--tertiary), transparent 30%); }
+  .m-material .d-btn, .m-material .d-cta-btn, .m-material .d-nav-btn { border-radius: 30px; }
+  .m-material .d-card-icon { border-radius: 50%; }
+  .m-material .d-gal-item { border-radius: 28px; }
 
-  .dash-bar {
-    flex: 1;
-    border-radius: 3px 3px 0 0;
-    min-width: 0;
-  }
+  /* ── Finance ── */
+  .m-finance .d-card { border: 1px solid color-mix(in srgb, var(--fg), transparent 85%); border-radius: 4px; background: color-mix(in srgb, var(--fg), transparent 96%); }
+  .m-finance .d-btn, .m-finance .d-cta-btn, .m-finance .d-nav-btn { border-radius: 4px; }
+  .m-finance .d-card-icon { border-radius: 4px; }
+  .m-finance .d-gal-item { border-radius: 4px; }
+  .m-finance .d-nav { font-size: 12px; }
 
-  .dash-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .dash-table-header {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr;
-    padding: 6px 10px;
-    background: color-mix(in srgb, var(--fg), transparent 92%);
-    border-radius: 4px;
-    font-size: 8px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: color-mix(in srgb, var(--fg), transparent 30%);
-    margin-bottom: 4px;
-  }
-
-  .dash-table-row {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr 0.8fr 0.6fr;
-    padding: 7px 10px;
-    border-bottom: 1px solid color-mix(in srgb, var(--fg), transparent 92%);
-    font-size: 9px;
-    align-items: center;
-  }
-
-  .dash-table-status {
-    display: inline-block;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 7px;
-    font-weight: 700;
-  }
-
+  /* ═══ Responsive ═══ */
   @media (max-width: 900px) {
-    .topbar-inner,
-    .detail {
-      width: min(100% - 32px, var(--max-width));
-    }
-
-    .hero,
-    .meta-grid,
-    .palette {
-      grid-template-columns: 1fr;
-    }
-
-    .summary {
-      border-right: 0;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .visual {
-      min-height: 420px;
-    }
-
-    .swatch {
-      min-height: 96px;
-      border-right: 0;
-      border-bottom: 1px solid rgba(23, 22, 21, 0.18);
-    }
-
-    .swatch:last-child {
-      border-bottom: 0;
-    }
-
-    .showcase-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .app-mock-wrap {
-      min-height: 520px;
-    }
+    .d-grid { grid-template-columns: 1fr; }
+    .d-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .d-gallery-grid { grid-template-columns: 1fr; grid-template-rows: 200px 200px 200px; }
+    .d-gal-item:first-child { grid-row: auto; }
+    .d-links { display: none; }
+    .d-hero { min-height: 60vh; }
+    .m-editorial .d-hero { align-items: center; text-align: center; padding-left: clamp(24px, 5vw, 80px); }
+    .m-editorial .d-subtitle { text-align: center; }
+  }
+  @media (max-width: 640px) {
+    .d-stats-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .fab-bar { top: auto; bottom: 20px; }
   }
 </style>
 </head>
 <body>
-<div class="shell">
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">xdx-lab-design-skill</div>
-      <a class="nav-link" href="index.html">返回画廊</a>
-    </div>
-  </header>
-
-  <main class="detail" id="detail"></main>
-</div>
+<div class="demo" id="demo"></div>
+<div class="info-overlay" id="info-overlay" onclick="toggleInfo()"></div>
+<div class="info-panel" id="info-panel"></div>
 
 <script src="style-data.js"></script>
 <script>
   const params = new URLSearchParams(window.location.search);
   const styleId = (params.get("id") || "01").padStart(2, "0");
-  const style = window.designStyleData.styles.find((item) => item.id === styleId);
-  const detail = document.getElementById("detail");
+  const s = window.designStyleData.styles.find(i => i.id === styleId);
+  const demo = document.getElementById("demo");
 
-  function getLabelColor(color) {
-    const hex = color.replace("#", "");
-    if (hex.length !== 6) {
-      return "#171615";
-    }
-
-    const red = parseInt(hex.slice(0, 2), 16);
-    const green = parseInt(hex.slice(2, 4), 16);
-    const blue = parseInt(hex.slice(4, 6), 16);
-    const luminance = (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 255;
-    return luminance > 0.58 ? "#171615" : "#FFFCF5";
-  }
-
-  function createTag(tag) {
-    const element = document.createElement("span");
-    element.className = "tag";
-    element.textContent = tag;
-    return element;
-  }
-
-  function createSwatch(name, color) {
-    const swatch = document.createElement("div");
-    swatch.className = "swatch";
-    swatch.style.setProperty("--color", color);
-    swatch.style.setProperty("--label-color", getLabelColor(color));
-
-    const swatchName = document.createElement("div");
-    swatchName.className = "swatch-name";
-    swatchName.textContent = name;
-
-    const swatchCode = document.createElement("div");
-    swatchCode.className = "swatch-code";
-    swatchCode.textContent = color;
-
-    swatch.append(swatchName, swatchCode);
-    return swatch;
-  }
-
-  function renderError() {
-    detail.innerHTML = `
-      <section class="error">
-        <h1>没有找到这个风格</h1>
-        <p>请回到画廊重新选择一个风格编号。</p>
-        <p><a class="action" href="index.html">返回画廊</a></p>
-      </section>
-    `;
-  }
-
-  function renderStylePage(currentStyle) {
-    document.title = `${currentStyle.id} · ${currentStyle.name} — xdx-lab-design-skill`;
-    detail.style.setProperty("--bg", currentStyle.bg);
-    detail.style.setProperty("--fg", currentStyle.fg);
-    detail.style.setProperty("--accent-color", currentStyle.accent);
-    detail.style.setProperty("--secondary", currentStyle.secondary);
-    detail.style.setProperty("--tertiary", currentStyle.tertiary);
-    detail.style.setProperty("--display-font", currentStyle.font);
-    detail.style.setProperty("--title-weight", currentStyle.weight);
-    detail.style.setProperty("--title-transform", currentStyle.transform);
-
-    const designUrl = `${window.designStyleData.githubBase}${currentStyle.file}`;
-
-    detail.innerHTML = `
-      <section class="hero">
-        <div class="summary">
-          <div class="kicker">Style ${currentStyle.id} · ${currentStyle.category}</div>
-          <h1 class="title">${currentStyle.name}</h1>
-          <div class="subtitle">${currentStyle.subtitle}</div>
-          <p class="description">${currentStyle.desc}</p>
-          <div class="actions">
-            <a class="action" href="${designUrl}">查看 DESIGN.md</a>
-            <a class="action" href="index.html">返回 50 风格画廊</a>
-          </div>
-          <div class="tag-row" id="tag-row"></div>
-        </div>
-        <div class="visual">
-          <div class="visual-card">
-            <div class="visual-title">${currentStyle.sample}</div>
-            <div class="visual-subtitle">${currentStyle.subtitle}</div>
-          </div>
-        </div>
-      </section>
-      <section class="meta-grid">
-        <div class="meta-card">
-          <div class="meta-label">适合场景</div>
-          <div class="meta-value">${currentStyle.desc}</div>
-        </div>
-        <div class="meta-card">
-          <div class="meta-label">关键词</div>
-          <div class="meta-value">${currentStyle.tags.join(" · ")}</div>
-        </div>
-        <div class="meta-card">
-          <div class="meta-label">规范文件</div>
-          <div class="meta-value">${currentStyle.file}</div>
-        </div>
-      </section>
-      <section class="palette" id="palette" aria-label="色彩样本"></section>
-
-      <section class="showcase">
-        <div class="showcase-header">
-          <h2 class="showcase-title">效果预览</h2>
-          <p class="showcase-desc">以下展示使用该风格配色、字体和设计语言生成的网站、移动应用和仪表盘模拟效果。</p>
-        </div>
-        <div class="showcase-grid">
-
-          <div class="mockup-frame">
-            <div class="mockup-label">
-              <span>Website</span>
-              <div class="mockup-label-dot"><span></span><span></span><span></span></div>
-            </div>
-            <div class="mockup-viewport web-mock">
-              <div class="web-nav">
-                <div class="web-nav-logo">${currentStyle.sample}</div>
-                <div class="web-nav-links">
-                  <span>Product</span><span>Features</span><span>Pricing</span>
-                </div>
-              </div>
-              <div class="web-hero">
-                <div class="web-hero-tag">${currentStyle.tags[0] || "NEW"}</div>
-                <div class="web-hero-title">${currentStyle.sample}</div>
-                <div class="web-hero-sub">${currentStyle.desc}</div>
-                <div class="web-hero-cta">Get Started →</div>
-              </div>
-              <div class="web-cards">
-                <div class="web-card">
-                  <div class="web-card-icon circle"></div>
-                  <div class="web-card-title">Design</div>
-                  <div class="web-card-text">Built with precision and care for every detail.</div>
-                </div>
-                <div class="web-card">
-                  <div class="web-card-icon diamond"></div>
-                  <div class="web-card-title">Build</div>
-                  <div class="web-card-text">Ship faster with components that just work.</div>
-                </div>
-                <div class="web-card">
-                  <div class="web-card-icon triangle"></div>
-                  <div class="web-card-title">Scale</div>
-                  <div class="web-card-text">Grow without breaking your design system.</div>
-                </div>
-              </div>
-              <div class="web-footer">
-                <span>© 2025 ${currentStyle.sample}</span>
-                <span>Terms · Privacy</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mockup-frame">
-            <div class="mockup-label">
-              <span>Mobile App</span>
-              <div class="mockup-label-dot"><span></span><span></span><span></span></div>
-            </div>
-            <div class="mockup-viewport app-mock-wrap">
-              <div class="app-phone">
-                <div class="app-notch"></div>
-                <div class="app-status-bar">
-                  <span>9:41</span>
-                  <span>⚡ 100%</span>
-                </div>
-                <div class="app-header">
-                  <div class="app-header-title">${currentStyle.sample}</div>
-                  <div class="app-header-avatar"></div>
-                </div>
-                <div class="app-search">🔍 Search...</div>
-                <div class="app-card">
-                  <div class="app-card-row">
-                    <div class="app-card-thumb" style="background: var(--accent-color);"></div>
-                    <div class="app-card-info">
-                      <div class="app-card-name">Featured Item</div>
-                      <div class="app-card-sub">${currentStyle.tags.join(" · ")}</div>
-                    </div>
-                    <div class="app-card-badge">NEW</div>
-                  </div>
-                  <div class="app-card-bar"><div class="app-card-bar-fill" style="width:72%;background:var(--accent-color);"></div></div>
-                </div>
-                <div class="app-card">
-                  <div class="app-card-row">
-                    <div class="app-card-thumb" style="background: var(--secondary);"></div>
-                    <div class="app-card-info">
-                      <div class="app-card-name">Trending Now</div>
-                      <div class="app-card-sub">Updated today</div>
-                    </div>
-                    <div class="app-card-badge" style="background:var(--secondary);">HOT</div>
-                  </div>
-                  <div class="app-card-bar"><div class="app-card-bar-fill" style="width:58%;background:var(--secondary);"></div></div>
-                </div>
-                <div class="app-card">
-                  <div class="app-card-row">
-                    <div class="app-card-thumb" style="background: var(--tertiary); border: 1px solid color-mix(in srgb, var(--fg), transparent 85%);"></div>
-                    <div class="app-card-info">
-                      <div class="app-card-name">Popular</div>
-                      <div class="app-card-sub">12.4k views</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="app-tab-bar">
-                  <div class="app-tab active"><div class="app-tab-icon"></div>Home</div>
-                  <div class="app-tab"><div class="app-tab-icon"></div>Explore</div>
-                  <div class="app-tab"><div class="app-tab-icon"></div>Saved</div>
-                  <div class="app-tab"><div class="app-tab-icon"></div>Profile</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="mockup-frame">
-            <div class="mockup-label">
-              <span>Dashboard</span>
-              <div class="mockup-label-dot"><span></span><span></span><span></span></div>
-            </div>
-            <div class="mockup-viewport dash-mock">
-              <div class="dash-sidebar">
-                <div class="dash-sidebar-logo"></div>
-                <div class="dash-sidebar-item active"></div>
-                <div class="dash-sidebar-item"></div>
-                <div class="dash-sidebar-item"></div>
-                <div class="dash-sidebar-item"></div>
-              </div>
-              <div class="dash-main">
-                <div class="dash-topbar">
-                  <div class="dash-topbar-title">Overview</div>
-                  <div class="dash-topbar-btn">+ New</div>
-                </div>
-                <div class="dash-stats">
-                  <div class="dash-stat">
-                    <div class="dash-stat-value" style="color:var(--accent-color);">2,847</div>
-                    <div class="dash-stat-label">Users</div>
-                  </div>
-                  <div class="dash-stat">
-                    <div class="dash-stat-value">$18.2k</div>
-                    <div class="dash-stat-label">Revenue</div>
-                  </div>
-                  <div class="dash-stat">
-                    <div class="dash-stat-value" style="color:var(--secondary);">94.6%</div>
-                    <div class="dash-stat-label">Uptime</div>
-                  </div>
-                </div>
-                <div class="dash-chart">
-                  <div class="dash-chart-title">Weekly Performance</div>
-                  <div class="dash-bars">
-                    <div class="dash-bar" style="height:45%;background:var(--accent-color);"></div>
-                    <div class="dash-bar" style="height:68%;background:var(--accent-color);"></div>
-                    <div class="dash-bar" style="height:52%;background:var(--secondary);"></div>
-                    <div class="dash-bar" style="height:82%;background:var(--accent-color);"></div>
-                    <div class="dash-bar" style="height:74%;background:var(--accent-color);"></div>
-                    <div class="dash-bar" style="height:58%;background:var(--secondary);"></div>
-                    <div class="dash-bar" style="height:92%;background:var(--accent-color);"></div>
-                    <div class="dash-bar" style="height:62%;background:var(--secondary);"></div>
-                    <div class="dash-bar" style="height:78%;background:var(--accent-color);"></div>
-                    <div class="dash-bar" style="height:40%;background:var(--tertiary);"></div>
-                  </div>
-                </div>
-                <div class="dash-table-header">
-                  <span>Name</span><span>Status</span><span>Value</span><span>Change</span>
-                </div>
-                <div class="dash-table-row">
-                  <span>Project Alpha</span>
-                  <span><span class="dash-table-status" style="background:color-mix(in srgb, var(--accent-color), transparent 80%);color:var(--accent-color);">Active</span></span>
-                  <span>$4,280</span>
-                  <span style="color:var(--accent-color);">+12.4%</span>
-                </div>
-                <div class="dash-table-row">
-                  <span>Campaign B</span>
-                  <span><span class="dash-table-status" style="background:color-mix(in srgb, var(--secondary), transparent 80%);color:var(--secondary);">Review</span></span>
-                  <span>$2,150</span>
-                  <span style="color:var(--secondary);">+8.1%</span>
-                </div>
-                <div class="dash-table-row">
-                  <span>Launch v2.0</span>
-                  <span><span class="dash-table-status" style="background:color-mix(in srgb, var(--fg), transparent 88%);color:var(--fg);">Draft</span></span>
-                  <span>$960</span>
-                  <span>—</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-    `;
-
-    const tagRow = document.getElementById("tag-row");
-    currentStyle.tags.forEach((tag) => tagRow.appendChild(createTag(tag)));
-
-    const palette = document.getElementById("palette");
-    [
-      ["Background", currentStyle.bg],
-      ["Foreground", currentStyle.fg],
-      ["Accent", currentStyle.accent],
-      ["Secondary", currentStyle.secondary],
-      ["Tertiary", currentStyle.tertiary]
-    ].forEach(([name, color]) => palette.appendChild(createSwatch(name, color)));
-  }
-
-  if (style) {
-    renderStylePage(style);
+  if (!s) {
+    demo.innerHTML = '<div style="padding:80px;text-align:center;font-family:Inter,sans-serif;"><h1>没有找到该风格</h1><p style="margin:16px 0"><a href="index.html" style="color:#4F46E5">返回画廊</a></p></div>';
   } else {
-    renderError();
+    render(s);
+  }
+
+  function render(s) {
+    document.title = `${s.id} · ${s.name}`;
+    demo.className = `demo ${s.mode}`;
+    demo.style.setProperty("--bg", s.bg);
+    demo.style.setProperty("--fg", s.fg);
+    demo.style.setProperty("--accent-color", s.accent);
+    demo.style.setProperty("--secondary", s.secondary);
+    demo.style.setProperty("--tertiary", s.tertiary);
+    demo.style.setProperty("--display-font", s.font);
+    demo.style.setProperty("--title-weight", s.weight);
+    demo.style.setProperty("--title-transform", s.transform);
+
+    const dUrl = `${window.designStyleData.githubBase}${s.file}`;
+
+    demo.innerHTML = `
+      <div class="fab-bar">
+        <a href="index.html">← 画廊</a>
+        <button onclick="toggleInfo()">ℹ 风格信息</button>
+      </div>
+
+      <nav class="d-nav">
+        <div class="d-logo">${s.sample}</div>
+        <div class="d-links"><span>About</span><span>Features</span><span>Work</span><span>Contact</span></div>
+        <div class="d-nav-btn">Get Started</div>
+      </nav>
+
+      <section class="d-hero">
+        <div class="d-badge">${s.tags[0] || "NEW"}</div>
+        <h1 class="d-title">${s.sample}</h1>
+        <p class="d-subtitle">${s.desc}</p>
+        <div class="d-btn">Explore More →</div>
+      </section>
+
+      <section class="d-features">
+        <h2 class="d-section-title">What We Do</h2>
+        <div class="d-grid">
+          <div class="d-card">
+            <div class="d-card-icon"></div>
+            <h3>Design</h3>
+            <p>精心打磨每一个视觉细节与交互体验，让美学与功能完美融合。</p>
+          </div>
+          <div class="d-card">
+            <div class="d-card-icon"></div>
+            <h3>Build</h3>
+            <p>高效搭建稳健可扩展的设计系统，从原型到产品无缝衔接。</p>
+          </div>
+          <div class="d-card">
+            <div class="d-card-icon"></div>
+            <h3>Scale</h3>
+            <p>无缝适配多端场景与业务增长，让设计随规模不断进化。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="d-gallery">
+        <div class="d-gallery-grid">
+          <div class="d-gal-item" style="background:linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--secondary), var(--accent-color) 40%));"><div class="d-gal-label">Project Alpha</div></div>
+          <div class="d-gal-item" style="background:linear-gradient(135deg, var(--secondary), color-mix(in srgb, var(--tertiary), var(--secondary) 50%));"><div class="d-gal-label">Brand Identity</div></div>
+          <div class="d-gal-item" style="background:linear-gradient(135deg, var(--tertiary), color-mix(in srgb, var(--accent-color), var(--tertiary) 40%));"><div class="d-gal-label">Campaign</div></div>
+        </div>
+      </section>
+
+      <section class="d-stats">
+        <div class="d-stats-grid">
+          <div><div class="d-stat-val">50+</div><div class="d-stat-lbl">Design Styles</div></div>
+          <div><div class="d-stat-val">2.8k</div><div class="d-stat-lbl">Components</div></div>
+          <div><div class="d-stat-val">99.5%</div><div class="d-stat-lbl">Satisfaction</div></div>
+          <div><div class="d-stat-val">24/7</div><div class="d-stat-lbl">Support</div></div>
+        </div>
+      </section>
+
+      <section class="d-cta">
+        <h2>Ready to Transform Your Design?</h2>
+        <div class="d-cta-btn">Start Building →</div>
+      </section>
+
+      <footer class="d-footer">
+        <span>© 2025 ${s.sample}</span>
+        <div class="d-footer-links"><span>Terms</span><span>Privacy</span><span>Contact</span></div>
+      </footer>
+    `;
+
+    // Info panel
+    function lc(c) {
+      const h = c.replace("#","");
+      if (h.length !== 6) return "#fff";
+      const r = parseInt(h.slice(0,2),16), g = parseInt(h.slice(2,4),16), b = parseInt(h.slice(4,6),16);
+      return (0.2126*r+0.7152*g+0.0722*b)/255 > 0.58 ? "#111" : "#fff";
+    }
+    const sw = [["Bg",s.bg],["Fg",s.fg],["Accent",s.accent],["2nd",s.secondary],["3rd",s.tertiary]]
+      .map(([n,c])=>`<div class="info-sw" style="background:${c}"><span style="color:${lc(c)}">${c}</span></div>`).join("");
+    const tg = s.tags.map(t=>`<span class="info-tag">${t}</span>`).join("");
+
+    document.getElementById("info-panel").innerHTML = `
+      <button class="info-close" onclick="toggleInfo()">×</button>
+      <div class="info-cat">Style ${s.id} · ${s.category}</div>
+      <h2>${s.name}</h2>
+      <p class="info-desc">${s.desc}</p>
+      <div class="info-swatches">${sw}</div>
+      <div class="info-tags">${tg}</div>
+      <a class="info-link" href="${dUrl}" target="_blank">查看 DESIGN.md →</a>
+      <a class="info-link" href="index.html" style="background:#666;margin-top:8px;">返回 50 风格画廊</a>
+    `;
+  }
+
+  function toggleInfo() {
+    document.getElementById("info-panel").classList.toggle("open");
+    document.getElementById("info-overlay").classList.toggle("open");
   }
 </script>
 </body>
