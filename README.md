@@ -98,12 +98,18 @@ https://github.com/xdx888999/xdx-lab-design-skill
 
 ![Paula Scher 方法论详情](docs/assets/master-detail-scher.png)
 
-### 真实案例页
+### 8 个高质量真实案例
 
-- [唐代华彩海报](https://xdx888999.github.io/xdx-lab-design-skill/cases/poster-tang.html)
-- [Art Deco PPT](https://xdx888999.github.io/xdx-lab-design-skill/cases/ppt-artdeco.html)
-- [编辑风网站](https://xdx888999.github.io/xdx-lab-design-skill/cases/web-editorial.html)
-- [奢华 App UI](https://xdx888999.github.io/xdx-lab-design-skill/cases/app-luxury.html)
+[案例总览](https://xdx888999.github.io/xdx-lab-design-skill/cases/index.html) 覆盖海报、Dashboard、医疗报告、酒店预订页、Fintech App、融资路演、电商发布页和开发者工具发布页。每个案例详情页都先展示真实成品样张，再说明业务简报、使用的 `DESIGN.md`、交付物、关键 token 和可复用 prompt。
+
+- [盛唐器物展主视觉海报](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=tang-museum-poster)
+- [碳排运营监控驾驶舱](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=climate-ops-dashboard)
+- [远程心脏康复报告](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=medical-report)
+- [山谷精品酒店预订页](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=boutique-hotel-booking)
+- [跨境收款 App 开户流程](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=fintech-onboarding-app)
+- [AI 研发协作平台融资路演](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=ai-startup-pitch)
+- [独立设计师胶囊系列电商页](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=fashion-drop-commerce)
+- [开源开发者工具发布页](https://xdx888999.github.io/xdx-lab-design-skill/cases/case.html?id=opensource-devtool-launch)
 
 ---
 
@@ -214,7 +220,7 @@ design-style-skill/
 │   ├── masters.html                  # 20 位设计大师方法论画廊
 │   ├── master.html                   # 通用大师详情页
 │   ├── master-data.js                # 20 位大师展示数据
-│   ├── cases/                        # 海报、PPT、网站、App UI 真实案例页
+│   ├── cases/                        # 8 个高质量真实案例页
 │   └── assets/                       # README 截图资源
 └── references/
     ├── style-index.md                # 50 种风格目录索引（轻量，先读此文件）

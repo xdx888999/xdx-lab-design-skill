@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8 个高质量真实案例 — xdx-lab Design Style Skill</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+SC:wght@500;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cases.css">
+</head>
+<body>
+<a class="top-link" href="../index.html">← 返回画廊</a>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Real Production Cases</div>
+    <h1 class="hero-title">8 个高质量真实案例</h1>
+    <p class="hero-copy">
+      这些案例不再是普通 PPT 产物，而是按真实业务场景规划的可交付样张：每个案例都明确使用哪个 DESIGN.md、服务什么用户、输出什么物料、关键 token 如何落地。
+    </p>
+    <div class="hero-actions">
+      <a class="action-link" href="#case-grid">浏览案例</a>
+      <a class="action-link secondary" href="https://github.com/xdx888999/xdx-lab-design-skill#readme">查看 README</a>
+    </div>
+  </div>
+  <div class="stat-strip" aria-label="案例统计">
+    <div class="stat"><strong>8</strong><span>真实业务场景</span></div>
+    <div class="stat"><strong>8</strong><span>交付物类型</span></div>
+    <div class="stat"><strong>12</strong><span>风格与大师组合</span></div>
+    <div class="stat"><strong>0</strong><span>低质量 PPTX 示例</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="section-head" aria-labelledby="case-title">
+    <div>
+      <h2 id="case-title">案例清单</h2>
+    </div>
+    <p>覆盖海报、网站、App、Dashboard、报告、路演、电商和开发者工具。每个案例都可以作为 Agent 使用本 Skill 时的参考输入与质量标尺。</p>
+  </section>
+
+  <section class="case-grid" id="case-grid" aria-label="8 个真实案例"></section>
+</main>
+
+<script src="case-data.js"></script>
+<script>
+  const grid = document.querySelector("#case-grid");
+  grid.innerHTML = window.designCases.map(item => `
+    <a class="case-card" data-case="${item.id}" href="${item.href}" style="--case-accent:${item.accent};--case-surface:${item.surface};--case-ink:${item.ink}">
+      <div class="case-art">
+        <span class="case-type">${item.type}</span>
+      </div>
+      <div class="case-body">
+        <h3 class="case-title">${item.title}</h3>
+        <div class="case-subtitle">${item.subtitle}</div>
+        <p class="case-summary">${item.summary}</p>
+        <div class="case-meta">
+          <span class="pill">${item.style}</span>
+          <span class="pill">${item.master}</span>
+        </div>
+      </div>
+    </a>
+  `).join("");
+</script>
+</body>
+</html>
