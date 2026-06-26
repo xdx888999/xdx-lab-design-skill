@@ -10,6 +10,23 @@ colors:
   chrome: "#C8D2D9"
   gold: "#C7A24B"
   line: "#DCD8CE"
+typography:
+  display:
+    fontFamily: "Avenir, Inter, Helvetica Neue, sans-serif"
+    fontSize: 56px
+    fontWeight: 800
+  heading:
+    fontFamily: "Avenir, Inter, Helvetica Neue, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

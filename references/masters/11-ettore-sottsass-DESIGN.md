@@ -10,6 +10,23 @@ colors:
   pink: "#EF476F"
   yellow: "#FFD166"
   purple: "#5A189A"
+typography:
+  display:
+    fontFamily: "Futura, Inter, Helvetica Neue, sans-serif"
+    fontSize: 58px
+    fontWeight: 800
+  heading:
+    fontFamily: "Futura, Inter, Helvetica Neue, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 700
 rounded:
   none: 0px
 ---

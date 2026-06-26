@@ -12,8 +12,21 @@ colors:
   pixel-blue: "#0074FF"
   coin-yellow: "#FFD700"
 typography:
-  share-tech-mono:
+  display:
+    fontFamily: "Press Start 2P, VT323, monospace"
+    fontSize: 32px
+    fontWeight: 400
+  heading:
+    fontFamily: "Press Start 2P, VT323, monospace"
+    fontSize: 18px
+    fontWeight: 400
+  body:
+    fontFamily: "Share Tech Mono, JetBrains Mono, monospace"
     fontSize: 14px
+    fontWeight: 400
+  score:
+    fontFamily: "Press Start 2P, VT323, monospace"
+    fontSize: 12px
     fontWeight: 400
 rounded:
   none: 0px

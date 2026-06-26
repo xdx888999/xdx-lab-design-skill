@@ -11,6 +11,23 @@ colors:
   yellow: "#FFD100"
   purple: "#8E44AD"
   white: "#FFFFFF"
+typography:
+  display:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 56px
+    fontWeight: 800
+  heading:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 500
 rounded:
   none: 0px
 ---

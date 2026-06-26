@@ -50,72 +50,68 @@ function detectDarkTheme(content) {
 }
 
 export function parseColors(content) {
-  const colors = [];
-  const seen = new Set();
+  const candidates = [];
+
+  function addCandidate(index, color) {
+    candidates.push({ index, ...color });
+  }
 
   // Pattern 1: - **Name** (`#XXXXXX`): Description
   const p1 = /- \*\*(.+?)\*\*\s*\(`(#[0-9A-Fa-f]{6})`\)\s*:?\s*(.*)/g;
   let m;
   while ((m = p1.exec(content)) !== null) {
-    const key = m[2].toUpperCase();
-    if (!seen.has(key + m[1])) {
-      seen.add(key + m[1]);
-      colors.push({ name: m[1].trim(), hex: m[2].toUpperCase(), role: m[3].trim() });
-    }
+    addCandidate(m.index, { name: m[1].trim(), hex: m[2].toUpperCase(), role: m[3].trim() });
   }
 
   // Pattern 1b: - **Name**: `#XXXXXX` (colon after name, no parens around hex)
   const p1b = /- \*\*(.+?)\*\*\s*:\s*`(#[0-9A-Fa-f]{6})`\s*(.*)/g;
   while ((m = p1b.exec(content)) !== null) {
-    const key = m[2].toUpperCase() + m[1];
-    if (!seen.has(key)) {
-      seen.add(key);
-      colors.push({ name: m[1].trim(), hex: m[2].toUpperCase(), role: m[3].trim() });
-    }
+    addCandidate(m.index, { name: m[1].trim(), hex: m[2].toUpperCase(), role: m[3].trim() });
   }
 
   // Pattern 1c: - **Name**: description (#XXXXXX) — hex in parens but not backticks
   const p1c = /- \*\*(.+?)\*\*\s*:\s*([^(#]*?)\(#([0-9A-Fa-f]{6})\b[^)]*\)/g;
   while ((m = p1c.exec(content)) !== null) {
     const hex = '#' + m[3].toUpperCase();
-    const key = hex + m[1];
-    if (!seen.has(key)) {
-      seen.add(key);
-      colors.push({ name: m[1].trim(), hex, role: m[2].trim() });
-    }
+    addCandidate(m.index, { name: m[1].trim(), hex, role: m[2].trim() });
   }
 
   // Pattern 2: - **Name** (`rgba(...)`): Description — store as-is
   const p2 = /- \*\*(.+?)\*\*\s*\(`(rgba\([^)]+\))`\)\s*:?\s*(.*)/g;
   while ((m = p2.exec(content)) !== null) {
-    colors.push({ name: m[1].trim(), hex: null, rgba: m[2], role: m[3].trim() });
+    addCandidate(m.index, { name: m[1].trim(), hex: null, rgba: m[2], role: m[3].trim() });
   }
 
   // Pattern 3: code block lines like "Background:   #XXXXXX  description"
-  const codeBlocks = content.match(/```(?:text)?\n([\s\S]*?)```/g) || [];
-  for (const block of codeBlocks) {
-    const inner = block.replace(/```(?:text)?\n?/g, '').replace(/```/g, '');
+  const codeBlockRegex = /```(?:text)?\n([\s\S]*?)```/g;
+  let blockMatch;
+  while ((blockMatch = codeBlockRegex.exec(content)) !== null) {
+    const inner = blockMatch[1];
     const lines = inner.split('\n');
+    let lineOffset = 0;
     for (const line of lines) {
       const cm = line.match(/^([A-Za-z][A-Za-z0-9 /\-_()]+?):\s+(#[0-9A-Fa-f]{6})\b\s*(.*)/);
       if (cm) {
-        const key = cm[2].toUpperCase() + cm[1].trim();
-        if (!seen.has(key)) {
-          seen.add(key);
-          colors.push({ name: cm[1].trim(), hex: cm[2].toUpperCase(), role: cm[3].trim() });
-        }
+        addCandidate(blockMatch.index + lineOffset, {
+          name: cm[1].trim(),
+          hex: cm[2].toUpperCase(),
+          role: cm[3].trim(),
+        });
       }
+      lineOffset += line.length + 1;
     }
   }
 
   // Deduplicate by hex value, keeping the first (Section 2) entry
   const deduped = [];
   const hexSeen = new Set();
-  for (const c of colors) {
+  const sortedCandidates = candidates.sort((a, b) => a.index - b.index);
+  for (const c of sortedCandidates) {
     const key = (c.hex || c.rgba || '').toUpperCase();
     if (!hexSeen.has(key)) {
       hexSeen.add(key);
-      deduped.push(c);
+      const { index, ...color } = c;
+      deduped.push(color);
     }
   }
   return deduped;

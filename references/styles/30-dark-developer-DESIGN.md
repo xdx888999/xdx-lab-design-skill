@@ -26,12 +26,22 @@ colors:
   levels: "#0E4429"
   background: "#1F6FEB"
 typography:
-  inter:
-    fontSize: 16px
-    fontWeight: 400
-  jetbrains-mono:
+  display:
+    fontFamily: "JetBrains Mono, SFMono-Regular, Consolas, monospace"
     fontSize: 32px
     fontWeight: 700
+  heading:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 24px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  code:
+    fontFamily: "JetBrains Mono, SFMono-Regular, Consolas, monospace"
+    fontSize: 14px
+    fontWeight: 400
 rounded:
   none: 2px
   sm: 6px

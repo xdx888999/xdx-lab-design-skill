@@ -12,6 +12,23 @@ colors:
   yellow: "#F5C542"
   green: "#2E6B4F"
   wood: "#B9824A"
+typography:
+  display:
+    fontFamily: "Avenir, Inter, Helvetica Neue, sans-serif"
+    fontSize: 54px
+    fontWeight: 700
+  heading:
+    fontFamily: "Avenir, Inter, Helvetica Neue, sans-serif"
+    fontSize: 26px
+    fontWeight: 600
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 500
 rounded:
   none: 0px
 ---

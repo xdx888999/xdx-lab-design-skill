@@ -9,6 +9,23 @@ colors:
   text-muted: "#5F5F59"
   mid-gray: "#8A8A84"
   light-gray: "#D6D6D0"
+typography:
+  display:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 60px
+    fontWeight: 800
+  heading:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 700
 rounded:
   none: 0px
 ---

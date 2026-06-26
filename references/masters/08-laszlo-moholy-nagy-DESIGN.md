@@ -11,6 +11,23 @@ colors:
   yellow: "#FFD100"
   metal: "#C0C0C0"
   shadow: "#1F2937"
+typography:
+  display:
+    fontFamily: "Futura, Inter, Helvetica Neue, sans-serif"
+    fontSize: 60px
+    fontWeight: 800
+  heading:
+    fontFamily: "Futura, Inter, Helvetica Neue, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

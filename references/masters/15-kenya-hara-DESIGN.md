@@ -9,6 +9,23 @@ colors:
   text-muted: "#7A7166"
   paper: "#E8E1D2"
   warm-gray: "#C7B299"
+typography:
+  display:
+    fontFamily: "Noto Serif SC, Yu Mincho, serif"
+    fontSize: 48px
+    fontWeight: 500
+  heading:
+    fontFamily: "Noto Serif SC, Yu Mincho, serif"
+    fontSize: 24px
+    fontWeight: 500
+  body:
+    fontFamily: "Noto Sans SC, Inter, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Noto Sans SC, Inter, sans-serif"
+    fontSize: 12px
+    fontWeight: 300
 rounded:
   none: 0px
 ---

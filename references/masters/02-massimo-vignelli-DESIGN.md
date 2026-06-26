@@ -10,6 +10,23 @@ colors:
   text-muted: "#666666"
   rule: "#CFCFCB"
   accent-blue: "#0057B8"
+typography:
+  display:
+    fontFamily: "Helvetica Neue, Arial, sans-serif"
+    fontSize: 64px
+    fontWeight: 700
+  heading:
+    fontFamily: "Helvetica Neue, Arial, sans-serif"
+    fontSize: 30px
+    fontWeight: 600
+  body:
+    fontFamily: "Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Helvetica Neue, Arial, sans-serif"
+    fontSize: 11px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

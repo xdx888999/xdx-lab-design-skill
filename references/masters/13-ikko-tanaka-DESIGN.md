@@ -11,6 +11,23 @@ colors:
   gold: "#F5B400"
   purple: "#6F2DA8"
   paper-line: "#D8CBB8"
+typography:
+  display:
+    fontFamily: "Noto Serif SC, Hiragino Mincho ProN, serif"
+    fontSize: 56px
+    fontWeight: 700
+  heading:
+    fontFamily: "Noto Serif SC, Hiragino Mincho ProN, serif"
+    fontSize: 28px
+    fontWeight: 600
+  body:
+    fontFamily: "Noto Sans SC, Inter, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Noto Sans SC, Inter, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

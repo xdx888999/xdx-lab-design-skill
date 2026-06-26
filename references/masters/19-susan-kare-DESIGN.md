@@ -11,6 +11,23 @@ colors:
   yellow: "#FFCC00"
   red: "#FF3B30"
   green: "#34C759"
+typography:
+  display:
+    fontFamily: "Chicago, Inter, Helvetica Neue, sans-serif"
+    fontSize: 44px
+    fontWeight: 700
+  heading:
+    fontFamily: "Chicago, Inter, Helvetica Neue, sans-serif"
+    fontSize: 24px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

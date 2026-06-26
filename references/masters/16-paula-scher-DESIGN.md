@@ -10,6 +10,23 @@ colors:
   blue: "#0057B8"
   orange: "#FF5A1F"
   gray: "#EDEDED"
+typography:
+  display:
+    fontFamily: "Archivo Narrow, Oswald, Impact, sans-serif"
+    fontSize: 72px
+    fontWeight: 900
+  heading:
+    fontFamily: "Archivo Narrow, Oswald, Impact, sans-serif"
+    fontSize: 36px
+    fontWeight: 800
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Archivo Narrow, Oswald, sans-serif"
+    fontSize: 12px
+    fontWeight: 700
 rounded:
   none: 0px
 ---

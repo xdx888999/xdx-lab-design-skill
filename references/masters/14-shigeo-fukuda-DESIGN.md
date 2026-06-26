@@ -10,6 +10,23 @@ colors:
   red: "#E31B23"
   soft-gray: "#F2F2F2"
   line: "#D6D6D6"
+typography:
+  display:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 60px
+    fontWeight: 800
+  heading:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

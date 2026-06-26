@@ -13,10 +13,20 @@ colors:
   powder-blue: "#A8C8D8"
   acid-yellow: "#F5E642"
 typography:
+  display:
+    fontFamily: "Bodoni Moda, Didot, Playfair Display, serif"
+    fontSize: 96px
+    fontWeight: 700
   cover-subhead:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
     fontSize: 14px
     fontWeight: 300
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 15px
+    fontWeight: 300
   pull-quote:
+    fontFamily: "Bodoni Moda, Didot, Playfair Display, serif"
     fontSize: 36px
     fontWeight: 400
 rounded:

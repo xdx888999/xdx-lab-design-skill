@@ -10,6 +10,23 @@ colors:
   red: "#D7261E"
   green: "#2F5D50"
   cream: "#FFF3D8"
+typography:
+  display:
+    fontFamily: "Oswald, Arial Narrow, Impact, sans-serif"
+    fontSize: 64px
+    fontWeight: 900
+  heading:
+    fontFamily: "Oswald, Arial Narrow, Impact, sans-serif"
+    fontSize: 30px
+    fontWeight: 800
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Oswald, Arial Narrow, sans-serif"
+    fontSize: 12px
+    fontWeight: 800
 rounded:
   none: 0px
 ---

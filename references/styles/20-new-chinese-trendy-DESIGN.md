@@ -17,10 +17,20 @@ colors:
   neon-red: "#FF2D2D"
   body-text: "#3D3020"
 typography:
-  noto-serif-sc:
+  display:
+    fontFamily: "Noto Serif SC, ZCOOL XiaoWei, serif"
+    fontSize: 48px
+    fontWeight: 700
+  heading:
+    fontFamily: "Noto Serif SC, PingFang SC, serif"
     fontSize: 28px
     fontWeight: 600
-  zcool-qingke:
+  body:
+    fontFamily: "Noto Sans SC, PingFang SC, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  seal:
+    fontFamily: "ZCOOL QingKe HuangYou, Noto Serif SC, serif"
     fontSize: 24px
     fontWeight: 400
 rounded:

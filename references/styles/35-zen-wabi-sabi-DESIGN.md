@@ -17,12 +17,19 @@ colors:
   muted-stone: "#9A9590"
 typography:
   koan-title:
+    fontFamily: "Noto Serif JP, Yu Mincho, serif"
     fontSize: 48px
     fontWeight: 300
   body:
+    fontFamily: "Noto Serif JP, Noto Serif SC, serif"
     fontSize: 17px
     fontWeight: 400
+  caption:
+    fontFamily: "Noto Serif JP, Noto Serif SC, serif"
+    fontSize: 12px
+    fontWeight: 300
   decorative-cjk:
+    fontFamily: "Noto Serif JP, Yu Mincho, serif"
     fontSize: 120px
     fontWeight: 700
 rounded:

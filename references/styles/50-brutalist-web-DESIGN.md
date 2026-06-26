@@ -11,10 +11,20 @@ colors:
   neon-green: "#00FF00"
   hot-magenta: "#FF00FF"
 typography:
+  display:
+    fontFamily: "Arial Black, Helvetica Neue, Arial, sans-serif"
+    fontSize: 56px
+    fontWeight: 900
   sub-heading:
+    fontFamily: "Arial, Helvetica Neue, sans-serif"
     fontSize: 22px
     fontWeight: 700
+  body:
+    fontFamily: "Arial, Helvetica Neue, sans-serif"
+    fontSize: 16px
+    fontWeight: 500
   counter-number:
+    fontFamily: "Arial Black, Helvetica Neue, Arial, sans-serif"
     fontSize: 144px
     fontWeight: 900
 rounded:

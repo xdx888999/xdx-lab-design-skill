@@ -10,6 +10,23 @@ colors:
   grass-green: "#78BE20"
   warm-orange: "#F05A28"
   line: "#D7D8D2"
+typography:
+  display:
+    fontFamily: "Rotis, Helvetica Neue, Inter, sans-serif"
+    fontSize: 52px
+    fontWeight: 700
+  heading:
+    fontFamily: "Rotis, Helvetica Neue, Inter, sans-serif"
+    fontSize: 26px
+    fontWeight: 600
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

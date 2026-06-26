@@ -10,6 +10,23 @@ colors:
   surface: "#FFFFFF"
   text-muted: "#6F6F68"
   line: "#D8D6CF"
+typography:
+  display:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 56px
+    fontWeight: 700
+  heading:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 28px
+    fontWeight: 600
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 500
 rounded:
   none: 0px
 ---

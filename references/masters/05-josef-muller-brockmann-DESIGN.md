@@ -10,6 +10,23 @@ colors:
   grid-line: "#D9D9D9"
   accent-blue: "#0057A6"
   accent-gray: "#F2F2F2"
+typography:
+  display:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 58px
+    fontWeight: 700
+  heading:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 28px
+    fontWeight: 600
+  body:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 15px
+    fontWeight: 400
+  caption:
+    fontFamily: "Helvetica Neue, Inter, Arial, sans-serif"
+    fontSize: 11px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

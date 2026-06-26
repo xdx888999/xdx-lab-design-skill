@@ -1,7 +1,19 @@
 #!/usr/bin/env node
 import { readFileSync, readdirSync } from 'fs';
 import { join, basename } from 'path';
-import { contrastRatio, wcagLevel, hexToRgb } from './lib/contrast.mjs';
+import { contrastRatio } from './lib/contrast.mjs';
+
+const exportedSemanticColorTokens = new Set([
+  'surface',
+  'surface-variant',
+  'on-surface',
+  'primary',
+  'on-primary',
+  'accent',
+  'error',
+  'success',
+  'warning',
+]);
 
 const files = process.argv.slice(2).filter(a => a.endsWith('.md'));
 const allFiles = files.length > 0 ? files : [
@@ -95,6 +107,9 @@ function lintFile(content, fileName) {
   if (yaml && body) {
     const colorTokens = [...yaml.matchAll(/^\s{2}([a-z][a-z0-9-]*):\s*"#/gm)].map(m => m[1]);
     for (const token of colorTokens) {
+      // 语义色是 Skill 对外暴露的基础 API，即使正文未直接引用，也不应按孤儿 token 处理。
+      if (exportedSemanticColorTokens.has(token)) continue;
+
       const hex = yaml.match(new RegExp(`^\\s{2}${token}:\\s*"(#[0-9A-Fa-f]{6})"`, 'm'));
       if (hex) {
         const hexUsed = body.includes(hex[1]) || body.includes(hex[1].toLowerCase());

@@ -11,6 +11,23 @@ colors:
   teal: "#2A9D8F"
   orange: "#F4A261"
   cream: "#FFF6E3"
+typography:
+  display:
+    fontFamily: "Cooper Black, Georgia, serif"
+    fontSize: 58px
+    fontWeight: 800
+  heading:
+    fontFamily: "Avenir, Inter, Helvetica Neue, sans-serif"
+    fontSize: 28px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 12px
+    fontWeight: 600
 rounded:
   none: 0px
 ---

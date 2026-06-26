@@ -10,6 +10,23 @@ colors:
   text-muted: "#A6A6A6"
   red: "#FF3B30"
   steel: "#7A7F87"
+typography:
+  display:
+    fontFamily: "Space Grotesk, Eurostile, Inter, sans-serif"
+    fontSize: 60px
+    fontWeight: 800
+  heading:
+    fontFamily: "Space Grotesk, Eurostile, Inter, sans-serif"
+    fontSize: 30px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 16px
+    fontWeight: 400
+  caption:
+    fontFamily: "Space Grotesk, Inter, sans-serif"
+    fontSize: 12px
+    fontWeight: 700
 rounded:
   none: 0px
 ---

@@ -21,10 +21,20 @@ colors:
   data-purple: "#BC8CFF"
   data-yellow: "#E3B341"
 typography:
-  jetbrains-mono:
+  display:
+    fontFamily: "JetBrains Mono, IBM Plex Mono, monospace"
     fontSize: 36px
     fontWeight: 700
-  jetbrains-mono:
+  heading:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 24px
+    fontWeight: 700
+  body:
+    fontFamily: "Inter, Helvetica Neue, Arial, sans-serif"
+    fontSize: 14px
+    fontWeight: 400
+  metric:
+    fontFamily: "JetBrains Mono, IBM Plex Mono, monospace"
     fontSize: 11px
     fontWeight: 400
 rounded:

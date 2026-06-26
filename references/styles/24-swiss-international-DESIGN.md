@@ -12,15 +12,19 @@ colors:
   very-light: "#F5F5F5"
 typography:
   display:
+    fontFamily: "Helvetica Neue, Neue Haas Grotesk, Arial, sans-serif"
     fontSize: 120px
     fontWeight: 700
   h2:
+    fontFamily: "Helvetica Neue, Neue Haas Grotesk, Arial, sans-serif"
     fontSize: 36px
     fontWeight: 700
   body-l:
+    fontFamily: "Helvetica Neue, Neue Haas Grotesk, Arial, sans-serif"
     fontSize: 18px
     fontWeight: 400
   caption:
+    fontFamily: "Helvetica Neue, Neue Haas Grotesk, Arial, sans-serif"
     fontSize: 11px
     fontWeight: 400
 rounded:
