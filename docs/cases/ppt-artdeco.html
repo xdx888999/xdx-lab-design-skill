@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Art Deco Noir — 年度设计盛典 PPT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { margin: 0; background: #111; font-family: "Inter", sans-serif; }
+
+  .back { position: fixed; top: 20px; left: 20px; z-index: 100; padding: 8px 18px; font-size: 12px; font-weight: 700; color: #fff; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; text-decoration: none; font-family: "Inter", sans-serif; }
+  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 800; font-family: "Inter", sans-serif; color: #D4AF37; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.3); border-radius: 30px; letter-spacing: 0.1em; }
+
+  /* Slide container */
+  .deck { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 80px 20px 60px; }
+
+  .slide {
+    width: 90vw; max-width: 960px; aspect-ratio: 16/9; position: relative; overflow: hidden;
+    background: #0A0A0A; color: #D4AF37;
+    font-family: "Cormorant Garamond", serif;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    border: 1px solid rgba(212,175,55,0.2);
+  }
+
+  /* 金色内框 */
+  .slide::after {
+    content: ""; position: absolute; inset: 18px;
+    border: 1px solid rgba(212,175,55,0.2);
+    pointer-events: none;
+  }
+
+  /* ── Slide 1: Cover ── */
+  .s1 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .s1::before { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(212,175,55,0.12); pointer-events: none; }
+  .s1-year { font-size: 13px; font-weight: 400; letter-spacing: 0.4em; color: rgba(212,175,55,0.5); margin-bottom: 28px; font-family: "Inter", sans-serif; }
+  .s1-title { font-size: clamp(40px, 6vw, 72px); font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.1; }
+  .s1-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); margin: 24px 0; }
+  .s1-sub { font-size: 16px; letter-spacing: 0.3em; color: rgba(212,175,55,0.6); font-weight: 400; }
+  .s1-date { position: absolute; bottom: 36px; font-size: 11px; letter-spacing: 0.2em; color: rgba(212,175,55,0.35); font-family: "Inter", sans-serif; }
+
+  /* ── Slide 2: Agenda ── */
+  .s2 { padding: clamp(36px, 5vw, 60px); display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: center; }
+  .s2-left {}
+  .s2-kicker { font-size: 10px; font-weight: 800; letter-spacing: 0.3em; color: rgba(212,175,55,0.45); font-family: "Inter", sans-serif; margin-bottom: 14px; }
+  .s2-heading { font-size: clamp(28px, 4vw, 44px); font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.15; }
+  .s2-items { display: flex; flex-direction: column; gap: 0; }
+  .s2-item {
+    display: flex; align-items: center; gap: 20px;
+    padding: 20px 0; border-bottom: 1px solid rgba(212,175,55,0.12);
+  }
+  .s2-num { font-size: 28px; font-weight: 300; color: rgba(212,175,55,0.3); width: 40px; font-family: "Cormorant Garamond", serif; }
+  .s2-text { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: #D4AF37; font-family: "Inter", sans-serif; }
+  .s2-desc { font-size: 11px; color: rgba(212,175,55,0.4); margin-top: 3px; font-weight: 400; }
+
+  /* ── Slide 3: Data ── */
+  .s3 { padding: clamp(36px, 5vw, 60px); display: flex; flex-direction: column; justify-content: center; }
+  .s3-heading { font-size: clamp(24px, 3.5vw, 38px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 36px; text-align: center; }
+  .s3-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .s3-card {
+    text-align: center; padding: 28px 16px;
+    border: 1px solid rgba(212,175,55,0.2);
+    background: rgba(212,175,55,0.03);
+  }
+  .s3-val { font-size: clamp(32px, 4vw, 52px); font-weight: 300; line-height: 1; }
+  .s3-label { font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.45); margin-top: 10px; font-family: "Inter", sans-serif; font-weight: 700; }
+
+  /* ── Slide 4: Quote ── */
+  .s4 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px; }
+  .s4::before {
+    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+    width: 200px; height: 200px; border: 1px solid rgba(212,175,55,0.15); border-radius: 50%;
+  }
+  .s4-mark { font-size: 80px; font-weight: 300; line-height: 1; color: rgba(212,175,55,0.2); margin-bottom: 16px; }
+  .s4-quote { font-size: clamp(20px, 3vw, 30px); font-weight: 300; line-height: 1.6; max-width: 600px; font-style: italic; letter-spacing: 0.04em; position: relative; z-index: 1; }
+  .s4-author { margin-top: 28px; font-size: 12px; letter-spacing: 0.2em; color: rgba(212,175,55,0.5); font-family: "Inter", sans-serif; font-weight: 700; position: relative; z-index: 1; }
+
+  /* ── Slide 5: Team ── */
+  .s5 { padding: clamp(36px, 5vw, 60px); display: grid; grid-template-columns: 0.8fr 1fr; gap: 40px; align-items: center; }
+  .s5-heading { font-size: clamp(24px, 3.5vw, 38px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .s5-sub { font-size: 13px; color: rgba(212,175,55,0.5); line-height: 1.7; font-weight: 400; }
+  .s5-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .s5-member { text-align: center; padding: 20px 10px; border: 1px solid rgba(212,175,55,0.15); }
+  .s5-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); margin: 0 auto 12px; border: 1px solid rgba(212,175,55,0.3); }
+  .s5-name { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; font-family: "Inter", sans-serif; }
+  .s5-role { font-size: 10px; color: rgba(212,175,55,0.4); margin-top: 4px; letter-spacing: 0.08em; font-family: "Inter", sans-serif; }
+
+  /* ── Slide 6: End ── */
+  .s6 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .s6::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 260px; height: 260px; border: 1px solid rgba(212,175,55,0.1); }
+  .s6::after { inset: 26px !important; }
+  .s6-thanks { font-size: clamp(36px, 5vw, 60px); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; position: relative; z-index: 1; }
+  .s6-line { width: 60px; height: 1px; background: #D4AF37; margin: 24px 0; position: relative; z-index: 1; }
+  .s6-contact { font-size: 12px; letter-spacing: 0.15em; color: rgba(212,175,55,0.45); font-family: "Inter", sans-serif; position: relative; z-index: 1; }
+
+  /* Slide number */
+  .slide-num { position: absolute; bottom: 18px; right: 28px; font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.25); font-family: "Inter", sans-serif; }
+</style>
+</head>
+<body>
+<a class="back" href="../index.html">← 画廊</a>
+<span class="tag">PPT · ART DECO NOIR</span>
+
+<div class="deck">
+
+  <!-- Slide 1: Cover -->
+  <div class="slide s1">
+    <div class="s1-year">MMXXV</div>
+    <div class="s1-title">Design<br>Awards</div>
+    <div class="s1-line"></div>
+    <div class="s1-sub">年度设计盛典 · 第七届</div>
+    <div class="s1-date">DECEMBER 18, 2025 · SHANGHAI</div>
+    <span class="slide-num">01 / 06</span>
+  </div>
+
+  <!-- Slide 2: Agenda -->
+  <div class="slide s2">
+    <div class="s2-left">
+      <div class="s2-kicker">PROGRAMME</div>
+      <div class="s2-heading">Today's<br>Agenda</div>
+    </div>
+    <div class="s2-items">
+      <div class="s2-item">
+        <div class="s2-num">01</div>
+        <div><div class="s2-text">年度回顾</div><div class="s2-desc">2025 设计行业总览与趋势分析</div></div>
+      </div>
+      <div class="s2-item">
+        <div class="s2-num">02</div>
+        <div><div class="s2-text">获奖作品展示</div><div class="s2-desc">来自全球 42 个国家的卓越设计</div></div>
+      </div>
+      <div class="s2-item">
+        <div class="s2-num">03</div>
+        <div><div class="s2-text">大师对谈</div><div class="s2-desc">关于设计的永恒与变革</div></div>
+      </div>
+      <div class="s2-item">
+        <div class="s2-num">04</div>
+        <div><div class="s2-text">颁奖典礼</div><div class="s2-desc">年度金奖 · 新锐奖 · 终身成就奖</div></div>
+      </div>
+    </div>
+    <span class="slide-num">02 / 06</span>
+  </div>
+
+  <!-- Slide 3: Data -->
+  <div class="slide s3">
+    <div class="s3-heading">Year in Numbers</div>
+    <div class="s3-grid">
+      <div class="s3-card">
+        <div class="s3-val">3,847</div>
+        <div class="s3-label">SUBMISSIONS</div>
+      </div>
+      <div class="s3-card">
+        <div class="s3-val">42</div>
+        <div class="s3-label">COUNTRIES</div>
+      </div>
+      <div class="s3-card">
+        <div class="s3-val">128</div>
+        <div class="s3-label">FINALISTS</div>
+      </div>
+      <div class="s3-card">
+        <div class="s3-val">7</div>
+        <div class="s3-label">CATEGORIES</div>
+      </div>
+    </div>
+    <span class="slide-num">03 / 06</span>
+  </div>
+
+  <!-- Slide 4: Quote -->
+  <div class="slide s4">
+    <div class="s4-mark">"</div>
+    <div class="s4-quote">Design is not just what it looks like and feels like. Design is how it works.</div>
+    <div class="s4-author">— STEVE JOBS</div>
+    <span class="slide-num">04 / 06</span>
+  </div>
+
+  <!-- Slide 5: Team -->
+  <div class="slide s5">
+    <div>
+      <div class="s5-heading">Jury<br>Panel</div>
+      <div class="s5-sub">来自六大洲的顶尖设计师与创意领袖，共同评审年度最佳设计作品。</div>
+    </div>
+    <div class="s5-team">
+      <div class="s5-member">
+        <div class="s5-avatar"></div>
+        <div class="s5-name">Sofia Chen</div>
+        <div class="s5-role">BRAND DIRECTOR</div>
+      </div>
+      <div class="s5-member">
+        <div class="s5-avatar"></div>
+        <div class="s5-name">Marcus Roth</div>
+        <div class="s5-role">CREATIVE LEAD</div>
+      </div>
+      <div class="s5-member">
+        <div class="s5-avatar"></div>
+        <div class="s5-name">Yuki Tanaka</div>
+        <div class="s5-role">ART DIRECTOR</div>
+      </div>
+      <div class="s5-member">
+        <div class="s5-avatar"></div>
+        <div class="s5-name">Elena Vogt</div>
+        <div class="s5-role">UX PRINCIPAL</div>
+      </div>
+      <div class="s5-member">
+        <div class="s5-avatar"></div>
+        <div class="s5-name">James Park</div>
+        <div class="s5-role">DESIGN VP</div>
+      </div>
+      <div class="s5-member">
+        <div class="s5-avatar"></div>
+        <div class="s5-name">Aisha Noor</div>
+        <div class="s5-role">CHIEF EDITOR</div>
+      </div>
+    </div>
+    <span class="slide-num">05 / 06</span>
+  </div>
+
+  <!-- Slide 6: End -->
+  <div class="slide s6">
+    <div class="s6-thanks">Thank You</div>
+    <div class="s6-line"></div>
+    <div class="s6-contact">DESIGNAWARDS.COM · @DESIGNAWARDS</div>
+    <span class="slide-num">06 / 06</span>
+  </div>
+
+</div>
+</body>
+</html>

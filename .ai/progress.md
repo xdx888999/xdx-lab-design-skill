@@ -63,3 +63,31 @@
 - master id=15 Kenya Hara: extreme white, no decoration ✓
 - master id=18 Neville Brody: dark, radical type, vertical bars ✓
 - Info panel tested on both style and master pages ✓
+
+## 2026-06-26: Real Design Cases
+
+### Completed
+- [x] Poster: 盛唐华彩 博物馆大展海报 (Tang Dynasty style)
+  - 金色渐变标题、双框结构、角饰、朱砂印章、展品数据栏
+- [x] PPT: Art Deco Noir 年度设计盛典 (6 slides)
+  - Cover → Agenda → Data → Quote → Team → Thank You
+  - 黑金配色、Cormorant Garamond 衬线、金色内框
+- [x] Website: ÆTHER 文化在线杂志 (Editorial Magazine style)
+  - TopBar → Header → Categories → Hero Article → 3-Card Grid → Quote → Bottom Grid → Newsletter → Footer
+  - Playfair Display 衬线、红色分类标签、双线边框
+- [x] APP UI: Lumière 高端酒店预订 (Luxury Premium style, 3 screens)
+  - Home → Detail → Booking
+  - 手机壳模拟、Cormorant Garamond 衬线、象牙白、香槟金
+
+### Files Created
+- `docs/cases/poster-tang.html`
+- `docs/cases/ppt-artdeco.html`
+- `docs/cases/web-editorial.html`
+- `docs/cases/app-luxury.html`
+
+### Verification
+- poster-tang: 金色渐变标题、双框、角饰、数据栏、朱砂印章 ✓
+- ppt-artdeco: 6 slides 960×540, 全部内容正确渲染 ✓
+- web-editorial: masthead、hero article、导航栏、分类标签 ✓
+- app-luxury: 3 屏手机壳、Detail Hero、Booking 价格汇总 ✓
+- 0 console errors ✓

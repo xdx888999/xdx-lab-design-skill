@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>盛唐华彩 — 博物馆大展海报</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { margin: 0; background: #111; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+
+  .poster {
+    position: relative; width: 680px; min-height: 960px; overflow: hidden;
+    background: #0D0805;
+    color: #F8E7C0;
+    font-family: "Noto Serif SC", serif;
+  }
+
+  /* 背景纹理 */
+  .poster::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(201,168,76,0.08) 0, transparent 50%),
+      radial-gradient(circle at 70% 75%, rgba(185,28,28,0.06) 0, transparent 50%),
+      repeating-linear-gradient(90deg, rgba(200,168,76,0.015) 0 1px, transparent 1px 60px);
+    pointer-events: none;
+  }
+
+  /* 金色外框 */
+  .poster::after {
+    content: ""; position: absolute; inset: 16px;
+    border: 1px solid rgba(201,168,76,0.35);
+    pointer-events: none; z-index: 1;
+  }
+
+  /* 内框 */
+  .inner-frame {
+    position: absolute; inset: 24px;
+    border: 1px solid rgba(201,168,76,0.15);
+    pointer-events: none; z-index: 1;
+  }
+
+  /* 角饰 */
+  .corner { position: absolute; width: 40px; height: 40px; z-index: 2; }
+  .corner::before, .corner::after { content: ""; position: absolute; background: #C9A84C; }
+  .corner-tl { top: 16px; left: 16px; }
+  .corner-tl::before { top: 0; left: 0; width: 40px; height: 1px; }
+  .corner-tl::after { top: 0; left: 0; width: 1px; height: 40px; }
+  .corner-tr { top: 16px; right: 16px; }
+  .corner-tr::before { top: 0; right: 0; width: 40px; height: 1px; }
+  .corner-tr::after { top: 0; right: 0; width: 1px; height: 40px; }
+  .corner-bl { bottom: 16px; left: 16px; }
+  .corner-bl::before { bottom: 0; left: 0; width: 40px; height: 1px; }
+  .corner-bl::after { bottom: 0; left: 0; width: 1px; height: 40px; }
+  .corner-br { bottom: 16px; right: 16px; }
+  .corner-br::before { bottom: 0; right: 0; width: 40px; height: 1px; }
+  .corner-br::after { bottom: 0; right: 0; width: 1px; height: 40px; }
+
+  .content { position: relative; z-index: 3; padding: 60px 56px; }
+
+  /* 顶部信息 */
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+  .museum { font-size: 11px; font-weight: 700; letter-spacing: 0.3em; color: #C9A84C; }
+  .museum-en { font-size: 9px; letter-spacing: 0.2em; color: rgba(201,168,76,0.5); margin-top: 4px; }
+  .date-block { text-align: right; }
+  .date-year { font-size: 32px; font-weight: 900; color: #C9A84C; line-height: 1; }
+  .date-range { font-size: 10px; letter-spacing: 0.15em; color: rgba(248,231,192,0.5); margin-top: 6px; }
+
+  /* 装饰纹样 */
+  .ornament {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    padding: 36px 0 28px;
+  }
+  .ornament-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent); }
+  .ornament-dot { width: 6px; height: 6px; background: #C9A84C; transform: rotate(45deg); }
+
+  /* 主标题 */
+  .main-title {
+    text-align: center; padding: 10px 0 20px;
+  }
+  .title-zh {
+    font-size: 72px; font-weight: 900; letter-spacing: 0.15em; line-height: 1.15;
+    background: linear-gradient(180deg, #F8E7C0 0%, #C9A84C 60%, #8B6914 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .title-en {
+    font-size: 13px; letter-spacing: 0.35em; color: rgba(201,168,76,0.55);
+    margin-top: 12px; font-weight: 500;
+  }
+  .title-sub {
+    font-size: 16px; letter-spacing: 0.25em; color: #C9A84C; margin-top: 20px; font-weight: 600;
+  }
+
+  /* 描述 */
+  .desc {
+    text-align: center; max-width: 480px; margin: 0 auto;
+    padding: 28px 0; font-size: 14px; line-height: 2; color: rgba(248,231,192,0.65); font-weight: 400;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  /* 展品栏 */
+  .exhibits {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    padding: 36px 0;
+  }
+  .exhibit {
+    text-align: center; padding: 24px 12px;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.03);
+  }
+  .exhibit-num { font-size: 32px; font-weight: 900; color: #C9A84C; line-height: 1; }
+  .exhibit-unit { font-size: 10px; color: rgba(201,168,76,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+  .exhibit-label { font-size: 12px; color: rgba(248,231,192,0.6); margin-top: 10px; letter-spacing: 0.08em; }
+
+  /* 朱砂印章 */
+  .seal {
+    position: absolute; right: 56px; bottom: 180px; z-index: 4;
+    width: 64px; height: 64px; border: 2px solid #B91C1C;
+    display: flex; align-items: center; justify-content: center;
+    transform: rotate(-8deg);
+  }
+  .seal span {
+    font-size: 22px; font-weight: 900; color: #B91C1C; letter-spacing: 0.1em;
+    writing-mode: vertical-rl;
+  }
+
+  /* 底部 */
+  .bottom {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-top: 24px; border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .venue { font-size: 11px; color: rgba(248,231,192,0.45); letter-spacing: 0.1em; line-height: 1.8; }
+  .ticket { font-size: 10px; color: #C9A84C; letter-spacing: 0.15em; border: 1px solid rgba(201,168,76,0.4); padding: 8px 16px; }
+
+  /* 浮动返回 */
+  .back {
+    position: fixed; top: 20px; left: 20px; z-index: 100;
+    padding: 8px 18px; font-size: 12px; font-weight: 700;
+    font-family: "Inter", sans-serif; color: #fff; background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 30px; text-decoration: none;
+  }
+  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 800; font-family: "Inter", sans-serif; color: #C9A84C; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(201,168,76,0.3); border-radius: 30px; letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+<a class="back" href="../index.html">← 画廊</a>
+<span class="tag">POSTER · 盛唐华彩</span>
+
+<div class="poster">
+  <div class="inner-frame"></div>
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <div class="content">
+    <div class="top-bar">
+      <div>
+        <div class="museum">故宫博物院</div>
+        <div class="museum-en">THE PALACE MUSEUM · BEIJING</div>
+      </div>
+      <div class="date-block">
+        <div class="date-year">2025</div>
+        <div class="date-range">09.15 — 12.31</div>
+      </div>
+    </div>
+
+    <div class="ornament">
+      <div class="ornament-line"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line"></div>
+    </div>
+
+    <div class="main-title">
+      <div class="title-zh">盛唐华彩</div>
+      <div class="title-en">SPLENDOR OF THE TANG DYNASTY</div>
+      <div class="title-sub">丝绸之路上的文明交响</div>
+    </div>
+
+    <div class="desc">
+      横跨丝绸之路的帝国光芒，从长安到撒马尔罕。<br>
+      百余件国宝级文物首次联合展出——金银器、三彩陶俑、<br>
+      敦煌壁画摹本与粟特银盘，共同呈现大唐盛世的多元辉煌。
+    </div>
+
+    <div class="exhibits">
+      <div class="exhibit">
+        <div class="exhibit-num">128</div>
+        <div class="exhibit-unit">PIECES</div>
+        <div class="exhibit-label">国宝级展品</div>
+      </div>
+      <div class="exhibit">
+        <div class="exhibit-num">12</div>
+        <div class="exhibit-unit">MUSEUMS</div>
+        <div class="exhibit-label">联合策展机构</div>
+      </div>
+      <div class="exhibit">
+        <div class="exhibit-num">618</div>
+        <div class="exhibit-unit">—907 AD</div>
+        <div class="exhibit-label">大唐纪年</div>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <div class="venue">
+        故宫博物院 · 午门展厅<br>
+        北京市东城区景山前街 4 号<br>
+        每日 08:30 – 17:00 · 周一闭馆
+      </div>
+      <div class="ticket">预约购票 →</div>
+    </div>
+  </div>
+
+  <div class="seal"><span>大唐</span></div>
+</div>
+</body>
+</html>
