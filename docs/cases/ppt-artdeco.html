@@ -3,140 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Art Deco Noir — 年度设计盛典 PPT</title>
+<title>Neobrutalism — 创意科技年度总结 PPT</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { margin: 0; background: #111; font-family: "Inter", sans-serif; }
+  body { margin: 0; background: #E5E5E5; font-family: "Space Grotesk", sans-serif; }
 
-  .back { position: fixed; top: 20px; left: 20px; z-index: 100; padding: 8px 18px; font-size: 12px; font-weight: 700; color: #fff; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; text-decoration: none; font-family: "Inter", sans-serif; }
-  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 800; font-family: "Inter", sans-serif; color: #D4AF37; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(212,175,55,0.3); border-radius: 30px; letter-spacing: 0.1em; }
+  .back { position: fixed; top: 20px; left: 20px; z-index: 100; padding: 8px 18px; font-size: 12px; font-weight: 700; color: #1A1A1A; background: #FFD60A; border: 3px solid #1A1A1A; border-radius: 0; text-decoration: none; box-shadow: 4px 4px 0 #1A1A1A; }
+  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 700; color: #1A1A1A; background: #FF3366; border: 3px solid #1A1A1A; letter-spacing: 0.08em; box-shadow: 4px 4px 0 #1A1A1A; }
 
-  /* Slide container */
-  .deck { display: flex; flex-direction: column; align-items: center; gap: 40px; padding: 80px 20px 60px; }
+  .deck { display: flex; flex-direction: column; align-items: center; gap: 48px; padding: 80px 20px 60px; }
 
   .slide {
     width: 90vw; max-width: 960px; aspect-ratio: 16/9; position: relative; overflow: hidden;
-    background: #0A0A0A; color: #D4AF37;
-    font-family: "Cormorant Garamond", serif;
-    box-shadow: 0 20px 80px rgba(0,0,0,0.6);
-    border: 1px solid rgba(212,175,55,0.2);
+    background: #FFD60A; color: #1A1A1A;
+    border: 4px solid #1A1A1A;
+    box-shadow: 8px 8px 0 #1A1A1A;
   }
 
-  /* 金色内框 */
-  .slide::after {
-    content: ""; position: absolute; inset: 18px;
-    border: 1px solid rgba(212,175,55,0.2);
-    pointer-events: none;
-  }
+  .slide-num { position: absolute; bottom: 14px; right: 20px; font-size: 12px; font-weight: 700; color: rgba(26,26,26,0.3); }
 
   /* ── Slide 1: Cover ── */
-  .s1 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-  .s1::before { content: ""; position: absolute; inset: 26px; border: 1px solid rgba(212,175,55,0.12); pointer-events: none; }
-  .s1-year { font-size: 13px; font-weight: 400; letter-spacing: 0.4em; color: rgba(212,175,55,0.5); margin-bottom: 28px; font-family: "Inter", sans-serif; }
-  .s1-title { font-size: clamp(40px, 6vw, 72px); font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.1; }
-  .s1-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, #D4AF37, transparent); margin: 24px 0; }
-  .s1-sub { font-size: 16px; letter-spacing: 0.3em; color: rgba(212,175,55,0.6); font-weight: 400; }
-  .s1-date { position: absolute; bottom: 36px; font-size: 11px; letter-spacing: 0.2em; color: rgba(212,175,55,0.35); font-family: "Inter", sans-serif; }
+  .s1 { display: flex; align-items: center; justify-content: center; text-align: center; background: #FFD60A; }
+  .s1-badge { display: inline-block; padding: 6px 16px; background: #FF3366; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; border: 3px solid #1A1A1A; margin-bottom: 24px; }
+  .s1-title { font-size: clamp(42px, 7vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; }
+  .s1-sub { font-size: 16px; font-weight: 500; margin-top: 16px; color: rgba(26,26,26,0.6); }
+  .s1-corner { position: absolute; width: 80px; height: 80px; background: #1A1A1A; }
+  .s1-corner-tl { top: 0; left: 0; }
+  .s1-corner-br { bottom: 0; right: 0; }
+  .s1-circle { position: absolute; top: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: #FF3366; border: 3px solid #1A1A1A; }
+  .s1-date { position: absolute; bottom: 20px; left: 24px; font-size: 11px; font-weight: 700; color: rgba(26,26,26,0.4); }
 
   /* ── Slide 2: Agenda ── */
-  .s2 { padding: clamp(36px, 5vw, 60px); display: grid; grid-template-columns: 1fr 1.6fr; gap: 40px; align-items: center; }
-  .s2-left {}
-  .s2-kicker { font-size: 10px; font-weight: 800; letter-spacing: 0.3em; color: rgba(212,175,55,0.45); font-family: "Inter", sans-serif; margin-bottom: 14px; }
-  .s2-heading { font-size: clamp(28px, 4vw, 44px); font-weight: 300; letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.15; }
+  .s2 { padding: clamp(32px, 5vw, 56px); display: grid; grid-template-columns: 1fr 1.8fr; gap: 32px; align-items: center; background: #FAFAFA; }
+  .s2-heading { font-size: clamp(32px, 5vw, 52px); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
+  .s2-heading span { display: inline-block; background: #FF3366; color: #fff; padding: 2px 8px; }
   .s2-items { display: flex; flex-direction: column; gap: 0; }
-  .s2-item {
-    display: flex; align-items: center; gap: 20px;
-    padding: 20px 0; border-bottom: 1px solid rgba(212,175,55,0.12);
-  }
-  .s2-num { font-size: 28px; font-weight: 300; color: rgba(212,175,55,0.3); width: 40px; font-family: "Cormorant Garamond", serif; }
-  .s2-text { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: #D4AF37; font-family: "Inter", sans-serif; }
-  .s2-desc { font-size: 11px; color: rgba(212,175,55,0.4); margin-top: 3px; font-weight: 400; }
+  .s2-item { display: flex; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 3px solid #1A1A1A; }
+  .s2-num { font-size: 24px; font-weight: 700; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 3px solid #1A1A1A; flex-shrink: 0; }
+  .s2-num:nth-child(1) { background: #FFD60A; }
+  .s2-text { font-size: 15px; font-weight: 700; }
+  .s2-desc { font-size: 11px; color: #666; margin-top: 2px; font-weight: 400; }
 
   /* ── Slide 3: Data ── */
-  .s3 { padding: clamp(36px, 5vw, 60px); display: flex; flex-direction: column; justify-content: center; }
-  .s3-heading { font-size: clamp(24px, 3.5vw, 38px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 36px; text-align: center; }
-  .s3-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-  .s3-card {
-    text-align: center; padding: 28px 16px;
-    border: 1px solid rgba(212,175,55,0.2);
-    background: rgba(212,175,55,0.03);
-  }
-  .s3-val { font-size: clamp(32px, 4vw, 52px); font-weight: 300; line-height: 1; }
-  .s3-label { font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.45); margin-top: 10px; font-family: "Inter", sans-serif; font-weight: 700; }
+  .s3 { padding: clamp(32px, 5vw, 56px); display: flex; flex-direction: column; justify-content: center; background: #1A1A1A; color: #FAFAFA; }
+  .s3-heading { font-size: clamp(24px, 4vw, 40px); font-weight: 700; text-transform: uppercase; margin-bottom: 28px; }
+  .s3-heading span { background: #FF3366; color: #fff; padding: 2px 10px; }
+  .s3-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .s3-card { text-align: center; padding: 24px 12px; border: 3px solid #FAFAFA; }
+  .s3-card:nth-child(1) { background: #FFD60A; color: #1A1A1A; border-color: #1A1A1A; }
+  .s3-card:nth-child(2) { background: #FF3366; }
+  .s3-card:nth-child(3) { background: #3B82F6; }
+  .s3-card:nth-child(4) { background: #10B981; }
+  .s3-val { font-size: clamp(28px, 4vw, 48px); font-weight: 700; line-height: 1; }
+  .s3-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; margin-top: 8px; opacity: 0.7; text-transform: uppercase; }
 
-  /* ── Slide 4: Quote ── */
-  .s4 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px; }
-  .s4::before {
-    content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
-    width: 200px; height: 200px; border: 1px solid rgba(212,175,55,0.15); border-radius: 50%;
-  }
-  .s4-mark { font-size: 80px; font-weight: 300; line-height: 1; color: rgba(212,175,55,0.2); margin-bottom: 16px; }
-  .s4-quote { font-size: clamp(20px, 3vw, 30px); font-weight: 300; line-height: 1.6; max-width: 600px; font-style: italic; letter-spacing: 0.04em; position: relative; z-index: 1; }
-  .s4-author { margin-top: 28px; font-size: 12px; letter-spacing: 0.2em; color: rgba(212,175,55,0.5); font-family: "Inter", sans-serif; font-weight: 700; position: relative; z-index: 1; }
+  /* ── Slide 4: Features ── */
+  .s4 { padding: clamp(32px, 5vw, 56px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-content: center; background: #FFD60A; }
+  .s4-heading { grid-column: 1 / -1; font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+  .s4-card { padding: 24px 20px; border: 3px solid #1A1A1A; background: #FAFAFA; box-shadow: 5px 5px 0 #1A1A1A; }
+  .s4-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .s4-card-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .s4-card-desc { font-size: 12px; color: #555; line-height: 1.5; }
 
-  /* ── Slide 5: Team ── */
-  .s5 { padding: clamp(36px, 5vw, 60px); display: grid; grid-template-columns: 0.8fr 1fr; gap: 40px; align-items: center; }
-  .s5-heading { font-size: clamp(24px, 3.5vw, 38px); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
-  .s5-sub { font-size: 13px; color: rgba(212,175,55,0.5); line-height: 1.7; font-weight: 400; }
-  .s5-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .s5-member { text-align: center; padding: 20px 10px; border: 1px solid rgba(212,175,55,0.15); }
-  .s5-avatar { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, rgba(212,175,55,0.3), rgba(212,175,55,0.1)); margin: 0 auto 12px; border: 1px solid rgba(212,175,55,0.3); }
-  .s5-name { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; font-family: "Inter", sans-serif; }
-  .s5-role { font-size: 10px; color: rgba(212,175,55,0.4); margin-top: 4px; letter-spacing: 0.08em; font-family: "Inter", sans-serif; }
+  /* ── Slide 5: Quote ── */
+  .s5 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 56px; background: #FF3366; color: #FAFAFA; }
+  .s5-mark { font-size: 80px; font-weight: 700; line-height: 1; margin-bottom: 12px; }
+  .s5-quote { font-size: clamp(20px, 3.5vw, 32px); font-weight: 700; line-height: 1.4; max-width: 600px; }
+  .s5-author { margin-top: 24px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; padding: 6px 16px; background: #1A1A1A; display: inline-block; }
 
   /* ── Slide 6: End ── */
-  .s6 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-  .s6::before { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 260px; height: 260px; border: 1px solid rgba(212,175,55,0.1); }
-  .s6::after { inset: 26px !important; }
-  .s6-thanks { font-size: clamp(36px, 5vw, 60px); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; position: relative; z-index: 1; }
-  .s6-line { width: 60px; height: 1px; background: #D4AF37; margin: 24px 0; position: relative; z-index: 1; }
-  .s6-contact { font-size: 12px; letter-spacing: 0.15em; color: rgba(212,175,55,0.45); font-family: "Inter", sans-serif; position: relative; z-index: 1; }
-
-  /* Slide number */
-  .slide-num { position: absolute; bottom: 18px; right: 28px; font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.25); font-family: "Inter", sans-serif; }
+  .s6 { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: #1A1A1A; color: #FFD60A; }
+  .s6-thanks { font-size: clamp(40px, 6vw, 72px); font-weight: 700; text-transform: uppercase; letter-spacing: -0.02em; }
+  .s6-emoji { font-size: 48px; margin: 20px 0; }
+  .s6-contact { font-size: 13px; font-weight: 500; color: rgba(255,214,10,0.5); letter-spacing: 0.06em; }
+  .s6-dots { display: flex; gap: 12px; margin-top: 24px; }
+  .s6-dot { width: 16px; height: 16px; border: 3px solid #FFD60A; }
+  .s6-dot:nth-child(1) { background: #FFD60A; }
+  .s6-dot:nth-child(2) { background: #FF3366; border-color: #FF3366; }
+  .s6-dot:nth-child(3) { background: #3B82F6; border-color: #3B82F6; }
 </style>
 </head>
 <body>
 <a class="back" href="../index.html">← 画廊</a>
-<span class="tag">PPT · ART DECO NOIR</span>
+<span class="tag">PPT · NEOBRUTALISM</span>
 
 <div class="deck">
 
   <!-- Slide 1: Cover -->
   <div class="slide s1">
-    <div class="s1-year">MMXXV</div>
-    <div class="s1-title">Design<br>Awards</div>
-    <div class="s1-line"></div>
-    <div class="s1-sub">年度设计盛典 · 第七届</div>
-    <div class="s1-date">DECEMBER 18, 2025 · SHANGHAI</div>
+    <div class="s1-corner s1-corner-tl"></div>
+    <div class="s1-corner s1-corner-br"></div>
+    <div class="s1-circle"></div>
+    <div style="position:relative;z-index:1">
+      <div class="s1-badge">ANNUAL REVIEW 2025</div>
+      <div class="s1-title">创意无限<br>未来已来</div>
+      <div class="s1-sub">PixelForge Studio · 年度创意总结</div>
+    </div>
+    <div class="s1-date">DECEMBER 2025 · SHENZHEN</div>
     <span class="slide-num">01 / 06</span>
   </div>
 
   <!-- Slide 2: Agenda -->
   <div class="slide s2">
-    <div class="s2-left">
-      <div class="s2-kicker">PROGRAMME</div>
-      <div class="s2-heading">Today's<br>Agenda</div>
+    <div>
+      <div class="s2-heading">WHAT'S<br><span>INSIDE</span></div>
     </div>
     <div class="s2-items">
       <div class="s2-item">
-        <div class="s2-num">01</div>
-        <div><div class="s2-text">年度回顾</div><div class="s2-desc">2025 设计行业总览与趋势分析</div></div>
+        <div class="s2-num" style="background:#FFD60A">01</div>
+        <div><div class="s2-text">年度数据回顾</div><div class="s2-desc">用户增长、收入、市场份额</div></div>
       </div>
       <div class="s2-item">
-        <div class="s2-num">02</div>
-        <div><div class="s2-text">获奖作品展示</div><div class="s2-desc">来自全球 42 个国家的卓越设计</div></div>
+        <div class="s2-num" style="background:#FF3366;color:#fff">02</div>
+        <div><div class="s2-text">爆款产品复盘</div><div class="s2-desc">三个千万级项目的幕后故事</div></div>
       </div>
       <div class="s2-item">
-        <div class="s2-num">03</div>
-        <div><div class="s2-text">大师对谈</div><div class="s2-desc">关于设计的永恒与变革</div></div>
+        <div class="s2-num" style="background:#3B82F6;color:#fff">03</div>
+        <div><div class="s2-text">团队与文化</div><div class="s2-desc">从 30 人到 120 人的组织进化</div></div>
       </div>
       <div class="s2-item">
-        <div class="s2-num">04</div>
-        <div><div class="s2-text">颁奖典礼</div><div class="s2-desc">年度金奖 · 新锐奖 · 终身成就奖</div></div>
+        <div class="s2-num" style="background:#10B981;color:#fff">04</div>
+        <div><div class="s2-text">2026 展望</div><div class="s2-desc">新赛道、新产品、新目标</div></div>
       </div>
     </div>
     <span class="slide-num">02 / 06</span>
@@ -144,83 +134,66 @@
 
   <!-- Slide 3: Data -->
   <div class="slide s3">
-    <div class="s3-heading">Year in Numbers</div>
+    <div class="s3-heading">YEAR IN <span>NUMBERS</span></div>
     <div class="s3-grid">
       <div class="s3-card">
-        <div class="s3-val">3,847</div>
-        <div class="s3-label">SUBMISSIONS</div>
+        <div class="s3-val">2.4M</div>
+        <div class="s3-label">ACTIVE USERS</div>
       </div>
       <div class="s3-card">
-        <div class="s3-val">42</div>
-        <div class="s3-label">COUNTRIES</div>
+        <div class="s3-val">¥86M</div>
+        <div class="s3-label">REVENUE</div>
       </div>
       <div class="s3-card">
-        <div class="s3-val">128</div>
-        <div class="s3-label">FINALISTS</div>
+        <div class="s3-val">320%</div>
+        <div class="s3-label">YOY GROWTH</div>
       </div>
       <div class="s3-card">
-        <div class="s3-val">7</div>
-        <div class="s3-label">CATEGORIES</div>
+        <div class="s3-val">98.7%</div>
+        <div class="s3-label">UPTIME</div>
       </div>
     </div>
-    <span class="slide-num">03 / 06</span>
+    <span class="slide-num" style="color:rgba(255,255,255,0.2)">03 / 06</span>
   </div>
 
-  <!-- Slide 4: Quote -->
+  <!-- Slide 4: Features -->
   <div class="slide s4">
-    <div class="s4-mark">"</div>
-    <div class="s4-quote">Design is not just what it looks like and feels like. Design is how it works.</div>
-    <div class="s4-author">— STEVE JOBS</div>
+    <div class="s4-heading">KEY PRODUCTS</div>
+    <div class="s4-card">
+      <span class="s4-icon">&#9733;</span>
+      <div class="s4-card-title">PixelCanvas</div>
+      <div class="s4-card-desc">实时协作设计工具，支持 Figma 级别的矢量编辑与原型制作</div>
+    </div>
+    <div class="s4-card">
+      <span class="s4-icon">&#9881;</span>
+      <div class="s4-card-title">ForgeKit</div>
+      <div class="s4-card-desc">组件库平台，一键从设计稿生成 React / Vue 生产代码</div>
+    </div>
+    <div class="s4-card">
+      <span class="s4-icon">&#9889;</span>
+      <div class="s4-card-title">FlashShip</div>
+      <div class="s4-card-desc">一站式部署服务，从 commit 到上线只需 90 秒</div>
+    </div>
     <span class="slide-num">04 / 06</span>
   </div>
 
-  <!-- Slide 5: Team -->
+  <!-- Slide 5: Quote -->
   <div class="slide s5">
-    <div>
-      <div class="s5-heading">Jury<br>Panel</div>
-      <div class="s5-sub">来自六大洲的顶尖设计师与创意领袖，共同评审年度最佳设计作品。</div>
-    </div>
-    <div class="s5-team">
-      <div class="s5-member">
-        <div class="s5-avatar"></div>
-        <div class="s5-name">Sofia Chen</div>
-        <div class="s5-role">BRAND DIRECTOR</div>
-      </div>
-      <div class="s5-member">
-        <div class="s5-avatar"></div>
-        <div class="s5-name">Marcus Roth</div>
-        <div class="s5-role">CREATIVE LEAD</div>
-      </div>
-      <div class="s5-member">
-        <div class="s5-avatar"></div>
-        <div class="s5-name">Yuki Tanaka</div>
-        <div class="s5-role">ART DIRECTOR</div>
-      </div>
-      <div class="s5-member">
-        <div class="s5-avatar"></div>
-        <div class="s5-name">Elena Vogt</div>
-        <div class="s5-role">UX PRINCIPAL</div>
-      </div>
-      <div class="s5-member">
-        <div class="s5-avatar"></div>
-        <div class="s5-name">James Park</div>
-        <div class="s5-role">DESIGN VP</div>
-      </div>
-      <div class="s5-member">
-        <div class="s5-avatar"></div>
-        <div class="s5-name">Aisha Noor</div>
-        <div class="s5-role">CHIEF EDITOR</div>
-      </div>
-    </div>
-    <span class="slide-num">05 / 06</span>
+    <div class="s5-mark">"</div>
+    <div class="s5-quote">好的设计不是让事物看起来更漂亮，而是让复杂的事物变得简单可用。</div>
+    <div class="s5-author">— PIXELFORGE DESIGN PRINCIPLE #1</div>
+    <span class="slide-num" style="color:rgba(255,255,255,0.3)">05 / 06</span>
   </div>
 
   <!-- Slide 6: End -->
   <div class="slide s6">
-    <div class="s6-thanks">Thank You</div>
-    <div class="s6-line"></div>
-    <div class="s6-contact">DESIGNAWARDS.COM · @DESIGNAWARDS</div>
-    <span class="slide-num">06 / 06</span>
+    <div class="s6-thanks">THANK YOU!</div>
+    <div class="s6-emoji">&#x1F680;</div>
+    <div class="s6-contact">PIXELFORGE.DESIGN · @PIXELFORGE</div>
+    <div class="s6-dots">
+      <div class="s6-dot"></div><div class="s6-dot"></div><div class="s6-dot"></div>
+    </div>
+    <span class="slide-num" style="color:rgba(255,214,10,0.2)">06 / 06</span>
   </div>
 
 </div>

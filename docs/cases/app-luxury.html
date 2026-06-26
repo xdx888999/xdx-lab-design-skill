@@ -3,350 +3,353 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lumière — 高端酒店 APP UI</title>
+<title>SoundWave — 音乐 APP (Glassmorphism)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { margin: 0; background: #1A1714; display: flex; align-items: flex-start; justify-content: center; min-height: 100vh; padding: 60px 20px 80px; gap: 48px; flex-wrap: wrap; font-family: "Inter", sans-serif; }
+  body {
+    margin: 0; font-family: "Inter", sans-serif;
+    background: linear-gradient(135deg, #0F0A1A 0%, #1A1040 40%, #0D1B3E 100%);
+    display: flex; align-items: flex-start; justify-content: center;
+    min-height: 100vh; padding: 60px 20px 80px; gap: 48px; flex-wrap: wrap;
+  }
 
-  .back { position: fixed; top: 20px; left: 20px; z-index: 100; padding: 8px 18px; font-size: 12px; font-weight: 700; color: #fff; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); border-radius: 30px; text-decoration: none; }
-  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 800; color: #C5A55A; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); border: 1px solid rgba(197,165,90,0.3); border-radius: 30px; letter-spacing: 0.1em; }
+  .back { position: fixed; top: 20px; left: 20px; z-index: 100; padding: 8px 18px; font-size: 12px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.15); border-radius: 30px; text-decoration: none; }
+  .tag { position: fixed; top: 20px; right: 20px; z-index: 100; padding: 8px 14px; font-size: 10px; font-weight: 800; color: #A78BFA; background: rgba(167,139,250,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(167,139,250,0.25); border-radius: 30px; letter-spacing: 0.1em; }
+
+  .screen-label { text-align: center; color: rgba(167,139,250,0.5); font-size: 11px; letter-spacing: 0.15em; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; }
 
   /* Phone frame */
   .phone {
     width: 375px; min-height: 812px; position: relative; overflow: hidden;
-    background: #FAF8F5; color: #1A1714;
-    border-radius: 44px; border: 8px solid #111;
-    box-shadow: 0 0 0 2px #333, 0 30px 80px rgba(0,0,0,0.5);
+    background: linear-gradient(160deg, #1A1040, #0D1B3E 60%, #0A1628);
+    border-radius: 44px; border: 8px solid #0A0A15;
+    box-shadow: 0 0 0 2px rgba(167,139,250,0.15), 0 30px 80px rgba(0,0,0,0.5);
+    color: #F0EEFF;
   }
   .phone::before {
     content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 160px; height: 34px; background: #111;
+    width: 160px; height: 34px; background: #0A0A15;
     border-radius: 0 0 20px 20px; z-index: 10;
   }
 
-  /* ──── Screen 1: Home ──── */
-  .screen-label {
-    text-align: center; color: rgba(197,165,90,0.6); font-size: 11px;
-    letter-spacing: 0.15em; font-weight: 700; margin-bottom: 16px; text-transform: uppercase;
+  /* Glass card */
+  .glass {
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
   }
 
-  .status-bar { padding: 14px 28px 0; display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #1A1714; position: relative; z-index: 11; }
-  .status-time { font-weight: 700; }
-  .status-icons { display: flex; gap: 6px; align-items: center; }
-  .status-dot { width: 4px; height: 4px; background: #1A1714; border-radius: 50%; }
+  /* Status bar */
+  .status-bar { padding: 14px 28px 0; display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; color: #F0EEFF; position: relative; z-index: 11; }
 
-  /* Home header */
-  .home-header { padding: 44px 24px 20px; }
-  .home-greeting { font-size: 13px; color: #999; font-weight: 400; letter-spacing: 0.04em; }
-  .home-name { font-family: "Cormorant Garamond", serif; font-size: 28px; font-weight: 600; margin-top: 4px; }
+  /* ── Screen 1: Home / Discover ── */
+  .s1-header { padding: 44px 24px 16px; }
+  .s1-greeting { font-size: 13px; color: rgba(240,238,255,0.5); font-weight: 400; }
+  .s1-title { font-size: 26px; font-weight: 700; margin-top: 4px; }
 
-  /* Search */
-  .search {
-    margin: 0 24px; padding: 14px 18px; border-radius: 12px;
-    background: #F0EDE8; display: flex; align-items: center; gap: 10px;
-    font-size: 13px; color: #AAA;
+  .s1-search {
+    margin: 0 24px; padding: 12px 16px; border-radius: 14px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: rgba(240,238,255,0.3);
   }
-  .search-icon { font-size: 14px; }
 
-  /* Featured */
-  .featured { padding: 28px 24px 0; }
-  .section-title { font-family: "Cormorant Garamond", serif; font-size: 20px; font-weight: 600; margin-bottom: 16px; }
-  .featured-card {
-    width: 100%; height: 200px; border-radius: 16px; position: relative; overflow: hidden;
-    background: linear-gradient(135deg, #3B3228, #2A2118);
+  .s1-section { padding: 24px 24px 0; }
+  .s1-section-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+
+  .s1-featured {
+    width: 100%; height: 180px; border-radius: 18px; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #7C3AED, #EC4899, #F59E0B);
   }
-  .featured-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 60%); }
-  .featured-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; z-index: 1; color: #FAF8F5; }
-  .featured-badge { font-size: 8px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #C5A55A; margin-bottom: 6px; }
-  .featured-name { font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; }
-  .featured-loc { font-size: 11px; color: rgba(250,248,245,0.6); margin-top: 4px; }
-  .featured-price { position: absolute; bottom: 20px; right: 20px; z-index: 1; font-size: 11px; color: #C5A55A; font-weight: 600; }
+  .s1-featured::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 50%); }
+  .s1-feat-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 18px; z-index: 1; }
+  .s1-feat-tag { font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #A78BFA; }
+  .s1-feat-name { font-size: 20px; font-weight: 700; margin-top: 4px; }
+  .s1-feat-artist { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 2px; }
+  .s1-play-btn { position: absolute; bottom: 18px; right: 18px; z-index: 1; width: 44px; height: 44px; border-radius: 50%; background: #A78BFA; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #fff; }
 
-  /* Categories */
-  .cats { padding: 24px 24px 0; display: flex; gap: 12px; }
-  .cat-pill { padding: 10px 18px; border-radius: 24px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
-  .cat-pill.active { background: #1A1714; color: #FAF8F5; }
-  .cat-pill:not(.active) { background: #F0EDE8; color: #666; }
+  .s1-recents { display: flex; gap: 14px; overflow: hidden; }
+  .s1-recent { flex-shrink: 0; width: 120px; }
+  .s1-recent-img { width: 120px; height: 120px; border-radius: 14px; margin-bottom: 8px; }
+  .s1-recent-img.g1 { background: linear-gradient(135deg, #6366F1, #8B5CF6); }
+  .s1-recent-img.g2 { background: linear-gradient(135deg, #EC4899, #F43F5E); }
+  .s1-recent-img.g3 { background: linear-gradient(135deg, #14B8A6, #06B6D4); }
+  .s1-recent-name { font-size: 12px; font-weight: 600; }
+  .s1-recent-artist { font-size: 10px; color: rgba(240,238,255,0.4); }
 
-  /* Listings */
-  .listings { padding: 20px 24px 0; display: flex; flex-direction: column; gap: 16px; }
-  .listing { display: flex; gap: 14px; }
-  .listing-img { width: 90px; height: 90px; border-radius: 12px; background: linear-gradient(135deg, #E5DED4, #C8BFB0); flex-shrink: 0; }
-  .listing-img.warm { background: linear-gradient(135deg, #E8D5C4, #C9A88A); }
-  .listing-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-  .listing-stars { font-size: 9px; color: #C5A55A; letter-spacing: 1px; margin-bottom: 4px; }
-  .listing-name { font-family: "Cormorant Garamond", serif; font-size: 17px; font-weight: 600; line-height: 1.2; }
-  .listing-loc { font-size: 11px; color: #999; margin-top: 3px; }
-  .listing-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-  .listing-price { font-size: 14px; font-weight: 700; color: #1A1714; }
-  .listing-price span { font-size: 10px; font-weight: 400; color: #999; }
-  .listing-rating { font-size: 11px; color: #666; font-weight: 600; }
+  /* Mini player */
+  .mini-player {
+    position: absolute; bottom: 72px; left: 12px; right: 12px;
+    padding: 12px 16px; border-radius: 14px; z-index: 5;
+    background: rgba(167,139,250,0.15); backdrop-filter: blur(24px);
+    border: 1px solid rgba(167,139,250,0.2);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .mp-thumb { width: 40px; height: 40px; border-radius: 8px; background: linear-gradient(135deg, #7C3AED, #EC4899); flex-shrink: 0; }
+  .mp-info { flex: 1; }
+  .mp-name { font-size: 13px; font-weight: 600; }
+  .mp-artist { font-size: 10px; color: rgba(240,238,255,0.5); }
+  .mp-controls { display: flex; gap: 12px; align-items: center; font-size: 18px; color: #F0EEFF; }
+  .mp-progress { position: absolute; bottom: 0; left: 16px; right: 16px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 1px; }
+  .mp-progress::after { content: ""; position: absolute; left: 0; top: 0; width: 60%; height: 100%; background: #A78BFA; border-radius: 1px; }
 
   /* Tab bar */
   .tab-bar {
     position: absolute; bottom: 0; left: 0; right: 0;
     padding: 10px 32px 32px; display: flex; justify-content: space-between;
-    background: linear-gradient(to top, #FAF8F5 80%, transparent);
+    background: linear-gradient(to top, rgba(10,10,21,0.95) 60%, transparent);
   }
-  .tab { text-align: center; font-size: 10px; color: #BBB; font-weight: 600; }
-  .tab.active { color: #1A1714; }
+  .tab { text-align: center; font-size: 10px; color: rgba(240,238,255,0.35); font-weight: 600; }
+  .tab.active { color: #A78BFA; }
   .tab-icon { font-size: 18px; margin-bottom: 2px; display: block; }
 
-  /* ──── Screen 2: Detail ──── */
-  .s2 { background: #FAF8F5; }
-  .detail-hero { width: 100%; height: 280px; background: linear-gradient(135deg, #3B3228, #2A2118); position: relative; }
-  .detail-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,23,20,0.5), transparent 50%); }
-  .detail-back { position: absolute; top: 52px; left: 20px; z-index: 5; width: 36px; height: 36px; border-radius: 50%; background: rgba(250,248,245,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 16px; color: #fff; }
-  .detail-fav { position: absolute; top: 52px; right: 20px; z-index: 5; width: 36px; height: 36px; border-radius: 50%; background: rgba(250,248,245,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #fff; }
-  .detail-dots { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 5; }
-  .detail-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.3); }
-  .detail-dot.active { background: #fff; width: 18px; border-radius: 3px; }
+  /* ── Screen 2: Now Playing ── */
+  .s2-bg { position: absolute; inset: 0; background: linear-gradient(160deg, #2D1B69 0%, #1A0A3E 50%, #0D1B3E 100%); }
+  .s2-orb1 { position: absolute; top: 100px; left: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(167,139,250,0.15); filter: blur(60px); }
+  .s2-orb2 { position: absolute; bottom: 200px; right: -30px; width: 160px; height: 160px; border-radius: 50%; background: rgba(236,72,153,0.12); filter: blur(50px); }
 
-  .detail-body { padding: 24px; }
-  .detail-badge { font-size: 9px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #C5A55A; }
-  .detail-name { font-family: "Cormorant Garamond", serif; font-size: 28px; font-weight: 600; margin-top: 6px; line-height: 1.15; }
-  .detail-loc { font-size: 12px; color: #999; margin-top: 6px; }
-  .detail-rating-row { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
-  .detail-score { font-size: 14px; font-weight: 700; }
-  .detail-stars-txt { font-size: 11px; color: #C5A55A; }
-  .detail-reviews { font-size: 11px; color: #999; }
+  .s2-header { position: relative; z-index: 2; padding: 52px 24px 0; display: flex; justify-content: space-between; align-items: center; }
+  .s2-back { font-size: 18px; color: #F0EEFF; }
+  .s2-more { font-size: 20px; color: rgba(240,238,255,0.5); }
 
-  .detail-amenities { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
-  .amenity { padding: 10px 14px; border-radius: 10px; background: #F0EDE8; text-align: center; min-width: 72px; }
-  .amenity-icon { font-size: 16px; margin-bottom: 4px; display: block; }
-  .amenity-label { font-size: 9px; color: #666; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
-
-  .detail-desc { margin-top: 20px; font-size: 13px; line-height: 1.7; color: #666; }
-
-  .detail-cta {
-    margin-top: 24px; display: flex; justify-content: space-between; align-items: center;
-    padding: 18px 24px; border-radius: 16px; background: #1A1714; color: #FAF8F5;
+  .s2-artwork {
+    position: relative; z-index: 2; margin: 32px auto 0; width: 280px; height: 280px;
+    border-radius: 24px; overflow: hidden;
+    background: linear-gradient(135deg, #7C3AED, #EC4899, #F59E0B);
+    box-shadow: 0 20px 60px rgba(124,58,237,0.3);
   }
-  .cta-price { font-family: "Cormorant Garamond", serif; font-size: 24px; font-weight: 600; }
-  .cta-price span { font-size: 12px; font-weight: 400; color: rgba(250,248,245,0.5); }
-  .cta-btn { padding: 12px 28px; border-radius: 10px; background: #C5A55A; color: #1A1714; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; }
 
-  /* ──── Screen 3: Booking ──── */
-  .s3 { background: #FAF8F5; }
-  .book-header { padding: 52px 24px 20px; display: flex; align-items: center; gap: 12px; }
-  .book-back { font-size: 20px; color: #1A1714; }
-  .book-title { font-family: "Cormorant Garamond", serif; font-size: 22px; font-weight: 600; }
+  .s2-info { position: relative; z-index: 2; text-align: center; padding: 28px 24px 0; }
+  .s2-song { font-size: 22px; font-weight: 700; }
+  .s2-artist { font-size: 14px; color: rgba(240,238,255,0.5); margin-top: 4px; }
 
-  .book-section { padding: 0 24px; margin-bottom: 20px; }
-  .book-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+  .s2-progress { position: relative; z-index: 2; padding: 24px 32px 0; }
+  .s2-bar { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; position: relative; }
+  .s2-bar-fill { position: absolute; left: 0; top: 0; width: 38%; height: 100%; background: #A78BFA; border-radius: 2px; }
+  .s2-bar-dot { position: absolute; left: 38%; top: -4px; width: 12px; height: 12px; border-radius: 50%; background: #A78BFA; transform: translateX(-50%); box-shadow: 0 0 10px rgba(167,139,250,0.5); }
+  .s2-times { display: flex; justify-content: space-between; font-size: 10px; color: rgba(240,238,255,0.35); margin-top: 8px; }
 
-  .date-picker { display: flex; gap: 12px; }
-  .date-box { flex: 1; padding: 14px 16px; border-radius: 12px; background: #F0EDE8; }
-  .date-box-label { font-size: 10px; color: #999; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-  .date-box-val { font-size: 16px; font-weight: 600; margin-top: 4px; }
+  .s2-controls { position: relative; z-index: 2; display: flex; justify-content: center; align-items: center; gap: 32px; padding: 28px 0; }
+  .s2-ctrl { font-size: 22px; color: rgba(240,238,255,0.5); }
+  .s2-play { width: 64px; height: 64px; border-radius: 50%; background: #A78BFA; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #fff; box-shadow: 0 8px 30px rgba(167,139,250,0.4); }
 
-  .guest-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-radius: 12px; background: #F0EDE8; }
-  .guest-label { font-size: 14px; font-weight: 500; }
-  .guest-ctrl { display: flex; align-items: center; gap: 16px; }
-  .guest-btn { width: 32px; height: 32px; border-radius: 50%; background: #1A1714; color: #FAF8F5; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; }
-  .guest-num { font-size: 16px; font-weight: 700; }
+  /* ── Screen 3: Library ── */
+  .s3-header { padding: 52px 24px 20px; }
+  .s3-title { font-size: 26px; font-weight: 700; }
 
-  .room-option { padding: 16px; border-radius: 12px; border: 1px solid #E5E0D8; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-  .room-option.selected { border-color: #C5A55A; background: rgba(197,165,90,0.04); }
-  .room-type { font-size: 14px; font-weight: 600; }
-  .room-size { font-size: 11px; color: #999; margin-top: 2px; }
-  .room-price { font-size: 16px; font-weight: 700; }
-  .room-night { font-size: 10px; color: #999; }
-  .room-check { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #E5E0D8; }
-  .room-option.selected .room-check { border-color: #C5A55A; background: #C5A55A; }
+  .s3-tabs { display: flex; gap: 0; margin: 0 24px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+  .s3-tab { flex: 1; padding: 10px; text-align: center; font-size: 12px; font-weight: 600; color: rgba(240,238,255,0.4); background: rgba(255,255,255,0.03); }
+  .s3-tab.active { background: rgba(167,139,250,0.15); color: #A78BFA; }
 
-  .book-summary { margin: 20px 24px 0; padding: 20px; border-radius: 14px; background: #F0EDE8; }
-  .summary-row { display: flex; justify-content: space-between; font-size: 13px; color: #666; padding: 4px 0; }
-  .summary-row.total { font-weight: 700; color: #1A1714; font-size: 15px; border-top: 1px solid #E5E0D8; margin-top: 8px; padding-top: 12px; }
-
-  .book-cta { margin: 24px 24px 40px; padding: 18px; border-radius: 14px; background: #C5A55A; color: #1A1714; text-align: center; font-size: 15px; font-weight: 700; letter-spacing: 0.04em; }
+  .s3-playlists { padding: 20px 24px 0; display: flex; flex-direction: column; gap: 12px; }
+  .s3-playlist {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px; border-radius: 14px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06);
+  }
+  .s3-pl-img { width: 56px; height: 56px; border-radius: 10px; flex-shrink: 0; }
+  .s3-pl-img.g1 { background: linear-gradient(135deg, #8B5CF6, #6366F1); }
+  .s3-pl-img.g2 { background: linear-gradient(135deg, #F43F5E, #EC4899); }
+  .s3-pl-img.g3 { background: linear-gradient(135deg, #06B6D4, #14B8A6); }
+  .s3-pl-img.g4 { background: linear-gradient(135deg, #F59E0B, #EF4444); }
+  .s3-pl-info { flex: 1; }
+  .s3-pl-name { font-size: 14px; font-weight: 600; }
+  .s3-pl-meta { font-size: 11px; color: rgba(240,238,255,0.35); margin-top: 2px; }
+  .s3-pl-btn { font-size: 16px; color: rgba(240,238,255,0.3); }
 </style>
 </head>
 <body>
 <a class="back" href="../index.html">← 画廊</a>
-<span class="tag">APP · LUXURY</span>
+<span class="tag">APP · GLASSMORPHISM</span>
 
-<!-- Screen 1: Home -->
+<!-- Screen 1: Discover -->
 <div>
-  <div class="screen-label">Home</div>
+  <div class="screen-label">Discover</div>
   <div class="phone">
     <div class="status-bar">
-      <span class="status-time">9:41</span>
-      <div class="status-icons"><span class="status-dot"></span><span class="status-dot"></span><span class="status-dot"></span></div>
-    </div>
-
-    <div class="home-header">
-      <div class="home-greeting">Good morning,</div>
-      <div class="home-name">Alexander</div>
-    </div>
-
-    <div class="search">
-      <span class="search-icon">&#9906;</span>
-      Where would you like to stay?
-    </div>
-
-    <div class="featured">
-      <div class="section-title">Featured</div>
-      <div class="featured-card">
-        <div class="featured-info">
-          <div class="featured-badge">Editor's Pick</div>
-          <div class="featured-name">The Peninsula</div>
-          <div class="featured-loc">Shanghai · The Bund</div>
-        </div>
-        <div class="featured-price">¥3,800 / night</div>
+      <span>9:41</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span style="width:4px;height:4px;background:#F0EEFF;border-radius:50%"></span>
+        <span style="width:4px;height:4px;background:#F0EEFF;border-radius:50%"></span>
+        <span style="width:4px;height:4px;background:#F0EEFF;border-radius:50%"></span>
       </div>
     </div>
 
-    <div class="cats">
-      <div class="cat-pill active">All</div>
-      <div class="cat-pill">Resort</div>
-      <div class="cat-pill">Urban</div>
-      <div class="cat-pill">Boutique</div>
+    <div class="s1-header">
+      <div class="s1-greeting">Good evening</div>
+      <div class="s1-title">Discover</div>
     </div>
 
-    <div class="listings">
-      <div class="listing">
-        <div class="listing-img"></div>
-        <div class="listing-content">
-          <div class="listing-stars">★ ★ ★ ★ ★</div>
-          <div class="listing-name">Aman Tokyo</div>
-          <div class="listing-loc">Tokyo · Otemachi</div>
-          <div class="listing-bottom">
-            <div class="listing-price">¥5,200 <span>/night</span></div>
-            <div class="listing-rating">4.9</div>
-          </div>
+    <div class="s1-search">&#9906; Search songs, artists, albums...</div>
+
+    <div class="s1-section">
+      <div class="s1-section-title">Featured Mix</div>
+      <div class="s1-featured">
+        <div class="s1-feat-info">
+          <div class="s1-feat-tag">Curated For You</div>
+          <div class="s1-feat-name">Midnight Synthwave</div>
+          <div class="s1-feat-artist">42 tracks · 2h 38min</div>
+        </div>
+        <div class="s1-play-btn">&#9654;</div>
+      </div>
+    </div>
+
+    <div class="s1-section">
+      <div class="s1-section-title">Recently Played</div>
+      <div class="s1-recents">
+        <div class="s1-recent">
+          <div class="s1-recent-img g1"></div>
+          <div class="s1-recent-name">After Hours</div>
+          <div class="s1-recent-artist">The Weeknd</div>
+        </div>
+        <div class="s1-recent">
+          <div class="s1-recent-img g2"></div>
+          <div class="s1-recent-name">Future Nostalgia</div>
+          <div class="s1-recent-artist">Dua Lipa</div>
+        </div>
+        <div class="s1-recent">
+          <div class="s1-recent-img g3"></div>
+          <div class="s1-recent-name">IGOR</div>
+          <div class="s1-recent-artist">Tyler, The Creator</div>
         </div>
       </div>
-      <div class="listing">
-        <div class="listing-img warm"></div>
-        <div class="listing-content">
-          <div class="listing-stars">★ ★ ★ ★ ★</div>
-          <div class="listing-name">Amanpuri</div>
-          <div class="listing-loc">Phuket · Panwa</div>
-          <div class="listing-bottom">
-            <div class="listing-price">¥6,800 <span>/night</span></div>
-            <div class="listing-rating">4.8</div>
-          </div>
+    </div>
+
+    <div class="mini-player">
+      <div class="mp-thumb"></div>
+      <div class="mp-info">
+        <div class="mp-name">Blinding Lights</div>
+        <div class="mp-artist">The Weeknd</div>
+      </div>
+      <div class="mp-controls"><span>&#9646;&#9646;</span><span>&#9197;</span></div>
+      <div class="mp-progress"></div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab active"><span class="tab-icon">&#9734;</span>Discover</div>
+      <div class="tab"><span class="tab-icon">&#9906;</span>Search</div>
+      <div class="tab"><span class="tab-icon">&#9776;</span>Library</div>
+      <div class="tab"><span class="tab-icon">&#9673;</span>Profile</div>
+    </div>
+  </div>
+</div>
+
+<!-- Screen 2: Now Playing -->
+<div>
+  <div class="screen-label">Now Playing</div>
+  <div class="phone" style="overflow:hidden">
+    <div class="s2-bg"></div>
+    <div class="s2-orb1"></div>
+    <div class="s2-orb2"></div>
+
+    <div class="s2-header">
+      <span class="s2-back">&#8595;</span>
+      <span style="font-size:12px;font-weight:600;color:rgba(240,238,255,0.5)">NOW PLAYING</span>
+      <span class="s2-more">&#8942;</span>
+    </div>
+
+    <div class="s2-artwork"></div>
+
+    <div class="s2-info">
+      <div class="s2-song">Blinding Lights</div>
+      <div class="s2-artist">The Weeknd</div>
+    </div>
+
+    <div class="s2-progress">
+      <div class="s2-bar">
+        <div class="s2-bar-fill"></div>
+        <div class="s2-bar-dot"></div>
+      </div>
+      <div class="s2-times"><span>1:22</span><span>3:42</span></div>
+    </div>
+
+    <div class="s2-controls">
+      <span class="s2-ctrl">&#9732;</span>
+      <span class="s2-ctrl">&#9194;</span>
+      <div class="s2-play">&#9654;</div>
+      <span class="s2-ctrl">&#9193;</span>
+      <span class="s2-ctrl">&#8634;</span>
+    </div>
+  </div>
+</div>
+
+<!-- Screen 3: Library -->
+<div>
+  <div class="screen-label">Library</div>
+  <div class="phone">
+    <div class="status-bar">
+      <span>9:41</span>
+      <div style="display:flex;gap:6px;align-items:center">
+        <span style="width:4px;height:4px;background:#F0EEFF;border-radius:50%"></span>
+        <span style="width:4px;height:4px;background:#F0EEFF;border-radius:50%"></span>
+        <span style="width:4px;height:4px;background:#F0EEFF;border-radius:50%"></span>
+      </div>
+    </div>
+
+    <div class="s3-header">
+      <div class="s3-title">Library</div>
+    </div>
+
+    <div class="s3-tabs">
+      <div class="s3-tab active">Playlists</div>
+      <div class="s3-tab">Albums</div>
+      <div class="s3-tab">Artists</div>
+    </div>
+
+    <div class="s3-playlists">
+      <div class="s3-playlist">
+        <div class="s3-pl-img g1"></div>
+        <div class="s3-pl-info">
+          <div class="s3-pl-name">Chill Vibes</div>
+          <div class="s3-pl-meta">24 songs · 1h 15min</div>
         </div>
+        <span class="s3-pl-btn">&#8250;</span>
+      </div>
+      <div class="s3-playlist">
+        <div class="s3-pl-img g2"></div>
+        <div class="s3-pl-info">
+          <div class="s3-pl-name">Workout Energy</div>
+          <div class="s3-pl-meta">36 songs · 2h 04min</div>
+        </div>
+        <span class="s3-pl-btn">&#8250;</span>
+      </div>
+      <div class="s3-playlist">
+        <div class="s3-pl-img g3"></div>
+        <div class="s3-pl-info">
+          <div class="s3-pl-name">Late Night Drive</div>
+          <div class="s3-pl-meta">18 songs · 58min</div>
+        </div>
+        <span class="s3-pl-btn">&#8250;</span>
+      </div>
+      <div class="s3-playlist">
+        <div class="s3-pl-img g4"></div>
+        <div class="s3-pl-info">
+          <div class="s3-pl-name">Focus Flow</div>
+          <div class="s3-pl-meta">42 songs · 3h 22min</div>
+        </div>
+        <span class="s3-pl-btn">&#8250;</span>
+      </div>
+      <div class="s3-playlist">
+        <div class="s3-pl-img g1"></div>
+        <div class="s3-pl-info">
+          <div class="s3-pl-name">Throwback Hits</div>
+          <div class="s3-pl-meta">56 songs · 3h 47min</div>
+        </div>
+        <span class="s3-pl-btn">&#8250;</span>
       </div>
     </div>
 
     <div class="tab-bar">
-      <div class="tab active"><span class="tab-icon">⌂</span>Home</div>
-      <div class="tab"><span class="tab-icon">♡</span>Saved</div>
-      <div class="tab"><span class="tab-icon">☰</span>Trips</div>
-      <div class="tab"><span class="tab-icon">◯</span>Profile</div>
+      <div class="tab"><span class="tab-icon">&#9734;</span>Discover</div>
+      <div class="tab"><span class="tab-icon">&#9906;</span>Search</div>
+      <div class="tab active"><span class="tab-icon">&#9776;</span>Library</div>
+      <div class="tab"><span class="tab-icon">&#9673;</span>Profile</div>
     </div>
-  </div>
-</div>
-
-<!-- Screen 2: Detail -->
-<div>
-  <div class="screen-label">Detail</div>
-  <div class="phone s2">
-    <div class="detail-hero">
-      <div class="detail-back">←</div>
-      <div class="detail-fav">♡</div>
-      <div class="detail-dots">
-        <div class="detail-dot active"></div>
-        <div class="detail-dot"></div>
-        <div class="detail-dot"></div>
-        <div class="detail-dot"></div>
-      </div>
-    </div>
-
-    <div class="detail-body">
-      <div class="detail-badge">Five-Star Luxury</div>
-      <div class="detail-name">The Peninsula<br>Shanghai</div>
-      <div class="detail-loc">No.32 The Bund, Zhongshan Dong Yi Road</div>
-      <div class="detail-rating-row">
-        <div class="detail-score">4.9</div>
-        <div class="detail-stars-txt">★★★★★</div>
-        <div class="detail-reviews">(2,847 reviews)</div>
-      </div>
-
-      <div class="detail-amenities">
-        <div class="amenity"><span class="amenity-icon">♨</span><span class="amenity-label">Spa</span></div>
-        <div class="amenity"><span class="amenity-icon">◎</span><span class="amenity-label">Pool</span></div>
-        <div class="amenity"><span class="amenity-icon">⚑</span><span class="amenity-label">Gym</span></div>
-        <div class="amenity"><span class="amenity-icon">☕</span><span class="amenity-label">Bar</span></div>
-      </div>
-
-      <div class="detail-desc">
-        坐落于外滩核心地段，半岛酒店以Art Deco建筑风格重现1920年代上海的优雅风华。每间客房均可俯瞰浦东天际线或历史建筑群。
-      </div>
-
-      <div class="detail-cta">
-        <div class="cta-price">¥3,800 <span>/night</span></div>
-        <div class="cta-btn">Book Now</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Screen 3: Booking -->
-<div>
-  <div class="screen-label">Booking</div>
-  <div class="phone s3">
-    <div class="status-bar">
-      <span class="status-time">9:41</span>
-      <div class="status-icons"><span class="status-dot"></span><span class="status-dot"></span><span class="status-dot"></span></div>
-    </div>
-
-    <div class="book-header">
-      <span class="book-back">←</span>
-      <span class="book-title">Reserve</span>
-    </div>
-
-    <div class="book-section">
-      <div class="book-label">Dates</div>
-      <div class="date-picker">
-        <div class="date-box">
-          <div class="date-box-label">Check in</div>
-          <div class="date-box-val">Jul 12</div>
-        </div>
-        <div class="date-box">
-          <div class="date-box-label">Check out</div>
-          <div class="date-box-val">Jul 15</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="book-section">
-      <div class="book-label">Guests</div>
-      <div class="guest-row">
-        <span class="guest-label">Adults</span>
-        <div class="guest-ctrl">
-          <span class="guest-btn">−</span>
-          <span class="guest-num">2</span>
-          <span class="guest-btn">+</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="book-section">
-      <div class="book-label">Room Type</div>
-      <div class="room-option">
-        <div><div class="room-type">Deluxe River View</div><div class="room-size">48 m² · King Bed</div></div>
-        <div style="text-align:right"><div class="room-price">¥3,800</div><div class="room-night">/night</div></div>
-      </div>
-      <div class="room-option selected">
-        <div><div class="room-type">Grand Premier Suite</div><div class="room-size">82 m² · King Bed</div></div>
-        <div style="text-align:right"><div class="room-price">¥6,200</div><div class="room-night">/night</div></div>
-      </div>
-    </div>
-
-    <div class="book-summary">
-      <div class="summary-row"><span>Grand Premier Suite × 3 nights</span><span>¥18,600</span></div>
-      <div class="summary-row"><span>Service fee</span><span>¥930</span></div>
-      <div class="summary-row"><span>Taxes</span><span>¥1,116</span></div>
-      <div class="summary-row total"><span>Total</span><span>¥20,646</span></div>
-    </div>
-
-    <div class="book-cta">Confirm Reservation</div>
   </div>
 </div>
 
