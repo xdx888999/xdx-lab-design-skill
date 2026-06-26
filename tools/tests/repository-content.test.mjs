@@ -158,6 +158,14 @@ test('README 中 14 个真实示例都提供可点击链接', async () => {
   }
 });
 
+test('README 的安装入口指向轻量 Skill 仓库', async () => {
+  const readme = await readFile(join(repoRoot, 'README.md'), 'utf8');
+
+  assert.match(readme, /https:\/\/github\.com\/xdx888999\/xdx-lab-design-style-skill/);
+  assert.match(readme, /git clone https:\/\/github\.com\/xdx888999\/xdx-lab-design-style-skill\.git/);
+  assert.doesNotMatch(readme, /git clone https:\/\/github\.com\/xdx888999\/xdx-lab-design-skill\.git/);
+});
+
 test('Skill 对缺少用户素材的配图场景有硬性规则', async () => {
   const skill = await readFile(join(repoRoot, 'SKILL.md'), 'utf8');
   const readme = await readFile(join(repoRoot, 'README.md'), 'utf8');
