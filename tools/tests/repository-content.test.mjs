@@ -158,6 +158,18 @@ test('README 中 14 个真实示例都提供可点击链接', async () => {
   }
 });
 
+test('Skill 对缺少用户素材的配图场景有硬性规则', async () => {
+  const skill = await readFile(join(repoRoot, 'SKILL.md'), 'utf8');
+  const readme = await readFile(join(repoRoot, 'README.md'), 'utf8');
+
+  assert.match(skill, /资产交付合同/);
+  assert.match(skill, /如果项目需要配图但用户没有提供素材/);
+  assert.match(skill, /免版权 \/ 开放授权 \/ 可商用免费图库图片/);
+  assert.match(skill, /不得宣称完成/);
+  assert.match(skill, /生成式图片、自绘 SVG、Canvas 图示、CSS 图案纹理/);
+  assert.match(readme, /如果用户没有提供素材，Agent 默认使用免版权 \/ 开放授权 \/ 可商用免费图库图片/);
+});
+
 test('本地画廊案例总览链接显式指向 index.html', async () => {
   const indexHtml = await readFile(join(repoRoot, 'docs', 'index.html'), 'utf8');
 
