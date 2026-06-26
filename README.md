@@ -100,12 +100,12 @@ https://github.com/xdx888999/xdx-lab-design-skill
 
 ### 14 个真实示例作品
 
-[真实示例作品集](https://xdx888999.github.io/xdx-lab-design-skill/cases/index.html) 直接展示本次制作完成的 6 个海报、6 个网页、1 个 PPT 和 1 个 App UI。封面全部来自真实成品截图，点击卡片即可打开对应 HTML 文件或下载 PPTX。
+[真实示例作品集](https://xdx888999.github.io/xdx-lab-design-skill/cases/index.html?v=20260626-real-examples) 直接展示本次制作完成的 6 个海报、6 个网页、1 个 PPT 和 1 个 App UI。封面全部来自真实成品截图，点击卡片即可打开对应 HTML 文件或下载 PPTX。
 
 ![真实示例作品集](docs/assets/example-showcase-overview.png)
 
-- 海报：[宋瓷文物](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/song-kenya-hara-cultural-relics-poster-2026.html)、[瑞士艺术展](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/swiss-vignelli-art-exhibition-poster-2026.html)、高端成衣、高端宠物店、川藏旅行、披萨餐厅。
-- 网页：[精品酒店](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/travel-hospitality-hotel-homepage-2026.html)、[独立设计师电商](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/fashion-editorial-independent-designer-commerce-2026.html)、开发者工具、清洁公司、制造业控制面板、摄影展。
+- 海报：[宋瓷文物](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/song-kenya-hara-cultural-relics-poster-2026.html)、[瑞士艺术展](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/swiss-vignelli-art-exhibition-poster-2026.html)、[高端成衣](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/luxury-premium-clothing-poster-2026.html)、[高端宠物店](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/luxury-premium-pet-shop-poster-2026.html)、[川藏旅行](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/nature-organic-chuanzang-travel-poster-2026.html)、[披萨餐厅](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/restaurant-fine-dining-pizza-poster-2026.html)。
+- 网页：[精品酒店](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/travel-hospitality-hotel-homepage-2026.html)、[独立设计师电商](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/fashion-editorial-independent-designer-commerce-2026.html)、[开发者工具](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/dark-developer-tool-launch-2026.html)、[清洁公司](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/medical-healthcare-cleaning-company-homepage-2026.html)、[制造业控制面板](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/saas-dashboard-light-manufacturing-control-panel-2026.html)、[摄影展](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/brutalist-web-photographer-exhibition-2026.html)。
 - PPT/UI：[Codex 白皮书 PPT](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/academic-codex-whitepaper-2026.pptx)、[健身 App 白板 UI](https://xdx888999.github.io/xdx-lab-design-skill/cases/example/claymorphism-fitness-app-whiteboard-2026.html)。
 
 ---

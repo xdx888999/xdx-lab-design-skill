@@ -149,10 +149,19 @@ test('案例库使用 14 个真实示例并清理旧案例页', async () => {
   assert.doesNotMatch(caseIndex, /case-data\.js/);
 });
 
+test('README 中 14 个真实示例都提供可点击链接', async () => {
+  const readme = await readFile(join(repoRoot, 'README.md'), 'utf8');
+
+  assert.match(readme, /cases\/index\.html\?v=20260626-real-examples/);
+  for (const file of requiredShowcaseFiles) {
+    assert.match(readme, new RegExp(`cases/example/${escapeRegExp(file)}`));
+  }
+});
+
 test('本地画廊案例总览链接显式指向 index.html', async () => {
   const indexHtml = await readFile(join(repoRoot, 'docs', 'index.html'), 'utf8');
 
-  assert.match(indexHtml, /href="cases\/index\.html">作品集总览/);
+  assert.match(indexHtml, /href="cases\/index\.html\?v=20260626-real-examples">作品集总览/);
   assert.doesNotMatch(indexHtml, /href="cases\/"/);
   assert.doesNotMatch(indexHtml, /case\.html\?id=/);
 });
